@@ -1,0 +1,29 @@
+
+
+3
+
+
+
+##START
+
+
+start 0 0
+toto 0 0
+tata 0 0
+
+
+tutu 0 0
+##END
+
+
+
+end 0 0
+start - toto
+
+
+
+
+start - tata
+toto - end
+tata - tutu
+tutu - end
