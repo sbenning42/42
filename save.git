@@ -1,8 +1,7 @@
-git branch -D tmp_saved;
 git branch tmp_saved;
 git checkout tmp_saved;
 git add .
 git add ./*
 git commit -m "tmp_project_save Saving current projet on new branch";
-git push;
+git push origin tmp_saved;
 git checkout master
