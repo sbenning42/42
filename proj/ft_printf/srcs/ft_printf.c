@@ -49,10 +49,7 @@ static int					print_no_fmt(const char *format)
 		if (*format == '{')
 		{
 			if (format != tmp)
-			{
 				save_buf((void *)tmp, format - tmp);
-				deb_saving((void *)tmp, format - tmp);
-			}
 			ft_printf_apply_color(format);
 			format += ft_printf_skip_color(format);
 			tmp = format + 1;
@@ -63,7 +60,6 @@ static int					print_no_fmt(const char *format)
 		format++;
 	}
 	save_buf((void *)tmp, format - tmp);
-	deb_saving((void *)tmp, format - tmp);
 	return (format - cp);
 }
 

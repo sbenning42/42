@@ -44,7 +44,6 @@ void	ft_printf_write_color(int color)
 		color |= COL_DEF;
 	color_attrib_copy(cp, color);
 	save_buf(buf, ft_strlen(buf));
-	deb_saving(buf, ft_strlen(buf));
 }
 
 static void	ft_printf_write_pad(int size, t_printf_pad_char padchar)
