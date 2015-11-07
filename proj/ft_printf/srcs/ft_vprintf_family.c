@@ -39,5 +39,5 @@ int		ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 	len = ft_vlprintf(format, ap);
 	if (len != -1)
 		flush_nstr(str, size);
-	return ((len > 0 && (size_t)len > size) ? size : len);
+	return ((len > 0 && len > (int)size) ? (int)size : len);
 }

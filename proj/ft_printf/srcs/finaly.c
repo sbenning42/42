@@ -31,7 +31,7 @@ static void	color_attrib_copy(char *buf, int color)
 	ft_memcpy(buf, "m\0", 2);
 }
 
-static void	ft_printf_write_color(int color)
+void	ft_printf_write_color(int color)
 {
 	char	buf[BUF_COLOR_SIZE];
 	char	*cp;
@@ -44,6 +44,7 @@ static void	ft_printf_write_color(int color)
 		color |= COL_DEF;
 	color_attrib_copy(cp, color);
 	save_buf(buf, ft_strlen(buf));
+	deb_saving(buf, ft_strlen(buf));
 }
 
 static void	ft_printf_write_pad(int size, t_printf_pad_char padchar)
@@ -66,7 +67,7 @@ static void	ft_printf_write(char *s, int size)
 void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 			t_printf_mod mod)
 {
-	ft_printf_write_color(mod.color);
+	//ft_printf_write_color(mod.color);
 	if (!(mod.flag & (LADJUST | ZEROPAD)))
 		ft_printf_write_pad(mod.width - realsize, BlankChar);
 	if (mod.sign)
@@ -82,5 +83,5 @@ void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 	ft_printf_write(cp, size);
 	if (mod.flag & LADJUST)
 		ft_printf_write_pad(mod.width - realsize, BlankChar);
-	ft_printf_write_color(COL_DEF);
+	//ft_printf_write_color(COL_DEF);
 }

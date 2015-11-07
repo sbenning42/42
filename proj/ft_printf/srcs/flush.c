@@ -21,7 +21,9 @@ void		flush_fd(int fd)
 	while (drive)
 	{
 		tmp = drive->next;
+		ft_putstr("[");
 		write(fd, drive->content, drive->content_size);
+		ft_putstr("]");
 		free(drive->content);
 		ft_membzdel((void **)&drive, sizeof(t_list));
 		drive = tmp;

@@ -31,7 +31,7 @@ int							color_flag(const char *fmt)
 	int						i;
 
 	flag = 0;
-	while (*fmt && *fmt != ']')
+	while (*fmt && *fmt != '}')
 	{
 		i = -1;
 		if (*fmt == '|')
@@ -53,3 +53,18 @@ int							color_flag(const char *fmt)
 	}
 	return (flag);
 }
+
+void	ft_printf_apply_color(const char *format)
+{
+	int	color;
+
+	color = 0;
+	set_color(&color, format);
+	ft_printf_write_color(color);
+}
+
+
+
+
+
+
