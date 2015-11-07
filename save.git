@@ -1,4 +1,3 @@
-git branch tmp_saved;
 git checkout tmp_saved;
 git add .
 git add ./*
