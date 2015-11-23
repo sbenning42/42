@@ -116,20 +116,20 @@ void			lem(int fd)
 			return ;
 		}
 	}
-
+ft_printf("ok\n");
 
 //******************************************************************************************************************************************
 
 	i = 0;
-	ft_printf("\nThere is %[Gr|Ss]d ants in the lem and %[Gr|Ss]d rooms in the map\n", map.lem, map.size);
+	ft_printf("\nThere is {gr|ss}%d{eoc} ants in the lem and {gr|ss}%d{eoc} rooms in the map\n", map.lem, map.size);
 	tmp = map.room;
 	while (tmp)
 	{
 		tmp2 = (t_lem_room *)tmp->content;
-		ft_printf("%[Gr|Pin]-5s id is %[Gr|Ss|Pin]d.\n", tmp2->name, tmp2->id);
+		ft_printf("{gr|pink}%-5s{eoc} id is {gr|ss|pink}%d{eoc}.\n", tmp2->name, tmp2->id);
 		tmp = tmp->next;
 	}
-	ft_printf("Ant have to go from %[Gr|Ss]d to %[Gr|Ss]d\n", map.id_s, map.id_e);
+	ft_printf("Ant have to go from {gr|ss}%d{eoc} to {gr|ss}%d{eoc}\n", map.id_s, map.id_e);
 	ft_printf("%[Blu|Gr|Ss]s\n |", "MATRICE:");
 	while (i < map.size)
 		ft_printf("%[Pin]d|", i++);

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:23:08 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/22 16:37:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/23 10:50:46 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int			get_opt(const char *cset, int *opt, int ac, char **av)
 				else
 				{
 					ft_printf("ft_ls: '%c' is not a valid option!\n", av[i][j]);
-					return (1);
+					return (-1);
 				}
 			}
 		}
 		else
-			return (0);
+			return (i - 1);
 	}
-	return (0);
+	return (i - 1);
 }

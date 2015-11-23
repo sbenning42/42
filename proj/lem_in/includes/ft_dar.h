@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 10:54:51 by sbenning          #+#    #+#             */
-/*   Updated: 2015/09/21 17:05:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/05 12:04:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_DAR_H
 
 # include "ft_header.h"
-# include "ft_printf.h"
+# include "ft_mem.h"
 
 typedef struct		s_cel
 {
@@ -35,7 +35,5 @@ typedef struct		s_dar
 void			ft_darnew(t_dar *ar);
 int			ft_daradd(t_dar *ar, void *data, size_t size);
 void			ft_dardel(t_dar *ar);
-void			ft_dardumpi(t_dar *ar, unsigned int i);
-void			ft_dardump(t_dar *ar);
 
 #endif
