@@ -12,20 +12,19 @@
 
 #include "ft_printf.h"
 
-int		set_color(t_printf_mod *mod, const char *fmt)
+void		set_color(int *color, const char *fmt)
 {
 	int	n;
 
 	n = 0;
 	while (*(fmt + ++n))
 	{
-		if (*(fmt + n) == ']')
+		if (*(fmt + n) == '}')
 			break ;
 	}
 	if (!*(fmt + n))
-		return (1);
-	mod->color |= color_flag(++fmt);
-	return (++n);
+		return ;
+	*color |= color_flag(++fmt);
 }
 
 int		set_prec(t_printf_mod *mod, const char *fmt)

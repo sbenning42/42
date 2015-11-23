@@ -40,7 +40,7 @@ static int	is_inter(t_list *l1, t_list *l2)
 	}
 	return (len);
 }
-
+/*
 int		select_faster(t_lem_map *map)
 {
 	int	sigma;
@@ -61,7 +61,7 @@ int		select_faster(t_lem_map *map)
 	}
 	return (win);
 }
-
+*/
 int		fill_madj_path(t_lem_map *map)
 {
 	t_list	*drive;

@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#    Updated: 2015/09/21 13:33:45 by sbenning         ###   ########.fr        #
+#*   Updated: 2015/11/15 16:24:56 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,14 @@ SRC =		ft_mem/ft_memset.c\
 		ft_lst/ft_lstiter.c\
 		ft_lst/ft_lstadd_back.c\
 		ft_lst/ft_lstmap.c\
+		ft_dlst/ft_dlstnew.c\
+		ft_dlst/ft_dlstdelone.c\
+		ft_dlst/ft_dlstdel.c\
+		ft_dlst/ft_dlstaddp.c\
+		ft_dlst/ft_dlstaddn.c\
+		ft_dlst/ft_dlstaddip.c\
+		ft_dlst/ft_dlstaddin.c\
+		ft_dlst/ft_dlstmap.c\
 		ft_dar/ft_darnew.c\
 		ft_dar/ft_daradd.c\
 		ft_dar/ft_dardel.c\

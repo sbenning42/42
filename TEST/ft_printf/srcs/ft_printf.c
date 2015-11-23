@@ -12,14 +12,54 @@
 
 #include "ft_printf.h"
 
+void			deb_saving(void *cp, int size)
+{
+	ft_putendl("");
+	ft_putstr("size= ");
+	ft_putnbr(size);
+	ft_putstr("\t[");
+	write(1, cp, size);
+	ft_putendl("]");
+}
+
+static int					ft_printf_skip_color(const char *format)
+{
+	int					n;
+
+	n = 0;
+	while (*format && *format != '}')
+	{
+		n++;
+		format++;
+	}
+	if (!*format)
+		return (0);
+	return (n);
+}
+
 static int					print_no_fmt(const char *format)
 {
 	const char				*cp;
+	const char				*tmp;
 
 	cp = format;
+	tmp = cp;
 	while (*format && *format != '%')
+	{
+		if (*format == '{')
+		{
+			if (format != tmp)
+				save_buf((void *)tmp, format - tmp);
+			ft_printf_apply_color(format);
+			format += ft_printf_skip_color(format);
+			tmp = format + 1;
+			if (!tmp)
+				return (format - cp);
+			
+		}
 		format++;
-	save_buf((void *)cp, format - cp);
+	}
+	save_buf((void *)tmp, format - tmp);
 	return (format - cp);
 }
 

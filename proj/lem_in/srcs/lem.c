@@ -9,6 +9,7 @@ static void		data_launch(char *line, t_lem_map *map, t_lem_state *state)
 	{
 		lem_del_data(data);
 		*state = Lem_error;
+		ft_printf("Lem: Error. Can't parse ");
 	}
 	else if (ft_strcmp(data[1], "-"))
 	{
@@ -34,10 +35,7 @@ static int		lem_comment(char *line, t_lem_state *state)
 			else if (!ft_strcmp(line, "##START"))
 				*state = Wait_start;
 			else
-			{
-				write(1, "ok0\n", 4);
-				*state = Lem_error;
-			}
+				*state = Lem_error; //delete this line if ##OTHER_THAN_START_OR_END must be handle like a comment instead of an invalid command
 		}
 		return (1);
 	}
@@ -46,12 +44,18 @@ static int		lem_comment(char *line, t_lem_state *state)
 
 static void		line_launch(char *line, t_lem_map *map, t_lem_state *state)
 {
-	if (lem_comment(line, state) || !*line || *line == '\n')
+	if (lem_comment(line, state) || !*line || *line == '\n') // Line is a com, or is empty or it's just a nl, so work to do on this line, could switch to the next one
 		return ;
 	if (*state == Wait_lem)
 	{
 		map->lem = ft_atoi(line);
-		*state = map->lem > 0 ? Wait_data : Lem_error;
+		if (map->lem < 1)
+		{
+			*state = Lem_error;
+			ft_printf("Lem: Error. No ant in the lem! "); //Have to choose is the msg is print now or in the call function
+		}
+		else
+			*state = Wait_data;
 	}
 	else
 		data_launch(line, map, state);
@@ -71,13 +75,15 @@ static int		lem_launch(int fd, t_lem_map *map)
 		if (ret == 1)
 		{
 			line_launch(line, map, &state);
-			free(line);
 			if (state == Lem_error)
 			{
-				ft_printf("Lem: Error. Can't parse file\n");
+		//		lem_del(map);
+				ft_printf("line [%s]\n", line);
+				lem_del(map);
 				close(fd);
 				return (1);
 			}
+			free(line);
 		}
 		else if (ret == -1)
 			ft_printf("Lem: Error. Can't read file\n");
@@ -115,15 +121,16 @@ void			lem(int fd)
 //******************************************************************************************************************************************
 
 	i = 0;
-	ft_printf("\nThere is %[Gr|Ss]d ants in the lem and %[Gr|Ss]d rooms in the map\n\n", map.lem, map.size);
+	ft_printf("\nThere is %[Gr|Ss]d ants in the lem and %[Gr|Ss]d rooms in the map\n", map.lem, map.size);
 	tmp = map.room;
 	while (tmp)
 	{
 		tmp2 = (t_lem_room *)tmp->content;
-		ft_printf("%[Gr|Ss|Pin]s id is %[Gr|Ss|Pin]d.\n", tmp2->name, tmp2->id);
+		ft_printf("%[Gr|Pin]-5s id is %[Gr|Ss|Pin]d.\n", tmp2->name, tmp2->id);
 		tmp = tmp->next;
 	}
-	ft_printf("\n%[Blu|Gr|Ss]s\n\n |", "MATRICE:");
+	ft_printf("Ant have to go from %[Gr|Ss]d to %[Gr|Ss]d\n", map.id_s, map.id_e);
+	ft_printf("%[Blu|Gr|Ss]s\n |", "MATRICE:");
 	while (i < map.size)
 		ft_printf("%[Pin]d|", i++);
 	i = 0;	
@@ -144,11 +151,10 @@ void			lem(int fd)
 			if (i / map.size != map.size)
 				ft_printf("|\n%[Pin]d|", i / map.size);
 			else
-				ft_printf("|\n\n");
+				ft_printf("|\n");
 		}
 	}
 	i = 0;
-	ft_printf("Ant have to go from %[Gr|Ss]d to %[Gr|Ss]d\n\n", map.id_s, map.id_e);
 	tmp = map.pathtab;
 	while (tmp)
 	{
@@ -156,9 +162,8 @@ void			lem(int fd)
 		print_path(*(t_list **)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_printf("\n");
 	i = 0;
-	ft_printf("%[Blu|Gr|Ss]s\n\n  |", "MATRICE PATH:");
+	ft_printf("%[Blu|Gr|Ss]s\n  |", "MATRICE PATH:");
 	while (i < map.size_tab)
 		ft_printf("%2[Pin]02d|", i++);
 	i = 0;	
@@ -179,13 +184,9 @@ void			lem(int fd)
 			if (i / map.size_tab != map.size_tab)
 				ft_printf("|\n%[Pin]02d|", i / map.size_tab);
 			else
-				ft_printf("|\n\n");
+				ft_printf("|\n");
 		}
 	}
-	i = 0;
-	while (i < map.size_tab * map.size_tab)
-		ft_printf("%d ", map.madj_path[i++]);
-	ft_printf("\n");
 
 
 
