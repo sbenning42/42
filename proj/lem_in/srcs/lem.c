@@ -116,7 +116,6 @@ void			lem(int fd)
 			return ;
 		}
 	}
-ft_printf("ok\n");
 
 //******************************************************************************************************************************************
 
@@ -126,30 +125,30 @@ ft_printf("ok\n");
 	while (tmp)
 	{
 		tmp2 = (t_lem_room *)tmp->content;
-		ft_printf("{gr|pink}%-5s{eoc} id is {gr|ss|pink}%d{eoc}.\n", tmp2->name, tmp2->id);
+		ft_printf("{gr|ss}%s{eoc} id is {pink|gr|ss}%d{eoc}.\n", tmp2->name, tmp2->id);
 		tmp = tmp->next;
 	}
 	ft_printf("Ant have to go from {gr|ss}%d{eoc} to {gr|ss}%d{eoc}\n", map.id_s, map.id_e);
-	ft_printf("%[Blu|Gr|Ss]s\n |", "MATRICE:");
+	ft_printf("{blue|gr|ss}%s{eoc}\n |", "MATRICE:");
 	while (i < map.size)
-		ft_printf("%[Pin]d|", i++);
+		ft_printf("{pink}%d{eoc}|", i++);
 	i = 0;	
-	ft_printf("\n%[Pin]d|", i);
+	ft_printf("\n{pink}%d{eoc}|", i);
 	while (i < (map.size * map.size))
 	{
 		if (map.madj[i])
-			ft_printf("%[Red|Gr]d", map.madj[i]);
+			ft_printf("{red|gr}%d{eoc}", map.madj[i]);
 		else if (i % map.size != i / map.size)
-			ft_printf("%[Cya|Gr]d", map.madj[i]);
+			ft_printf("{cyan|gr}%d{eoc}", map.madj[i]);
 		else
-			ft_printf("%[Gree|Gr]d", map.madj[i]);
+			ft_printf("{green|gr}%d{eoc}", map.madj[i]);
 		i++;
 		if (i < (map.size * map.size) && i % map.size)
 			ft_printf("|");
 		else
 		{
 			if (i / map.size != map.size)
-				ft_printf("|\n%[Pin]d|", i / map.size);
+				ft_printf("|\n{pink}%d{eoc}|", i / map.size);
 			else
 				ft_printf("|\n");
 		}
@@ -158,31 +157,31 @@ ft_printf("ok\n");
 	tmp = map.pathtab;
 	while (tmp)
 	{
-		ft_printf("%[GR|Ss]s%[Gr|Ss|Pin]d:\t", "Path ", i++);
+		ft_printf("{gr|ss}%s{eoc}{gr|ss|pink}%d{eoc}:\t", "Path ", i++);
 		print_path(*(t_list **)tmp->content);
 		tmp = tmp->next;
 	}
 	i = 0;
-	ft_printf("%[Blu|Gr|Ss]s\n  |", "MATRICE PATH:");
+	ft_printf("{blue|gr|ss}%s{eoc}\n  |", "MATRICE PATH:");
 	while (i < map.size_tab)
-		ft_printf("%2[Pin]02d|", i++);
+		ft_printf("{pink}%0d{eoc}|", i++);
 	i = 0;	
-	ft_printf("\n%[Pin]02d|", i);
+	ft_printf("\n{pink}%0d{eoc}|", i);
 	while (i < (map.size_tab * map.size_tab))
 	{
 		if (map.madj_path[i])
-			ft_printf("%[Red|Gr]02d", map.madj_path[i]);
+			ft_printf("{red|gr}%0d{eoc}", map.madj_path[i]);
 		else if (i % map.size_tab != i / map.size_tab)
-			ft_printf("%[Cya|Gr]02d", map.madj_path[i]);
+			ft_printf("{cyan|gr}%0d{eoc}", map.madj_path[i]);
 		else
-			ft_printf("%[Gree|Gr]02d", map.madj_path[i]);
+			ft_printf("{green|gr}%0d{eoc}", map.madj_path[i]);
 		i++;
 		if (i < (map.size_tab * map.size_tab) && i % map.size_tab)
 			ft_printf("|");
 		else
 		{
 			if (i / map.size_tab != map.size_tab)
-				ft_printf("|\n%[Pin]02d|", i / map.size_tab);
+				ft_printf("|\n{pink}%0d{eoc}|", i / map.size_tab);
 			else
 				ft_printf("|\n");
 		}

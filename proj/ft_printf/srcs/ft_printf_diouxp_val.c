@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 11:34:51 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:04:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/23 17:42:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int			ft_printf_p_val(uintmax_t ujval, t_printf_mod mod)
 
 	ft_bzero(buf, sizeof(char) * BUF_SIZE);
 	cp = buf + BUF_SIZE;
-	if (ujval)
-	{
+//	if (ujval)
+//	{
 		cp = tool_ujtoa(ujval, 16, mod, cp);
 		size = buf + BUF_SIZE - cp;
 		realsize = size > mod.prec ? size : mod.prec;
 		realsize += 2;
-	}
-	else
+//	}
+/*	else
 	{
 		cp = "(nil)";
 		size = 5;
@@ -64,13 +64,14 @@ int			ft_printf_p_val(uintmax_t ujval, t_printf_mod mod)
 		mod.ox[1] = '\0';
 		mod.prec = -1;
 	}
-	ft_printf_finaly_print(cp, size, realsize, mod);
+*/	ft_printf_finaly_print(cp, size, realsize, mod);
 	return (mod.width > realsize ? mod.width : realsize);
 }
 
 int			ft_printf_cs_val(char *cp, int size, t_printf_mod mod)
 {
 	mod.prec = 0;
+	if (mod.prec == 'c')
 	mod.flag &= ~ZEROPAD;
 	ft_printf_finaly_print(cp, size, size, mod);
 	return (mod.width > size ? mod.width : size);

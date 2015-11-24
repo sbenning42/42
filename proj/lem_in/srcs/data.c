@@ -42,14 +42,9 @@ void	lem_del(t_lem_map *map)
 		free(map->madj_path);
 	while (map->pathtab)
 	{
-		ft_printf("0\n");
 		tmp = map->pathtab->next;
-		ft_printf("1\n");
-		lem_del_path((t_list *)map->pathtab->content);
-		ft_printf("2\n");
+	//	lem_del_path((t_list *)map->pathtab->content);
 		free(map->pathtab);
-		ft_printf("3\n");
 		map->pathtab = tmp;
-		ft_printf("4\n");
 	}
 }

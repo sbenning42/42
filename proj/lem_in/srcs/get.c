@@ -32,7 +32,7 @@ void			lem_get_room(char **data, t_lem_map *map, t_lem_state *state)
 	room.id = map->size++;
 	room.x = data[1];
 	room.y = data[2];
-	free(data[3]);
+	//free(data[3]);
 	elem = ft_lstnew(&room, sizeof(t_lem_room));
 	if (!elem)
 	{

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 10:39:25 by sbenning          #+#    #+#             */
-/*   Updated: 2015/09/21 11:09:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/23 17:54:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 typedef struct		s_list
 {
-	void		*content;
-	size_t		content_size;
+	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
-}			t_list;
+}					t_list;
 
 t_list			*ft_lstnew(const void *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:11:37 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:04:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/23 15:22:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # define FMT format
 
 # define SPEC_CSET "idDxXuUoOpsScC"
-# define MOD_CSET "# +-0.hljz["
+# define MOD_CSET "# +-0.hljz"
 # define UP_HEX_CSET "0123456789ABCDEF"
 # define LOW_HEX_CSET "0123456789abcdef"
 
 # define NB_SPEC_FUNCTION 15
-# define NB_MOD_FUNCTION 12
+# define NB_MOD_FUNCTION 11
 # define NB_COLOR_ATTRIB /*22*/21
 
 # define ESCAPE_SEQ_SIZE 5
