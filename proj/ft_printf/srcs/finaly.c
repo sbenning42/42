@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 11:26:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/23 15:46:30 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/24 15:00:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 	if ((mod.flag & (LADJUST | ZEROPAD)) == ZEROPAD)
 		ft_printf_write_pad(mod.width - realsize, ZeroChar);
 	ft_printf_write_pad(mod.prec - size, ZeroChar);
-	save_buf(cp, (!mod.prec && mod.spec == 'p') ? 0 : size);
+	save_buf(cp, (((!mod.prec) && (mod.spec == 'p') && (*cp == '0')) ? 0 : size));
 	if (mod.flag & LADJUST)
 		ft_printf_write_pad(mod.width - realsize, BlankChar);
 	//ft_printf_write_color(COL_DEF);
