@@ -1,0 +1,13 @@
+
+else  if (size <= 11)
+{
+	unsigned char o1 = ((v >> 6) << 27) >> 27; // recuperation des 5 derniers bits 110(xxxxx) 10xxxxxx
+	octet = (mask1 >> 8) | o1; // application des bits du premier octet sur le premier octet mask
+	write(1, &octet, 1);
+	
+	
+	
+	unsigned char o2 = (v << 26) >> 26; // recuperation des 6 premiers bits 110xxxxx 10(xxxxxx)
+	octet = ((mask1 << 24) >> 24) | o2; // application des bits du seond octet sur le second octet du mask
+	write(1, &octet, 1);
+}

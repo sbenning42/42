@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 11:26:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/24 15:00:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/24 18:21:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,23 @@ void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 		ft_printf_write_pad(mod.width - realsize, ZeroChar);
 	ft_printf_write_pad(mod.prec - size, ZeroChar);
 	save_buf(cp, (((!mod.prec) && (mod.spec == 'p') && (*cp == '0')) ? 0 : size));
+	if (mod.flag & LADJUST)
+		ft_printf_write_pad(mod.width - realsize, BlankChar);
+	//ft_printf_write_color(COL_DEF);
+}
+
+void		ft_printf_finaly_wprint(wchar_t *wcp, int size, int realsize, \
+			t_printf_mod mod)
+{
+	//ft_printf_write_color(mod.color);
+	if (!(mod.flag & (LADJUST | ZEROPAD)))
+		ft_printf_write_pad(mod.width - realsize, BlankChar);
+	if (mod.sign)
+		ft_printf_write(&mod.sign, 1);
+	if ((mod.flag & (LADJUST | ZEROPAD)) == ZEROPAD)
+		ft_printf_write_pad(mod.width - realsize, ZeroChar);
+	ft_printf_write_pad(mod.prec - size, ZeroChar);
+	save_wbuf(wcp, size);
 	if (mod.flag & LADJUST)
 		ft_printf_write_pad(mod.width - realsize, BlankChar);
 	//ft_printf_write_color(COL_DEF);
