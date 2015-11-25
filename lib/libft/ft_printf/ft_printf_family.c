@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_family.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/05 10:26:21 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/05 12:04:57 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
-	int	len;
+	int		len;
 	va_list	ap;
 
 	va_start(ap, format);
@@ -11,9 +23,9 @@ int		ft_printf(const char *format, ...)
 	return (len);
 }
 
-int		ft_fprintf(int fd, const char *format, ...)
+int			ft_fprintf(int fd, const char *format, ...)
 {
-	int	len;
+	int		len;
 	va_list	ap;
 
 	va_start(ap, format);
@@ -22,9 +34,9 @@ int		ft_fprintf(int fd, const char *format, ...)
 	return (len);
 }
 
-int	ft_sprintf(char *str, const char *format, ...)
+int			ft_sprintf(char *str, const char *format, ...)
 {
-	int	len;
+	int		len;
 	va_list	ap;
 
 	va_start(ap, format);
@@ -33,9 +45,9 @@ int	ft_sprintf(char *str, const char *format, ...)
 	return (len);
 }
 
-int	ft_snprintf(char *str, size_t size, const char *format, ...)
+int			ft_snprintf(char *str, size_t size, const char *format, ...)
 {
-	int	len;
+	int		len;
 	va_list	ap;
 
 	va_start(ap, format);

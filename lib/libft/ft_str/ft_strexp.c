@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/16 04:33:17 by sbenning          #+#    #+#             */
-/*   Updated: 2014/11/24 04:07:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 11:20:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strexp(char *s, size_t size)
 		s_tmp = ft_strcpy(s_tmp, s);
 		free(s);
 		s = NULL;
-		return(s_tmp);
+		return (s_tmp);
 	}
 	free(s);
 	return (s_tmp);

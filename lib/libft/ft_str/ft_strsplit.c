@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 20:30:42 by sbenning          #+#    #+#             */
-/*   Updated: 2014/11/19 14:04:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 11:21:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ char				**ft_strsplit(char const *s, char c)
 	if (!(dst = (char **)malloc(sizeof(char *) * len + 1)))
 		return (NULL);
 	if (!ft_strlen(s))
-		return (dst[0] = NULL, dst);
+	{
+		dst[0] = NULL;
+		return (dst);
+	}
 	dst[len] = NULL;
 	return (ft_split(s, c, len, dst));
 }

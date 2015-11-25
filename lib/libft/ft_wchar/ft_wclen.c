@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dar2del.c                                       :+:      :+:    :+:   */
+/*   ft_wclen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 11:16:06 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:16:26 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/25 10:35:35 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/25 10:39:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dar2.h"
+#include "ft_wchar.h"
 
-int			ft_dar2del(t_dar2 *dar)
+size_t		ft_wclen(wchar_t *s)
 {
-	t_uint	i;
+	size_t	i;
 
 	i = 0;
-	while (i < dar->size)
-	{
-		if (dar->del)
-			dar->del(dar->ar[i]);
-		free(dar->ar[i]);
+	while (s[i] != L'\0')
 		i++;
-	}
-	free(dar->ar);
-	ft_bzero(dar, sizeof(t_dar2));
-	return (1);
+	return (i);
 }

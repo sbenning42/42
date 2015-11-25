@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dar2del.c                                       :+:      :+:    :+:   */
+/*   ft_wchar.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 11:16:06 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:16:26 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/25 10:35:56 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/25 10:48:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dar2.h"
+#ifndef FT_WCHAR_H
+# define FT_WCHAR_H
 
-int			ft_dar2del(t_dar2 *dar)
-{
-	t_uint	i;
+# include "ft_header.h"
 
-	i = 0;
-	while (i < dar->size)
-	{
-		if (dar->del)
-			dar->del(dar->ar[i]);
-		free(dar->ar[i]);
-		i++;
-	}
-	free(dar->ar);
-	ft_bzero(dar, sizeof(t_dar2));
-	return (1);
-}
+# define MASK1 49280
+# define MASK2 14712960
+# define MASK3 4034953344
+
+size_t		ft_wclen(wchar_t *s);
+void		ft_wctoa(wchar_t *ws, char *s);
+
+#endif

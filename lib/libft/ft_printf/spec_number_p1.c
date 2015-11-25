@@ -1,56 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spec_number_p1.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/05 11:31:19 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/05 12:14:36 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	print_d(t_printf_modifier mod, va_list ap)
+int				print_d(t_printf_mod mod, va_list ap)
 {
 	uintmax_t	ujval;
-	u_long		ulval;
+	t_ulong		ulval;
 
 	if (mod.flag & INTMAX_SIZE)
 	{
 		ujval = (intmax_t)get_sjarg(ap, mod);
-		if ((intmax_t)ujval < 0)
-		{
+		ulval = 0;
+		if ((intmax_t)ujval < 0 && (mod.sign = '-'))
 			ujval = -ujval;
-			mod.sign = '-';
-		}
 	}
 	else
 	{
 		ulval = (long)get_sarg(ap, mod);
-		if((long)ulval < 0)
-		{
+		ujval = 0;
+		if ((long)ulval < 0 && (mod.sign = '-'))
 			ulval = -ulval;
-			mod.sign = '-';
-		}
-
 	}
-	if (mod.prec >= 0 )
+	if (mod.prec >= 0)
 		mod.flag &= ~ZEROPAD;
 	return (ft_printf_diuoxp_val(ujval, ulval, 10, mod));
 }
 
-int	print_ld(t_printf_modifier mod, va_list ap)
+int				print_ld(t_printf_mod mod, va_list ap)
 {
 	mod.flag |= LONGINT;
 	return (print_d(mod, ap));
 }
 
-int	print_u(t_printf_modifier mod, va_list ap)
+int				print_u(t_printf_mod mod, va_list ap)
 {
 	uintmax_t	ujval;
-	u_long		ulval;
+	t_ulong		ulval;
 
 	if (mod.flag & INTMAX_SIZE)
+	{
 		ujval = get_ujarg(ap, mod);
+		ulval = 0;
+	}
 	else
+	{
 		ulval = get_uarg(ap, mod);
+		ujval = 0;
+	}
 	mod.sign = '\0';
-	if (mod.prec >= 0 )
+	if (mod.prec >= 0)
 		mod.flag &= ~ZEROPAD;
 	return (ft_printf_diuoxp_val(ujval, ulval, 10, mod));
 }
 
-int	print_lu(t_printf_modifier mod, va_list ap)
+int				print_lu(t_printf_mod mod, va_list ap)
 {
 	mod.flag |= LONGINT;
 	return (print_u(mod, ap));

@@ -60,6 +60,8 @@ SRC =		ft_mem/ft_memset.c\
 		ft_str/ft_strtrim.c\
 		ft_str/ft_strupper.c\
 		ft_str/ft_strlower.c\
+		ft_wchar/ft_wclen.c\
+		ft_wchar/ft_wctoa.c\
 		ft_put/ft_putchar.c\
 		ft_put/ft_putchar_fd.c\
 		ft_put/ft_putendl.c\
