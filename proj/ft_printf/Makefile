@@ -68,6 +68,8 @@ SRC_LIBFT =	libft/ft_mem/ft_memset.c\
 		libft/ft_str/ft_strtrim.c\
 		libft/ft_str/ft_strupper.c\
 		libft/ft_str/ft_strlower.c\
+		libft/ft_wchar/ft_wclen.c\
+		libft/ft_wchar/ft_wctoa.c\
 		libft/ft_put/ft_putchar.c\
 		libft/ft_put/ft_putchar_fd.c\
 		libft/ft_put/ft_putendl.c\

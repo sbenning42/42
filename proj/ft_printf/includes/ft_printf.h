@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:11:37 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/24 18:24:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 14:07:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdint.h>
 # include "ft_lst.h"
 # include "ft_str.h"
+# include "ft_wchar.h"
 # include "ft_put.h"
 
 # define FMT format
@@ -107,7 +108,6 @@ typedef int		(*t_printf_spec_function)(t_printf_mod, va_list);
 typedef int		(*t_printf_set_function)(t_printf_mod *, const char *);
 
 void			save_buf(void *buf, size_t size);
-void			save_wbuf(wchar_t *wbuf, size_t size);
 void			deb_saving(void *cp, int size);
 t_list			**buflist(void);
 void			print(t_list *elem);
@@ -125,24 +125,19 @@ int				color_flag(const char *fmt);
 void			ft_printf_finaly_print\
 				(char *cp, int size, int realsize, \
 				t_printf_mod mod);
-void			ft_printf_finaly_wprint\
-				(wchar_t *wcp, int size, int realsize, \
-				 ft_printf_mod mod);
 char			*tool_ujtoa\
 				(uintmax_t val, int base, \
 				t_printf_mod mod, char *cp);
 char			*tool_ultoa\
 				(t_ulong val, int base, \
 				t_printf_mod mod, char *cp);
-int				ft_wstrlen(wchar_t *s);
-void			ft_wchartochar(wchar_t *ws, char *s);
 int				ft_printf_diuoxp_val\
 				(uintmax_t ujval, t_ulong ulval, int base, \
 				t_printf_mod mod);
 int				ft_printf_p_val\
 				(uintmax_t ujval, t_printf_mod mod);
 int				ft_printf_cs_val\
-				(char *cp, wchar_t *wcp, int size, t_printf_mod mod);
+				(char *cp, int size, t_printf_mod mod);
 int				get_spec_index(char *cset, char c);
 int				get_mod_index(char *cset, char c);
 intmax_t		get_sjarg(va_list ap, t_printf_mod mod);

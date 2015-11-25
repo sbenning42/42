@@ -6,14 +6,11 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:52:54 by sbenning          #+#    #+#             */
-/*   Updated: 2014/11/15 12:14:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 11:19:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_mem.h"
-
-
-
 
 void		*ft_memset(void *b, int c, size_t len)
 {

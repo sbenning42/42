@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 11:34:51 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/24 18:19:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 14:20:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ int			ft_printf_p_val(uintmax_t ujval, t_printf_mod mod)
 	return (mod.width > realsize ? mod.width : realsize);
 }
 
-int			ft_printf_cs_val(char *cp, wchar_t *wcp, int size, t_printf_mod mod)
+int			ft_printf_cs_val(char *cp, int size, t_printf_mod mod)
 {
-	mod.prec = 0;
+	mod.prec = -1;
 	if (mod.spec == 's' || mod.spec == 'S')
 		mod.flag &= ~ZEROPAD;
-	if (*wcp)
-		ft_printf_finaly_wprint(wcp, size, size, mod);
-	else
-		ft_printf_finaly_print(cp, size, size, mod);
+/*	else
+		mod.prec = -1;*/
+	ft_printf_finaly_print(cp, size, size, mod);
 	return (mod.width > size ? mod.width : size);
 }
