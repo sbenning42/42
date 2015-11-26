@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 10:37:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/26 11:17:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@
 # include "ft_buff.h"
 # include "ft_mem.h"
 # include "ft_put.h"
-# include "ft_printf.h"
 
 #endif

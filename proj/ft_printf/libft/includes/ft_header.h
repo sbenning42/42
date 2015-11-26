@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 11:29:35 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:31:59 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 14:54:10 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/26 14:55:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 typedef unsigned int		t_uint;
 typedef unsigned char		t_uchar;
 typedef unsigned long int	t_ulong;
+typedef unsigned short int	t_ushort;
 
 #endif
