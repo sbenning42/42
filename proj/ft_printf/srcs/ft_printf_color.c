@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:41:03 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 12:45:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/26 16:23:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		ft_printf_write_color(int color)
 	color_attrib_copy(cp, color);
 	save_buf(buf, ft_strlen(buf));
 }
-
 
 int			color_flag(const char *fmt)
 {

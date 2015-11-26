@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 14:29:49 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 14:30:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/26 16:23:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,7 @@ static void	ft_printf_write_pad(int size, t_printf_pad_char padchar)
 	ft_memset((void *)pad, padchar ? ' ' : '0', size);
 	save_buf(pad, size);
 }
-/*
-static void	ft_printf_write(char *s, int size)
-{
-	if (size < 1)
-		return ;
-	save_buf(s, size);
-}
-*/
+
 void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 			t_printf_mod mod)
 {
@@ -36,12 +29,10 @@ void		ft_printf_finaly_print(char *cp, int size, int realsize, \
 		ft_printf_write_pad(mod.width - realsize, BlankChar);
 	if (mod.sign)
 		save_buf(&mod.sign, 1);
-		//ft_printf_write(&mod.sign, 1);
 	if (mod.ox[1])
 	{
 		mod.ox[0] = '0';
 		save_buf(mod.ox, 2);
-		//ft_printf_write(mod.ox, 2);
 	}
 	if ((mod.flag & (LADJUST | ZEROPAD)) == ZEROPAD)
 		ft_printf_write_pad(mod.width - realsize, ZeroChar);

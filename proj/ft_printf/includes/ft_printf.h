@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:11:37 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 14:32:30 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/26 16:09:42 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int				set_j(t_printf_mod *mod);
 int				set_z(t_printf_mod *mod);
 
 /*
-***				ft_printf_set_p23.c
+***				ft_printf_set_p3.c
 */
 
 void			set_color(int *color, const char *fmt);
@@ -276,8 +276,5 @@ int				ft_printf(const char *format, ...);
 int				ft_fprintf(int fd, const char *format, ...);
 int				ft_sprintf(char *str, const char *format, ...);
 int				ft_snprintf(char *str, size_t size, const char *format, ...);
-
-void			print(t_list *elem);
-void			del(t_list *elem);
 
 #endif

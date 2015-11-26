@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:38:18 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 12:15:52 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/26 16:25:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int					ft_printf_skip_color(const char *format)
 {
-	int					n;
+	int						n;
 
 	n = 0;
 	while (*format && *format != '}')
@@ -45,7 +45,6 @@ static int					print_no_fmt(const char *format)
 			tmp = format + 1;
 			if (!tmp)
 				return (format - cp);
-			
 		}
 		format++;
 	}
