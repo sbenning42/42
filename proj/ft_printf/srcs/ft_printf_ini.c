@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:31:11 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/27 14:10:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 14:21:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	ini_set(t_printf_set_function *set_mod)
 	set_mod[2] = (t_printf_set_function)set_plus;
 	set_mod[3] = (t_printf_set_function)set_minus;
 	set_mod[4] = (t_printf_set_function)set_zero;
-	set_mod[5] = (t_printf_set_function)set_prec;
+	set_mod[5] = set_prec;
 	set_mod[6] = (t_printf_set_function)set_h;
 	set_mod[7] = (t_printf_set_function)set_l;
 	set_mod[8] = (t_printf_set_function)set_j;
 	set_mod[9] = (t_printf_set_function)set_z;
-	set_mod[10] = (t_printf_set_function)set_aster;
+	set_mod[10] = set_aster;
 	set_mod[11] = (t_printf_set_function)set_width;
 }
 

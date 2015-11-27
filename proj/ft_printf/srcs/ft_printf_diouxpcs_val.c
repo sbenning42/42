@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 14:24:32 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/27 12:13:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:52:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int			ft_printf_p_val(uintmax_t ujval, t_printf_mod mod)
 	realsize += 2;
 	if (!mod.prec && !ujval)
 		realsize -= 1;
+	if (mod.prec > -1)
+		mod.flag &= ~ZEROPAD;
 	ft_printf_finaly_print(cp, size, realsize, mod);
 	return (mod.width > realsize ? mod.width : realsize);
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:36:49 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/27 14:10:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:28:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		set_prec(t_printf_mod *mod, const char *fmt, va_list ap)
 {
 	int	n;
 
-	if (*fmt && *(fmt + 1) == '*')
+	if (*++fmt == '*')
 	{
 		mod->prec = va_arg(ap, int);
 		return (2);
@@ -56,7 +56,16 @@ int		set_width(t_printf_mod *mod, const char *fmt)
 
 int		set_aster(t_printf_mod *mod, const char *fmt, va_list ap)
 {
-	mod->width = va_arg(ap, int);
+	int	width;
+
+	width = va_arg(ap, int);
+	if (width < 0)
+	{
+		mod->flag |= LADJUST;
+		mod->width = -width;
+	}
+	else
+		mod->width = width;
 	return (1);
 	if (fmt)
 		return (1);

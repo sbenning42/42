@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:38:18 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/27 14:09:41 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 14:14:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,9 @@ int							ft_vlprintf(const char *format, va_list ap)
 	int						len;
 	long int				tlen;
 
-	write(1, "ok0\n", 4);
 	ini_print(print_fmt);
 	ini_set(set_mod);
 	tlen = 0;
-	write(1, "ok1\n", 4);
 	while (*format)
 	{
 		len = print_no_fmt(format);
@@ -73,14 +71,8 @@ int							ft_vlprintf(const char *format, va_list ap)
 			break ;
 		ft_bzero((void *)&mod, sizeof(t_printf_mod));
 		mod.prec = -1;
-		ft_putstr("\n0[");
-		ft_putchar(*format);
-		ft_putendl("]");
 		if (*(format += set_fmt_mod(format, &mod, set_mod, ap)))
 			format++;
-		ft_putstr("\n1[");
-		ft_putchar(*format);
-		ft_putendl("]");
 		tlen += print_fmt[get_spec_index(SPEC_CSET, mod.spec)](mod, ap);
 	}
 	return (tlen);
