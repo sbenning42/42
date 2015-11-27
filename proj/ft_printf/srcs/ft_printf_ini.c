@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:31:11 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 12:32:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 14:10:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ini_print(t_printf_spec_function *print_fmt)
 	print_fmt[11] = print_ls;
 	print_fmt[12] = print_c;
 	print_fmt[13] = print_lc;
-	print_fmt[14] = print_def;
+	print_fmt[14] = (t_printf_spec_function)print_def;
 }
 
 void	ini_set(t_printf_set_function *set_mod)
@@ -43,7 +43,8 @@ void	ini_set(t_printf_set_function *set_mod)
 	set_mod[7] = (t_printf_set_function)set_l;
 	set_mod[8] = (t_printf_set_function)set_j;
 	set_mod[9] = (t_printf_set_function)set_z;
-	set_mod[10] = (t_printf_set_function)set_width;
+	set_mod[10] = (t_printf_set_function)set_aster;
+	set_mod[11] = (t_printf_set_function)set_width;
 }
 
 void	ini_color_i(t_printf_color *color, char *id, int val, char *attrib)

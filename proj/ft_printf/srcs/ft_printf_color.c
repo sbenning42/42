@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:41:03 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 16:23:48 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:33:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ static void	color_attrib_copy(char *buf, int color)
 	i = -1;
 	while (color && ++i < NB_COLOR_ATTRIB)
 	{
-		if (COLOR__(i)->val & color)
+		if (color_attrib(i)->val & color)
 		{
-			ft_memcpy(buf, COLOR__(i)->attrib, ft_strlen(COLOR__(i)->attrib));
-			buf += ft_strlen(COLOR__(i)->attrib);
-			color &= ~COLOR__(i)->val;
+			ft_memcpy(buf, \
+				color_attrib(i)->attrib, ft_strlen(color_attrib(i)->attrib));
+			buf += ft_strlen(color_attrib(i)->attrib);
+			color &= ~color_attrib(i)->val;
 			if (color)
 				ft_memcpy(buf++, ";", 1);
 		}
@@ -61,10 +62,10 @@ int			color_flag(const char *fmt)
 		{
 			while (++i < NB_COLOR_ATTRIB)
 			{
-				if (!ft_strncmp(fmt, COLOR__(i)->id, COLOR__(i)->len))
+				if (!ft_strncmp(fmt, color_attrib(i)->id, color_attrib(i)->len))
 				{
-					flag |= COLOR__(i)->val;
-					fmt += COLOR__(i)->len;
+					flag |= color_attrib(i)->val;
+					fmt += color_attrib(i)->len;
 					break ;
 				}
 			}

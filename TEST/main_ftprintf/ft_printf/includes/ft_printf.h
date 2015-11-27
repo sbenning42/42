@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:11:37 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 14:32:30 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:49:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,17 @@
 # define FMT format
 
 # define SPEC_CSET "idDxXuUoOpsScC"
-# define MOD_CSET "# +-0.hljz"
+# define MOD_CSET "# +-0.hljz*"
 # define UP_HEX_CSET "0123456789ABCDEF"
 # define LOW_HEX_CSET "0123456789abcdef"
 
 # define NB_SPEC_FUNCTION 15
-# define NB_MOD_FUNCTION 11
+# define NB_MOD_FUNCTION 12
 # define NB_COLOR_ATTRIB 20
 
 # define ESCAPE_SEQ_SIZE 5
 # define BUF_SIZE 32
 # define BUF_COLOR_SIZE 1024
-
-# define SPEC__(X) get_spec_index(SPEC_CSET, X)
-# define MOD__(X) get_mod_index(MOD_CSET, X)
-# define COLOR__(X) color_attrib(X)
-# define LIST__ buflist
 
 # define ALT 0x1
 # define LADJUST 0x2
@@ -100,7 +95,7 @@ typedef enum	e_printf_pad_char
 }				t_printf_pad_char;
 
 typedef int		(*t_printf_spec_function)(t_printf_mod, va_list);
-typedef int		(*t_printf_set_function)(t_printf_mod *, const char *);
+typedef int		(*t_printf_set_function)(t_printf_mod *, const char *, va_list);
 
 /*
 ***				ft_printf_save.c
@@ -167,7 +162,7 @@ char			*tool_ultoa\
 
 int				set_fmt_mod\
 				(const char *fmt, t_printf_mod *mod, \
-				t_printf_set_function *set_mod);
+				t_printf_set_function *set_mod, va_list ap);
 
 /*
 ***				ft_printf_set_p1.c
@@ -189,12 +184,13 @@ int				set_j(t_printf_mod *mod);
 int				set_z(t_printf_mod *mod);
 
 /*
-***				ft_printf_set_p23.c
+***				ft_printf_set_p3.c
 */
 
 void			set_color(int *color, const char *fmt);
-int				set_prec(t_printf_mod *mod, const char *fmt);
+int				set_prec(t_printf_mod *mod, const char *fmt, va_list ap);
 int				set_width(t_printf_mod *mod, const char *fmt);
+int				set_aster(t_printf_mod *mod, const char *fmt, va_list ap);
 
 /*
 ***				ft_printf_color.c
@@ -231,13 +227,13 @@ int				print_c(t_printf_mod mod, va_list ap);
 int				print_lc(t_printf_mod mod, va_list ap);
 int				print_s(t_printf_mod mod, va_list ap);
 int				print_ls(t_printf_mod mod, va_list ap);
-int				print_def(t_printf_mod mod, va_list ap);
+int				print_def(t_printf_mod mod);
 
 /*
 ***				ft_printf_diouxpcs_val.c
 */
 
-int				ft_printf_diuoxp_val\
+int				ft_printf_diuox_val\
 				(uintmax_t ujval, t_ulong ulval, int base, t_printf_mod mod);
 
 int				ft_printf_p_val\
@@ -276,8 +272,5 @@ int				ft_printf(const char *format, ...);
 int				ft_fprintf(int fd, const char *format, ...);
 int				ft_sprintf(char *str, const char *format, ...);
 int				ft_snprintf(char *str, size_t size, const char *format, ...);
-
-void			print(t_list *elem);
-void			del(t_list *elem);
 
 #endif

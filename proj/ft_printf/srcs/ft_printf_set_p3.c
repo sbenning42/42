@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:36:49 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 16:24:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 14:10:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ void	set_color(int *color, const char *fmt)
 	*color |= color_flag(++fmt);
 }
 
-int		set_prec(t_printf_mod *mod, const char *fmt)
+int		set_prec(t_printf_mod *mod, const char *fmt, va_list ap)
 {
 	int	n;
 
+	if (*fmt && *(fmt + 1) == '*')
+	{
+		mod->prec = va_arg(ap, int);
+		return (2);
+	}
+	mod->prec = ft_atoi(fmt);
 	n = 1;
-	mod->prec = ft_atoi(++fmt);
 	while (ft_isdigit(*fmt++))
 		n++;
 	return (n);
@@ -47,4 +52,12 @@ int		set_width(t_printf_mod *mod, const char *fmt)
 	while (ft_isdigit(*fmt++))
 		n++;
 	return (n);
+}
+
+int		set_aster(t_printf_mod *mod, const char *fmt, va_list ap)
+{
+	mod->width = va_arg(ap, int);
+	return (1);
+	if (fmt)
+		return (1);
 }

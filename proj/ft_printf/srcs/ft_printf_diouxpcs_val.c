@@ -6,13 +6,13 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 14:24:32 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 14:24:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 12:13:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_printf_diuoxp_val(uintmax_t ujval, t_ulong ulval, int base, \
+int			ft_printf_diuox_val(uintmax_t ujval, t_ulong ulval, int base, \
 			t_printf_mod mod)
 {
 	int		size;

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 13:17:32 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 13:17:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:44:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				print_x(t_printf_mod mod, va_list ap)
 	}
 	if ((mod.flag & ALT) && ((mod.flag & INTMAX_SIZE) ? ujval : ulval))
 		mod.ox[1] = !ft_strcmp(mod.xdigit, UP_HEX_CSET) ? 'X' : 'x';
-	return (ft_printf_diuoxp_val(ujval, ulval, 16, mod));
+	return (ft_printf_diuox_val(ujval, ulval, 16, mod));
 }
 
 int				print_lx(t_printf_mod mod, va_list ap)
@@ -61,7 +61,7 @@ int				print_o(t_printf_mod mod, va_list ap)
 	mod.sign = '\0';
 	if (mod.prec >= 0)
 		mod.flag &= ~ZEROPAD;
-	return (ft_printf_diuoxp_val(ujval, ulval, 8, mod));
+	return (ft_printf_diuox_val(ujval, ulval, 8, mod));
 }
 
 int				print_lo(t_printf_mod mod, va_list ap)

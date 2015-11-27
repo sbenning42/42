@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 13:23:18 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 13:25:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:39:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			print_lc(t_printf_mod mod, va_list ap)
 	return (print_c(mod, ap));
 }
 
-int			print_def(t_printf_mod mod, va_list ap)
+int			print_def(t_printf_mod mod)
 {
 	char	buf[BUF_SIZE * 4];
 	wchar_t	wbuf[BUF_SIZE];
@@ -97,8 +97,4 @@ int			print_def(t_printf_mod mod, va_list ap)
 	}
 	mod.sign = '\0';
 	return (ft_printf_cs_val(buf, size, mod));
-	if (ap)
-		return (0);
-	else
-		return (0);
 }

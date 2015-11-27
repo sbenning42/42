@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 14:35:36 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/26 14:35:52 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:32:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void				save_buf(void *buf, size_t size)
 	cp = ft_lstnew(buf, size);
 	if (!cp)
 		return ;
-	ft_lstadd_back(LIST__(), cp);
+	ft_lstadd_back(buflist(), cp);
 }
