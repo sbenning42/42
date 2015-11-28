@@ -6,25 +6,15 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/05 10:38:18 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:09:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/27 14:14:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			deb_saving(void *cp, int size)
-{
-	ft_putendl("");
-	ft_putstr("size= ");
-	ft_putnbr(size);
-	ft_putstr("\t[");
-	write(1, cp, size);
-	ft_putendl("]");
-}
-
 static int					ft_printf_skip_color(const char *format)
 {
-	int					n;
+	int						n;
 
 	n = 0;
 	while (*format && *format != '}')
@@ -55,7 +45,6 @@ static int					print_no_fmt(const char *format)
 			tmp = format + 1;
 			if (!tmp)
 				return (format - cp);
-			
 		}
 		format++;
 	}
@@ -82,9 +71,9 @@ int							ft_vlprintf(const char *format, va_list ap)
 			break ;
 		ft_bzero((void *)&mod, sizeof(t_printf_mod));
 		mod.prec = -1;
-		if (*(format += set_fmt_mod(format, &mod, set_mod)))
+		if (*(format += set_fmt_mod(format, &mod, set_mod, ap)))
 			format++;
-		tlen += print_fmt[SPEC__(mod.spec)](mod, ap);
+		tlen += print_fmt[get_spec_index(SPEC_CSET, mod.spec)](mod, ap);
 	}
 	return (tlen);
 }

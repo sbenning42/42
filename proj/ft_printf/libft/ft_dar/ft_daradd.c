@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 11:27:22 by sbenning          #+#    #+#             */
-/*   Updated: 2015/09/21 16:56:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/25 11:15:36 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			ft_daradd(t_dar *ar, void *data, size_t size)
 				return (1);
 		}
 		if (ar->size && ar->i >= ar->size && !ar_expcel(ar))
-		{	
+		{
 			return (1);
 		}
 	}

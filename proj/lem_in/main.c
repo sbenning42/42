@@ -14,7 +14,7 @@ static int	lem_open(char *name)
 	return (fd);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	if (ac < 2)
 		lem(0);

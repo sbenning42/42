@@ -2,12 +2,12 @@
 
 int	lem_check_data(char **data)
 {
-//	char	**tmp;
+	char	**tmp;
 
-//	tmp = data;
+	tmp = data;
 	while (data && *data)
 		data++;
-	return (/*data - tmp == 2 ? 0 : 1*/0);
+	return (data - tmp == 3 ? 0 : 1);
 }
 
 void	lem_del_data(char **data)
@@ -43,7 +43,7 @@ void	lem_del(t_lem_map *map)
 	while (map->pathtab)
 	{
 		tmp = map->pathtab->next;
-		lem_del_path((t_list *)map->pathtab->content);
+	//	lem_del_path((t_list *)map->pathtab->content);
 		free(map->pathtab);
 		map->pathtab = tmp;
 	}

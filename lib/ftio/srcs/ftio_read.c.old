@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftio_read.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/15 23:34:56 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/16 02:01:42 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ftio.h"
+
+int					ftio_read(t_dic *ncterm, t_ftio_input_table getkey)
+{
+	t_ftio_ncterm	handle;
+	static char		buf[FTIO_BS + 1];
+	char			key[FTIO_BS + 1];
+	int				ret;
+
+	ft_bzero((void *)buf, sizeof(char) * (FTIO_BS + 1));
+	ret = read(0, buf, FTIO_BS);
+	getkey(key, buf);
+	handle = ft_dicget(ncterm, key);
+	handle(buf);
+	return (ret);
+}

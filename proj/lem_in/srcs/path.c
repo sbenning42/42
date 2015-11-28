@@ -6,11 +6,17 @@ void	lem_del_path(t_list *path)
 
 	while (path)
 	{
+		ft_printf("1-1-%p\n", path->next);
 		tmp = path->next;
+		ft_printf("1-2\n");
 		free(path->content);
+		ft_printf("1-3\n");
 		free(path);
+		ft_printf("1-4\n");
 		path = tmp;
+		ft_printf("1-5\n");
 	}
+	ft_printf("1-6\n");
 }
 
 t_list	**pathtab(void)

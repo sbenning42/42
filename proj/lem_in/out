@@ -1,0 +1,97 @@
+srcs/lem.c:131:12: error: expected parameter declarator
+        ft_printf("Ant have to go from {gr|ss}%d{eoc} to {gr|ss}%d{eoc}\n", map.id_s, map.id_e);
+                  ^
+srcs/lem.c:131:12: error: expected ')'
+srcs/lem.c:131:11: note: to match this '('
+        ft_printf("Ant have to go from {gr|ss}%d{eoc} to {gr|ss}%d{eoc}\n", map.id_s, map.id_e);
+                 ^
+srcs/lem.c:131:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        ft_printf("Ant have to go from {gr|ss}%d{eoc} to {gr|ss}%d{eoc}\n", map.id_s, map.id_e);
+        ^
+srcs/lem.c:131:2: error: conflicting types for 'ft_printf'
+includes/ft_printf.h:186:8: note: previous declaration is here
+int                             ft_printf(const char *format, ...);
+                                ^
+srcs/lem.c:132:12: error: expected parameter declarator
+        ft_printf("{blue|gr|ss}%s{eoc}\n |", "MATRICE:");
+                  ^
+srcs/lem.c:132:12: error: expected ')'
+srcs/lem.c:132:11: note: to match this '('
+        ft_printf("{blue|gr|ss}%s{eoc}\n |", "MATRICE:");
+                 ^
+srcs/lem.c:132:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        ft_printf("{blue|gr|ss}%s{eoc}\n |", "MATRICE:");
+        ^
+srcs/lem.c:132:2: error: conflicting types for 'ft_printf'
+includes/ft_printf.h:186:8: note: previous declaration is here
+int                             ft_printf(const char *format, ...);
+                                ^
+srcs/lem.c:133:2: error: expected identifier or '('
+        while (i < map.size)
+        ^
+srcs/lem.c:135:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        i = 0;  
+        ^
+srcs/lem.c:136:12: error: expected parameter declarator
+        ft_printf("\n{pink}%d{eoc}|", i);
+                  ^
+srcs/lem.c:136:12: error: expected ')'
+srcs/lem.c:136:11: note: to match this '('
+        ft_printf("\n{pink}%d{eoc}|", i);
+                 ^
+srcs/lem.c:136:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        ft_printf("\n{pink}%d{eoc}|", i);
+        ^
+srcs/lem.c:136:2: error: conflicting types for 'ft_printf'
+includes/ft_printf.h:186:8: note: previous declaration is here
+int                             ft_printf(const char *format, ...);
+                                ^
+srcs/lem.c:137:2: error: expected identifier or '('
+        while (i < (map.size * map.size))
+        ^
+srcs/lem.c:156:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        i = 0;
+        ^
+srcs/lem.c:156:2: error: redefinition of 'i'
+srcs/lem.c:135:2: note: previous definition is here
+        i = 0;  
+        ^
+srcs/lem.c:157:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        tmp = map.pathtab;
+        ^
+srcs/lem.c:157:8: error: use of undeclared identifier 'map'
+        tmp = map.pathtab;
+              ^
+srcs/lem.c:158:2: error: expected identifier or '('
+        while (tmp)
+        ^
+srcs/lem.c:164:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        i = 0;
+        ^
+srcs/lem.c:164:2: error: redefinition of 'i'
+srcs/lem.c:135:2: note: previous definition is here
+        i = 0;  
+        ^
+srcs/lem.c:165:12: error: expected parameter declarator
+        ft_printf("{blue|gr|ss}%s{eoc}\n  |", "MATRICE PATH:");
+                  ^
+srcs/lem.c:165:12: error: expected ')'
+srcs/lem.c:165:11: note: to match this '('
+        ft_printf("{blue|gr|ss}%s{eoc}\n  |", "MATRICE PATH:");
+                 ^
+srcs/lem.c:165:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        ft_printf("{blue|gr|ss}%s{eoc}\n  |", "MATRICE PATH:");
+        ^
+srcs/lem.c:165:2: error: conflicting types for 'ft_printf'
+includes/ft_printf.h:186:8: note: previous declaration is here
+int                             ft_printf(const char *format, ...);
+                                ^
+srcs/lem.c:166:2: error: expected identifier or '('
+        while (i < map.size_tab)
+        ^
+srcs/lem.c:168:2: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+        i = 0;  
+        ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+9 warnings and 20 errors generated.
+make: *** [lem] Error 1

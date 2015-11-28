@@ -33,10 +33,10 @@ typedef struct	s_lem_map
 	int	id_e;
 	t_list	*pathtab;
 	size_t	size_tab;
-	t_list	*stable;
-	size_t	size_stable;
+//	t_list	*stable;
+//	size_t	size_stable;
 }		t_lem_map;
-
+/*
 typedef struct	s_stable
 {
 	t_list	*id;
@@ -44,7 +44,7 @@ typedef struct	s_stable
 	size_t	size;
 	int	tpound;
 }		t_stable;
-
+*/
 //int		sigma_len(t_list *l1, t_list *l2);
 int		fill_madj_path(t_lem_map *map);
 //int		select_faster(t_lem_map *map);

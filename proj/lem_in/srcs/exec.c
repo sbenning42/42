@@ -24,9 +24,9 @@ void	print_path(t_list *path)
 	while (path)
 	{
 		if (!i++ || !path->next)	
-			ft_printf("%[Red|Gr]d", *((int *)path->content));
+			ft_printf("{red|gr}%d{eoc}", *((int *)path->content));
 		else
-			ft_printf("%[Cya]d", *((int *)path->content));
+			ft_printf("{cyan}%d{eoc}", *((int *)path->content));
 		ft_printf(path->next ? "-" : "\n");
 		path = path->next;
 	}

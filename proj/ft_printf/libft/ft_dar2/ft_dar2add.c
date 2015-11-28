@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dar2add.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/25 11:16:51 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/25 11:16:56 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_dar2.h"
 
 static int	ft_dar2add_safe(t_dar2 *dar, void *data)
@@ -29,7 +41,7 @@ static int	ft_dar2exp(t_dar2 *dar, void *data)
 	return (ft_dar2add_safe(dar, data));
 }
 
-int	ft_dar2add(t_dar2 *dar, void *data)
+int			ft_dar2add(t_dar2 *dar, void *data)
 {
 	if (dar->size < dar->size_max)
 	{
