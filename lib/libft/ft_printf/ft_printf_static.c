@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_p1.c                                           :+:      :+:    :+:   */
+/*   ft_printf_static.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/05 10:50:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:04:58 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 12:17:27 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/26 15:22:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	set_space(t_printf_mod *mod)
+t_list						**buflist(void)
 {
-	if (!mod->sign)
-		mod->sign = ' ';
-	return (1);
+	static t_list			*bufs;
+
+	return (&bufs);
 }
 
-int	set_plus(t_printf_mod *mod)
+t_printf_color				*color_attrib(int i)
 {
-	mod->sign = '+';
-	return (1);
-}
+	static t_printf_color	color[NB_COLOR_ATTRIB];
+	static int				call;
 
-int	set_alt(t_printf_mod *mod)
-{
-	mod->flag |= ALT;
-	return (1);
-}
-
-int	set_minus(t_printf_mod *mod)
-{
-	mod->flag |= LADJUST;
-	return (1);
-}
-
-int	set_zero(t_printf_mod *mod)
-{
-	mod->flag |= ZEROPAD;
-	return (1);
+	if (!call)
+	{
+		ini_color(color);
+		call = 1;
+	}
+	return (color + i);
 }

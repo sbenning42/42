@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =		libft.a
+NAME =	libft.a
 
-SRC =		ft_mem/ft_memset.c\
+SRC =	ft_mem/ft_memset.c\
 		ft_mem/ft_bzero.c\
 		ft_mem/ft_memalloc.c\
 		ft_mem/ft_memccpy.c\
@@ -101,25 +101,26 @@ SRC =		ft_mem/ft_memset.c\
 		ft_dar2/ft_dar2add.c\
 		ft_dar2/ft_dar2del.c\
 		ft_dar2/ft_dar2dump.c\
-		ft_printf/ft_printf_family.c\
-		ft_printf/ft_vprintf_family.c\
-		ft_printf/flush.c\
-		ft_printf/save.c\
-		ft_printf/color.c\
-		ft_printf/finaly.c\
 		ft_printf/ft_printf.c\
-		ft_printf/ft_printf_diouxp_val.c\
+		ft_printf/ft_printf_color.c\
+		ft_printf/ft_printf_diouxpcs_val.c\
+		ft_printf/ft_printf_family.c\
+		ft_printf/ft_printf_finaly.c\
+		ft_printf/ft_printf_flush.c\
+		ft_printf/ft_printf_getarg.c\
+		ft_printf/ft_printf_getindex.c\
+		ft_printf/ft_printf_ini.c\
+		ft_printf/ft_printf_save.c\
+		ft_printf/ft_printf_set.c\
+		ft_printf/ft_printf_set_p1.c\
+		ft_printf/ft_printf_set_p2.c\
+		ft_printf/ft_printf_set_p3.c\
+		ft_printf/ft_printf_spec_char.c\
+		ft_printf/ft_printf_spec_number_p1.c\
+		ft_printf/ft_printf_spec_number_p2.c\
+		ft_printf/ft_printf_static.c\
 		ft_printf/ft_printf_tools.c\
-		ft_printf/get.c\
-		ft_printf/index.c\
-		ft_printf/ini.c\
-		ft_printf/set.c\
-		ft_printf/set_p1.c\
-		ft_printf/set_p2.c\
-		ft_printf/set_p3.c\
-		ft_printf/spec_char.c\
-		ft_printf/spec_number_p1.c\
-		ft_printf/spec_number_p2.c
+		ft_printf/ft_printf_vfamily.c\
 
 OBJ =		$(SRC:.c=.o)
 
@@ -127,7 +128,7 @@ HEADERS =	includes
 
 CC =		gcc
 
-FLAGS =		-Wall -Wextra #œ-Werror 
+FLAGS =		-Wall -Wextra -Werror 
 
 all : $(NAME)
 

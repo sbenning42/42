@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spec_number_p1.c                                   :+:      :+:    :+:   */
+/*   ft_printf_spec_number_p1.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/05 11:31:19 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:14:36 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 12:48:09 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/27 11:44:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				print_d(t_printf_mod mod, va_list ap)
 	}
 	if (mod.prec >= 0)
 		mod.flag &= ~ZEROPAD;
-	return (ft_printf_diuoxp_val(ujval, ulval, 10, mod));
+	return (ft_printf_diuox_val(ujval, ulval, 10, mod));
 }
 
 int				print_ld(t_printf_mod mod, va_list ap)
@@ -60,7 +60,7 @@ int				print_u(t_printf_mod mod, va_list ap)
 	mod.sign = '\0';
 	if (mod.prec >= 0)
 		mod.flag &= ~ZEROPAD;
-	return (ft_printf_diuoxp_val(ujval, ulval, 10, mod));
+	return (ft_printf_diuox_val(ujval, ulval, 10, mod));
 }
 
 int				print_lu(t_printf_mod mod, va_list ap)

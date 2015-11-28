@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flush.c                                            :+:      :+:    :+:   */
+/*   ft_printf_flush.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/05 11:11:59 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/05 12:04:57 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 12:22:10 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/27 12:09:30 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		flush_fd(int fd)
 	t_list	*drive;
 	t_list	*tmp;
 
-	drive = *LIST__();
+	drive = *buflist();
 	while (drive)
 	{
 		tmp = drive->next;
@@ -26,7 +26,7 @@ void		flush_fd(int fd)
 		ft_membzdel((void **)&drive, sizeof(t_list));
 		drive = tmp;
 	}
-	*LIST__() = NULL;
+	*buflist() = NULL;
 }
 
 void		flush_str(char *str)
@@ -34,7 +34,7 @@ void		flush_str(char *str)
 	t_list	*drive;
 	t_list	*tmp;
 
-	drive = *LIST__();
+	drive = *buflist();
 	while (drive)
 	{
 		tmp = drive->next;
@@ -44,7 +44,7 @@ void		flush_str(char *str)
 		ft_membzdel((void **)&drive, sizeof(t_list));
 		drive = tmp;
 	}
-	*LIST__() = NULL;
+	*buflist() = NULL;
 	*str = '\0';
 }
 
@@ -53,7 +53,7 @@ void		flush_nstr(char *str, size_t size)
 	t_list	*drive;
 	t_list	*tmp;
 
-	drive = *LIST__();
+	drive = *buflist();
 	while (drive)
 	{
 		tmp = drive->next;
@@ -73,6 +73,6 @@ void		flush_nstr(char *str, size_t size)
 		ft_membzdel((void **)&drive, sizeof(t_list));
 		drive = tmp;
 	}
-	*LIST__() = NULL;
+	*buflist() = NULL;
 	*str = '\0';
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_printf_set.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 01:19:26 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/27 19:16:16 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 12:33:40 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/27 14:29:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_str.h"
+#include "ft_printf.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int				set_fmt_mod(const char *fmt, \
+				t_printf_mod *mod, t_printf_set_function *set_mod, va_list ap)
 {
-	size_t		len_s1;
-	size_t		len_s2;
+	const char	*cp;
+	int			index;
 
-	if (n > (len_s1 = ft_strlen(s1)))
-		n = len_s1 + 1;
-	if (n > (len_s2 = ft_strlen(s2)))
-		n = len_s2 + 1;
-	return (ft_memcmp((void *)s1, (void *)s2, n));
+	cp = ++fmt;
+	while (*fmt)
+	{
+		index = get_mod_index(MOD_CSET, *fmt);
+		if (index == -1)
+			break ;
+		fmt += set_mod[index](mod, fmt, ap);
+	}
+	mod->spec = *fmt;
+	return (fmt - (cp - 1));
 }

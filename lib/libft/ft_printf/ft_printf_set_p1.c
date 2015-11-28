@@ -1,31 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set.c                                              :+:      :+:    :+:   */
+/*   ft_printf_set_p1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/05 10:45:52 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/23 15:27:30 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 12:34:35 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/26 12:35:57 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				set_fmt_mod(const char *fmt, \
-				t_printf_mod *mod, t_printf_set_function *set_mod)
+int	set_space(t_printf_mod *mod)
 {
-	const char	*cp;
-	int			index;
+	if (!mod->sign)
+		mod->sign = ' ';
+	return (1);
+}
 
-	cp = ++fmt;
-	while (*fmt)
-	{
-		index = MOD__(*fmt);
-		if (index == -1)
-			break ;
-		fmt += set_mod[index](mod, fmt);
-	}
-	mod->spec = *fmt;
-	return (fmt - (cp - 1));
+int	set_plus(t_printf_mod *mod)
+{
+	mod->sign = '+';
+	return (1);
+}
+
+int	set_alt(t_printf_mod *mod)
+{
+	mod->flag |= ALT;
+	return (1);
+}
+
+int	set_minus(t_printf_mod *mod)
+{
+	mod->flag |= LADJUST;
+	return (1);
+}
+
+int	set_zero(t_printf_mod *mod)
+{
+	mod->flag |= ZEROPAD;
+	return (1);
 }
