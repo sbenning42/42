@@ -13,9 +13,10 @@
 
 NAME =	lexer
 
-SRC =	srcs/get_next_line.o\
+SRC =	srcs/get_next_line.c\
 		srcs/lexer_chr.c\
 		srcs/lexer_token.c\
+		srcs/lexer_ini.c\
 		srcs/lexer.c\
 		main.c
 	
