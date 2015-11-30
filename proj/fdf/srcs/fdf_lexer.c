@@ -6,18 +6,33 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 16:16:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 18:53:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/30 23:25:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+
+static int		fdf_synerror(t_list *lst)
+{
+	while (lst)
+	{
+		if (((t_lex_tk *)lst->content)->type != Const_nu)
+		{
+			ft_printf("fdf: Syntax error: {red}%.*s{eoc}\n",\
+			((t_lex_tk *)lst->content)->size ,((t_lex_tk *)lst->content)->value);
+			return (1);
+		}
+		lst = lst->next;
+	}
+	return (0);
+}
 
 static int		fdf_handle_lexed(t_list **lst, t_list *lex_lst, \
 				t_fdf_point point)
 {
 	t_list		*elem;
 	char		*s;
-	size_t		len;
 
 	s = ((t_lex_tk *)lex_lst->content)->value;
 	point.z = ft_atoi(s);
@@ -38,23 +53,14 @@ int				fdf_lexing(t_list **lst, char *s, int y, t_lex_rule rule)
 	t_list		*tmp;
 	int			x;
 
-	if (!(lex_lst = ft_lexer(rule, NULL, 0, s)))
-	{
-		ft_printf("YOlO LEX\n");
-		free(s);
+	lex_lst = ft_lexer(rule, NULL, 0, s);
+	if (fdf_synerror(lex_lst))
 		return (0);
-	}
 	point.y = y;
 	x = 0;
 	tmp = lex_lst;
 	while (lex_lst)
 	{
-		ft_putnbr(x);
-		if (((t_lex_tk *)lex_lst->content)->type != Const_nu)
-		{
-			lex_lst = lex_lst->next;
-			continue ;
-		}
 		point.x = x++;
 		if (!fdf_handle_lexed(lst, lex_lst, point))
 		{

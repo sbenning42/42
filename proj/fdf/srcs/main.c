@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:05:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 13:47:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/30 20:34:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int			main(int ac, char **av)
 	{
 		i = 1;
 		while (i < ac)
+		{
 			fdf(av[i++]);
+			ft_printf("\n\n");
+		}
 	}
 	return (0);
 }

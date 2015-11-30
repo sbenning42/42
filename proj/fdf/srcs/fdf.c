@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:04:42 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 18:37:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/30 20:34:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static void		fdf_exec(t_list *lst)
 	{
 		p = (t_fdf_point *)lst->content;
 		if (i++)
-			ft_printf("%c", y == p->y ? ' ' : '\n');
-		ft_printf("%d-%d-%d", p->x, p->y, p->z);
+			ft_printf("%c", y == p->y ? '-' : '\n');
+		ft_printf("({cyan}%d{eoc},{green}%d{eoc},{yellow}%d{eoc})", \
+					p->x, p->y, p->z);
 		y = p->y;
 		lst = lst->next;
 	}
@@ -44,7 +45,6 @@ static void		fdf_fd(int fd, char *path, t_lex_rule rule)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
-		ft_putnbr(ret);
 		if (ret < 0)
 		{
 			ft_printf("fdf: {red|ss}%s{eoc}: {red}Gnl error{eoc}\n", path);

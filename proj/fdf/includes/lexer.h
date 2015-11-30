@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 00:08:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 10:56:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/30 23:23:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define LEX_TOKEN_QUO "'\"`"
 # define LEX_TOKEN_SBRA "([{"
 # define LEX_TOKEN_EBRA ")]}"
-# define LEX_TOKEN_NU "0123456789.,abcdefxABCDEF"
+# define LEX_TOKEN_NU "0123456789abcdefxABCDEF"
 
 typedef enum		e_bool
 {

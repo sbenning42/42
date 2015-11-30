@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 10:04:47 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 18:53:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/11/30 23:31:05 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			lexer_init(t_lex_rule rule, t_lex_tk *pattern)
 	t_lex_attr	attr;
 
 	attr.size = 1;
-	attr.save = True;
+	attr.save = rule.save_blk == True ? True : False;
 	attr.esc = False;
 	attr.rec = False;
 	lexer_init_block(LEX_TOKEN_EOL, &pattern, Eol, attr);
