@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/01 12:59:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/01 21:35:36 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "lexer.h"
 
 # define FDF_BS 1024
+
+typedef struct		s_env
+{
+	void			*mlx;
+	void			*win;
+	t_list			*lst;
+}					t_env;
 
 typedef struct		s_param
 {
@@ -35,7 +42,9 @@ typedef struct		s_fdf_point
 	int				z;
 }					t_fdf_point;
 
+void				fdf_mlx(t_list *lst, char *title);
+void				fdf_exec(t_list *lst, int ac, char **av);
 int					fdf_lexing(t_list **lst, char *s, int y, t_lex_rule rule);
-void				fdf(char *path);
+t_list				*fdf(char *path);
 
 #endif

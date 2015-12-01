@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 16:16:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/01 12:23:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/02 00:08:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		fdf_synerror(t_list *lst)
 	{
 		if (((t_lex_tk *)lst->content)->type != Const_nu)
 		{
-			ft_printf("fdf: Syntax error: {red}%.*s{eoc}\n", \
+			ft_printf("fdf: {red}Syntax error: %.*s{eoc} :: ", \
 					((t_lex_tk *)lst->content)->size, \
 					((t_lex_tk *)lst->content)->value);
 			return (1);
@@ -64,13 +64,13 @@ int				fdf_lexing(t_list **lst, char *s, int y, t_lex_rule rule)
 		point.x = x++;
 		if (!fdf_handle_lexed(lst, lex_lst, point))
 		{
-			ft_lstdel(&lex_lst, NULL);
+			ft_lstdel(&tmp, NULL);
 			free(s);
 			return (0);
 		}
 		lex_lst = lex_lst->next;
 	}
-	ft_lstdel(&lex_lst, NULL);
+	ft_lstdel(&tmp, NULL);
 	free(s);
 	return (1);
 }
