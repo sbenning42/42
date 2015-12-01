@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 00:08:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 23:23:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/01 12:24:11 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-
-//# define VERBOSE
 
 # define LEX_NB_TOKEN 16
 # define LEX_TOKEN_EOL "\0"

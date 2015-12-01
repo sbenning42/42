@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#    Updated: 2015/11/30 23:27:42 by sbenning         ###   ########.fr        #
+#    Updated: 2015/12/01 12:20:12 by sbenning         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ SRC =		lib/lexer/srcs/get_next_line.c\
 
 OBJ =		$(SRC:.c=.o)
 
-LIB =		ft
+LIB =		-lft\
+			-lmlx
+
+FRAMEWORK =	-framework OpenGL -framework AppKit
 
 LIB_DIR =	lib/ft
 			
@@ -36,7 +39,7 @@ FLAGS =		-Wall -Wextra
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
-	$(CC) -o $(NAME) -I $(HEADERS) $(OBJ) -L $(LIB_DIR) -l$(LIB)
+	$(CC) -o $(NAME) -I $(HEADERS) $(OBJ) -L $(LIB_DIR) $(LIB) $(FRAMEWORK)
 
 %.o : %.c
 	$(CC) $(FLAGS) -o $@ -I $(HEADERS) -c $<
