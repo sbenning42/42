@@ -1,26 +1,20 @@
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdio.h>
-#include <strings.h>
-int main()
+
+int	main()
 {
-	char	p1[] = "\100";
-	char	p2[] = "\0";
-	unsigned char *s1;
-	unsigned char *s2;
+	int	fd;
+	int	ret;
+	char	buf[1024];
 
-	s1 = (unsigned char *)p1;
-	s2 = (unsigned char *)p2;
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-		{
-			printf("[%d]\n", *s1 - *s2);
-			break ;
-		}
-		s1++;
-		s2++;
-	}
-
-	printf("[%d]\n", *s1 - *s2);
-	printf("[%d]\n", strcmp(p1, p2));
+	fd = open("test", O_RDONLY);
+	ret = read(fd, buf, 1024);
+	buf[ret] = 0;
+	printf("[%d] {%s}\n", ret, buf);
+	ret = read(fd, buf, 1024);
+	buf[ret] = 0;
+	printf("[%d] {%s}\n", ret, buf);
+	close(fd);
 	return (0);
 }

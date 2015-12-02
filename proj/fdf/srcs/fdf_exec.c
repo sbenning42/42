@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 16:54:03 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/02 10:31:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/02 20:06:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void		fdf_exec(t_list *lst, int ac, char **av)
 	char	title[1024];
 	int		son_pid;
 	int		i;
-	i = 0;
 	
-	while (++i < ac || lst)
+	i = 1;
+	while (lst)
 	{
-		ft_snprintf(title, 1024, "FDF: %s", ac != 1 ? av[i] : "Standrd input");
+		ft_snprintf(title, 1024, "FDF: %s", ac != 1 ? av[i] : "Standard input");
 		son_pid = fork();
 		if (!son_pid)
 			fdf_mlx(*((t_list **)lst->content), title);
@@ -31,6 +31,7 @@ void		fdf_exec(t_list *lst, int ac, char **av)
 				ft_printf("fdf: {red}Error: %s fork{eoc}\n");
 			lst = lst->next;
 		}
+		i++;
 	}
 	ft_printf("fdf: {ss}This is the rules when focus on window:{eoc}\n\n\
 {green}<escape>{eoc} : Close the window\n\
