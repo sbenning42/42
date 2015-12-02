@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 19:42:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/01 21:52:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/02 00:29:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		fdf_c(int c)
 	int			rc;
 
 	rc = 0x0000ff;
-	return (rc + (c * 0xff));
+	return (rc + (c * 0xff0));
 }
 
 static int		fdf_draw(void *ve)
@@ -57,7 +57,10 @@ static int		fdf_draw(void *ve)
 static int		fdf_handle_key(int key, void *e)
 {
 	if (key == 65307)
+	{
 		mlx_destroy_window(((t_env *)e)->mlx, ((t_env *)e)->win);
+		exit(0);
+	}
 	return (0);
 }
 

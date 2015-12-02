@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 10:42:20 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 23:31:06 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/02 00:22:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void		lexer_constchr(char *s, t_lex_tk *token)
 {
 	size_t	i;
 
-	if (!ft_isalnum(*s))
+	if (!ft_isalnum(*s) && *s != '-')
 		return ;
 	i = 0;
-	if (ft_isdigit(*s))
+	if (ft_isdigit(*s) || *s == '-')
 	{
 		token->type = Const_nu;
 		while (s[i] && ft_strchr(LEX_TOKEN_NU, s[i]))

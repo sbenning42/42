@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 00:08:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/30 10:56:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/02 00:22:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "libft.h"
 # include "get_next_line.h"
 
-//# define VERBOSE
-
 # define LEX_NB_TOKEN 16
 # define LEX_TOKEN_EOL "\0"
 # define LEX_TOKEN_BLK " \n\t\b\r"
@@ -25,7 +23,7 @@
 # define LEX_TOKEN_QUO "'\"`"
 # define LEX_TOKEN_SBRA "([{"
 # define LEX_TOKEN_EBRA ")]}"
-# define LEX_TOKEN_NU "0123456789.,abcdefxABCDEF"
+# define LEX_TOKEN_NU "-0123456789abcdefxABCDEF"
 
 typedef enum		e_bool
 {
