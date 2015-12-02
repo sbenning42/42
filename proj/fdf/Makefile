@@ -26,11 +26,12 @@ SRC =		lib/lexer/srcs/get_next_line.c\
 OBJ =		$(SRC:.c=.o)
 
 LIB =		-lft\
-			-lmlx_Linux\
+			-lmlx
+#			-lmlx_Linux\
 	 		-lXext\
 			-lX11
 
-#FRAMEWORK =	-framework OpenGL -framework AppKit
+FRAMEWORK =	-framework OpenGL -framework AppKit
 
 LIB_DIR =	lib/ft
 LIB_MLX_NUX =	minilibx_nux
@@ -44,7 +45,7 @@ FLAGS =		-Wall -Wextra
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
-	$(CC) -o $(NAME) -I $(HEADERS) $(OBJ) -L $(LIB_MLX_NUX) -L $(LIB_DIR) $(LIB) $(FRAMEWORK)
+	$(CC) -o $(NAME) -I $(HEADERS) $(OBJ) -L $(LIB_DIR) $(LIB) $(FRAMEWORK)
 
 %.o : %.c
 	$(CC) $(FLAGS) -o $@ -I $(HEADERS) -c $<
