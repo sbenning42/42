@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:12:08 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/02 22:48:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/03 11:53:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		fdf_handle_rank(t_list *lst, int *x, int *y)
 	}
 }
 
-void			fdf_handle_point(t_list *lst)
+void			fdf_handle_point(t_env *e)
 {
 	int			max;
 	int			x;

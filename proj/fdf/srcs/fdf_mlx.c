@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 19:42:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/02 22:43:01 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/03 11:53:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void			fdf_mlx(t_list *lst, char *title)
 		return ;
 	}
 	e.lst = lst;
-	fdf_handle_point(lst);
+	fdf_handle_point(&e);
 /*	
 	cp = lst;
 	while (cp)

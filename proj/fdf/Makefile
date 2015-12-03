@@ -17,12 +17,12 @@ SRC =		lib/lexer/srcs/get_next_line.c\
 			lib/lexer/srcs/lexer_token.c\
 			lib/lexer/srcs/lexer_chr.c\
 			lib/lexer/srcs/lexer.c\
-			srcs/fdf_handle.c\
+			srcs/fdf_lexer.c\
+			srcs/mainv2.c
+#			srcs/fdf_handle.c\
 			srcs/fdf_mlx.c\
 			srcs/fdf_exec.c\
-			srcs/fdf_lexer.c\
 			srcs/fdf.c\
-			srcs/main.c
 
 OBJ =		$(SRC:.c=.o)
 
