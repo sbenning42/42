@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/03 18:27:36 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/04 13:51:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@
 # define FDF_TILE_HEIGHT 32
 */
 
-# define FDF_WIDTH 1024
-# define FDF_HEIGHT 1024
-# define FDF_GAP 64 
+# define FDF_WIDTH 680
+# define FDF_HEIGHT 420
+# define FDF_GAP_W(X,Y) (X * ((FDF_WIDTH / 2) / Y))
+# define FDF_GAP_H(X,Y) (X * ((FDF_HEIGHT / 2) / Y))
+
+# define FDF_FAKE_AV "Standard input"
 
 typedef struct		s_fdf_map
 {
@@ -35,7 +38,7 @@ typedef struct		s_fdf_map
 	int				y;
 	int				**mat;
 	t_list			*lst;
-	char			path[65];
+	char			*name;
 }					t_fdf_map;
 
 typedef struct		s_env
@@ -52,7 +55,7 @@ typedef struct		s_fdf_point
 	int				z;
 }					t_fdf_point;
 
-t_fdf_map			fdf_parse_map(char *path, t_lex_rule rule);
+int					fdf_parse_file(char **av, int i, t_fdf_map *map);
 /*
 void				fdf_handle_point(t_env *e);
 void				fdf_mlx(t_list *lst, char *title);

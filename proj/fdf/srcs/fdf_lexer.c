@@ -6,156 +6,113 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 16:16:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/03 17:56:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/04 13:37:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		fdf_synerror(t_list *lst, char *path)
+static int		fdf_synerror(t_list *lst, char *av, char *name)
 {
 	while (lst)
 	{
 		if (((t_lex_tk *)lst->content)->type != Const_nu)
 		{
-			ft_printf("fdf: {red}Syntax error: %.*s{eoc} : %s\n", \
+			ft_printf("%s: {red}Parse error near token: %.*s{eoc} : %s\n", \
+					av,
 					((t_lex_tk *)lst->content)->size, \
-					((t_lex_tk *)lst->content)->value, path);
+					((t_lex_tk *)lst->content)->value, \
+					name);
 			return (1);
 		}
 		lst = lst->next;
 	}
 	return (0);
 }
-/*
-static int		fdf_handle_lexed(t_list **lst, t_list *lex_lst, \
-				t_fdf_point point)
-{
-	t_list		*elem;
-	char		*s;
 
-	s = ((t_lex_tk *)lex_lst->content)->value;
-	point.z = ft_atoi(s);
-	if (!(elem = ft_lstnew(&point, sizeof(t_fdf_point))))
-	{
-		ft_lstdel(lst, NULL);
-		ft_printf("fdf: {red}Memorry allocation error{eoc}\n");
-		return (0);
-	}
-	ft_lstadd_back(lst, elem);
-	return (1);
-}
-
-int				fdf_lexing(t_list **lst, char *s, int y, t_lex_rule rule)
+static int		fdf_memfail(char *av, char *name, t_list **alst)
 {
-	t_fdf_point	point;
-	t_list		*lex_lst;
-	t_list		*tmp;
-	int			x;
-
-	lex_lst = ft_lexer(rule, NULL, 0, s);
-	if (fdf_synerror(lex_lst))
-		return (0);
-	point.y = y;
-	x = 0;
-	tmp = lex_lst;
-	while (lex_lst)
-	{
-		point.x = x++;
-		if (!fdf_handle_lexed(lst, lex_lst, point))
-		{
-			ft_lstdel(&tmp, NULL);
-			free(s);
-			return (0);
-		}
-		lex_lst = lex_lst->next;
-	}
-	ft_lstdel(&tmp, NULL);
-	free(s);
-	return (1);
-}
-*/
-static int		fdf_memfailed(t_list **alst, char *path, int msg)
-{
-	if (msg)
-		ft_printf("fdf: {red}Memory allocation failed{eoc}: %s\n", path);
-	ft_lstdel(alst, NULL);
+	ft_printf("%s: {red}%s{eoc}: %s\n", \
+			av, "Memory allocation failed", name);
+	if (alst)
+		ft_lstdel(alst, NULL);
 	return (0);
 }
 
-static int		fdf_lex_line(char *line, t_fdf_map *map, t_lex_rule rule)
+static int		fdf_lex_line\
+				(char *line, t_fdf_map *map, t_lex_rule rule, char *av)
 {
-	static int	x = 0;
 	t_list		*lst;
 	t_list		*cp;
 	t_list		*elem;
 	t_fdf_point	pt;
 
-	map->x = 0;
-	lst = ft_lexer(rule, NULL, 0, line);
-	if (!lst || fdf_synerror(lst, map->path))
-		return (fdf_memfailed(&lst, map->path, lst ? 0 : 1));
+	if (!(lst = ft_lexer(rule, NULL, 0, line)))
+		return (fdf_memfail(av, map->name, &lst));
+	else if (fdf_synerror(lst, av, map->name))
+		return (0);
 	pt.y = map->y;
+	pt.x = 0;
 	cp = lst;
 	while (cp)
 	{
-		pt.x = map->x++;
+		pt.x++;
 		pt.z = ft_atoi(((t_lex_tk *)cp->content)->value);
 		if (!(elem = ft_lstnew((void *)&pt, sizeof(t_fdf_point))))
-			return (fdf_memfailed(&lst, map->path, 1));
+			return (fdf_memfail(av, map->name, &lst));
 		ft_lstadd_back(&map->lst, elem);
 		cp = cp->next;
 	}
 	ft_lstdel(&lst, NULL);
-	x = (x > (map->x - 1) ? x : map->x - 1);
-	map->x = x;
+	map->x = (pt.x - 1 > map->x ? pt.x - 1 : map->x);
 	return (1);
 }
 
-static t_fdf_map	fdf_lex(int fd, char *path, t_lex_rule rule)
+static int			fdf_parse_fd(int fd, char **av, int i, t_fdf_map *map)
 {
-	t_fdf_map		map;
+	t_lex_rule		rules;
 	char			*line;
 	int				ret;
 
-	map.lst = NULL;
-	ft_bzero((void *)&map, sizeof(t_fdf_map) - sizeof(char *));
-	ft_strncpy(map.path, path, ((ret = (int)ft_strlen(path)) > 64 ? 64 : ret));
+	ft_bzero((void *)&rules, sizeof(t_lex_rule));
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		if (!fdf_lex_line(line, &map, rule))
+		if (!fdf_lex_line(line, map, rules, av[0]))
 		{
-			ft_lstdel(&map.lst, NULL);
 			free(line);
-			return (map);
+			return (0);
 		}
-		map.y++;
+		map->y++;
 		free(line);
 	}
 	if (ret < 0)
-	{
-		ft_printf("fdf: {red|ss}%s{eoc}: {red}Gnl error{eoc}\n", map.path);
-		ft_lstdel(&map.lst, NULL);
-	}
-	return (map);
+		ft_printf("%s:{red}%s{eoc}%s\n", \
+				av[0], " Error: read or Memory allocation failed: ", av[i]);
+	return (ret ? 0 : 1);
 }
 
-t_fdf_map		fdf_parse_map(char *path, t_lex_rule rule)
+int				fdf_parse_file(char **av, int i, t_fdf_map *map)
 {
-	t_fdf_map	map;
 	int			fd;
 
-	map.lst = NULL;
-	if (!ft_strcmp(path, "Standard Input"))
+	map->name = av[i];
+	if (!ft_strcmp(av[i], FDF_FAKE_AV))
 		fd = 0;
 	else
 	{
-		fd = open(path, O_RDONLY);
+		fd = open(av[i], O_RDONLY);
 		if (fd < 0 || errno)
 		{
-			ft_printf("fdf: {red|ss}%s{eoc}: %s\n", path, strerror(errno));
-			return (map);
+			ft_printf("%s: {red|ss}%s{eoc}: %s\n",\
+					av[0], av[i], strerror(errno));
+			errno = 0;
+			return (0);
 		}
 	}
-	return (fdf_lex(fd, path, rule));
+	if (!fdf_parse_fd(fd, av, i, map) && map->lst)
+	{
+		ft_lstdel(&map->lst, NULL);
+		return (0);
+	}
+	return (1);
 }

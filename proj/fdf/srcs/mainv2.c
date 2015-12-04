@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:38:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/03 18:27:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/04 14:15:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int				fdf_draw(void *p)
 		while (x <= e->map.x)
 		{
 			if (e->map.mat[y][x] != INT_MIN)
-				mlx_pixel_put(e->mlx, e->win, x * FDF_GAP, y * FDF_GAP, \
-								e->map.mat[y][x] * 0xff);
+				mlx_pixel_put(e->mlx, e->win, FDF_GAP_W(x, e->map.x), \
+						FDF_GAP_H(y, e->map.y), \
+						0xff0000 - (e->map.mat[y][x]->z * 0xff));
 			x++;
 		}
 		y++;
@@ -39,16 +40,16 @@ int				fdf_key(int key, void *p)
 {
 	t_env		*e;
 
-	if (key == 53 || key == 12)
+	if (key == 53 || key == 12 || key == 65307)
 	{
 		e = (t_env *)p;
 		mlx_destroy_window(e->mlx, e->win);
 		//fdf_destroy_mat(&e->map.mat, e->map.x);
 		exit(EXIT_SUCCESS);
 	}
-	else
+/*	else
 		ft_fprintf(2, "[{green}%d{eoc}][{cyan}%c{eoc}]\n", key, (char)key);
-	return (0);
+*/	return (0);
 }
 
 static void		fdf_fill_mat(t_fdf_map map)
@@ -61,7 +62,7 @@ static void		fdf_fill_mat(t_fdf_map map)
 	while (cp)
 	{
 		pt = (t_fdf_point *)cp->content;
-		map.mat[pt->y][pt->x] = pt->z;
+		map.mat[pt->y][pt->x] = pt;
 		cp = cp->next;
 	}
 	ft_lstdel(&map.lst, NULL);
@@ -83,7 +84,7 @@ static int		fdf_handle_env(t_env *e)
 	if (!(e->map.mat = (int **)ft_memalloc(sizeof(int *) * e->map.y)))
 	{
 		ft_printf("fdf: {red}Error: Memory allocation failed!{eoc} : %s\n", \
-					e->map.path);
+					e->map.name);
 		ft_lstdel(&e->map.lst, NULL);
 		return (1);
 	}
@@ -94,7 +95,7 @@ static int		fdf_handle_env(t_env *e)
 		{
 			//fdf_destroy_mat(&e->map.mat, i);
 			ft_printf("fdf: {red}Error: Memory allocation failed!{eoc} : %s\n",\
-						e->map.path);
+						e->map.name);
 			ft_lstdel(&e->map.lst, NULL);
 			return (1);
 		}
@@ -109,7 +110,7 @@ static char		*justname(char *path)
 	return (ft_strrchr(path, '/') + 1);
 }
 
-static void		fdf_mlx(t_fdf_map map)
+static void		fdf_mlx(t_fdf_map map, char *av)
 {
 	t_env		e;
 
@@ -117,62 +118,75 @@ static void		fdf_mlx(t_fdf_map map)
 	e.mlx = mlx_init();
 	if (!e.mlx)
 	{
-		ft_printf("fdf: {red}Error: Can't load mlx: %s{eoc}\n", map.path);
-		return ;
+		ft_printf("fdf: {red}Error: Can't load mlx: %s{eoc}\n", map.name);
+		return ; //FREE(map.lst || e.map.lst)!!!!
 	}
-	e.win = mlx_new_window(e.mlx, FDF_WIDTH, FDF_HEIGHT, justname(map.path));
+	e.win = mlx_new_window(e.mlx, FDF_WIDTH, FDF_HEIGHT, justname(map.name));
 	if (!e.win)
 	{
-		ft_printf("fdf: {red}Error: Can't create window: %s{eoc}\n", map.path);
-		return ;
+		ft_printf("%s: {red}%s%s{eoc}\n", \
+				av, "Error: Can't create window: ", map.name);
+		return ; //FREE(map.lst || e.map.lst)!!!!
 	}
 	if (fdf_handle_env(&e))
 	{
 		mlx_destroy_window(e.mlx, e.win);
-		ft_printf("fdf: {red}Error: Can't handle env :( : %s{eoc}\n", map.path);
-		return ;
+		ft_printf("%s: {red}%s%s{eoc}\n", av, "Error: Can't handle env :( : ", map.name);
+		return ; //FREE(map.lst || e.map.lst)!!!!
 	}
 	mlx_expose_hook(e.win, fdf_draw, (void *)&e);
 	mlx_key_hook(e.win, fdf_key, (void *)&e);
 	mlx_loop(e.mlx);
 }
 
-void			fdf(t_fdf_map map)
+static char		**fdf_handle_av(int *ac, char **fake, char **real)
 {
-	int			pid;
+	char		**av;
 
-	pid = fork();
-	if (!pid)
-		fdf_mlx(map);
-	else if (pid < 0)
-		ft_printf("fdf: {red}Error: Can't fork to handle{eoc} %s\n", map.path);
+	fake[0] = real[0];
+	fake[1] = FDF_FAKE_AV;
+	av = (*ac == 1 ? fake : real);
+	*ac += (*ac == 1 ? 1 : 0);
+	return (av);
+}
+/*
+static int		fdf_fail(char *name)
+{
+	ft_printf("%s:{ss}%s{eoc}", name, " There is no valid map\n");
+	return (0);
+}
+*/
+static int		fdf_success(char *name)
+{
+	ft_printf("%s:{ss}%s{eoc}\n\n{green}%s{eoc}%s{green}%s{eoc}%s",\
+			name, " This is the rules when focus on window:",\
+			"<escape>", " : Close the window\n",\
+			"<up-down>", " : Change color\n\n");
+	return (0);
 }
 
 int				main(int ac, char **av)
 {
-	t_lex_rule	rule;
+	char		**fdf_av;
+	char		*fake_av[2];
 	t_fdf_map	map;
-	char		fake_av[64];
+	int			pid;
 	int			i;
 
-	ft_bzero((void *)&rule, sizeof(t_lex_rule));
-	ft_bzero((void *)fake_av, sizeof(char) * 64);
-	i = 0;
-	while (++i < ac)
+	fdf_av = fdf_handle_av(&ac, fake_av, av);
+	fdf_success(av[0]);
+	i = 1;
+	while (i < ac)
 	{
-		map = fdf_parse_map(av[i], rule);
-		if (map.lst)
-			fdf(map);
+		ft_bzero((void *)&map, sizeof(t_fdf_map));
+		if (fdf_parse_file(fdf_av, i++, &map))
+		{
+			if (!(pid = fork()))
+				fdf_mlx(map, av[0]);
+			else if (pid < 0)
+				ft_printf("%s:{red}%s{eoc}%s\n", \
+						av[0], " Error: Can't fork to handle ", fdf_av[i - 1]);
+		}
 	}
-	if (ac == 1)
-	{
-		ft_strcpy(fake_av, "Standard Input");
-		map = fdf_parse_map(fake_av, rule);
-		fdf(map);
-	}
-	if (map.lst)
-		ft_printf("fdf: {ss}This is the rules when focus on window:{eoc}\n\n\
-{green}<escape>{eoc} : Close the window\n\
-{green}<up-down>{eoc} : Change color\n\n");
 	return (0);
 }
