@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 16:16:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/04 13:37:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/05 11:33:06 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ static int		fdf_lex_line\
 	t_fdf_point	pt;
 
 	if (!(lst = ft_lexer(rule, NULL, 0, line)))
-		return (fdf_memfail(av, map->name, &lst));
+		return (1);
 	else if (fdf_synerror(lst, av, map->name))
 		return (0);
-	pt.y = map->y;
+	pt.y = map->y++;
 	pt.x = 0;
 	cp = lst;
 	while (cp)
 	{
-		pt.x++;
 		pt.z = ft_atoi(((t_lex_tk *)cp->content)->value);
 		if (!(elem = ft_lstnew((void *)&pt, sizeof(t_fdf_point))))
 			return (fdf_memfail(av, map->name, &lst));
 		ft_lstadd_back(&map->lst, elem);
 		cp = cp->next;
+		pt.x++;
 	}
 	ft_lstdel(&lst, NULL);
-	map->x = (pt.x - 1 > map->x ? pt.x - 1 : map->x);
+	map->x = ((pt.x - 1 > map->x) ? pt.x - 1 : map->x);
 	return (1);
 }
 
@@ -82,13 +82,13 @@ static int			fdf_parse_fd(int fd, char **av, int i, t_fdf_map *map)
 			free(line);
 			return (0);
 		}
-		map->y++;
 		free(line);
 	}
+	map->y--;
 	if (ret < 0)
 		ft_printf("%s:{red}%s{eoc}%s\n", \
 				av[0], " Error: read or Memory allocation failed: ", av[i]);
-	return (ret ? 0 : 1);
+	return (((ret == -1 || ret == 1) ? 0 : 1));
 }
 
 int				fdf_parse_file(char **av, int i, t_fdf_map *map)

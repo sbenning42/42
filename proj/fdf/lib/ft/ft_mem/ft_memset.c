@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:52:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:19:19 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/05 06:10:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void		*ft_memset(void *b, int c, size_t len)
 {
-	b += (len - 1);
+	t_uchar	*cp;
+
+	cp = (t_uchar *)b;
 	while (len--)
-	{
-		*(t_uchar *)b = (t_uchar)c;
-		if (len)
-			b--;
-	}
+		*cp++ = (t_uchar)c;
 	return (b);
 }

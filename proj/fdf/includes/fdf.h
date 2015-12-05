@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/04 13:51:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/05 06:16:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,39 @@
 # include "mlx.h"
 # include "libft.h"
 # include "lexer.h"
-/*
-# define FDF_BS 1024
-# define FDF_MIDDLE 512 
-# define FDF_TILE_HEIGHT 32
-*/
 
 # define FDF_WIDTH 680
 # define FDF_HEIGHT 420
-# define FDF_GAP_W(X,Y) (X * ((FDF_WIDTH / 2) / Y))
-# define FDF_GAP_H(X,Y) (X * ((FDF_HEIGHT / 2) / Y))
+# define FDF_GAP_W(X) ((FDF_WIDTH / 2) /X)
+# define FDF_GAP_H(X) ((FDF_HEIGHT / 2) / X)
 
 # define FDF_FAKE_AV "Standard input"
 
+#define ERRMSG_MALLOC " Error: Memory allocation failed: "
+# define ERRMSG_FORK " Error: Can't fork to handle: "
+#define ERRMSG_MLX " Error: Can't load mlx: "
+#define ERRMSG_WIN " Error: Can't create window: "
+
+# define MSG_RULES " This is the rules when focus on window:"
+# define MSG_KESC "<escape>"
+# define MSG_ESC " : Close the window\n"
+# define MSG_KUPDOWN "<up-down>"
+# define MSG_UPDOWN " : Change color\n\n"
+
+typedef enum		s_fdf_coo_name
+{
+	Coo_x,
+	Coo_y,
+	Coo_z
+}					t_fdf_coo_name;
+
 typedef struct		s_fdf_map
 {
-	int				x;
-	int				y;
-	int				**mat;
-	t_list			*lst;
-	char			*name;
+	int				x;		//set by parse
+	int				y;		//set by parse
+	t_list			*lst;	//set by parse
+	char			*name;   //set by parse
+	int				***mat;
 }					t_fdf_map;
 
 typedef struct		s_env
@@ -55,14 +68,8 @@ typedef struct		s_fdf_point
 	int				z;
 }					t_fdf_point;
 
+void				fdf_mlx(t_fdf_map map, char *av);
 int					fdf_parse_file(char **av, int i, t_fdf_map *map);
-/*
-void				fdf_handle_point(t_env *e);
-void				fdf_mlx(t_list *lst, char *title);
-void				fdf_exec(t_list *lst, int ac, char **av);
-int					fdf_lexing(t_list **lst, char *s, int y, t_lex_rule rule);
-t_list				*fdf(char *path);
-*/
 void				fdf(t_fdf_map map);
 
 #endif
