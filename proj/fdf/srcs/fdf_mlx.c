@@ -6,11 +6,21 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 01:40:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/05 11:34:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/05 13:54:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int		fdf_color(int c)
+{
+	if (c < 0)
+		return (0xff - (c * 0xf));
+	else if (!c)
+		return (0xff00);
+	else
+		return (0xff0000 + (c * 0xf));
+}
 
 int				fdf_draw(void *p)
 {
@@ -25,10 +35,17 @@ int				fdf_draw(void *p)
 		x = 0;
 		while (x <= e->map.x)
 		{
-			if (e->map.mat[y][x][Coo_x] >= 0)
-				mlx_pixel_put(e->mlx, e->win, x * FDF_GAP_W(e->map.x), \
-						y * FDF_GAP_H(e->map.y), \
-						0xff0000 - (e->map.mat[y][x][Coo_z] * 0xff));
+			if (e->map.mat[y][x][Coo_x] != INT_MIN)
+			{
+				mlx_pixel_put(e->mlx, e->win, \
+				((FDF_WIDTH / 2) + ((e->map.mat[y][x][Coo_x] - e->map.mat[y][x][Coo_y]) * (FDF_GAP_W(e->map.x) / 2))), \
+				((FDF_HEIGHT / 2) + ((e->map.mat[y][x][Coo_y] + e->map.mat[y][x][Coo_x]) * (FDF_GAP_H(e->map.y) / 2))), \
+				fdf_color(e->map.mat[y][x][Coo_z]));
+			}
+//			ft_fprintf(2, "RY[%d]RX[%d]%{%d}%{%d}\n", \
+//			((FDF_WIDTH / 2) + ((e->map.mat[y][x][Coo_x] - e->map.mat[y][x][Coo_y]) * (FDF_GAP_W(e->map.x) / 2))), \
+//			((FDF_HEIGHT / 2) + ((e->map.mat[y][x][Coo_y] + e->map.mat[y][x][Coo_x]) * (FDF_GAP_H(e->map.y) / 2))), \
+//			e->map.mat[y][x][Coo_y], e->map.mat[y][x][Coo_x]);
 			x++;
 		}
 		y++;
@@ -72,67 +89,58 @@ int				fdf_key(int key, void *p)
 */	return (0);
 }
 
-static void		fdf_fill_mat(t_env *e)
+static void		fdf_fill_mat(t_fdf_map map)
 {
 	t_list		*cp;
 	t_fdf_point	*pt;
 
-	cp = e->map.lst;
+	cp = map.lst;
 	while (cp)
 	{
 		pt = (t_fdf_point *)cp->content;
-		e->map.mat[pt->y][pt->x][0] = pt->x;
-		e->map.mat[pt->y][pt->x][1] = pt->y;
-		e->map.mat[pt->y][pt->x][2] = pt->z;
+		map.mat[pt->y][pt->x][0] = pt->x + (map.x / -2);
+		map.mat[pt->y][pt->x][1] = pt->y + (map.y / -2);
+		map.mat[pt->y][pt->x][2] = pt->z;
 		cp = cp->next;
 	}
-	ft_lstdel(&e->map.lst, NULL);
+	ft_lstdel(&map.lst, NULL);
 }
 
-static void		fdf_init_point(int *point)
+static void		ft_intset(int *t, int i, size_t size)
 {
-	point[0] = -1;
-	point[1] = -1;
-	point[2] = -1;
+	size_t		c;
+
+	c = 0;
+	while (c < size)
+		t[c++] = i;
 }
 
 static int		fdf_handle_env(t_env *e)
 {
-	int			***mat;
 	int			i;
 	int			j;
-	int			k;
 
-
-	
-
-	mat = (int ***)ft_memalloc(sizeof(int **) * e->map.y + 1);
-	if (mat == NULL)
+	e->map.mat = (int ***)ft_memalloc(sizeof(int **) * e->map.y + 1);
+	if (e->map.mat == NULL)
 		return (0);
 	i = 0;
 	while (i <= e->map.y)
 	{
-		mat[i] = (int **)ft_memalloc(sizeof(int *) * e->map.x + 1);
-		if (mat[i] == NULL)
-			return (fdf_destroy_mat(&mat, i, 0));
+		e->map.mat[i] = (int **)ft_memalloc(sizeof(int *) * e->map.x + 1);
+		if (e->map.mat[i] == NULL)
+			return (fdf_destroy_mat(&e->map.mat, i, 0));
 		j = 0;
 		while (j <= e->map.x)
 		{
-			mat[i][j] = (int *)ft_memalloc(sizeof(int) * 3);
-			if (mat[i][j] == NULL)
-				return (fdf_destroy_mat(&mat, i, e->map.x));
-			k = 0;
-			while (k <= 2)
-			{
-				mat[i][j][k] = -1;
-				k++;
-			}
+			e->map.mat[i][j] = (int *)ft_memalloc(sizeof(int) * 3);
+			if (e->map.mat[i][j] == NULL)
+				return (fdf_destroy_mat(&e->map.mat, i, e->map.x));
+			ft_intset(e->map.mat[i][j], INT_MIN, 3);
 			j++;
 		}
 		i++;
 	}
-	e->map.mat = mat;
-	fdf_fill_mat(e);
+	fdf_fill_mat(e->map);
 	return (1);
 }
 
