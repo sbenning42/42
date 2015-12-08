@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:21:09 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 19:23:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 19:59:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,29 @@ static void		fdf_fill_px(t_fdf_map *map, int i, t_lex_tk *t)
 	map->mat[i][Color] = map->mat[i][Z_rel] * map->c_gap;
 }
 
-static void		fdf_map_constructor(t_env *env, t_list **alst)
+static void		fdf_map_constructor(t_env *env, t_list *lst)
 {
 	t_lex_tk	*t;
-	t_list		*cp;
 	int			i;
 	
-	cp = *alst;
 	env->map->x_rts = X_SCR / 2;
 	env->map->y_rts = Y_SCR / 2;
 	env->map->x_gap = (X_SCR / 1.5) / env->map->x;
 	env->map->y_gap = (Y_SCR / 1.5) / env->map->y;
 	env->map->c_gap = 0xff0000 / ((i = (env->map->z_max - env->map->z_min)) == 0 ? 1 : i);
 	i = 0;
-	while (cp)
+	while (lst)
 	{
-		t = (t_lex_tk *)cp->content;
+		t = (t_lex_tk *)lst->content;
 		if (t->type == Eol)
 		{
-			cp = fdf_squeeze(cp, &i, env->map->x);
+			lst = fdf_squeeze(lst, &i, env->map->x);
 			continue ;
 		}
 		else
 		{
 			fdf_fill_px(env->map, i, t);
-			cp = cp->next;
+			lst = lst->next;
 		}
 		i++;
 	}
@@ -149,6 +147,11 @@ void			fdf_parser(t_env *env, int fd)
 	lst = NULL;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
+		if(ft_strlen(line) == 0)
+		{
+			free(line);
+			continue ;
+		}
 		if ((el = fdf_lexer(env->av, env->id, line)) == NULL)
 		{
 			ret = -1;
@@ -157,14 +160,8 @@ void			fdf_parser(t_env *env, int fd)
 		ft_lstadd_back(&lst, el);
 	}
 	if (ret < 0)
-	{
 		ft_err(env->av, env->id, "Can't read (gnl)");
-		ft_lstdel(&lst, NULL);
-	}
-	if (!fdf_synerror(env, &lst) && fdf_map_newmat(env))
-	{
-		fdf_map_constructor(env, &lst);
-	}
-	else
-		ft_lstdel(&lst, NULL);
+	else if (!fdf_synerror(env, &lst) && fdf_map_newmat(env))
+		fdf_map_constructor(env, lst);
+	ft_lstdel(&lst, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 11:06:56 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 19:22:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 20:03:57 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ t_list				*fdf_lexer(char *av, char *id, char *s)
 	while (t.type != Eol)
 	{
 		ft_bzero((void *)&t, sizeof(t_lex_tk));
-		if (*s == ' ' || *s == '\n')
+		if (*s == ' ')
 			s++;
-		else if (*s == '\0' && s != cp)
+		else if (*s == '\0')
 			t = lex_eol_tk(s);
 		else if (ft_isdigit(*s) || *s == '-')
 			t = lex_constnu_tk(&s);
-		else if (*s++ != '\0')
+		else
 			t = lex_unknow_tk(s - 1);
 		if (t.type != None)
 		{

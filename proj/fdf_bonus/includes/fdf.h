@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 17:55:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 20:08:05 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int					khdl_zoom_inc(void *p, int key);
 int					khdl_zoom_dec(void *p, int key);
 
 int					ft_err(char *av, char *id, char *msg);
+void				fdf_bresenham(t_env *env, t_fdf_map *map, int clr);
 int					fdf_draw(void *p);
 int					fdf_key(int key, void *p);
 t_list				*fdf_lexer(char *av, char *id, char *s);
