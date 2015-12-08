@@ -1,128 +1,93 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_lexer.c                                        :+:      :+:    :+:   */
+/*   fdf_lexer_v2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/30 16:16:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/05 18:02:13 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/08 11:06:56 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/08 19:22:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		fdf_synerror(t_list *lst, char *av, char *name)
+static t_lex_tk		lex_eol_tk(char *s)
 {
-	while (lst)
-	{
-		if (((t_lex_tk *)lst->content)->type != Const_nu)
-		{
-			ft_printf("%s: {red}%s{eoc}: %s'%.*s'\n", \
-					av, name, "Parse error near token: ", \
-					((t_lex_tk *)lst->content)->size, \
-					((t_lex_tk *)lst->content)->value);
-			return (1);
-		}
-		lst = lst->next;
-	}
-	return (0);
+	t_lex_tk		t;
+
+	t.type = Eol;
+	t.value = s;
+	t.size = 1;
+	return (t);
 }
 
-static int		fdf_memfail(char *av, char *name, t_list **alst)
+static t_lex_tk		lex_constnu_tk(char **s)
 {
-	ft_printf("%s: {red}%s{eoc}: %s\n", \
-			av, "Memory allocation failed", name);
-	if (alst)
+	t_lex_tk		t;
+
+	t.type = Const_nu;
+	t.value = *s;
+	(*s)++;
+	t.size++;
+	while (ft_isdigit(**s))
+	{
+		(*s)++;
+		t.size++;
+	}
+	return (t);
+}
+
+static t_lex_tk		lex_unknow_tk(char *s)
+{
+	t_lex_tk		t;
+
+	t.type = Unknow;
+	t.value = s;
+	t.size = 1;
+	return (t);
+}
+
+static int			lex_add_tk(char *av, char *id, t_list **alst, t_lex_tk *t)
+{
+	t_list			*el;
+
+	if ((el = ft_lstnew((void *)t, sizeof(t_lex_tk))) == NULL)
+	{
+		ft_err(av, id, "Memory allocation failed");
 		ft_lstdel(alst, NULL);
-	return (0);
-}
-
-static void		fdf_majdept(t_fdf_map *map, int z)
-{
-	if (z > map->z_max)
-		map->z_max = z;
-	if (z < map->z_min)
-		map->z_min = z;
-}
-
-static int		fdf_lex_line\
-				(char *line, t_fdf_map *map, t_lex_rule rule, char *av)
-{
-	t_list		*lst;
-	t_list		*cp;
-	t_list		*elem;
-	t_fdf_point	pt;
-
-	if (!(lst = ft_lexer(rule, NULL, 0, line)))
-		return (1);
-	else if (fdf_synerror(lst, av, map->name))
 		return (0);
-	pt.y = map->y++;
-	pt.x = 0;
-	cp = lst;
-	while (cp)
-	{
-		pt.z = ft_atoi(((t_lex_tk *)cp->content)->value);
-		fdf_majdept(map, pt.z);
-		if (!(elem = ft_lstnew((void *)&pt, sizeof(t_fdf_point))))
-			return (fdf_memfail(av, map->name, &lst));
-		ft_lstadd_back(&map->lst, elem);
-		cp = cp->next;
-		pt.x++;
 	}
-	ft_lstdel(&lst, NULL);
-	map->x = ((pt.x - 1 > map->x) ? pt.x - 1 : map->x);
+	ft_lstadd_back(alst, el);
 	return (1);
 }
 
-static int			fdf_parse_fd(int fd, char **av, int i, t_fdf_map *map)
+t_list				*fdf_lexer(char *av, char *id, char *s)
 {
-	t_lex_rule		rules;
-	char			*line;
-	int				ret;
+	t_list			*lst;
+	t_lex_tk		t;
+	char			*cp;
 
-	ft_bzero((void *)&rules, sizeof(t_lex_rule));
-	map->z_min = INT_MAX;
-	map->z_max = INT_MIN;
-	while ((ret = get_next_line(fd, &line)) > 0)
+	t.type = None;
+	lst = NULL;
+	cp = s;
+	while (t.type != Eol)
 	{
-		if (!fdf_lex_line(line, map, rules, av[0]))
+		ft_bzero((void *)&t, sizeof(t_lex_tk));
+		if (*s == ' ' || *s == '\n')
+			s++;
+		else if (*s == '\0' && s != cp)
+			t = lex_eol_tk(s);
+		else if (ft_isdigit(*s) || *s == '-')
+			t = lex_constnu_tk(&s);
+		else if (*s++ != '\0')
+			t = lex_unknow_tk(s - 1);
+		if (t.type != None)
 		{
-			free(line);
-			return (0);
-		}
-		free(line);
-	}
-	map->y--;
-	if (ret < 0)
-		ft_printf("%s:{red}%s{eoc}%s\n", \
-				av[0], " Error: read or Memory allocation failed: ", av[i]);
-	return (((ret == -1 || ret == 1) ? 0 : 1));
-}
-
-int				fdf_parse_file(char **av, int i, t_fdf_map *map)
-{
-	int			fd;
-
-	map->name = av[i];
-	if (!ft_strcmp(av[i], FDF_FAKE_AV))
-		fd = 0;
-	else
-	{
-		fd = open(av[i], O_RDONLY);
-		if (fd < 0 || errno)
-		{
-			ft_printf("%s: {red|ss}%s{eoc}: %s\n",\
-					av[0], av[i], strerror(errno));
-			errno = 0;
-			return (0);
+			if (!lex_add_tk(av, id, &lst, &t))
+				return (NULL);
 		}
 	}
-	if (!fdf_parse_fd(fd, av, i, map) && map->lst)
-	{
-		ft_lstdel(&map->lst, NULL);
-		return (0);
-	}
-	return (1);
+	return (lst);
 }
+

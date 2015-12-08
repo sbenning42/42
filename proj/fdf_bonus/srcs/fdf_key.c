@@ -6,19 +6,23 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:23:05 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 03:26:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 18:00:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		(*f)(t_env *)keyhandle(int key)
+static int		(*keyhandle(t_env *env, int key))(void *, int)
 {
-	if (key == 53)
-		return (fdf_quit); // todo
-	else if (key == 12)
-		return (fdf_quit);
-	return (fdf_nothing);  //todo
+	int			i;
+
+	i = -1;
+	while (++i < NB_KHDL)
+	{
+		if (key == env->khdl[i].key)
+			return (env->khdl[i].f);
+	}
+	return (khdl_none);
 }
 
 int				fdf_key(int key, void *p)
@@ -26,6 +30,6 @@ int				fdf_key(int key, void *p)
 	t_env		*env;
 
 	env = (t_env *)p;
-	keyhandle(key)(env); //doto
+	keyhandle(env, key)(env, key);
 	return (key);
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 03:52:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 17:55:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <limits.h>
 # include "mlx.h"
 # include "libft.h"
-# include "lexer.h"
+# include "get_next_line.h"
 
 # define X_SCR 680
 # define Y_SCR 420
+# define NAM(X) ((id = ft_strrchr(X, '/')) ? id + 1 : X)
 
 # define ERRFMT "%s: {red}%s{eoc}: %s\n"
 # define MSG_RULES " This is the rules when focus on window:"
@@ -30,15 +31,22 @@
 # define MSG_KUPDOWN "<up-down>"
 # define MSG_UPDOWN " : Change color\n\n"
 
-# define NB_KHBS 5
+# define NB_KHDL 5
 
-typedef void		(*t_fkhdl)(t_env *);
-
-typedef struct		s_khdl
+typedef enum		e_lex_tk_type
 {
-	int				key;
-	t_fkhdl			*f;
-}					t_khdl;
+	None,
+	Unknow,
+	Const_nu,
+	Eol
+}					t_lex_tk_type;
+
+typedef struct		s_lex_tk
+{
+	t_lex_tk_type	type;
+	char			*value;
+	size_t			size;
+}					t_lex_tk;
 
 typedef enum		e_fdf_px_attr
 {
@@ -49,6 +57,8 @@ typedef enum		e_fdf_px_attr
 	Y_scr,
 	Color
 }					t_fdf_px_attr;
+
+typedef int			t_fdf_px[6];
 
 typedef struct		s_fdf_map
 {
@@ -64,6 +74,12 @@ typedef struct		s_fdf_map
 	int				c_gap;
 }					t_fdf_map;
 
+typedef struct		s_khdl
+{
+	int				key;
+	int				(*f)(void *, int);
+}					t_khdl;
+
 typedef struct		s_env
 {
 	void			*mlx;
@@ -75,18 +91,17 @@ typedef struct		s_env
 	t_khdl			khdl[NB_KHDL];
 }					t_env;
 
-typedef int			t_fdf_px[6];
-
-void				khdl_none(t_env *env);
-void				khdl_quit(t_env *env);
-void				khdl_default(t_env *env);
-void				khdl_zoom_inc(t_env *env);
-void				khdl_zoom_dec(t_env *env);
+int					khdl_none(void *p, int key);
+int					khdl_quit(void *p, int key);
+int					khdl_default(void *p, int key);
+int					khdl_zoom_inc(void *p, int key);
+int					khdl_zoom_dec(void *p, int key);
 
 int					ft_err(char *av, char *id, char *msg);
 int					fdf_draw(void *p);
 int					fdf_key(int key, void *p);
-int					fdf_parse(t_env *env, int fd);
+t_list				*fdf_lexer(char *av, char *id, char *s);
+void				fdf_parser(t_env *env, int fd);
 void				fdf_mlx(char *av, char *id, int fd);
 
 #endif
