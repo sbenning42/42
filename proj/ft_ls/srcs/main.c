@@ -1,104 +1,65 @@
 #include "ft_ls.h"
 
-static void			debug_dump_opt(int *opt)
+static int	ft_put_usage(char *av, char e)
 {
-	ft_printf("OPT: ");
-	if (*opt)
-		ft_printf("a");
-	if (*(opt + 1))
-		ft_printf("l");
-	if (*(opt + 2))
-		ft_printf("r");
-	if (*(opt + 3))
-		ft_printf("R");
-	if (*(opt + 4))
-		ft_printf("t");
+	char	*id;
+
+	ft_fprintf(2, U1FMT, NAME(av, id), "illegal option", e);
+	ft_fprintf(2, U2FMT, "usage", NAME(av, id), O_CSET, UMSG);
+	return (0);
+}
+
+static void	verbose_get_opt(int o, char *av)
+{
+	char	*ostr[O_SIZE + 1];
+	char	*id;
+	int		i;
+	int		flag;
+
+	ostr[0] = "Illegal";
+	ostr[1] = "Hide";
+	ostr[2] = "Long";
+	ostr[3] = "Recursif";
+	ostr[4] = "Reverse";
+	ostr[5] = "Time";
+	ostr[6] = "Verbose";
+	flag = 0x1;
+	ft_printf(OFMT, NAME(av, id), VERBOSEID, "option(s)");
+	i = 0;
+	while (flag <= MAX_O)
+	{
+		if (((o & flag) == flag) && (flag != PRIV_ERROR_O))
+			ft_printf("[{cyan|gr}%s{eoc}] ", ostr[i]);
+		else if (((o & flag) == flag) && (flag == PRIV_ERROR_O))
+			ft_printf("[{red|gr|ss}%s{eoc}] ", ostr[i]);
+		i++;
+		flag <<= 0x1;
+	}
 	ft_printf("\n");
 }
 
-void				ft_ls_fic_handle(t_list *lst)
+int			main(int ac, char *av[])
 {
-	struct stat		entry_info;
-	int				i;
+	int		(*s)(void *, void *);
+	char	*id;
+	int		o;
+	char	e;
 
-	i = 0;
-	while (lst)
+	e = 0;
+	o = get_opt(O_CSET, ac, av, &e);
+	if ((o & VERBOSE_O) == VERBOSE_O)
+		verbose_get_opt(o, av[0]);
+	if ((o & PRIV_ERROR_O) == PRIV_ERROR_O)
+		return (ft_put_usage(av[0], e));
+	ft_printf(((o & VERBOSE_O) == VERBOSE_O ? MASFMT : ""), ARGMAS);
+	if ((o & (TIME_O | REVE_O)))
 	{
-		if (!*(char *)lst->content)
-		{
-			lst = lst->next;
-			continue ;
-		}
-		/*
-		 *	Clean stat
-		*/
-		ft_bzero((void *)&entry_info, sizeof(struct stat));
-		/*
-		 *	If there is a fic print it
-		*/
-		if (stat((char *)lst->content, &entry_info) == -1)
-			ft_ls_put_error_entry((char *)lst->content, errno);
-		else if ((entry_info.st_mode & S_IFDIR) != S_IFDIR)
-		{
-			ft_printf("%s\n", (char *)lst->content);
-			*(char *)lst->content = 0;
-		}
-		lst = lst->next;
+		s = ((o & (TIME_O | REVE_O)) == TIME_O ? s_time : NULL);
+		s = ((o & (TIME_O | REVE_O)) == REVE_O ? s_rlex : s);
+		s = ((o & (TIME_O | REVE_O)) == (TIME_O | REVE_O) ? s_rtime : s);
 	}
-}
-
-void				ft_ls_error_handle(t_list *lst)
-{
-	struct stat		entry_info;
-	int				i;
-
-	i = 0;
-	while (lst)
-	{
-		/*
-		 *	Clean stat
-		*/
-		ft_bzero((void *)&entry_info, sizeof(struct stat));
-		/*
-		 *	If there is an error call put err
-		*/
-		if (stat((char *)lst->content, &entry_info) == -1)
-		{
-			ft_ls_put_error_entry((char *)lst->content, errno);
-			*(char *)lst->content = 0;
-		}
-		lst = lst->next;
-	}
-}
-
-int		main(int ac, char *av[])
-{
-	t_list	*avl;
-	int	opt[OPT_SIZE];
-	int	ret;
-
-	ft_bzero((void *)opt, sizeof(int) * OPT_SIZE);
-	/*
-	 *	set opt array while av
-	*/
-	if ((ret = get_opt(OPT_CSET, opt, ac, av)) == -1)
-		return (0);
 	else
-	{
-		av += ret;
-		ac -= ret;
-	}
-	if (!(avl = ft_ls_sort_av(opt, ac, av)))
-		return (0);
-	/*
-	 *	dump opt array
-	*/
-	debug_dump_opt(opt);
-	/*
-	 *	print error in arg
-	*/
-	ft_ls_error_handle(avl);
-	ft_ls_fic_handle(avl);
-//	ft_ls(opt, lav);
+		s = s_lex;
+	ft_ls_wopt(ac, av, o, s);
 	return (0);
 }
