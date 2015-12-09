@@ -6,51 +6,47 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:23:08 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/23 10:50:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/09 15:52:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			get_index_opt(const char *cset, char c)
+static int	get_solo_opt(const char *cset, char c)
 {
-	int		i;
+	int		opt;
 
-	i = 0;
-	while (cset[i])
+	opt = 0x1;
+	while (*cset)
 	{
-		if (cset[i] == c)
-			return (i);
-		i++;
+		opt <<= 0x1;
+		if (*cset++ == c)
+			return (opt);
 	}
-	return (-1);
+	return (PRIV_ERROR_O);
 }
 
-int			get_opt(const char *cset, int *opt, int ac, char **av)
+int			get_opt(const char *cset, int ac, char **av, char *err)
 {
 	int		i;
 	int		j;
-	int		index;
+	int		opt;
 
 	i = 0;
+	opt = 0x0;
 	while (++i < ac)
 	{
 		j = 0;
-		if (av[i][j] == '-')
+		if (av[i][j++] == '-')
 		{
-			while (av[i][++j])
+			while (av[i][j] && (opt |= get_solo_opt(cset, av[i][j])))
 			{
-				if ((index = get_index_opt(cset, av[i][j])) != -1)
-					opt[index] = 1;
-				else
-				{
-					ft_printf("ft_ls: '%c' is not a valid option!\n", av[i][j]);
-					return (-1);
-				}
+				*err = ((!(opt & PRIV_ERROR_O) || *err) ? *err : av[i][j]);
+				j++;
 			}
 		}
 		else
-			return (i - 1);
+			break ;
 	}
-	return (i - 1);
+	return (opt);
 }
