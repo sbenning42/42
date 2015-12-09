@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:47:24 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 20:22:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/09 03:17:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,32 @@
 
 void	fdf_majmat(t_env *env)
 {
+	t_fdf_px	*m;
 	int	i;
 
 	i = -1;
+	m = env->map->mat;
 	while (++i < (env->map->x * env->map->y))
 	{
-		if (env->map->mat[i][X_rel] == INT_MIN)
+		if (m[i][X_rel] == INT_MIN)
 			continue ;
-		env->map->mat[i][X_scr] = env->map->mat[i][X_rel] * env->map->x_gap + env->map->x_rts;
-		env->map->mat[i][Y_scr] = env->map->mat[i][Y_rel] * env->map->y_gap + env->map->y_rts;
-		env->map->mat[i][Color] = env->map->mat[i][Z_rel] * env->map->c_gap;
+		m[i][X_scr] = m[i][X_rel] * env->map->x_gap + env->map->x_rts;
+		m[i][Y_scr] = m[i][Y_rel] * env->map->y_gap + env->map->y_rts;
+		m[i][Color] = FDF_COLOR(m[i][Z_rel], env->map->z_min, env->map->z_max);
 	}
 }
 
 int		khdl_none(void *p, int key)
 {
 	t_env	*env;
+	int		fd;
 
 	env = (t_env *)p;
-	ft_printf("%s: %s: [%d]\n", env->av, env->id, key);
+	if ((fd = open("fdf.deb.out", O_WRONLY)) > 0)
+	{
+		ft_fprintf(fd, "%s: %s: [%d]\n", env->av, env->id, key);
+		close(fd);
+	}
 	return (0);
 }
 
@@ -43,6 +50,7 @@ int		khdl_quit(void *p, int key)
 	env = (t_env *)p;
 	(void)key;
 	mlx_destroy_window(env->mlx, env->win);
+	close(env->fd);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

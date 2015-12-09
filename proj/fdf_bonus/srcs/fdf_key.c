@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:23:05 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 18:00:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/09 03:11:34 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		(*keyhandle(t_env *env, int key))(void *, int)
 	while (++i < NB_KHDL)
 	{
 		if (key == env->khdl[i].key)
-			return (env->khdl[i].f);
+			return (env->khdl[i].handle);
 	}
 	return (khdl_none);
 }

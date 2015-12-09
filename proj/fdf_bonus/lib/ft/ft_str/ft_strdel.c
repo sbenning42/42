@@ -6,13 +6,15 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 05:18:57 by sbenning          #+#    #+#             */
-/*   Updated: 2014/11/08 11:25:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/09 03:05:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_str.h"
 
-void		ft_strdel(char **as)
+int		ft_strdel(char **as)
 {
-	ft_memdel((void **)as);
+	if (*as)
+		ft_memdel((void **)as);
+	return (1);
 }

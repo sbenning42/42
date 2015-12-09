@@ -6,13 +6,11 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:38:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 18:43:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/08 23:21:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#define FORK 1
 
 static int		fdf_put_rules(char *name)
 {

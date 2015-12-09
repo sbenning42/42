@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 10:37:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/09 02:59:07 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include "ft_header.h"
+# include "ft_math.h"
 # include "ft_char.h"
 # include "ft_str.h"
 # include "ft_wchar.h"
