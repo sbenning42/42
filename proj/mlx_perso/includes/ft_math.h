@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 03:19:33 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/06 22:48:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 00:07:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ typedef struct	s_sph_pt
 {
 	float		p[3];
 }				t_sph_pt;
-
+/*
 typedef struct	s_cart_pt
 {
-	int			p[4];
+	int			p[6];
 }				t_cart_pt;
-
+*/
+typedef int		t_cart_pt[6];
 typedef struct	s_mat_sph
 {
 	t_sph_pt	*mat;

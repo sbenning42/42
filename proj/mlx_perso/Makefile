@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/06 10:04:52 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/11 01:36:11 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,15 @@ NAME =		gen
 
 NAME_NUX =		gen_nux
 
-SRC =		lib/lexer/srcs/get_next_line.c\
+SRC =		srcs/main.c
+		#	lib/lexer/srcs/get_next_line.c\
 			lib/lexer/srcs/lexer_ini.c\
 			lib/lexer/srcs/lexer_token.c\
 			lib/lexer/srcs/lexer_chr.c\
 			lib/lexer/srcs/lexer.c\
 			srcs/math_mat.c\
-			srcs/main.c
-		#	srcs/gen_mlx.c\
-			srcs/gen_parser.c\
+			srcs/gen_mlx.c\
+			srcs/gen_parser.c
 
 OBJ =		$(SRC:.c=.o)
 

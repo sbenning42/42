@@ -6,65 +6,52 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 01:53:01 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/07 13:18:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 02:30:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gen.h"
-/*
-int				gen_key(int key, void *p)
-{
-	t_env		*e;
 
-	e = (t_env *)p;
-	if (GEN_QUIT(key))
-	{
-		ft_printf("%s: {cyan}%s{eoc}: %s\n", e->av, "gen control", "Good bye!");
-		mlx_destroy_window(e->mlx, e->win);
-		ft_memdel((void **)&e->map->mat);
-		exit(EXIT_SUCCESS);
-	}
-	return (key);
+int				gen_color(int z)
+{
+	int			c;
+
+	if (z == 0)
+		return (WHITE);
+	else if (z > 0)
+		c = (RED + GREEN) - ((GREEN / BLUE) * z);
+	else if (z < 0)
+		c = (BLUE + GREEN) - (((GREEN / BLUE)) * -z);
+	return (c);
 }
-*/
 
-void			gen_mlx_putclear(t_env *e, t_cart_pt *mat, int x, int y)
+void			gen_mlx_putmat(t_env *e, t_fdf_px *m, int clr)
 {
-	t_cart_pt	p;
 	int			i;
-	int			j;
+	int			c;
 
 	i = -1;
-	while (++i < y)
+	while (++i < (e->map->x * e->map->y))
 	{
-		j = -1;
-		while (++j < x)
-		{
-			p.p[Cart_x] = (mat[i * x + j].p[Cart_x] - (e->map->x / 2)) * e->map->gapx + (680 / 2);
-			p.p[Cart_y] = (mat[i * x + j].p[Cart_y] - (e->map->y / 2)) * e->map->gapy + (420 / 2);
-			p.p[Color] = RGB_BLACK;
-			mlx_pixel_put(e->mlx, e->win, p.p[Cart_x], p.p[Cart_y], p.p[Color]);
-		}
+		if (m[i][Fix])
+			continue ;
+		c = (clr ? 0 : (int)m[i][Color]);
+		mlx_pixel_put(e->mlx, e->win, (int)m[i][X_scr], (int)m[i][Y_scr], c);
 	}
 }
 
-void			gen_mlx_putmat(t_env *e, t_cart_pt *mat, int x, int y)
+void			gen_getscreen(t_gen_map *map, t_fdf_px *m)
 {
-	t_cart_pt	p;
 	int			i;
-	int			j;
 
 	i = -1;
-	while (++i < y)
+	while (++i < (map->x * map->y))
 	{
-		j = -1;
-		while (++j < x)
-		{
-			p.p[Cart_x] = (mat[i * x + j].p[Cart_x] - (e->map->x / 2)) * e->map->gapx + (680 / 2);
-			p.p[Cart_y] = (mat[i * x + j].p[Cart_y] - (e->map->y / 2)) * e->map->gapy + (420 / 2);
-			p.p[Color] = mat[i * x + j].p[Color];
-			mlx_pixel_put(e->mlx, e->win, p.p[Cart_x], p.p[Cart_y], p.p[Color]);
-		}
+		if (m[i][Fix])
+			continue ;
+		m[i][X_scr] = m[i][X_iso] * map->gap + (SCREEN / 2.0);
+		m[i][Y_scr] = m[i][Y_iso] * map->gap + (SCREEN / 2.0);
+		m[i][Color] = (float)gen_color(m[i][Z_rel]);
 	}
 }
 
@@ -73,7 +60,8 @@ int				gen_draw(void *p)
 	t_env		*e;
 
 	e = (t_env *)p;
-	gen_mlx_putmat(e, e->map->mat, e->map->x, e->map->y);
+	gen_getscreen(e->map, e->map->m);
+	gen_mlx_putmat(e, e->map->m, 0);
 	return (0);
 
 }
@@ -84,80 +72,63 @@ int				gen_key(int key, void *p)
 	e = (t_env *)p;
 	if (key == 65451)
 	{
-		gen_mlx_putclear(e, e->map->mat, e->map->x, e->map->y);
-		e->map->gapx++;
-		e->map->gapy++;
-		gen_draw(p);
+		gen_mlx_putmat(e, e->map->m, 1);
+		e->map->gap += (e->map->gap / 10.0);
+		gen_getscreen(e->map, e->map->m);
+		gen_mlx_putmat(e, e->map->m, 0);
 		return (0);
 	}
-	if (key == 65453)
+	else if (key == 65453)
 	{
-		gen_mlx_putclear(e, e->map->mat, e->map->x, e->map->y);
-		e->map->gapx--;
-		e->map->gapy--;
-		gen_draw(p);
+		gen_mlx_putmat(e, e->map->m, 1);
+		if ((e->map->gap - (e->map->gap / 10.0)) >= 1.0)
+			e->map->gap -= (e->map->gap / 10.0);
+		gen_getscreen(e->map, e->map->m);
+		gen_mlx_putmat(e, e->map->m, 0);
 		return (0);
 	}
-	if (!(key == 53 || key == 12 || key == 65307))
+	else if (key == 65437)
+	{
+		gen_mlx_putmat(e, e->map->m, 1);
+		e->map->gap = ((SCREEN / 3.0) / (e->map->x > e->map->y ? e->map->x : e->map->y));
+		gen_getscreen(e->map, e->map->m);
+		gen_mlx_putmat(e, e->map->m, 0);
+		return (0);
+	}
+	else if (!(key == 53 || key == 12 || key == 65307))
 		return (ft_printf("(%d)\n", key));
 	mlx_destroy_window(e->mlx, e->win);
-	ft_memdel((void **)&e->map->mat);
+	ft_memdel((void **)&e->map->m);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-static void		gen_mlx(char *av, t_cart_pt **amat, int x, int y)
+static void		gen_mlx(char *av, t_fdf_px *m, int x, int y)
 {
 	t_env		e;
 	t_gen_map	map;
 
-	map.mat = *amat;
+	map.m = m;
 	map.x = x;
 	map.y = y;
-	map.gapx = ((680 / 1.5) / x);
-	map.gapy = ((420 / 1.5) / y);
+	map.gap = ((SCREEN / 3.0) / (x > y ? x : y));
 	e.map = &map;
 	e.av = av;
 	if (!(e.mlx = mlx_init()))
 	{
 		ft_printf("%s: {red}%s{eoc}: %s\n", av, "Error", "mlx init");
-		ft_memdel((void **)amat);
+		ft_memdel((void **)&m);
 		return ;
 	}
 	if (!(e.win = mlx_new_window(e.mlx, 680, 420, av)))
 	{
 		ft_printf("%s: {red}%s{eoc}: %s\n", av, "Error", "mlx create window");
-		ft_memdel((void **)amat);
+		ft_memdel((void **)&m);
 		return ;
 	}
 	mlx_key_hook(e.win, gen_key, &e);
 	mlx_expose_hook(e.win, gen_draw, &e);
 	mlx_loop(e.mlx);
-}
-
-static void		gen_putcontrol(char *av)
-{
-	ft_printf("%s: {ss}%s{eoc}:\n\n", av, "Window Control");
-	ft_printf("\t{green}<%s>{eoc}\t[%s]\n", "escape", "Quit");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "5", "Center MAP");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "8", "X Rotation +");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "2", "X Rotation -");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "4", "Y Rotation +");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "6", "Y rotation -");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "7", "Z-Rotation +");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "9", "Z-Rotation -");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "+", "Zoom +");
-	ft_printf("\t{green}<%s>{eoc}\t\t[%s]\n", "-", "Zoom -");
-#ifdef TROLL
-	ft_printf("\n%s: {cyan|gr}%s{eoc}: {pink}%s{eoc}\n", \
-			av, "Troll", "Enjoy it!");
-#endif /* TROLL */
-}
-
-static int		gen_puterror(char *av, char *type, char *msg, int returnval)
-{
-	ft_printf("%s: %s: %s\n", av, type, msg);
-	return (returnval);
 }
 
 static int		gen_putusage(char *av, int returnval)
@@ -166,47 +137,55 @@ static int		gen_putusage(char *av, int returnval)
 	return (returnval);
 }
 
-static void		gen_fillmat(t_cart_pt *mat, int x, int y)
+static void		gen_fillmat(t_fdf_px *m, int x, int y)
 {
 	int			i;
-	int			j;
+	int			c;
 
 	i = -1;
-	while (++i < y)
+	while (++i < (x * y))
 	{
-		j = -1;
-		while (++j < x)
-		{
-			mat[i * x + j].p[Cart_x] = j;
-			mat[i * x + j].p[Cart_y] = i;
-			mat[i * x + j].p[Cart_z] = 0;
-			mat[i * x + j].p[Color] = RGB_WHITE - (i * j + y * x) * 0xff;
-		}
+		if (i < 50)
+			c = 0;
+		else if (i < 100)
+			c = 10;
+		else if (i < 150)
+			c = 0;
+		else if (i < 200)
+			c = -10;
+		else
+			c = 0;
+		m[i][Fix] = 0.0;
+		m[i][X_rel] = (float)(i % x)/* - ((float)x / 2.0)*/;
+		m[i][Y_rel] = (float)(i / x)/* - ((float)y / 2.0)*/;
+		m[i][Z_rel] = c;
+		m[i][X_iso] = (sqrtf(2.0) / 2.0) * (m[i][X_rel] - m[i][Y_rel]);
+		m[i][Y_iso] = (sqrtf(2.0 / 3.0) * -m[i][Z_rel]) - (1.0 / sqrt(6.0)) * (m[i][X_rel] + m[i][Y_rel]);
+		m[i][Color] = 0xffffff;
 	}
 }
 
 static int		gen(char *av, int x, int y)
 {
-	t_cart_pt	*mat;
+	t_fdf_px	*m;
 	int			pid;
 
-	if (!(mat = (t_cart_pt *)ft_memalloc(sizeof(t_cart_pt) * (x * y))))
+	if (!(m = (t_fdf_px *)ft_memalloc(sizeof(t_fdf_px) * (x * y))))
 	{
 		ft_printf("%s: {red}%s{eoc}: %s\n", \
 				av, "Error", "Memory allocation failed");
 		return (1);
 	}
-	gen_fillmat(mat, x, y);
+	gen_fillmat(m, x, y);
 	if (!(pid = fork()))
-		gen_mlx(av, &mat, x, y);
+		gen_mlx(av, m, (float)x, (float)y);
 	else if (pid < 0 || errno)
 	{
 		ft_printf("%s: {red}%s{eoc}: %s\n", av, "Error", strerror(errno));
 		errno = 0;
-		free(mat);
+		free(m);
 		return (1);
 	}
-	gen_putcontrol(av);
 	return (0);
 }
 

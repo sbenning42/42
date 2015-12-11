@@ -23,10 +23,10 @@ static void	verbose_get_opt(int o, char *av)
 	ostr[4] = "Reverse";
 	ostr[5] = "Time";
 	ostr[6] = "Verbose";
-	flag = 0x1;
 	ft_printf(OFMT, NAME(av, id), VERBOSEID, "option(s)");
 	i = 0;
-	while (flag <= MAX_O)
+	flag = 0x1;
+	while (flag < MAX_O)
 	{
 		if (((o & flag) == flag) && (flag != PRIV_ERROR_O))
 			ft_printf("[{cyan|gr}%s{eoc}] ", ostr[i]);
@@ -45,21 +45,20 @@ int			main(int ac, char *av[])
 	int		o;
 	char	e;
 
-	e = 0;
+	e = '\0';
 	o = get_opt(O_CSET, ac, av, &e);
 	if ((o & VERBOSE_O) == VERBOSE_O)
 		verbose_get_opt(o, av[0]);
 	if ((o & PRIV_ERROR_O) == PRIV_ERROR_O)
 		return (ft_put_usage(av[0], e));
-	ft_printf(((o & VERBOSE_O) == VERBOSE_O ? MASFMT : ""), ARGMAS);
+	s = s_lex;
 	if ((o & (TIME_O | REVE_O)))
 	{
-		s = ((o & (TIME_O | REVE_O)) == TIME_O ? s_time : NULL);
+		s = ((o & (TIME_O | REVE_O)) == TIME_O ? s_time : s);
 		s = ((o & (TIME_O | REVE_O)) == REVE_O ? s_rlex : s);
 		s = ((o & (TIME_O | REVE_O)) == (TIME_O | REVE_O) ? s_rtime : s);
 	}
-	else
-		s = s_lex;
 	ft_ls_wopt(ac, av, o, s);
+	ft_printf(((o & VERBOSE_O) == VERBOSE_O ? MASFMT : ""), ARGMAS);
 	return (0);
 }

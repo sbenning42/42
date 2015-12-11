@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/09 02:56:41 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/10 14:19:04 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC =		lib/lexer/srcs/get_next_line.c\
 			srcs/ft_mathabs.c\
 			srcs/fdf_khdl.c\
 			srcs/fdf_key.c\
+			srcs/fdf_bresenham.c\
 			srcs/fdf_draw.c\
 			srcs/fdf_mlx.c\
 			srcs/fdf_lexer.c\

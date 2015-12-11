@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:38:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/08 23:21:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/10 11:08:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				main(int ac, char **av)
 	int			i;
 
 	if (!FORK && ac > 2)
-		return (ft_err(av[0], "Masterchief", "'#define FORK 1'"));
+		return (ft_err(av[0], "Multi-map", "'#define FORK 1'"));
 	fdf_put_rules(av[0]);
 	i = 1;
 	while (i < ac || ac == 1)

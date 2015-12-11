@@ -1,68 +1,121 @@
-//dx > 0 && dy > 0
-void			brez_o_12(int p1[], int p2[], int dx, int dy)
+typedef struc	s_bres_info
 {
-	int			e;
-	t_cart_id	id_e;
 	t_cart_id	id;
+	t_cart_id	id_e;
 	int			d1;
 	int			d2;
 	int			i0;
 	int			i1;
 	int			i2;
+	int			c1;
+	int			c2;
+}				t_bres_info;
 
-	if (x > 0)
+void			bres_fill_info_o1o2(int dx, int dy, t_bres_info *info)
+{
+	info->id = (dx ≥ dy ? Cart_x : Cart_y);
+	info->id_e = (dx ≥ dy ? Cart_y : Cart_x);
+	info->d1 = (dx ≥ dy ? dx : dy);
+	info->d2 = (dx ≥ dy ? dy : dx);
+	info->i0 = -1;
+	info->i1 = 1;
+	info->i2 = 1;
+	info->c1 = 1;
+	info->c2 = 0;
+}
+
+void			bres_fill_info_o3o4(int dx, int dy, t_bres_info *info)
+{
+	info->id = (-dx >= dy ? Cart_x : Cart_y);
+	info->id_e = (-dx >= dy ? Cart_y : Cart_x);
+	info->d1 = (-dx >= dy ? dx : dy);
+	info->d2 = (-dx >= dy ? dy : dx);
+	info->i0 = 1;
+	info->i1 = (-dx >= dy ? -1 : 1);
+	info->i2 = (-dx >= dy ? 1 : -1);
+	info->c1 = (-dx >= dy ? 0 : 1);
+	info->c2 = 1;
+}
+
+void			bres_fill_info_o5o6(int dx, int dy, t_bres_info *info)
+{
+	info->id = (dx <= dy ? Cart_x : Cart_y);
+	info->id_e = (dx <= dy ? Cart_y : Cart_x);
+	info->d1 = (dx <= dy ? dx : dy);
+	info->d2 = (dx <= dy ? dy : dx);
+	info->i0 = -1;
+	info->i1 = -1;
+	info->i2 = -1;
+	info->c1 = 0;
+	info->c2 = 1;
+}
+
+void			bres_fill_info_o7o8(int dx, int dy, t_bres_info *info)
+{
+	info->id = (dx ≥ -dy ? Cart_x : Cart_y);
+	info->id_e = (dx ≥ -dy ? Cart_y : Cart_x);
+	info->d1 = (dx ≥ -dy ? dx : dy);
+	info->d2 = (dx ≥ -dy ? dy : dx);
+	info->i0 = 1;
+	info->i1 = (dx ≥ -dy ? 1 : -1);
+	info->i2 = (dx ≥ -dy ? -1 : 1);
+	info->c1 = (dx ≥ -dy ? 1 : 0);
+	info->c2 = 0;
+}
+
+void			bres_fill_info_verthor(int dx, int dy, t_bres_info *info)
+{
+	info->id = (dx == 0 ? Cart_y : Cart_x);
+	info->id_e = -1;
+	info->d1 = (dx == 0 ? dy : dx);
+	info->d2 = (dx == 0 ? dx : dy);
+	info->i0 = 0;
+	info->i1 = (info->d1 > 0 ? 1 : -1);
+	info->d1 = info->d2;
+	info->i2 = 0;
+	info->c1 = 0;
+	info->c2 = 0;
+}
+
+void			brez_info(int dx, int dy, t_bres_info *info)
+{
+	if (dx > 0 && dy)
 	{
 		if (dy > 0)
-		{
-			id = (dx ≥ dy ? Cart_x : Cart_y);
-			id_e = (dx ≥ dy ? Cart_y : Cart_x);
-			d1 = (dx ≥ dy ? dx : dy);
-			d2 = (dx ≥ dy ? dy : dx);
-			i0 = -1;
-			i1 = 1;
-			i2 = 1;
-			c = 1;
-		}
+			bres_fill_info_o1o2(dx, dy, info);
 		else
-		{
-			id = (dx ≥ -dy ? Cart_x : Cart_y);
-			id_e = (dx ≥ -dy ? Cart_y : Cart_x);
-			d1 = (dx ≥ -dy ? dx : dy);
-			d2 = (dx ≥ -dy ? dy : dx);
-			i0 = 1;
-			i1 = (dx ≥ -dy ? 1 : -1);
-			i2 = (dx ≥ -dy ? -1 : 1);
-			c = (dx ≥ -dy ? 1 : 0);
-		}
+			bres_fill_info_o7o8(dx, dy, info);
 	}
-	else
+	else if (dx < 0 && dy)
 	{
 		if (dy > 0)
-		{
-
-		}
+			bres_fill_info_o3o4(dx, dy, info);
 		else
-		{
-
-		}
+			bres_fill_info_o5o6(dx, dy, info);
 	}
+	else if (dx == 0 || dy == 0))
+		bres_fill_info_verthor(dx, dy, info);
+}
 
-	color_gap = COLOR_GAP(p1[Color], p2[Color]);
-	e = d1;
-	d1 = e * 2;
-	d2 *= 2;
+void			bres_put(int p1[], int p2[], t_bres_info info)
+{
+	int			e;
+
+	e = info.d1;
+	info.d1 = e * 2;
+	info.d2 *= 2;
 	while (42)
 	{
-		p1[color] += color_gap;
+		p1[color] = 0xffffff;
 		mlx_pixel_put(env->mlx, env->win, p1[Cart_x], p1[Cart_y], p1[Color]);
-		p1[id] += i1;
-		if (p1[id] == p2[id])
+		p1[info.id] += info.i1;
+		if (p1[info.id] == p2[info.id])
 			break ;
-		e += i0 * d2;
-		if ((c && e < 0) || (!c && e > 0))
+		e += info.i0 * info.d2;
+		if ((info.c1 && e < 0) || (!info.c1 && e > 0) || (info.c2 && e == 0))
 		{
-			p1[id_e] += i2;
-			e += d1;
+			p1[info.id_e] += info.i2;
+			e += info.d1;
 		}
 	}
 }

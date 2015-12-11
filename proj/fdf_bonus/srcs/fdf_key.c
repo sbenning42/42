@@ -6,13 +6,13 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:23:05 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 03:11:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/10 12:27:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		(*keyhandle(t_env *env, int key))(void *, int)
+static int		(*choose_khdl(t_env *env, int key))(void *, int)
 {
 	int			i;
 
@@ -30,6 +30,6 @@ int				fdf_key(int key, void *p)
 	t_env		*env;
 
 	env = (t_env *)p;
-	keyhandle(env, key)(env, key);
+	choose_khdl(env, key)(env, key);
 	return (key);
 }

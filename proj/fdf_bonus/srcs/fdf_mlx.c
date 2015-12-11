@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 00:47:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 02:50:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/10 20:29:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void			fdf_mlx(char *av, char *id, int fd)
 
 	ft_bzero((void *)&map, sizeof(t_fdf_map));
 	ft_bzero((void *)&env, sizeof(t_env));
+	fdf_init_khdl(&env);
 	map.x_rts = X_SCR / 2;
 	map.y_rts = Y_SCR / 2;
-	map.x_gap = X_SCR / 1.5;
-	map.y_gap = Y_SCR / 1.5;
+	map.x_gap = X_SCR / 3;
+	map.y_gap = Y_SCR / 3;
 	map.z_max = INT_MIN;
 	map.z_min = INT_MAX;
-	fdf_init_khdl(&env);
 	env.map = &map;
 	env.av = av;
 	env.id = id;

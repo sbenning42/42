@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:21:09 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 09:00:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 02:44:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 static void		fdf_initmat(t_fdf_px *m, int size)
 {
 	int			i;
-	int			j;
 
 	i = -1;
 	while (++i < size)
-	{
-		j = -1;
-		while (++j < 6)
-			m[i][j] = INT_MIN;
-	}
+		m[i][Fix] = 1.0;
 }
 
 static t_fdf_px	*fdf_newpxmat(int size)
@@ -38,12 +33,26 @@ static t_fdf_px	*fdf_newpxmat(int size)
 
 static void		fdf_fill_px(t_fdf_map *map, int i, t_lex_tk *t)
 {
-	map->mat[i][X_rel] = i % map->x - (map->x / 2);
-	map->mat[i][Y_rel] = i / map->x - (map->y / 2);
-	map->mat[i][Z_rel] = ft_atoi(t->value);
-	map->mat[i][X_scr] = map->mat[i][X_rel] * map->x_gap + map->x_rts;
-	map->mat[i][Y_scr] = map->mat[i][Y_rel] * map->y_gap + map->y_rts;
-	map->mat[i][Color] = FDF_COLOR(map->mat[i][Z_rel], map->z_min, map->z_max);
+	int			z;
+
+	z = ft_atoi(t->value);
+	z = (z > 127 ? 127 : z);
+	z = (z < -127 ? -127 : z);
+	map->mat[i][X_rel] = i % map->x;
+	map->mat[i][Y_rel] = i / map->y;
+	map->mat[i][Z_rel] = ;
+	map->mat[i][X_scr] = (map->mat[i][X_rel] - map->mat[i][Y_rel]) * map->x_gap;
+	map->mat[i][Y_scr] = (map->mat[i][Y_rel] + tmp - (map->mat[i][Z_rel] / 2)) * map->y_gap;
+	map->mat[i][X_scr] += map->x_rts;
+	map->mat[i][Y_scr] += map->y_rts;
+//	map->mat[i][Color] = FDF_COLOR(map->mat[i][Z_rel], map->z_min, map->z_max);
+	if (map->mat[i][Z_rel] > 0)
+		map->mat[i][Color] = 0xff0000 + (0xff00 - (map->mat[i][Z_rel] * map->c_ppad));
+	else if (map->mat[i][Z_rel] < 0)
+		map->mat[i][Color] = 0xff + (0xff00 - (ft_math_abs(map->mat[i][Z_rel]) * map->c_npad));
+	else
+		map->mat[i][Color] = 0xffffff;
+//	ft_fprintf(2, "(%d, %d)[(%d, %d, %d)(%d, %d, %#x)]\n", i % map->x, i / map->x, map->mat[i][X_rel], map->mat[i][Y_rel], map->mat[i][Z_rel], map->mat[i][X_scr], map->mat[i][Y_scr], map->mat[i][Color]);
 }
 
 static void		fdf_map_constructor(t_env *env, t_list *lst)
@@ -65,7 +74,7 @@ static void		fdf_map_constructor(t_env *env, t_list *lst)
 		lst = lst->next;
 	}
 }
-
+/*
 static void		fdf_maj_z(t_fdf_map *map, int z)
 {
 	if (z >= map->z_max)
@@ -82,13 +91,13 @@ static void		fdf_maj_z(t_fdf_map *map, int z)
 	while (!map->z_min)
 		map->z_min--;
 }
-
+*/
 static void		fdf_maj_xy(t_fdf_map *map, int *x)
 {
 	map->y += 1;
 	if (*x > map->x)
 		map->x = *x;
-	*x = 0;
+	*x = -1;
 }
 
 static int		fdf_synerror(t_env *env, t_lex_tk *t)
@@ -96,13 +105,12 @@ static int		fdf_synerror(t_env *env, t_lex_tk *t)
 	char		synmsg[FDF_SNPRINTF_BS];
 
 	ft_bzero((void *)synmsg, FDF_SNPRINTF_BS);
-	printf("\n\n[%s]\n\n", t->value);
 	ft_sprintf(synmsg, "%s: [{red}%.*1s{eoc}]", "Syntax error near token", t->size, t->value);
 	ft_fprintf(2, ERRFMT, env->av, env->id, synmsg);
 	return (0);
 }
 
-static int		fdf_map_attr(t_env *env, t_list *lst)
+static int		fdf_map_attr(t_env *e, t_list *lst)
 {
 	t_lex_tk	*t;
 	int			x;
@@ -111,19 +119,16 @@ static int		fdf_map_attr(t_env *env, t_list *lst)
 	while (lst)
 	{
 		t = (t_lex_tk *)lst->content;
-		x += 1;
 		if (t->type == Unknow)
-			return (fdf_synerror(env, t));
+			return (fdf_synerror(e, t));
 		else if (t->type == Eol)
-			fdf_maj_xy(env->map, &x);
-		else
-			fdf_maj_z(env->map, ft_atoi(t->value));
+			fdf_maj_xy(e->map, &x);
 		lst = lst->next;
+		x++;
 	}
-	env->map->x_gap /= env->map->x;
-	env->map->y_gap /= env->map->y;
-	if (!(env->map->mat = fdf_newpxmat(env->map->x * env->map->y)))
-		return (ft_err(env->av, env->id, "Memory allocation failed"));
+	e->map->gap = SCREEN / (e->map->x > e->map->y ? e->map->x : e->map->y);
+	if (!(e->map->mat = fdf_newpxmat(e->map->x * e->map->y)))
+		return (ft_err(e->av, e->id, "Memory allocation failed"));
 	return (1);
 }
 
@@ -136,7 +141,7 @@ int				fdf_parser(t_env *env, int fd)
 
 	lst = NULL;
 	line = NULL;
-	while (ft_strdel(&line) && (ret = get_next_line(fd, &line)) > 0)
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (!(el = fdf_lexer(env->av, env->id, line)))
 			break ;
@@ -150,5 +155,5 @@ int				fdf_parser(t_env *env, int fd)
 	else if (!ret && fdf_map_attr(env, lst))
 		fdf_map_constructor(env, lst);
 	ft_lstdel(&lst, NULL);
-	return ((ret > 0 ? !ft_strdel(&line) : 1));
+	return ((ret > 0 ? 0 : 1));
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 03:33:05 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/10 20:42:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define FORK 1
 # define X_SCR 680
-# define Y_SCR 420
+# define Y_SCR 680
 # define NB_KHDL 4
 # define FDF_SNPRINTF_BS 96
 
@@ -57,8 +57,8 @@
 
 # define NAM(X, Y) ((Y = ft_strrchr(X, '/')) ? Y + 1 : X)
 # define FDF_PCGAP(X) (FDF_COLOR_POS / X)
-# define FDF_NCGAP(X) (FDF_COLOR_NEG / (int)ft_math_abs((float)X))
-# define FDF_COLOR(X, Y, Z) (X < 0 ? X * FDF_NCGAP(Y) : X * FDF_PCGAP(Z))
+# define FDF_NCGAP(X) (FDF_COLOR_NEG / X)
+# define FDF_COLOR(X, Y, Z) (X < 0 ? -X * FDF_NCGAP(Y) : X * FDF_PCGAP(Z))
 
 typedef enum		e_lex_tk_type
 {
@@ -98,6 +98,8 @@ typedef struct		s_fdf_map
 	int				y_rts;
 	int				z_min;
 	int				z_max;
+	int				c_ppad;
+	int				c_npad;
 }					t_fdf_map;
 
 typedef struct		s_khdl
@@ -118,6 +120,20 @@ typedef struct		s_env
 	t_khdl			khdl[NB_KHDL];
 }					t_env;
 
+typedef struct		s_bres_info
+{
+	t_fdf_px_attr	id;
+	t_fdf_px_attr	id_e;
+	int				d1;
+	int				d2;
+	int				i0;
+	int				i1;
+	int				i2;
+	int				c1;
+	int				c2;
+	int				diff;
+}					t_bres_info;
+
 int					khdl_none(void *p, int key);
 
 int					khdl_quit(void *p, int key);
@@ -125,9 +141,11 @@ int					khdl_default(void *p, int key);
 int					khdl_zoom_inc(void *p, int key);
 int					khdl_zoom_dec(void *p, int key);
 
+void				fdf_bresenham_draw(t_env *env, t_fdf_px p1, t_fdf_px p2, int clr);
+
 float				ft_math_abs(float f);
 int					ft_err(char *av, char *id, char *msg);
-void				fdf_bresenham(t_env *env, t_fdf_map *map, int clr);
+void				fdf_draw_mat(t_env *env, t_fdf_map *map, int clr);
 int					fdf_draw(void *p);
 int					fdf_key(int key, void *p);
 t_list				*fdf_lexer(char *av, char *id, char *s);
