@@ -3,6 +3,9 @@
 
 int main()
 {
-	ft_printf("[%.*d]\n", -10, 42);
-	printf("[%.*d]\n", -10, 42);
+	int	i = 0;
+
+	while (i++ < 10)
+		ft_printf("[{red|ss|f-yellow}%20s{eoc}]{cyan|f-pink}%15d{eoc}\n", "Salut!", 42);
+	return (0);
 }

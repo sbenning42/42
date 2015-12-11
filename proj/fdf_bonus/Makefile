@@ -15,7 +15,9 @@ NAME =		fdf
 NAME_NUX =		fdf_nux
 
 SRC =		lib/lexer/srcs/get_next_line.c\
-			srcs/ft_mathabs.c\
+			srcs/fdf_action.c\
+			srcs/fdf_get.c\
+			srcs/fdf_free.c\
 			srcs/fdf_khdl.c\
 			srcs/fdf_key.c\
 			srcs/fdf_bresenham.c\

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 02:48:36 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/11 01:46:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 11:48:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define GEN_QUIT(X) (X == 53 || X == 12 || X == 65037)
+# define GEN_QUIT(X) (X == 53 || X == 12 || X == 65037)
 # define SCREEN 680
 
 # define BLACK 0x0

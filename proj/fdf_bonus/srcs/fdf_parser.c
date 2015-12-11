@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 03:21:09 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/11 02:44:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:23:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void		fdf_initmat(t_fdf_px *m, int size)
 
 	i = -1;
 	while (++i < size)
+	{
+		ft_bzero((void *)m[i], sizeof(t_fdf_px));
 		m[i][Fix] = 1.0;
+	}
 }
 
 static t_fdf_px	*fdf_newpxmat(int size)
@@ -33,26 +36,19 @@ static t_fdf_px	*fdf_newpxmat(int size)
 
 static void		fdf_fill_px(t_fdf_map *map, int i, t_lex_tk *t)
 {
-	int			z;
+	float		z;
 
-	z = ft_atoi(t->value);
-	z = (z > 127 ? 127 : z);
-	z = (z < -127 ? -127 : z);
-	map->mat[i][X_rel] = i % map->x;
-	map->mat[i][Y_rel] = i / map->y;
-	map->mat[i][Z_rel] = ;
-	map->mat[i][X_scr] = (map->mat[i][X_rel] - map->mat[i][Y_rel]) * map->x_gap;
-	map->mat[i][Y_scr] = (map->mat[i][Y_rel] + tmp - (map->mat[i][Z_rel] / 2)) * map->y_gap;
-	map->mat[i][X_scr] += map->x_rts;
-	map->mat[i][Y_scr] += map->y_rts;
-//	map->mat[i][Color] = FDF_COLOR(map->mat[i][Z_rel], map->z_min, map->z_max);
-	if (map->mat[i][Z_rel] > 0)
-		map->mat[i][Color] = 0xff0000 + (0xff00 - (map->mat[i][Z_rel] * map->c_ppad));
-	else if (map->mat[i][Z_rel] < 0)
-		map->mat[i][Color] = 0xff + (0xff00 - (ft_math_abs(map->mat[i][Z_rel]) * map->c_npad));
-	else
-		map->mat[i][Color] = 0xffffff;
-//	ft_fprintf(2, "(%d, %d)[(%d, %d, %d)(%d, %d, %#x)]\n", i % map->x, i / map->x, map->mat[i][X_rel], map->mat[i][Y_rel], map->mat[i][Z_rel], map->mat[i][X_scr], map->mat[i][Y_scr], map->mat[i][Color]);
+	z = ((float)ft_atoi(t->value) / 2.0);
+	z = (z > 127.0 ? 127.0 : z);
+	z = (z < -127.0 ? -127.0 : z);
+	map->m[i][Z_rel] = z;
+	map->z_max = (map->z_max < (int)z ? (int)z : map->z_max);
+	map->z_min = (map->z_min > (int)z ? (int)z : map->z_min);
+	z = ABSF(z);
+	map->m[i][Fix] = 0.0;
+	map->m[i][X_rel] = (float)(i % map->x) - (map->x / 2);
+	map->m[i][Y_rel] = (float)(i / map->x) - (map->y / 2);
+	fdf_getscr_attr(map, map->m[i]);
 }
 
 static void		fdf_map_constructor(t_env *env, t_list *lst)
@@ -74,24 +70,7 @@ static void		fdf_map_constructor(t_env *env, t_list *lst)
 		lst = lst->next;
 	}
 }
-/*
-static void		fdf_maj_z(t_fdf_map *map, int z)
-{
-	if (z >= map->z_max)
-		map->z_max = z;
-	if (z <= map->z_min)
-		map->z_min = z;
-	if (map->z_max == map->z_min)
-	{
-		map->z_max += 1;
-		map->z_min += -1;
-	}
-	while (!map->z_max)
-		map->z_max++;
-	while (!map->z_min)
-		map->z_min--;
-}
-*/
+
 static void		fdf_maj_xy(t_fdf_map *map, int *x)
 {
 	map->y += 1;
@@ -114,6 +93,7 @@ static int		fdf_map_attr(t_env *e, t_list *lst)
 {
 	t_lex_tk	*t;
 	int			x;
+	int			max;
 
 	x = 0;
 	while (lst)
@@ -126,8 +106,9 @@ static int		fdf_map_attr(t_env *e, t_list *lst)
 		lst = lst->next;
 		x++;
 	}
-	e->map->gap = SCREEN / (e->map->x > e->map->y ? e->map->x : e->map->y);
-	if (!(e->map->mat = fdf_newpxmat(e->map->x * e->map->y)))
+	max = (e->map->x > e->map->y ? e->map->x : e->map->y);
+	e->map->gap = (FDF_SCREEN / 3.0) / max;
+	if (!(e->map->m = fdf_newpxmat(e->map->x * e->map->y)))
 		return (ft_err(e->av, e->id, "Memory allocation failed"));
 	return (1);
 }
@@ -148,12 +129,12 @@ int				fdf_parser(t_env *env, int fd)
 		else if (el->next)
 			ft_lstadd_back(&lst, el);
 		else
-			ft_lstdelone(&el, NULL);
+			ft_lstdelone(&el, fdf_free_line);
 	}
 	if (ret < 0)
 		ft_err(env->av, env->id, "Can't read (gnl)");
 	else if (!ret && fdf_map_attr(env, lst))
 		fdf_map_constructor(env, lst);
-	ft_lstdel(&lst, NULL);
+	ft_lstdel(&lst, fdf_free_line);
 	return ((ret > 0 ? 0 : 1));
 }

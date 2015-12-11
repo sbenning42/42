@@ -6,61 +6,99 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 00:47:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/10 20:29:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 18:53:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		fdf_loop(t_env *env)
+t_fdf_map				*fdf_save_map(t_env *e)
 {
-	char		*id;
+	static char			call;
+	static t_fdf_map	map;
+	t_fdf_px			*m;
+	int					size;
+	int					i;
 
-	if (!(env->mlx = mlx_init()))
-		ft_err(env->av, env->id, "Can't init mlx");
-	else if (!(env->win = mlx_new_window\
-						(env->mlx, X_SCR, Y_SCR, NAM(env->id, id))))
-		ft_err(env->av, env->id, "Can't create mlx window");
+	if (call)
+	{
+		call = 0;
+		return (&map);
+	}
+	map = *(e->map);
+	size = map.x * map.y;
+	if (!(m = (t_fdf_px *)ft_memalloc(sizeof(t_fdf_px) * size)))
+	{
+		ft_fprintf(2, "%s: {res}%s{eoc}: Memory allocation failed!\n", \
+				e->av, e->id);
+		fdf_quit_action(e);
+	}
+	i = -1;
+	while (++i < size)
+		ft_memcpy(m[i], e->map->m[i], sizeof(t_fdf_px));
+	map.m = m;
+	call = 1;
+	return (&map);
+}
+
+static char		*fdf_getname(char *s)
+{
+	char		*name;
+
+	name = ft_strrchr(s, '/');
+	return ((name ? name + 1 : s));
+}
+
+static void		fdf_loop(t_env *e)
+{
+	if (!(e->mlx = mlx_init()))
+		ft_err(e->av, e->id, "Can't init mlx");
+	else if (!(e->win = mlx_new_window\
+						(e->mlx, FDF_SCREEN, FDF_SCREEN, fdf_getname(e->id))))
+		ft_err(e->av, e->id, "Can't create mlx window");
 	else
 	{
-		mlx_key_hook(env->win, fdf_key, env);
-		mlx_expose_hook(env->win, fdf_draw, env);
-		mlx_loop(env->mlx);
+		mlx_key_hook(e->win, fdf_key, (void *)e);
+		mlx_expose_hook(e->win, fdf_draw, (void *)e);
+		mlx_loop(e->mlx);
 	}
 }
 
-static void		fdf_init_khdl(t_env *env)
+static void		fdf_init_khdl(t_env *e)
 {
-	env->khdl[0].key = FDF_DEF_K;
-	env->khdl[0].handle = khdl_default;
-	env->khdl[1].key = FDF_ZOOI_K;
-	env->khdl[1].handle = khdl_zoom_inc;
-	env->khdl[2].key = FDF_ZOOD_K;
-	env->khdl[2].handle = khdl_zoom_dec;
-	env->khdl[3].key = FDF_QUIT_K;
-	env->khdl[3].handle = khdl_quit;
+	e->khdl[DEF_K_ID].key = FDF_DEF_K;
+	e->khdl[DEF_K_ID].hdl = khdl_default;
+	e->khdl[ZOOI_K_ID].key = FDF_ZOOI_K;
+	e->khdl[ZOOI_K_ID].hdl = khdl_zoom_inc;
+	e->khdl[ZOOD_K_ID].key = FDF_ZOOD_K;
+	e->khdl[ZOOD_K_ID].hdl = khdl_zoom_dec;
+	e->khdl[QUIT_K_ID].key = FDF_QUIT_K;
+	e->khdl[QUIT_K_ID].hdl = khdl_quit;
+	e->khdl[ALTI_K_ID].key = FDF_ALTI_K;
+	e->khdl[ALTI_K_ID].hdl = khdl_alt_inc;
+	e->khdl[ALTD_K_ID].key = FDF_ALTD_K;
+	e->khdl[ALTD_K_ID].hdl = khdl_alt_dec;
 }
 
 void			fdf_mlx(char *av, char *id, int fd)
 {
-	t_env		env;
+	t_env		e;
 	t_fdf_map	map;
 
 	ft_bzero((void *)&map, sizeof(t_fdf_map));
-	ft_bzero((void *)&env, sizeof(t_env));
-	fdf_init_khdl(&env);
-	map.x_rts = X_SCR / 2;
-	map.y_rts = Y_SCR / 2;
-	map.x_gap = X_SCR / 3;
-	map.y_gap = Y_SCR / 3;
+	ft_bzero((void *)&e, sizeof(t_env));
+	fdf_init_khdl(&e);
 	map.z_max = INT_MIN;
 	map.z_min = INT_MAX;
-	env.map = &map;
-	env.av = av;
-	env.id = id;
-	env.fd = fd;
-	if (fdf_parser(&env, fd) && map.mat)
-		fdf_loop(&env);
+	e.map = &map;
+	e.av = av;
+	e.id = id;
+	e.fd = fd;
+	if (fdf_parser(&e, fd) && map.m)
+	{
+		fdf_save_map(&e);
+		fdf_loop(&e);
+	}
 	close(fd);
 	exit(EXIT_SUCCESS);
 }

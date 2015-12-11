@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 01:53:01 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/11 02:30:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 11:51:42 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				gen_color(int z)
 		return (WHITE);
 	else if (z > 0)
 		c = (RED + GREEN) - ((GREEN / BLUE) * z);
-	else if (z < 0)
+	else
 		c = (BLUE + GREEN) - (((GREEN / BLUE)) * -z);
 	return (c);
 }
@@ -70,7 +70,7 @@ int				gen_key(int key, void *p)
 	t_env		*e;
 
 	e = (t_env *)p;
-	if (key == 65451)
+	if (key == 65451 || key == 69)
 	{
 		gen_mlx_putmat(e, e->map->m, 1);
 		e->map->gap += (e->map->gap / 10.0);
@@ -78,7 +78,7 @@ int				gen_key(int key, void *p)
 		gen_mlx_putmat(e, e->map->m, 0);
 		return (0);
 	}
-	else if (key == 65453)
+	else if (key == 65453 || key == 78)
 	{
 		gen_mlx_putmat(e, e->map->m, 1);
 		if ((e->map->gap - (e->map->gap / 10.0)) >= 1.0)
@@ -87,7 +87,7 @@ int				gen_key(int key, void *p)
 		gen_mlx_putmat(e, e->map->m, 0);
 		return (0);
 	}
-	else if (key == 65437)
+	else if (key == 65437 || key == 87)
 	{
 		gen_mlx_putmat(e, e->map->m, 1);
 		e->map->gap = ((SCREEN / 3.0) / (e->map->x > e->map->y ? e->map->x : e->map->y));

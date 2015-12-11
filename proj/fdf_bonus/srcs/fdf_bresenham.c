@@ -2,7 +2,7 @@
 
 void			bres_fill_info_o1o2(int dx, int dy, t_bres_info *info)
 {
-	info->diff = ft_math_abs(dx) > ft_math_abs(dy) ? ft_math_abs(dx) : ft_math_abs(dy);
+	info->diff = ABSI(dx) > ABSI(dy) ? ABSI(dx) : ABSI(dy);
 	info->id = (dx >= dy ? X_scr : Y_scr);
 	info->id_e = (dx >= dy ? Y_scr : X_scr);
 	info->d1 = (dx >= dy ? dx : dy);
@@ -16,7 +16,7 @@ void			bres_fill_info_o1o2(int dx, int dy, t_bres_info *info)
 
 void			bres_fill_info_o3o4(int dx, int dy, t_bres_info *info)
 {
-	info->diff = ft_math_abs(dx) > ft_math_abs(dy) ? ft_math_abs(dx) : ft_math_abs(dy);
+	info->diff = ABSI(dx) > ABSI(dy) ? ABSI(dx) : ABSI(dy);
 	info->id = (-dx >= dy ? X_scr : Y_scr);
 	info->id_e = (-dx >= dy ? Y_scr : X_scr);
 	info->d1 = (-dx >= dy ? dx : dy);
@@ -30,7 +30,7 @@ void			bres_fill_info_o3o4(int dx, int dy, t_bres_info *info)
 
 void			bres_fill_info_o5o6(int dx, int dy, t_bres_info *info)
 {
-	info->diff = ft_math_abs(dx) > ft_math_abs(dy) ? ft_math_abs(dx) : ft_math_abs(dy);
+	info->diff = ABSI(dx) > ABSI(dy) ? ABSI(dx) : ABSI(dy);
 	info->id = (dx <= dy ? X_scr : Y_scr);
 	info->id_e = (dx <= dy ? Y_scr : X_scr);
 	info->d1 = (dx <= dy ? dx : dy);
@@ -44,7 +44,7 @@ void			bres_fill_info_o5o6(int dx, int dy, t_bres_info *info)
 
 void			bres_fill_info_o7o8(int dx, int dy, t_bres_info *info)
 {
-	info->diff = ft_math_abs(dx) > ft_math_abs(dy) ? ft_math_abs(dx) : ft_math_abs(dy);
+	info->diff = ABSI(dx) > ABSI(dy) ? ABSI(dx) : ABSI(dy);
 	info->id = (dx >= -dy ? X_scr : Y_scr);
 	info->id_e = (dx >= -dy ? Y_scr : X_scr);
 	info->d1 = (dx >= -dy ? dx : dy);
@@ -58,7 +58,7 @@ void			bres_fill_info_o7o8(int dx, int dy, t_bres_info *info)
 
 void			bres_fill_info_verthor(int dx, int dy, t_bres_info *info)
 {
-	info->diff = ft_math_abs(dx) > ft_math_abs(dy) ? ft_math_abs(dx) : ft_math_abs(dy);
+	info->diff = ABSI(dx) > ABSI(dy) ? ABSI(dx) : ABSI(dy);
 	info->id = (dx == 0 ? Y_scr : X_scr);
 	info->id_e = -1;
 	info->d1 = (dx == 0 ? dy : dx);
@@ -91,7 +91,7 @@ void			bres_info(int dx, int dy, t_bres_info *info)
 		bres_fill_info_verthor(dx, dy, info);
 }
 
-void			bres_put(t_env *env, t_fdf_px p1, t_fdf_px p2, t_bres_info info, int clr)
+void			bres_put(t_env *env, t_fdf_pxi p1, t_fdf_pxi p2, t_bres_info info, int clr)
 {
 	int			e;
 	int			c1;
@@ -131,20 +131,20 @@ void			bres_put(t_env *env, t_fdf_px p1, t_fdf_px p2, t_bres_info info, int clr)
 	}
 }
 
-void			fdf_bresenham_draw(t_env *env, t_fdf_px p1, t_fdf_px p2, int clr)
+void			fdf_bresenham_px(t_env *e, t_fdf_px p1, t_fdf_px p2, int clr)
 {
 	t_bres_info	info;
-	t_fdf_px	cp1;
-	t_fdf_px	cp2;
+	t_fdf_pxi	cp1;
+	t_fdf_pxi	cp2;
 	int			i;
 
 	i = -1;
-	while (++i < 6)
+	while (++i < 9)
 	{
-		cp1[i] = p1[i];
-		cp2[i] = p2[i];
+		cp1[i] = (int)p1[i];
+		cp2[i] = (int)p2[i];
 	}
 	bres_info(cp2[X_scr] - cp1[X_scr], cp2[Y_scr] - cp1[Y_scr], &info);
-	bres_put(env, cp1, cp2, info, clr);
+	bres_put(e, cp1, cp2, info, clr);
 }
 	

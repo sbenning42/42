@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:38:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/10 11:08:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:36:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 static int		fdf_put_rules(char *name)
 {
-	ft_printf("%s:{ss}%s{eoc}\n\n{green}%s{eoc}%s{green}%s{eoc}%s",\
-			name, MSG_RULES, MSG_KESC, MSG_ESC, MSG_KUPDOWN, MSG_UPDOWN);
+	ft_printf(FDF_1RULEFMT, name, MSG_RULES, \
+			MSG_KESC, MSG_ESC, \
+			MSG_KUPDOWN, MSG_UPDOWN);
+	ft_printf(FDF_2RULEFMT, \
+			MSG_KPLUSMINUS, MSG_PLUSMINUS, \
+			MSG_KFIVE, MSG_FIVE);
 	return (0);
 }
 
