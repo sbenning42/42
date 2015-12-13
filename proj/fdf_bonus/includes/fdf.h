@@ -6,22 +6,12 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/11 18:51:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/13 20:10:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-/*
-***
-*/
-
-# define MACOS
-
-/*
-***	# define LINUX
-*/
 
 # include <fcntl.h>
 # include <errno.h>
@@ -31,9 +21,45 @@
 # include "get_next_line.h"
 # include "libft.h"
 
-# define FORK 1
+/*
+***
+***			***			OS SPECIFICATION			***
+***
+***
+***	# define MACOS
+***
+***	# define LINUX
+***
+***	You have to define ONE of them to get the values' OS keys
+***
+*/
+
+# define LINUX
+
+/*
+***
+***			***			SETTINGS			***
+***
+***
+***	FORK have to be 0|1. 1 allow you to open multiple MLX Window
+***
+***	FDF_SCREEN is the Width and Height of the MLX Window
+***
+***	NB_KHDL is the number of handled key
+***
+***	FDF_SNPRINTF_BS is the ft_snprintf buffer size.
+***	It is used by the parser to print the syntax error.
+***
+*/
+
+# define FORK 0
 # define FDF_SCREEN 1024
 # define NB_KHDL 6
+# define FDF_SNPRINTF_BS 96
+
+/*
+***			***			KEY ID			***
+*/
 
 # define DEF_K_ID 0
 # define ZOOI_K_ID 1
@@ -41,6 +67,14 @@
 # define QUIT_K_ID 3
 # define ALTI_K_ID 4
 # define ALTD_K_ID 5
+
+/*
+***			***			OS KEY'S VALUE			***
+*/
+
+/*
+***			***			FOR MACOS			***
+*/
 
 # ifdef MACOS
 #  define FDF_DEF_K 87
@@ -52,28 +86,46 @@
 # endif
 
 /*
-***	MACOS	***
+***			***			FOR LINUX			***
 */
 
-# ifdef NUX
+# ifdef LINUX
 #  define FDF_DEF_K 65437
 #  define FDF_ZOOI_K 65451
 #  define FDF_ZOOD_K 65453
-#  define FDF_ALTI_K 
-#  define FDF_ALTD_K 
+#  define FDF_ALTI_K 65362
+#  define FDF_ALTD_K 65364
 #  define FDF_QUIT_K 65307
 # endif
 
 /*
-***	LINUX	***
+***			***			IDENTIFIED VALUE			***
 */
 
-# define FDF_SNPRINTF_BS 96
+# define CLEAR 1
 # define FDF_COLOR_POS (0xff0000 - 0xff00)
 # define FDF_COLOR_NEG (0xff00 - 0xff)
+# define WHITE 0xffffff 
+# define RED 0xff0000
+# define GREEN 0xff00
+# define BLUE 0xff
+# define BLACK 0x0
+
+/*
+***			***			FT_PRINTF FORMAT			***
+*/
+# define FDF_FORKFMT "'{pink}%s{eoc} {green}%s{eoc}'"
+# define SYNERRFMT "\bl{red}%d{eoc}: %s: [{red}%.*1s{eoc}]"
 # define ERRFMT "%s: {red}%s{eoc}: %s\n"
+# define VERBFMT "%s {yellow}<verbose>{eoc}: {yellow}%s{eoc}: %s\n"
 # define FDF_1RULEFMT "%s:{ss}%s{eoc}\n\n{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
 # define FDF_2RULEFMT "{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
+
+/*
+***			***			FT_PRINTF MESSAGE			***
+*/
+
+# define MSG_SYN "Syntax error near token"
 # define MSG_RULES " This is the rules when focus on window:"
 # define MSG_KESC "<'escape'>"
 # define MSG_ESC " : Close the window\n"
@@ -84,21 +136,25 @@
 # define MSG_KFIVE "<'5'>"
 # define MSG_FIVE " : Restore default\n\n"
 
-# define CLEAR 1
-# define WHITE 0xffffff 
-# define RED 0xff0000
-# define GREEN 0xff00
-# define BLUE 0xff
-# define BLACK 0x0
+/*
+***			***			MACRO TO HANDLE GEOMETRIC CONVERTION			***
+*/
 
 # define ABSI(X) (X > 0 ? X : X * -1)
 # define ABSF(X) (X > 0.0 ? X : X * -1.0)
 # define TOXISO(F, X, Y) ((F(2.0) / 2.0) * (X - Y))
-# define TOYISO(F, X, Y, Z) ((F(2.0 / 3.0) * -Z) /*-*/+ ((1.0 / F(6.0)) * (X + Y)))
+# define TOYISO(F, X, Y, Z) ((F(2.0 / 3.0) * -Z) + ((1.0 / F(6.0)) * (X + Y)))
 # define TOSCREEN(V, G) (V * G + (FDF_SCREEN / 2))
 # define TOCOLORPOS(Z) ((RED + GREEN) - ((GREEN / BLUE) * Z))
 # define TOCOLORNEG(Z) ((BLUE + GREEN) - ((GREEN / BLUE) * Z))
 # define TOCOLORUNK(Z) (Z > 0.0 ? TOCOLORPOS((int)Z) : TOCOLORNEG(ABSI((int)Z)))
+
+/*
+***			***			FDF TYPE			***
+*/
+
+typedef float		t_fdf_px[9];
+typedef int			t_fdf_pxi[9];
 
 typedef enum		e_lex_tk_type
 {
@@ -107,13 +163,6 @@ typedef enum		e_lex_tk_type
 	Const_nu,
 	Eol
 }					t_lex_tk_type;
-
-typedef struct		s_lex_tk
-{
-	t_lex_tk_type	type;
-	char			*value;
-	size_t			size;
-}					t_lex_tk;
 
 typedef enum		e_fdf_px_attr
 {
@@ -128,8 +177,18 @@ typedef enum		e_fdf_px_attr
 	Color
 }					t_fdf_px_attr;
 
-typedef float		t_fdf_px[9];
-typedef int			t_fdf_pxi[9];
+typedef struct		s_lex_tk
+{
+	t_lex_tk_type	type;
+	char			*value;
+	size_t			size;
+}					t_lex_tk;
+
+typedef struct		s_khdl
+{
+	int				key;
+	int				(*hdl)(void *, int);
+}					t_khdl;
 
 typedef struct		s_fdf_map
 {
@@ -140,12 +199,6 @@ typedef struct		s_fdf_map
 	int				z_max;
 	float			gap;
 }					t_fdf_map;
-
-typedef struct		s_khdl
-{
-	int				key;
-	int				(*hdl)(void *, int);
-}					t_khdl;
 
 typedef struct		s_env
 {
@@ -195,8 +248,12 @@ void				fdf_majmat(t_env *e);
 
 void				fdf_bresenham_px(t_env *e, t_fdf_px p1, t_fdf_px p2, int clr);
 
+int					fdf_map_attr(t_env *e, t_list *lst);
+void				fdf_map_constructor(t_env *env, t_list *lst);
 t_fdf_map			*fdf_save_map(t_env *e);
 int					ft_err(char *av, char *id, char *msg);
+int					ft_verbose(char *av, char *id, char *msg);
+int					fdf_synerror(t_env *env, t_lex_tk *t, int y);
 void				fdf_draw_m(t_env *e, t_fdf_map *map, int clr);
 int					fdf_draw(void *p);
 int					fdf_key(int key, void *p);

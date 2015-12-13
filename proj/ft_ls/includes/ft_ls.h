@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 22:04:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/13 14:37:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define O_CSET "alRrtv"
 # define O_SIZE 6
 # define PRIV_ERROR_O 0x1
-# define PRIV_MAX_O 0x80
+# define MAX_O 0x80
 
 # define HIDE_O 0x2
 # define LONG_O 0x4

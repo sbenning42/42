@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/10 14:19:04 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/13 20:18:19 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,22 +14,25 @@ NAME =		fdf
 
 NAME_NUX =		fdf_nux
 
-SRC =		lib/lexer/srcs/get_next_line.c\
+SRC =		lib/gnl/get_next_line.c\
 			srcs/fdf_action.c\
+			srcs/fdf_action2.c\
 			srcs/fdf_get.c\
+			srcs/fdf_save.c\
 			srcs/fdf_free.c\
 			srcs/fdf_khdl.c\
+			srcs/fdf_khdl2.c\
 			srcs/fdf_key.c\
 			srcs/fdf_bresenham.c\
+			srcs/fdf_constructor.c\
+			srcs/fdf_maj.c\
+			srcs/fdf_map.c\
 			srcs/fdf_draw.c\
+			srcs/fdf_msg.c\
 			srcs/fdf_mlx.c\
 			srcs/fdf_lexer.c\
 			srcs/fdf_parser.c\
 			srcs/main.c
-#			srcs/fdf_handle.c\
-			srcs/fdf_mlx.c\
-			srcs/fdf_exec.c\
-			srcs/fdf.c\
 
 OBJ =		$(SRC:.c=.o)
 

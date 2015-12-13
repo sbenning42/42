@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/24 15:55:13 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/01 12:25:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/12 16:30:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ int				get_next_line(int fd, char **line)
 	if ((ret = get_mem(&(tab[fd]), &mem)) < 0)
 		return (-1);
 	if (ret)
-	{
-		*line = mem;
-		return (1);
-	}
+		return (*line = mem, 1);
 	if ((ret = get_line(fd, &line_tmp, &(tab[fd]))) < 0)
 	{
 		ft_memdel((void **)&mem);
