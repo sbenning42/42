@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 20:09:03 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/13 20:09:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/14 09:43:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			fdf_map_constructor(t_env *env, t_list *lst)
 {
 	t_lex_tk	*t;
 	int			i;
-	
+
 	i = 0;
 	while (lst)
 	{

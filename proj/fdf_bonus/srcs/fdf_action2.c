@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 20:15:58 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/13 20:16:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/14 09:44:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		fdf_zoomd_action(t_fdf_map *map)
 
 void		fdf_alti_action(t_fdf_map *map)
 {
-	if (map->z_max > 0 &&  map->z_max < 126)
+	if (map->z_max > 0 && map->z_max < 126)
 		map->z_max++;
 	if (map->z_min > -126 && map->z_min < 0)
 		map->z_min--;
@@ -34,7 +34,7 @@ void		fdf_alti_action(t_fdf_map *map)
 
 void		fdf_altd_action(t_fdf_map *map)
 {
-	if (map->z_max > 1 &&  map->z_max < 126)
+	if (map->z_max > 1 && map->z_max < 126)
 		map->z_max--;
 	if (map->z_min > -126 && map->z_min < 0)
 		map->z_min++;

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 00:47:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/13 20:12:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/14 09:40:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void		fdf_loop(t_env *e)
 {
 	if (!(e->mlx = mlx_init()))
 		ft_err(e->av, e->id, "Can't init mlx");
-	else if (!(e->win = mlx_new_window\
-						(e->mlx, FDF_SCREEN, FDF_SCREEN, fdf_getname(e->id))))
+	else if (!(e->win = mlx_new_window(e->mlx, FDF_SCREEN, FDF_SCREEN, \
+										fdf_getname(e->id))))
 		ft_err(e->av, e->id, "Can't create mlx window");
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/13 20:10:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/14 11:37:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 ***
 */
 
-# define LINUX
+# define MACOS
 
 /*
 ***
@@ -48,14 +48,14 @@
 ***	NB_KHDL is the number of handled key
 ***
 ***	FDF_SNPRINTF_BS is the ft_snprintf buffer size.
-***	It is used by the parser to print the syntax error.
+***	It is used by the parser to print some message.
 ***
 */
 
 # define FORK 0
 # define FDF_SCREEN 1024
 # define NB_KHDL 6
-# define FDF_SNPRINTF_BS 96
+# define FDF_SNPRINTF_BS 128
 
 /*
 ***			***			KEY ID			***
@@ -105,7 +105,7 @@
 # define CLEAR 1
 # define FDF_COLOR_POS (0xff0000 - 0xff00)
 # define FDF_COLOR_NEG (0xff00 - 0xff)
-# define WHITE 0xffffff 
+# define WHITE 0xffffff
 # define RED 0xff0000
 # define GREEN 0xff00
 # define BLUE 0xff
@@ -114,12 +114,13 @@
 /*
 ***			***			FT_PRINTF FORMAT			***
 */
-# define FDF_FORKFMT "'{pink}%s{eoc} {green}%s{eoc}'"
-# define SYNERRFMT "\bl{red}%d{eoc}: %s: [{red}%.*1s{eoc}]"
-# define ERRFMT "%s: {red}%s{eoc}: %s\n"
-# define VERBFMT "%s {yellow}<verbose>{eoc}: {yellow}%s{eoc}: %s\n"
-# define FDF_1RULEFMT "%s:{ss}%s{eoc}\n\n{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
-# define FDF_2RULEFMT "{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
+
+# define FMT_FORK "'{pink}%s{eoc} {green}%s{eoc}'"
+# define FMT_SYN "l{red}%d{eoc}: %s: '{red}%.*1s{eoc}'"
+# define FMT_ERR "%s: {red}%s{eoc}: %s\n"
+# define FMT_VERB "%s {yellow}<verbose>{eoc}: {yellow}%s{eoc}: %s\n"
+# define FMT_1RULE "%s:{ss}%s{eoc}\n\n{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
+# define FMT_2RULE "{green}%-20s{eoc}%s{green}%-20s{eoc}%s"
 
 /*
 ***			***			FT_PRINTF MESSAGE			***
@@ -156,14 +157,6 @@
 typedef float		t_fdf_px[9];
 typedef int			t_fdf_pxi[9];
 
-typedef enum		e_lex_tk_type
-{
-	None,
-	Unknow,
-	Const_nu,
-	Eol
-}					t_lex_tk_type;
-
 typedef enum		e_fdf_px_attr
 {
 	Fix,
@@ -176,6 +169,14 @@ typedef enum		e_fdf_px_attr
 	Y_scr,
 	Color
 }					t_fdf_px_attr;
+
+typedef enum		e_lex_tk_type
+{
+	None,
+	Unknow,
+	Const_nu,
+	Eol
+}					t_lex_tk_type;
 
 typedef struct		s_lex_tk
 {
@@ -224,42 +225,128 @@ typedef struct		s_bres_info
 	int				c1;
 	int				c2;
 	int				diff;
+	int				clr;
 }					t_bres_info;
 
-void				fdf_default_action(t_env *e);
-void				fdf_zoomi_action(t_fdf_map *map);
-void				fdf_zoomd_action(t_fdf_map *map);
-void				fdf_alti_action(t_fdf_map *map);
-void				fdf_altd_action(t_fdf_map *map);
-void				fdf_quit_action(t_env *e);
+/*
+***			***			fdf_lexer.c			***
+*/
+
+t_list				*fdf_lexer(char *av, char *id, char *s);
+
+/*
+***			***			fdf_parser.c			***
+*/
+
+int					fdf_parser(t_env *e, int fd);
+
+/*
+***			***			fdf_mlx.c			***
+*/
+
+void				fdf_mlx(char *av, char *id, int fd);
+
+/*
+***			***			fdf_map.c			***
+*/
+
+int					fdf_map_attr(t_env *e, t_list *lst);
+void				fdf_map_constructor(t_env *env, t_list *lst);
+
+/*
+***			***			fdf_maj.c			***
+*/
+
+void				fdf_maj_alt_map(t_fdf_map *map, float inc);
+void				fdf_majmat(t_env *e);
+
+/*
+***			***			fdf_get.c			***
+*/
+
+void				fdf_getscr_attr(t_fdf_map *map, t_fdf_px px);
+
+/*
+***			***			fdf_draw.c			***
+*/
+
+void				fdf_draw_m(t_env *e, t_fdf_map *map, int clr);
+int					fdf_draw(void *p);
+
+/*
+***			***			fdf_key.c			***
+*/
+
+int					fdf_key(int key, void *p);
+
+/*
+***			***			fdf_khdl.c			***
+*/
 
 int					khdl_none(void *p, int key);
-
 int					khdl_quit(void *p, int key);
 int					khdl_default(void *p, int key);
+
+/*
+***			***			fdf_khdl2.c			***
+*/
+
 int					khdl_zoom_inc(void *p, int key);
 int					khdl_zoom_dec(void *p, int key);
 int					khdl_alt_inc(void *p, int key);
 int					khdl_alt_dec(void *p, int key);
 
-void				fdf_getscr_attr(t_fdf_map *map, t_fdf_px px);
-void				fdf_maj_alt_map(t_fdf_map *map, float inc);
-void				fdf_majmat(t_env *e);
+/*
+***			***			fdf_action.c			***
+*/
 
-void				fdf_bresenham_px(t_env *e, t_fdf_px p1, t_fdf_px p2, int clr);
+void				fdf_default_action(t_env *e);
+void				fdf_quit_action(t_env *e);
 
-int					fdf_map_attr(t_env *e, t_list *lst);
-void				fdf_map_constructor(t_env *env, t_list *lst);
-t_fdf_map			*fdf_save_map(t_env *e);
+/*
+***			***			fdf_action2.c			***
+*/
+
+void				fdf_zoomi_action(t_fdf_map *map);
+void				fdf_zoomd_action(t_fdf_map *map);
+void				fdf_alti_action(t_fdf_map *map);
+void				fdf_altd_action(t_fdf_map *map);
+
+/*
+***			***			fdf_free.c			***
+*/
+
+void				fdf_free_line(void *content, size_t size);
+
+/*
+***			***			fdf_info.c			***
+*/
+
+void				bres_fill_info_o1o2(int dx, int dy, t_bres_info *info);
+void				bres_fill_info_o3o4(int dx, int dy, t_bres_info *info);
+void				bres_fill_info_o5o6(int dx, int dy, t_bres_info *info);
+void				bres_fill_info_o7o8(int dx, int dy, t_bres_info *info);
+void				bres_fill_info_verthor(int dx, int dy, t_bres_info *info);
+
+/*
+***			***			fdf_bresenham.c			***
+*/
+
+void				fdf_bresenham_px\
+					(t_env *e, t_fdf_px p1, t_fdf_px p2, int clr);
+
+/*
+***			***			fdf_msg.c			***
+*/
+
 int					ft_err(char *av, char *id, char *msg);
 int					ft_verbose(char *av, char *id, char *msg);
 int					fdf_synerror(t_env *env, t_lex_tk *t, int y);
-void				fdf_draw_m(t_env *e, t_fdf_map *map, int clr);
-int					fdf_draw(void *p);
-int					fdf_key(int key, void *p);
-void				fdf_free_line(void *content, size_t size);
-t_list				*fdf_lexer(char *av, char *id, char *s);
-int					fdf_parser(t_env *e, int fd);
-void				fdf_mlx(char *av, char *id, int fd);
+
+/*
+***			***			fdf_save.c			***
+*/
+
+t_fdf_map			*fdf_save_map(t_env *e);
 
 #endif

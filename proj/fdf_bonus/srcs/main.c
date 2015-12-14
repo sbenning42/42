@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:38:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/12 17:02:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/14 11:12:11 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	fdf_put_rules(char *name)
 {
-	ft_printf(FDF_1RULEFMT, name, MSG_RULES, \
+	ft_printf(FMT_1RULE, name, MSG_RULES, \
 			MSG_KESC, MSG_ESC, \
 			MSG_KUPDOWN, MSG_UPDOWN);
-	ft_printf(FDF_2RULEFMT, \
+	ft_printf(FMT_2RULE, \
 			MSG_KPLUSMINUS, MSG_PLUSMINUS, \
 			MSG_KFIVE, MSG_FIVE);
 	return (0);
@@ -30,8 +30,8 @@ int			main(int ac, char **av)
 	int		fd;
 	int		i;
 
-	ft_snprintf(buf, FDF_SNPRINTF_BS, FDF_FORKFMT, "# define FORK", "1");
-	if (!FORK && ac > 2)
+	ft_snprintf(buf, FDF_SNPRINTF_BS, FMT_FORK, "# define FORK", "1");
+	if ((pid = 1) && !FORK && ac > 2)
 		return (ft_err(av[0], "Multi-map", buf));
 	fdf_put_rules(av[0]);
 	i = 0;
@@ -48,6 +48,5 @@ int			main(int ac, char **av)
 		if (ac == 1)
 			return (0);
 	}
-	sleep(1);
 	return (0);
 }
