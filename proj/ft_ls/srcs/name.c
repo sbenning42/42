@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls.c                                               :+:      :+:    :+:   */
+/*   name.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/22 18:25:52 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/22 18:26:47 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/14 15:57:37 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/14 16:04:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_ls(int *opt, int ac, char **av)
+char		*ft_name(char *path)
 {
+	char	*f;
+
+	return (((f = ft_strrchr(path, '/')) == NULL ? path : f + 1));
 }

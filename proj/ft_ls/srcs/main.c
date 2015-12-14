@@ -2,63 +2,41 @@
 
 static int	ft_put_usage(char *av, char e)
 {
-	char	*id;
-
-	ft_fprintf(2, U1FMT, NAME(av, id), "illegal option", e);
-	ft_fprintf(2, U2FMT, "usage", NAME(av, id), O_CSET, UMSG);
+	ft_fprintf(2, FMT_U1, ft_name(av), "illegal option", e);
+	ft_fprintf(2, FMT_U2, "usage", ft_name(av), CSET_O, "file ...");
 	return (0);
 }
 
-static void	verbose_get_opt(int o, char *av)
+static int	(*get_sort(int o))(void *, void *)
 {
-	char	*ostr[O_SIZE + 1];
-	char	*id;
-	int		i;
-	int		flag;
+	int		(*s)(void *, void *);
 
-	ostr[0] = "Illegal";
-	ostr[1] = "Hide";
-	ostr[2] = "Long";
-	ostr[3] = "Recursif";
-	ostr[4] = "Reverse";
-	ostr[5] = "Time";
-	ostr[6] = "Verbose";
-	ft_printf(OFMT, NAME(av, id), VERBOSEID, "option(s)");
-	i = 0;
-	flag = 0x1;
-	while (flag < MAX_O)
+	s = s_lex;
+	if ((o & (O_TIME | O_REVE)))
 	{
-		if (((o & flag) == flag) && (flag != PRIV_ERROR_O))
-			ft_printf("[{cyan|gr}%s{eoc}] ", ostr[i]);
-		else if (((o & flag) == flag) && (flag == PRIV_ERROR_O))
-			ft_printf("[{red|gr|ss}%s{eoc}] ", ostr[i]);
-		i++;
-		flag <<= 0x1;
+		s = ((o & (O_TIME | O_REVE)) == O_TIME ? s_time : s);
+		s = ((o & (O_TIME | O_REVE)) == O_REVE ? s_rlex : s);
+		s = ((o & (O_TIME | O_REVE)) == (O_TIME | O_REVE) ? s_rtime : s);
 	}
-	ft_printf("\n");
+	return (s);
 }
 
 int			main(int ac, char *av[])
 {
 	int		(*s)(void *, void *);
-	char	*id;
 	int		o;
 	char	e;
 
 	e = '\0';
-	o = get_opt(O_CSET, ac, av, &e);
-	if ((o & VERBOSE_O) == VERBOSE_O)
-		verbose_get_opt(o, av[0]);
-	if ((o & PRIV_ERROR_O) == PRIV_ERROR_O)
-		return (ft_put_usage(av[0], e));
-	s = s_lex;
-	if ((o & (TIME_O | REVE_O)))
+	o = get_opt(CSET_O, ac, av, &e);
+	s = get_sort(o);
+	if ((o & O_VERBOSE) == O_VERBOSE)
 	{
-		s = ((o & (TIME_O | REVE_O)) == TIME_O ? s_time : s);
-		s = ((o & (TIME_O | REVE_O)) == REVE_O ? s_rlex : s);
-		s = ((o & (TIME_O | REVE_O)) == (TIME_O | REVE_O) ? s_rtime : s);
+		verbose_get_opt(o, av[0]);
+		verbose_get_sort(s, av[0]);
 	}
+	if ((o & O_PRIVATE_ERROR) == O_PRIVATE_ERROR)
+		return (ft_put_usage(av[0], e));
 	ft_ls_wopt(ac, av, o, s);
-	ft_printf(((o & VERBOSE_O) == VERBOSE_O ? MASFMT : ""), ARGMAS);
 	return (0);
 }
