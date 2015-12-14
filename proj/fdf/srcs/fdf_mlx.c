@@ -1,175 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_mlx.c                                          :+:      :+:    :+:   */
+/*   fdf_mlx_v2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/05 01:40:02 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/05 17:47:32 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/08 00:47:12 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/14 09:40:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static long int		fdf_color(t_fdf_map map, int c)
+static char		*fdf_getname(char *s)
 {
-	map.z_max = (map.z_max == 0 ? 1 : map.z_max);
-	return ((0xffffff / 2) + (c * (0xffffff / (map.z_max - map.z_min))));
+	char		*name;
+
+	name = ft_strrchr(s, '/');
+	return ((name ? name + 1 : s));
 }
 
-int				fdf_draw(void *p)
+static void		fdf_loop(t_env *e)
 {
-	t_env		*e;
-	int			x;
-	int			y;
-
-	e = (t_env *)p;
-	y = 0;
-	while (y <= e->map.y)
+	if (!(e->mlx = mlx_init()))
+		ft_err(e->av, e->id, "Can't init mlx");
+	else if (!(e->win = mlx_new_window(e->mlx, FDF_SCREEN, FDF_SCREEN, \
+										fdf_getname(e->id))))
+		ft_err(e->av, e->id, "Can't create mlx window");
+	else
 	{
-		x = 0;
-		while (x <= e->map.x)
-		{
-			if (e->map.mat[y][x][Coo_x] != INT_MIN)
-			{
-				mlx_pixel_put(e->mlx, e->win, \
-				((FDF_WIDTH / 2) + ((e->map.mat[y][x][Coo_x] - e->map.mat[y][x][Coo_y]) * ((FDF_GAP_W(e->map.x) / 2) > 0 ? (FDF_GAP_W(e->map.x) / 2): 1))), \
-				((FDF_HEIGHT / 2) + ((e->map.mat[y][x][Coo_y] + e->map.mat[y][x][Coo_x]) * ((FDF_GAP_H(e->map.y) / 2) > 0 ? (FDF_GAP_H(e->map.y) / 2): 1))), \
-				fdf_color(e->map, e->map.mat[y][x][Coo_z]));
-			}
-			x++;
-		}
-		y++;
+		mlx_key_hook(e->win, fdf_key, (void *)e);
+		mlx_expose_hook(e->win, fdf_draw, (void *)e);
+		mlx_loop(e->mlx);
 	}
-	return (0);
 }
 
-static int		fdf_destroy_mat(int ****mat, int y, int x)
+static void		fdf_init_khdl(t_env *e)
 {
-	int			i;
-	int			j;
-
-	i = -1;
-	if (!*mat)
-		return (0);
-	while (++i <= y && (*mat)[i])
-	{
-		j = -1;
-		while (++j <= x && (*mat)[i][j])
-			ft_memdel((void **)&((*mat)[i][j]));
-		ft_memdel((void **)&((*mat)[i]));
-	}
-	ft_memdel((void **)mat);
-	return (0);
+	e->khdl[DEF_K_ID].key = FDF_DEF_K;
+	e->khdl[DEF_K_ID].hdl = khdl_default;
+	e->khdl[ZOOI_K_ID].key = FDF_ZOOI_K;
+	e->khdl[ZOOI_K_ID].hdl = khdl_zoom_inc;
+	e->khdl[ZOOD_K_ID].key = FDF_ZOOD_K;
+	e->khdl[ZOOD_K_ID].hdl = khdl_zoom_dec;
+	e->khdl[QUIT_K_ID].key = FDF_QUIT_K;
+	e->khdl[QUIT_K_ID].hdl = khdl_quit;
+	e->khdl[ALTI_K_ID].key = FDF_ALTI_K;
+	e->khdl[ALTI_K_ID].hdl = khdl_alt_inc;
+	e->khdl[ALTD_K_ID].key = FDF_ALTD_K;
+	e->khdl[ALTD_K_ID].hdl = khdl_alt_dec;
 }
 
-
-int				fdf_key(int key, void *p)
-{
-	t_env		*e;
-
-	if (key == 53 || key == 12 || key == 65307)
-	{
-		e = (t_env *)p;
-		mlx_destroy_window(e->mlx, e->win);
-		fdf_destroy_mat(&e->map.mat, e->map.y, e->map.x);
-		exit(EXIT_SUCCESS);
-	}
-/*	else
-		ft_fprintf(2, "[{green}%d{eoc}][{cyan}%c{eoc}]\n", key, (char)key);
-*/	return (0);
-}
-
-static void		fdf_fill_mat(t_fdf_map map)
-{
-	t_list		*cp;
-	t_fdf_point	*pt;
-
-	cp = map.lst;
-	while (cp)
-	{
-		pt = (t_fdf_point *)cp->content;
-		map.mat[pt->y][pt->x][0] = pt->x + (map.x / -2);
-		map.mat[pt->y][pt->x][1] = pt->y + (map.y / -2);
-		map.mat[pt->y][pt->x][2] = pt->z;
-		cp = cp->next;
-	}
-	ft_lstdel(&map.lst, NULL);
-}
-
-static void		ft_intset(int *t, int i, size_t size)
-{
-	size_t		c;
-
-	c = 0;
-	while (c < size)
-		t[c++] = i;
-}
-
-static int		fdf_handle_env(t_env *e)
-{
-	int			i;
-	int			j;
-
-	e->map.mat = (int ***)ft_memalloc(sizeof(int **) * e->map.y + 1);
-	if (e->map.mat == NULL)
-		return (0);
-	i = 0;
-	while (i <= e->map.y)
-	{
-		e->map.mat[i] = (int **)ft_memalloc(sizeof(int *) * e->map.x + 1);
-		if (e->map.mat[i] == NULL)
-			return (fdf_destroy_mat(&e->map.mat, i, 0));
-		j = 0;
-		while (j <= e->map.x)
-		{
-			e->map.mat[i][j] = (int *)ft_memalloc(sizeof(int) * 3);
-			if (e->map.mat[i][j] == NULL)
-				return (fdf_destroy_mat(&e->map.mat, i, e->map.x));
-			ft_intset(e->map.mat[i][j], INT_MIN, 3);
-			j++;
-		}
-		i++;
-	}
-	fdf_fill_mat(e->map);
-	return (1);
-}
-
-static char		*name(char *path)
-{
-	char		*f;
-
-	f = ft_strrchr(path, '/');
-	return (f ? ++f : path);
-}
-
-void			fdf_mlx(t_fdf_map map, char *av)
+void			fdf_mlx(char *av, char *id, int fd)
 {
 	t_env		e;
+	t_fdf_map	map;
 
-	e.map = map;
-	if (!(e.mlx = mlx_init()))
+	ft_bzero((void *)&map, sizeof(t_fdf_map));
+	ft_bzero((void *)&e, sizeof(t_env));
+	fdf_init_khdl(&e);
+	map.z_max = INT_MIN;
+	map.z_min = INT_MAX;
+	e.map = &map;
+	e.av = av;
+	e.id = id;
+	e.fd = fd;
+	if (fdf_parser(&e, fd) && map.m)
 	{
-		ft_lstdel(&map.lst, NULL);
-		ft_printf("%s: {red}%s%s{eoc}\n", av, ERRMSG_MLX, map.name);
-		return ;
+		fdf_save_map(&e);
+		fdf_loop(&e);
 	}
-	if (!(e.win = mlx_new_window(e.mlx, FDF_WIDTH, FDF_HEIGHT, name(map.name))))
-	{
-		ft_lstdel(&map.lst, NULL);
-		ft_printf("%s: {red}%s%s{eoc}\n", av, ERRMSG_WIN, map.name);
-		return ;
-	}
-	if (!fdf_handle_env(&e))
-	{
-		ft_printf("%s:{red}%s{eoc}%s // %d\n", av, ERRMSG_MALLOC, map.name, 1);
-		mlx_destroy_window(e.mlx, e.win);
-		ft_lstdel(&map.lst, NULL);
-		return ;
-	}
-	mlx_expose_hook(e.win, fdf_draw, (void *)&e);
-	mlx_key_hook(e.win, fdf_key, (void *)&e);
-	mlx_loop(e.mlx);
+	close(fd);
+	exit(EXIT_SUCCESS);
 }
-

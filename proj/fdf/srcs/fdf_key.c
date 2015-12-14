@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   fdf_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/12 16:21:39 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/08 03:23:05 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/11 15:02:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "fdf.h"
 
-# include "ft_header.h"
-# include "ft_char.h"
-# include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
-# include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_printf.h"
+static int		(*choose_khdl(t_env *e, int key))(void *, int)
+{
+	int			i;
 
-#endif
+	i = -1;
+	while (++i < NB_KHDL)
+	{
+		if (key == e->khdl[i].key)
+			return (e->khdl[i].hdl);
+	}
+	return (khdl_none);
+}
+
+int				fdf_key(int key, void *p)
+{
+	t_env		*e;
+
+	e = (t_env *)p;
+	choose_khdl(e, key)(e, key);
+	return (key);
+}

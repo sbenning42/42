@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   fdf_action.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 05:18:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 03:05:52 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/11 13:15:21 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/14 09:43:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_str.h"
+#include "fdf.h"
 
-int		ft_strdel(char **as)
+void	fdf_default_action(t_env *e)
 {
-	if (*as)
-		ft_memdel((void **)as);
-	return (1);
+	free(e->map->m);
+	*e->map = *fdf_save_map(NULL);
+	fdf_save_map(e);
+}
+
+void	fdf_quit_action(t_env *e)
+{
+	free(e->map->m);
+	mlx_destroy_window(e->mlx, e->win);
+	close(e->fd);
+	exit(EXIT_SUCCESS);
 }

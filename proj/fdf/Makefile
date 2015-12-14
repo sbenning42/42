@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/05 15:47:37 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/13 20:18:19 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,28 @@ NAME =		fdf
 
 NAME_NUX =		fdf_nux
 
-SRC =		lib/lexer/srcs/get_next_line.c\
-			lib/lexer/srcs/lexer_ini.c\
-			lib/lexer/srcs/lexer_token.c\
-			lib/lexer/srcs/lexer_chr.c\
-			lib/lexer/srcs/lexer.c\
+SRC =		lib/gnl/get_next_line.c\
+			srcs/fdf_action.c\
+			srcs/fdf_action2.c\
+			srcs/fdf_get.c\
+			srcs/fdf_save.c\
+			srcs/fdf_free.c\
+			srcs/fdf_khdl.c\
+			srcs/fdf_khdl2.c\
+			srcs/fdf_key.c\
+			srcs/fdf_info.c\
+			srcs/fdf_bresenham.c\
+			srcs/fdf_constructor.c\
+			srcs/fdf_maj.c\
+			srcs/fdf_map.c\
+			srcs/fdf_draw.c\
+			srcs/fdf_msg.c\
 			srcs/fdf_mlx.c\
 			srcs/fdf_lexer.c\
-			srcs/mainv2.c
-#			srcs/fdf_handle.c\
-			srcs/fdf_mlx.c\
-			srcs/fdf_exec.c\
-			srcs/fdf.c\
+			srcs/fdf_parser.c\
+			srcs/main.c
+
+DEPEND =	includes/fdf.h
 
 OBJ =		$(SRC:.c=.o)
 
@@ -54,14 +64,14 @@ CC =		gcc
 
 FLAGS =		-Wall -Wextra
 
-all : $(NAME)
+all : $(LIB_FT) $(LIB_MLX) $(NAME)
 
-nux : $(NAME_NUX)
+nux : $(LIB_FT_NUX) $(LIB_MLX) $(NAME_NUX)
 
-$(NAME) : $(LIB_FT) $(LIB_MLX) $(OBJ)
-	$(CC) -o $(NAME) -I $(HEADERS) $(OBJ) -L $(LIB_FT_DIR) -L $(LIB_MLX_DIR) $(LIB) $(FRAMEWORK)
+$(NAME) : $(OBJ)
+	$(CC) -o $@ -I $(HEADERS) $^ -L $(LIB_FT_DIR) -L $(LIB_MLX_DIR) $(LIB) $(FRAMEWORK)
 
-$(NAME_NUX) : $(LIB_FT_NUX) $(LIB_MLX_NUX) $(OBJ)
+$(NAME_NUX) : $(OBJ) $(DEPEND)
 	$(CC) -o $(NAME_NUX) -I $(HEADERS) $(OBJ) lib/ft/libft.a -L $(LIB_FT_DIR) -L $(LIB_MLX_NUX_DIR) $(LIB_NUX)
 
 $(LIB_FT) :
@@ -76,7 +86,7 @@ $(LIB_MLX) :
 $(LIB_MLX_NUX) :
 	make -C $(LIB_MLX_NUX_DIR)
 
-%.o : %.c
+%.o : %.c $(DEPEND)
 	$(CC) $(FLAGS) -o $@ -I $(HEADERS) -c $<
 
 clean:

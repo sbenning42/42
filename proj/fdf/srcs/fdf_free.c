@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   fdf_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 05:18:57 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/09 03:05:52 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/11 12:19:39 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/11 12:24:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_str.h"
+#include "fdf.h"
 
-int		ft_strdel(char **as)
+void			fdf_free_line(void *content, size_t size)
 {
-	if (*as)
-		ft_memdel((void **)as);
-	return (1);
+	t_lex_tk	*t;
+
+	if (size != sizeof(t_lex_tk))
+		return ;
+	t = (t_lex_tk *)content;
+	if (t->type == Eol)
+		ft_strdel(&t->value);
 }
