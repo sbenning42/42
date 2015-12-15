@@ -15,9 +15,12 @@ NAME =			ft_ls
 NAME_NUX =		ft_ls_nux
 
 SRC =			srcs/main.c\
-				srcs/ft_sort.c\
+				srcs/ls_avsort.c\
+				srcs/ls_avprint.c\
 				srcs/ft_ls.c\
 				srcs/get_opt.c\
+				srcs/tree.c\
+				srcs/ls_msg.c\
 				srcs/verbose.c\
 				srcs/name.c
 

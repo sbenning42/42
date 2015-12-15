@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ls_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/09 16:09:07 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/14 17:58:40 by sbenning         ###   ########.fr       */
+/*   Created: 2015/12/15 14:00:35 by sbenning          #+#    #+#             */
+/*   Updated: 2015/12/15 17:03:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		s_lex(void *s1, void *s2)
+void	ls_print(void *p, size_t size)
 {
-	return ((ft_strcmp((char *)s1, (char *)s2)) < 0);
+	t_ls_entry	*e;
+
+	e = (t_ls_entry *)p;
+	ft_printf("%s\n", e->key);
+	(void)size;
 }
 
-int		s_rlex(void *s1, void *s2)
+void	ls_long_print(void *p, size_t size)
 {
-	return (!s_lex(s1, s2));
+	(void)p;
+	(void)size;
 }
 
-int		s_time(void *s1, void *s2)
+void	ls_cprint(void *p, size_t size)
 {
-	//return (time((time_t *)s1) - time((time_t *)s2));
-	return (0);
+	(void)p;
+	(void)size;
 }
 
-int		s_rtime(void *s1, void *s2)
+void	ls_long_cprint(void *p, size_t size)
 {
-	return (!s_time(s1, s2));
+	(void)p;
+	(void)size;
 }

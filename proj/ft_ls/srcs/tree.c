@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 17:16:01 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/14 17:58:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/15 13:46:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,21 @@ static void	*ft_memdup(void *p, size_t size)
 	return ((void *)cp);
 }
 
+void		tree_doinf(t_node *r, void (*d)(void *, size_t))
+{
+	if (r && r->l)
+		tree_doinf(r->l, d);
+	if (r)
+		d(r->content, r->content_size);
+	if (r && r->r)
+		tree_doinf(r->r, d);
+}
+
 t_node		*tree_newnode(void *content, size_t size)
 {
 	t_node	*no;
 
-	if (!content || !key)
+	if (!content)
 		return (NULL);
 	no = (t_node *)ft_memalloc(sizeof(t_node));
 	if (!no)
@@ -41,10 +51,10 @@ t_node		*tree_newnode(void *content, size_t size)
 	no->content = ft_memdup(content, size);
 	if (!no->content)
 	{
-		ft_membzdel((void **)&no);
+		ft_memdel((void **)&no);
 		return (NULL);
 	}
-	no->content_size = 0;
+	no->content_size = size;
 	return (no);
 }
 
@@ -58,16 +68,22 @@ void		tree_add(t_node **ar, t_node *no, int (*s)(t_node *, t_node *))
 	if (s(*ar, no))
 	{
 		if ((*ar)->r)
+		{
 			tree_add(&(*ar)->r, no, s);
+			return ;
+		}
 		(*ar)->r = no;
-		no->p = (*ar);
+		no->f = (*ar);
 	}
 	else
 	{
 		if ((*ar)->l)
+		{
 			tree_add(&(*ar)->l, no, s);
+			return ;
+		}
 		(*ar)->l = no;
-		no->p = (*ar);
+		no->f = (*ar);
 	}
 }
 
@@ -79,6 +95,6 @@ void		tree_del(t_node **ar, void (*d)(void *, size_t))
 		tree_del(&(*ar)->r, d);
 	if (d)
 		d((*ar)->content, (*ar)->content_size);
-	ft_membzdel((void **)&(*ar)->content);
-	ft_membzdel((void **)ar);
+	ft_memdel((void **)&(*ar)->content);
+	ft_memdel((void **)ar);
 }

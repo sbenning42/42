@@ -6,39 +6,84 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:18:14 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/14 17:58:41 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/15 17:06:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static t_node	*verbose_sort(int ac, char **av, int (*s)(void *, void *))
+static int		ls_add_entry(t_node **ar, char *av, char *path, \
+							int (*s)(t_node *, t_node *))
+{
+	struct stat	buf;
+	t_ls_entry	e;
+	t_node		*no;
+
+	ft_bzero((void *)&e, sizeof(t_ls_entry));
+	errno = 0;
+	if (lstat(path, &buf) == -1 || errno)
+	{
+		ft_printf("%s: %s: %s\n", av, path, strerror(errno));
+		errno = 0;
+	}
+	else
+	{
+		ft_strncpy(e.key, path, KEYSIZE_LS);
+		e.type |= ((buf.st_mode & S_IFDIR) == S_IFDIR ? T_DIR : T_NODIR);
+		e.info = buf;
+		if (!(no = tree_newnode(&e, sizeof(t_ls_entry))))
+			return (ls_err(av, path, errno, "Memory allocation failed"));
+		tree_add(ar, no, s);
+	}
+	return (1);
+}
+
+static t_node	*ls_tab_sort(int ac, char **av, t_ls_func f)
 {
 	t_node		*root;
-	t_node		*no;
 	int			i;
 
 	root = NULL;
 	i = 0;
 	while (++i < ac)
 	{
-		no = tree_newnode(av[i], av[i], sizeof(char) * (ft_strlen(av[i] + 1))); // change second av[i] for the lstat struct
-		if (!no)
+		if (*av[i] != '-')
+			break ;
+	}
+	while (i < ac)
+	{
+		if (!ls_add_entry(&root, av[0], av[i], f.av_s))
 		{
 			tree_del(&root, NULL);
 			return (NULL);
 		}
-		tree_add(&root, no);
+		i++;
 	}
+	return (root);
 }
 
-void		ft_ls_wopt(int ac, char **av, int o, int (*s)(void *, void *))
+void		ft_avls(int ac, char **av, int o, t_ls_func f)
 {
 	t_node	*root;
+	int		i;
+	int		fake_ac;
+	char	*fake_av[2];
 
-	root = verbose_sort(ac, av, s);
-	if (!root)
-		ft_printf("%s: {red}%s{eoc}: %s\n", av[0], "Error", "Memory allocation failed");
-	//tree_do_inf(root, ls_tree_print);
-	(void)o;
+	i = 0;
+	while (++i < ac)
+	{
+		if (*av[i] != '-')
+			break;
+	}
+	if (ac - i == 1)
+	{
+		fake_ac = 2;
+		fake_av[0] = av[0];
+		fake_av[1] = ".";
+		root = ls_tab_sort(fake_ac, fake_av, f);
+	}
+	else
+		root = ls_tab_sort(ac, av, f);
+	if (root)
+		ft_ls_avp(av[0], o, &root, f);
 }
