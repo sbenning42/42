@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 15:48:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 16:33:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,40 @@ char		*ft_rname(char *n)
 	return (f + 1);
 }
 
-void			ls_dir(void *p, size_t size)
+int					must_return(t_ls_entry *e, int o)
 {
-	t_ls_entry	*e;
-	int		o;
-	t_node	*root;
-	DIR		*dir;
+	if (e->type != T_DIR)
+		return (1);
+	else if (e->key[0] == '.' && !((o & O_HIDE) == O_HIDE))
+		return (1);
+	else if (!ft_strcmp(".", e->key) && ft_strcmp(".", e->path))
+		return (1);
+	else if (!ft_strcmp("..", e->key) && ft_strcmp("..", e->path))
+		return (1);
+	return (0);
+}
+
+void				ls_dir(void *p, size_t size)
+{
+	t_ls_entry		*e;
+	int				o;
+	t_node			*root;
+	DIR				*dir;
 	struct dirent	*entry;
 
 	e = (t_ls_entry *)p;
 	o = ls_env()->o;
+	if (must_return(e, o))
+		return ;
 	if (e->type != T_DIR || ((o & O_HIDE) == 0 && e->key[0] == '.') || ((!ft_strcmp(".", e->key) && ft_strcmp(".", e->path)) || (!ft_strcmp("..", e->key) && ft_strcmp("..", e->path))))
-		return /*(NULL)*/;
+		return ;
 	if ((o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI && e->type == T_DIR)
-	{
 		ft_printf((ls_env()->i++ ? "\n%s:\n" : "%s:\n"), e->path);
-	}
 	if (!(dir = opendir(e->path)))
 	{
 		ft_err(ft_name(ls_env()->av), e->key, (errno ? strerror(errno) : "Can't open dir"), 0);
 		errno = 0;
-		return /*(NULL)*/;
+		return ;
 	}
 	root = NULL;
 	while ((entry = readdir(dir)))
@@ -77,7 +90,7 @@ void			ls_dir(void *p, size_t size)
 		if (!entry_tree(&root, entry, e->path, o))
 		{
 			tree_del(&root, NULL);
-			return /*(NULL)*/;
+			return ;
 		}
 	}
 	closedir(dir);
@@ -90,5 +103,4 @@ void			ls_dir(void *p, size_t size)
 	}
 	tree_del(&root, NULL);
 	(void)size;
-//	return (root);
 }
