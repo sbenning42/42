@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 17:16:01 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/15 13:46:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 09:52:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ t_node		*tree_newnode(void *content, size_t size)
 	return (no);
 }
 
-void		tree_add(t_node **ar, t_node *no, int (*s)(t_node *, t_node *))
+void		tree_add(t_node **ar, t_node *no, int (*s)(void *, void *))
 {
 	if (!*ar)
 	{
 		*ar = no;
 		return ;
 	}
-	if (s(*ar, no))
+	if (s((*ar)->content, no->content))
 	{
 		if ((*ar)->r)
 		{

@@ -1,83 +1,84 @@
 #include "ft_ls.h"
 
-static static int	(*get_avsort(int o))(t_node *, t_node *)
+t_ls_env	*ls_env(void)
 {
-	int		(*s)(t_node *, t_node *);
+	static t_ls_env	e;
 
-	s = avs_lex;
-	if ((o & (O_TIME | O_REVE)))
+	return (&e);
+}
+/*
+void	ft_ls(void *p, size_t size)
+{
+	t_ls_entry	*e;
+	t_node		*root;
+
+	root = NULL;
+	e = (t_ls_entry *)p;
+	(void)size;
+	if (e->type == T_ERROR)
+		ft_err("ft_ls", e->key, "No such file or directory", 1);
+	else
 	{
-		s = ((o & (O_TIME | O_REVE)) == O_TIME ? avs_time : s);
-		s = ((o & (O_TIME | O_REVE)) == O_REVE ? avs_rlex : s);
-		s = ((o & (O_TIME | O_REVE)) == (O_TIME | O_REVE) ? avs_rtime : s);
+		ft_printf("DUMP: k[%s] p[%s] t[%#x]\n", e->key, e->path, e->type);
+		sleep(3);
+		if (e->type == T_NODIR)
+			ft_printf("{pink}%s{eoc}%s\n", "File", e->key);
+		else if (e->type == T_DIR && (ls_env()->o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI)
+			ft_printf("%c%s:\n", (ls_env()->i++ ? '\n' : '\0'), e->key);
+		if (e->type == T_DIR && ft_strcmp(e->key, ".") && ft_strcmp(e->key, ".."))
+			root = ls_dir(e);
+		if ((ls_env()->o & O_RECU) == O_RECU && e->type == T_DIR && ft_strcmp(e->key, ".") && ft_strcmp(e->key, ".."))
+			tree_doinf(root, ft_ls);
+		if (root)
+			tree_del(&root, NULL);
 	}
-	return (s);
+}
+*/
+void		ls_argv(void *p, size_t size)
+{
+	t_ls_entry	*e;
+	void		(*print)(void *, size_t);
+	
+	e = (t_ls_entry *)p;
+	(void)size;
+	print = ls_select_print(ls_env()->o);
+	if (e->type == T_ERROR)
+		ft_err("ft_ls", e->key, "No such file or directory", 0);
+	else if (e->type == T_NODIR)
+	{
+		ls_env()->i++;
+		print((void *)e, sizeof(t_ls_entry));
+	}
+	else
+	{
+		ls_dir((void *)e, sizeof(t_ls_entry));
+	}
 }
 
-static void	(*get_avprint(int o))(t_node *)
+int	ft_put_usage(char *av, char e)
 {
-	void	(*p)(t_node *);
-
-	p = avp_print;
-	if ((o & (O_COLOR | O_LONG)) == (O_COLOR | O_LONG))
-	{
-		p = ((o & (O_COLOR | O_LONG)) == O_COLOR ? avp_cprint : p);
-		p = ((o & (O_COLOR | O_LONG)) == O_LONG ? avp_lprint : p);
-		p = ((o & (O_COLOR | O_LONG)) == (O_COLOR | O_LONG) ? avp_clprint : p);
-	}
-	return (p);
-}
-
-static int	(*get_sort(int o))(t_node *, t_node *)
-{
-	int		(*s)(t_node *, t_node *);
-
-	s = s_lex;
-	if ((o & (O_TIME | O_REVE)))
-	{
-		s = ((o & (O_TIME | O_REVE)) == O_TIME ? s_time : s);
-		s = ((o & (O_TIME | O_REVE)) == O_REVE ? s_rlex : s);
-		s = ((o & (O_TIME | O_REVE)) == (O_TIME | O_REVE) ? s_rtime : s);
-	}
-	return (s);
-}
-
-static void	(*get_print(int o))(t_node *)
-{
-	void	(*p)(t_node *);
-
-	p = p_print;
-	if ((o & (O_COLOR | O_LONG)) == (O_COLOR | O_LONG))
-	{
-		p = ((o & (O_COLOR | O_LONG)) == O_COLOR ? p_cprint : p);
-		p = ((o & (O_COLOR | O_LONG)) == O_LONG ? p_lprint : p);
-		p = ((o & (O_COLOR | O_LONG)) == (O_COLOR | O_LONG) ? p_clprint : p);
-	}
-	return (p);
+	ft_fprintf(2, FMT_U1, ft_name(av), "illegal option", e);
+	ft_fprintf(2, FMT_U2, "usage", ft_name(av), CSET_O, "file ...");
+	return (0);
 }
 
 int			main(int ac, char *av[])
 {
-	t_ls_func	f;
+	t_node	*root;
 	int		o;
 	char	e;
 
 	e = '\0';
 	o = get_opt(CSET_O, ac, av, &e);
-	f.av_s = get_avsort(o);
-	f.av_p = get_avprint(o);
-	f.s = get_sort(o);
-	f.p = get_print(o);
+	ls_env()->av = av[0];
+	ls_env()->o = o;
+	ls_env()->i = 0;
+	root = argv_tree(ac, av, &o);
 	if ((o & O_VERBOSE) == O_VERBOSE)
-	{
 		verbose_get_opt(o, av[0]);
-		verbose_get_avsort(s, av[0]);
-		verbose_get_avprint(s, av[0]);
-	}
 	if ((o & O_PRIVATE_ERROR) == O_PRIVATE_ERROR)
 		return (ft_put_usage(av[0], e));
-	if (ac > 2)
-		o |= O_PRIVATE_MULTI;
-	ft_avls(ac, av, o, f);
+	tree_doinf(root, ls_argv);
+	tree_del(&root, NULL);
 	return (0);
 }

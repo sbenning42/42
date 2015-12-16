@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/15 16:20:31 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:47:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <dirent.h>
 # include <time.h>
 # include <errno.h>
 # include "libft.h"
 # include "ft_tree.h"
 
-# define KEYSIZE_LS 255
+# define KEYSIZE_LS 510
+# define PATHSIZE_LS 2096
 # define CSET_O "alRrtvG"
 # define SIZE_O 7
+
 # define O_PRIVATE_ERROR 0x1
-# define O_PRIVATE_MULTI 0x200
-# define O_MAX 0x100
+# define O_PRIVATE_MULTI 0x100
+# define O_PRIVATE_MAX 0x200
 
 # define O_HIDE 0x2
 # define O_LONG 0x4
@@ -39,17 +42,18 @@
 # define T_NODIR 0x2
 # define T_DIR 0x4
 
-# define FMT_U1 "{green}%s{eoc}: {gr}%s{eoc} -- {red}%c{eoc}\n"
+# define FMT_U1 "{green|gr}%s{eoc}: {gr}%s{eoc} -- {red}%c{eoc}\n"
 # define FMT_U2 "{pink}%s{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}] [{pink}%s{eoc}]\n"
-# define FMT_VERBOSE "{green}%s{eoc}: {yellow}%s{eoc}: {gr}%s{eoc}: "
-# define FMT_S "{green}%s{eoc}: {yellow}%s{eoc}: {gr}%s{eoc}: "
+# define FMT_VERBOSE "{green|gr}%s{eoc}: {yellow}%s{eoc}: {gr}%s{eoc}: "
+# define FMT_S "{green|gr}%s{eoc}: {yellow}%s{eoc}: {gr}%s{eoc}: "
 
 typedef struct		s_ls_entry
 {
-	int				o;
 	int				type;
-	char			key[KEYSIZE_LS];
-	struct stat		info;
+	char			path[PATHSIZE_LS + 1];
+	char			key[KEYSIZE_LS + 1];
+	//struct stat		info;
+	struct stat		stat;
 }					t_ls_entry;
 
 typedef struct		s_ls_func
@@ -60,14 +64,42 @@ typedef struct		s_ls_func
 	void			(*p)(t_node *);
 }					t_ls_func;
 
+typedef struct	s_ls_env
+{
+	int			i;
+	int			o;
+	char		*av;
+}				t_ls_env;
+
+
+t_ls_env			*ls_env(void);
+
 /*
 ***			***			ls_avsort.c			***
 */
 
-int					avs_lex(t_node *n1, t_node *n2);
-int					avs_rlex(t_node *n1, t_node *n2);
-int					avs_time(t_node *n1, t_node *n2);
-int					avs_rtime(t_node *n1, t_node *n2);
+int					avs_lex(void *s1, void *s2);
+int					avs_rlex(void *s1, void *s2);
+int					avs_modt(void *s1, void *s2);
+int					avs_rmodt(void *s1, void *s2);
+
+/*
+***			***			ls_sort.c			***
+*/
+
+int					s_lex(void *s1, void *s2);
+int					s_rlex(void *s1, void *s2);
+int					s_modt(void *s1, void *s2);
+int					s_rmodt(void *s1, void *s2);
+
+/*
+***			***			ls_avsort.c			***
+*/
+
+void				p_standard(void *p, size_t size);
+void				p_cstandard(void *p, size_t size);
+void				p_long(void *p, size_t size);
+void				p_clong(void *p, size_t size);
 
 /*
 ***			***			ls_print.c			***
@@ -91,6 +123,7 @@ int					ft_put_usage(char *av, char e);
 */
 
 void				verbose_get_opt(int o, char *av);
+void				verbose_print_tree(char *av, t_node *root);
 void				verbose_get_avsort(int (*s)(t_node *, t_node *), char *av);
 void				verbose_get_avprint(void (*p)(t_node *), char *av);
 
@@ -99,6 +132,14 @@ void				verbose_get_avprint(void (*p)(t_node *), char *av);
 */
 
 char				*ft_name(char *path);
+
+/*
+***			***			select.c			***
+*/
+
+int					(*ls_select_argvsort(int o))(void *, void *);
+int					(*ls_select_sort(int o))(void *, void *);
+void				(*ls_select_print(int o))(void *, size_t);
 
 /*
 ***			***			ls_wopt.c			***
@@ -112,5 +153,14 @@ void				ft_ls_wopt\
 */
 
 int					get_opt(const char *cset, int ac, char **av, char *e);
+
+/*
+***			***			argv.c			***
+*/
+
+t_node				*argv_tree(int ac, char **av, int *o);
+
+
+void			ls_dir(void *p, size_t size);
 
 #endif
