@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 16:33:09 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 16:41:21 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			entry_tree(t_node **ar, struct dirent *entry, char *path, int o)
 	tree_add(ar, no, ls_select_sort(o));
 	return (1);
 }
-
+/*
 char		*ft_rname(char *n)
 {
 	char	*f;
@@ -47,6 +47,34 @@ char		*ft_rname(char *n)
 	if (!f || f == n)
 		return (n);
 	return (f + 1);
+}
+*/
+void				ls_rec(t_node *root, int o)
+{
+	if ((o & O_RECU) == O_RECU)
+	{
+		ls_env()->o |= O_PRIVATE_MULTI;
+		ls_env()->i++;
+		tree_doinf(root, ls_dir);
+	}
+}
+
+t_node				*dir_tree(t_ls_entry *e, int o, DIR *dir)
+{
+	t_node			*root;
+	struct dirent	*entry;
+
+	root = NULL;
+	while ((entry = readdir(dir)))
+	{
+		if (!entry_tree(&root, entry, e->path, o))
+		{
+			tree_del(&root, NULL);
+			return (NULL);
+		}
+	}
+	closedir(dir);
+	return (root);
 }
 
 int					must_return(t_ls_entry *e, int o)
@@ -68,39 +96,24 @@ void				ls_dir(void *p, size_t size)
 	int				o;
 	t_node			*root;
 	DIR				*dir;
-	struct dirent	*entry;
 
 	e = (t_ls_entry *)p;
 	o = ls_env()->o;
 	if (must_return(e, o))
 		return ;
-	if (e->type != T_DIR || ((o & O_HIDE) == 0 && e->key[0] == '.') || ((!ft_strcmp(".", e->key) && ft_strcmp(".", e->path)) || (!ft_strcmp("..", e->key) && ft_strcmp("..", e->path))))
-		return ;
-	if ((o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI && e->type == T_DIR)
+	if ((o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI)
 		ft_printf((ls_env()->i++ ? "\n%s:\n" : "%s:\n"), e->path);
+	errno = 0;
 	if (!(dir = opendir(e->path)))
 	{
-		ft_err(ft_name(ls_env()->av), e->key, (errno ? strerror(errno) : "Can't open dir"), 0);
+		ft_err(ft_name(ls_env()->av), e->key, strerror(errno), 0);
 		errno = 0;
 		return ;
 	}
-	root = NULL;
-	while ((entry = readdir(dir)))
-	{
-		if (!entry_tree(&root, entry, e->path, o))
-		{
-			tree_del(&root, NULL);
-			return ;
-		}
-	}
-	closedir(dir);
+	if (!(root = dir_tree(e, o, dir)))
+		return ;
 	tree_doinf(root, ls_select_print(o));
-	if ((o & O_RECU) == O_RECU)
-	{
-		ls_env()->o |= O_PRIVATE_MULTI;
-		ls_env()->i++;
-		tree_doinf(root, ls_dir);
-	}
+	ls_rec(root, o);
 	tree_del(&root, NULL);
 	(void)size;
 }
