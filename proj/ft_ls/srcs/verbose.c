@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:15:33 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 10:23:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 16:15:45 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		verbose_get_opt(int o, char *av)
 	flag = 0x1;
 	while (flag < O_PRIVATE_MAX)
 	{
-		if (((o & flag) == flag) && (flag != O_PRIVATE_ERROR))
+		if (((o & flag) == flag) && (flag != O_PRIVATE_ERROR) && flag != O_PRIVATE_MULTI)
 			ft_printf("[{cyan|gr}%s{eoc}] ", g_o_str[i]);
 		else if (((o & flag) == flag) && (flag == O_PRIVATE_ERROR))
 			ft_printf("[{red|gr|ss}%s{eoc}] ", g_o_str[i]);

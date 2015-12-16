@@ -6,34 +6,7 @@ t_ls_env	*ls_env(void)
 
 	return (&e);
 }
-/*
-void	ft_ls(void *p, size_t size)
-{
-	t_ls_entry	*e;
-	t_node		*root;
 
-	root = NULL;
-	e = (t_ls_entry *)p;
-	(void)size;
-	if (e->type == T_ERROR)
-		ft_err("ft_ls", e->key, "No such file or directory", 1);
-	else
-	{
-		ft_printf("DUMP: k[%s] p[%s] t[%#x]\n", e->key, e->path, e->type);
-		sleep(3);
-		if (e->type == T_NODIR)
-			ft_printf("{pink}%s{eoc}%s\n", "File", e->key);
-		else if (e->type == T_DIR && (ls_env()->o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI)
-			ft_printf("%c%s:\n", (ls_env()->i++ ? '\n' : '\0'), e->key);
-		if (e->type == T_DIR && ft_strcmp(e->key, ".") && ft_strcmp(e->key, ".."))
-			root = ls_dir(e);
-		if ((ls_env()->o & O_RECU) == O_RECU && e->type == T_DIR && ft_strcmp(e->key, ".") && ft_strcmp(e->key, ".."))
-			tree_doinf(root, ft_ls);
-		if (root)
-			tree_del(&root, NULL);
-	}
-}
-*/
 void		ls_argv(void *p, size_t size)
 {
 	t_ls_entry	*e;
@@ -50,9 +23,7 @@ void		ls_argv(void *p, size_t size)
 		print((void *)e, sizeof(t_ls_entry));
 	}
 	else
-	{
 		ls_dir((void *)e, sizeof(t_ls_entry));
-	}
 }
 
 int	ft_put_usage(char *av, char e)

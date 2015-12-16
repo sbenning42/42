@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 15:47:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/16 16:17:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_node		*argv_tree(int ac, char **av, int *o)
 	i = 0;
 	while (++i < ac)
 	{
-		if (*av[i] != '-')
+		if (*av[i] != '-' || ft_strlen(av[i]) == 1)
 			break ;
 	}
 	if (i == ac)
