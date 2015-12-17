@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/17 10:26:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/17 19:48:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			entry_tree(t_node **ar, struct dirent *entry, char *path, int o)
 		e.type = ((statbuf.st_mode & S_IFDIR) == S_IFDIR ? T_DIR : T_NODIR);
 	}
 	if (!(no = tree_newnode((void *)&e, sizeof(t_ls_entry))))
-		return (ft_err(ft_name(ls_env()->av), "Error", "Memory allocation failed", 0));
+		return (ft_err(ft_name(env()->av), "Error", "Memory allocation failed", 0));
 	tree_add(ar, no, ls_select_sort(o));
 	return (1);
 }
@@ -53,8 +53,8 @@ void				ls_rec(t_node *root, int o)
 {
 	if ((o & O_RECU) == O_RECU)
 	{
-		ls_env()->o |= O_PRIVATE_MULTI;
-		ls_env()->i++;
+		env()->o |= O_PRIVATE_MULTI;
+		env()->i++;
 		tree_doinf(root, ls_dir);
 	}
 }
@@ -100,15 +100,15 @@ void				ls_dir(void *p, size_t size)
 	DIR				*dir;
 
 	e = (t_ls_entry *)p;
-	o = ls_env()->o;
+	o = env()->o;
 	if (must_return(e, o))
 		return ;
 	if ((o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI)
-		ft_printf((ls_env()->i++ ? "\n%s:\n" : "%s:\n"), e->path);
+		ft_printf((env()->i++ ? "\n%s:\n" : "%s:\n"), e->path);
 	errno = 0;
 	if (!(dir = opendir(e->path)))
 	{
-		ft_err(ft_name(ls_env()->av), e->key, strerror(errno), 0);
+		ft_err(ft_name(env()->av), e->key, strerror(errno), 0);
 		errno = 0;
 		return ;
 	}

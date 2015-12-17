@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/17 17:28:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/17 19:39:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_env
 
 typedef struct		s_ls_entry
 {
+	int				handle;
 	int				type;
 	char			name[NAMESIZE_LS + 1];
 	char			*msg;

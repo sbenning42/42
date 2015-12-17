@@ -6,7 +6,7 @@ t_env				*env(void)
 
 	return (&e);
 }
-/*
+
 void				ls_argv(void *p, size_t size)
 {
 	t_ls_entry		*e;
@@ -14,18 +14,18 @@ void				ls_argv(void *p, size_t size)
 	
 	e = (t_ls_entry *)p;
 	(void)size;
-	print = ls_select_print(ls_env()->o);
+	print = ls_select_print(env()->o);
 	if (e->type == T_ERROR)
-		ft_err("ft_ls", e->key, "No such file or directory", 0);
-	else if (e->type == T_NODIR)
+		ft_err(env()->av, e->name, e->msg, 0);
+	else if (e->type == T_FILE)
 	{
-		ls_env()->i++;
+		env()->i++;
 		print((void *)e, sizeof(t_ls_entry));
 	}
 	else
 		ls_dir((void *)e, sizeof(t_ls_entry));
 }
-*/
+
 static int			ft_put_usage(char e)
 {
 	ft_fprintf(2, FMT_U1, env()->av, "illegal option", e);
@@ -48,7 +48,7 @@ int					main(int ac, char *av[])
 		return (ft_put_usage(e));
 	if ((root = argv_tree(ac, av)))
 	{
-		//tree_doinf(root, ls_argv);
+		tree_doinf(root, ls_argv);
 		tree_del(&root, NULL);
 	}
 	return (0);

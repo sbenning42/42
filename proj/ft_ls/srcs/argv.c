@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/17 17:29:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/17 19:41:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_ls_entry	ls_newentry(char *name)
 	t_ls_entry		e;
 
 	ft_bzero((void *)&e, sizeof(t_ls_entry));
+	e.handle = 1;
 	ft_strncpy(e.name, name, NAMESIZE_LS);
 	errno = 0;
 	lstat(name, &e.stat);
