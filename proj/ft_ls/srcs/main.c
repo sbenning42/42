@@ -1,12 +1,12 @@
 #include "ft_ls.h"
 
-t_ls_env			*ls_env(void)
+t_env				*env(void)
 {
-	static t_ls_env	e;
+	static t_env	e;
 
 	return (&e);
 }
-
+/*
 void				ls_argv(void *p, size_t size)
 {
 	t_ls_entry		*e;
@@ -25,31 +25,31 @@ void				ls_argv(void *p, size_t size)
 	else
 		ls_dir((void *)e, sizeof(t_ls_entry));
 }
-
-int					ft_put_usage(char *av, char e)
+*/
+static int			ft_put_usage(char e)
 {
-	ft_fprintf(2, FMT_U1, ft_name(av), "illegal option", e);
-	ft_fprintf(2, FMT_U2, "usage", ft_name(av), CSET_O, "file ...");
+	ft_fprintf(2, FMT_U1, env()->av, "illegal option", e);
+	ft_fprintf(2, FMT_U2, "usage", env()->av, CSET_O, "file ...");
 	return (0);
 }
 
 int					main(int ac, char *av[])
 {
 	t_node			*root;
-	int				o;
 	char			e;
 
-	e = '\0';
-	o = get_opt(CSET_O, ac, av, &e);
-	if ((o & O_VERBOSE) == O_VERBOSE)
-		verbose_get_opt(o, av[0]);
-	if ((o & O_PRIVATE_ERROR) == O_PRIVATE_ERROR)
-		return (ft_put_usage(av[0], e));
-	ls_env()->av = av[0];
-	ls_env()->o = o;
-	ls_env()->i = 0;
-	root = argv_tree(ac, av, &o);
-	tree_doinf(root, ls_argv);
-	tree_del(&root, NULL);
+	e = 0;
+	env()->i = 0;
+	env()->av = ft_name(av[0]);
+	env()->o = get_opt(CSET_O, ac, av, &e);
+	if ((env()->o & O_VERBOSE) == O_VERBOSE)
+		verbose_get_opt();
+	if ((env()->o & O_PRIVATE_ERROR) == O_PRIVATE_ERROR)
+		return (ft_put_usage(e));
+	if ((root = argv_tree(ac, av)))
+	{
+		//tree_doinf(root, ls_argv);
+		tree_del(&root, NULL);
+	}
 	return (0);
 }

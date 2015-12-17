@@ -6,35 +6,37 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:15:33 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 16:15:45 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/17 17:27:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static char	*g_o_str[SIZE_O + 1] = {"Illegal",\
-									"Hide",\
+static char	*g_o_str[SIZE_O + 1] = {"Hide",\
 									"Long",\
 									"Recursif",\
 									"Reverse",\
 									"Modified",\
 									"Verbose",\
-									"Colorized"};
+									"Colorized",\
+									"Illegal"};
 
-void		verbose_get_opt(int o, char *av)
+void		verbose_get_opt(void)
 {
 	int		i;
+	int		o;
 	int		flag;
 
-	ft_printf(FMT_VERBOSE, ft_name(av), "verbose", "option(s)");
+	ft_printf(FMT_VERBOSE, env()->av, "verbose", "option(s)");
 	i = 0;
 	flag = 0x1;
+	o = env()->o;
 	while (flag < O_PRIVATE_MAX)
 	{
-		if (((o & flag) == flag) && (flag != O_PRIVATE_ERROR) && flag != O_PRIVATE_MULTI)
-			ft_printf("[{cyan|gr}%s{eoc}] ", g_o_str[i]);
-		else if (((o & flag) == flag) && (flag == O_PRIVATE_ERROR))
+		if (((o & flag) == flag) && (flag == O_PRIVATE_ERROR))
 			ft_printf("[{red|gr|ss}%s{eoc}] ", g_o_str[i]);
+		else if (((o & flag) == flag))
+			ft_printf("[{cyan|gr}%s{eoc}] ", g_o_str[i]);
 		i++;
 		flag <<= 0x1;
 	}
@@ -66,7 +68,7 @@ void		verbose_get_avprint(void (*p)(t_node *), char *av)
 	else if (p == avp_clprint)
 		ft_printf("[{cyan|gr}%s{eoc}]\n", "Colorized long print");
 }
-*/
+*//*
 static void		verbose_print_node(void *p, size_t size)
 {
 	char		buf[1024];
@@ -96,4 +98,4 @@ void		verbose_print_tree(char *av, t_node *root)
 }
 
 
-
+*/

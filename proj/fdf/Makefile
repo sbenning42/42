@@ -62,7 +62,7 @@ HEADERS =	includes
 
 CC =		gcc
 
-FLAGS =		-Wall -Wextra
+FLAGS =		-Wall -Wextra -Werror
 
 all : $(LIB_FT) $(LIB_MLX) $(NAME)
 

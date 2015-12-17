@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 16:41:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/17 10:26:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_node				*dir_tree(t_ls_entry *e, int o, DIR *dir)
 
 int					must_return(t_ls_entry *e, int o)
 {
+	ft_printf("In must return\n");
 	if (e->type != T_DIR)
 		return (1);
 	else if (e->key[0] == '.' && !((o & O_HIDE) == O_HIDE))
@@ -87,6 +88,7 @@ int					must_return(t_ls_entry *e, int o)
 		return (1);
 	else if (!ft_strcmp("..", e->key) && ft_strcmp("..", e->path))
 		return (1);
+	ft_printf("No must return\n");
 	return (0);
 }
 
