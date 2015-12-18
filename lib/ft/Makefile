@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2015/11/15 16:24:56 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/18 10:13:05 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ SRC =	ft_mem/ft_memset.c\
 		ft_dar2/ft_dar2add.c\
 		ft_dar2/ft_dar2del.c\
 		ft_dar2/ft_dar2dump.c\
+		ft_err/ft_err.c\
 		ft_printf/ft_printf.c\
 		ft_printf/ft_printf_color.c\
 		ft_printf/ft_printf_diouxpcs_val.c\
