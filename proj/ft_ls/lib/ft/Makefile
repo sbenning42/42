@@ -74,7 +74,6 @@ SRC =	ft_mem/ft_memset.c\
 		ft_put/ft_putnbr_fd.c\
 		ft_put/ft_putstr.c\
 		ft_put/ft_putstr_fd.c\
-		ft_put/ft_err.c\
 		ft_buff/ft_buffnew.c\
 		ft_buff/ft_buffexp.c\
 		ft_buff/ft_buffdel.c\

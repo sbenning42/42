@@ -11,12 +11,13 @@ void				ls_argv(void *p, size_t size)
 {
 	t_ls_entry		*e;
 	void			(*print)(void *, size_t);
-	
+
+	ft_bzero((void *)env()->path, PATHSIZE_LS);	
 	e = (t_ls_entry *)p;
 	(void)size;
 	print = ls_select_print(env()->o);
 	if (e->type == T_ERROR)
-		ft_err(env()->av, e->name, e->msg, 0);
+		ft_fprintf(2, "{green}%s{eoc}: {red}%s{eoc}: %s\n", env()->av, e->name, e->msg);
 	else if (e->type == T_FILE)
 	{
 		env()->i++;

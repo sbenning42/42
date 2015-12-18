@@ -24,7 +24,8 @@ SRC =			srcs/main.c\
 				srcs/ls_avsort.c\
 				srcs/ls_sort.c\
 				srcs/ls_print.c\
-				srcs/name.c
+				srcs/name.c\
+				srcs/ft_err.c
 #				srcs/ls_avprint.c\
 				srcs/ft_ls.c\
 				srcs/ls_msg.c

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/17 19:39:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/18 14:18:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,21 @@ int					avs_modt(void *s1, void *s2);
 int					avs_rmodt(void *s1, void *s2);
 
 /*
+***			***			ls_sort.c			***
+*/
+
+int					s_lex(void *s1, void *s2);
+int					s_rlex(void *s1, void *s2);
+int					s_modt(void *s1, void *s2);
+int					s_rmodt(void *s1, void *s2);
+
+
+void	p_standard(void *p, size_t size);
+void	p_cstandard(void *p, size_t size);
+void	p_long(void *p, size_t size);
+void	p_clong(void *p, size_t size);
+
+/*
 ***			***			verbose.c			***
 */
 
@@ -85,11 +100,15 @@ void				verbose_get_opt(void);
 */
 
 int					(*ls_select_argvsort(int o))(void *, void *);
+int					(*ls_select_sort(int o))(void *, void *);
+void				(*ls_select_print(int o))(void *, size_t);
 
 /*
 ***			***			argv.c			***
 */
 
+t_ls_entry			ls_newentry(char *name, char *absname);
+void				ls_dir(void *p, size_t size);
 t_node				*argv_tree(int ac, char **av);
 
 /*
@@ -107,7 +126,7 @@ char				*ft_name(char *path);
 /*
 ***			***			env.c			***
 */
-
+int					ft_err(char *key, char *msg);
 t_env				*env(void);
 
 #endif

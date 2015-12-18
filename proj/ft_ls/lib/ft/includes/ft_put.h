@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 11:23:17 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/16 09:51:15 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/18 14:14:34 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int		ft_err(char *av, char *id, char *msg, int ret);
+//int		ft_err(char *av, char *id, char *msg, int ret);
 
 #endif
