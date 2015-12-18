@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/17 19:48:23 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/18 11:45:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_node				*dir_tree(t_ls_entry *e, int o, DIR *dir)
 
 int					must_return(t_ls_entry *e, int o)
 {
-	ft_printf("In must return\n");
 	if (e->type != T_DIR)
 		return (1);
 	else if (e->key[0] == '.' && !((o & O_HIDE) == O_HIDE))
@@ -88,34 +87,53 @@ int					must_return(t_ls_entry *e, int o)
 		return (1);
 	else if (!ft_strcmp("..", e->key) && ft_strcmp("..", e->path))
 		return (1);
-	ft_printf("No must return\n");
 	return (0);
+}
+
+static void			handle_path(char *name)
+{
+	char			*f;
+
+	if (!name)
+	{
+		f = ft_strrchr(env()->path, '/');
+		if (f)
+			*f = 0;
+	}
+	else
+	{
+		ft_strcat(env()->path, "/");
+		ft_strcat(env()->path, name);
+		if (env()->i > 0)
+		{
+			if (env()->i == 1)
+				ft_printf("%s:\n", env()->path);
+			else
+				ft_printf("\n%s:\n", env()->path);
+		}
+		env()->i++;
+	}
 }
 
 void				ls_dir(void *p, size_t size)
 {
 	t_ls_entry		*e;
-	int				o;
 	t_node			*root;
 	DIR				*dir;
 
 	e = (t_ls_entry *)p;
-	o = env()->o;
-	if (must_return(e, o))
+	if (e->type != T_DIR || !e->handle)
 		return ;
-	if ((o & O_PRIVATE_MULTI) == O_PRIVATE_MULTI)
-		ft_printf((env()->i++ ? "\n%s:\n" : "%s:\n"), e->path);
-	errno = 0;
-	if (!(dir = opendir(e->path)))
-	{
-		ft_err(ft_name(env()->av), e->key, strerror(errno), 0);
-		errno = 0;
+	handle_path(e->name);
+	dir = opendir(env()->path);
+	ft_err(env()->av, env()->path);
+	if (!dir)
 		return ;
-	}
-	if (!(root = dir_tree(e, o, dir)))
+	if (!(root = dir_tree(e, env()->o, dir)))
 		return ;
-	tree_doinf(root, ls_select_print(o));
-	ls_rec(root, o);
+	tree_doinf(root, ls_select_print(env()->o));
+	ls_rec(root, env()->o);
+	handle_path(NULL);
 	tree_del(&root, NULL);
 	(void)size;
 }
