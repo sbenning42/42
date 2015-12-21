@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:18:00 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 14:24:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/20 20:58:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ int		s_modt(void *s1, void *s2)
 
 	e1 = (t_ls_entry *)s1;
 	e2 = (t_ls_entry *)s2;
-	return (0);				// HAVE TO IMPLEMENTE TIME SORT!!!
+	if (e1->stat.st_mtimespec.tv_sec - e2->stat.st_mtimespec.tv_sec > 0)
+		return (1);
+	else if (e1->stat.st_mtimespec.tv_sec - e2->stat.st_mtimespec.tv_sec < 0)
+		return (0);				// HAVE TO IMPLEMENTE TIME SORT!!!
+	else
+		return (s_lex(s1, s2));
 }
 
 int		s_rmodt(void *s1, void *s2)
@@ -49,5 +54,10 @@ int		s_rmodt(void *s1, void *s2)
 
 	e1 = (t_ls_entry *)s1;
 	e2 = (t_ls_entry *)s2;
-	return (!avs_modt(s1, s2));
+	if (e1->stat.st_mtimespec.tv_sec - e2->stat.st_mtimespec.tv_sec > 0)
+		return (0);
+	else if (e1->stat.st_mtimespec.tv_sec - e2->stat.st_mtimespec.tv_sec < 0)
+		return (1);				// HAVE TO IMPLEMENTE TIME SORT!!!
+	else
+		return (s_rlex(s1, s2));
 }

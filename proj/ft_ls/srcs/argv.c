@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 14:39:14 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 00:18:42 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_ls_entry			ls_newentry(char *name, char *absname)
 	e.handle = 1;
 	ft_strncpy(e.name, name, NAMESIZE_LS);
 	errno = 0;
-	lstat(absname, &e.stat);
+	stat(absname, &e.stat);
 	if (errno)
 	{
 		e.type = T_ERROR;

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 14:18:49 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 04:28:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <dirent.h>
 # include <time.h>
 # include <errno.h>
+# include <pwd.h>
+# include <grp.h>
+# include <uuid/uuid.h>
 # include "libft.h"
 # include "ft_tree.h"
 
@@ -48,12 +51,18 @@
 
 # define MSG_MEM "Memory allocation failed"
 
+# define SIXMONTH 15778800
+
+# define ABS(X) ((long)X > 0 ? (long)X : (long)-X)
+
 typedef struct		s_env
 {
 	char			path[PATHSIZE_LS + 1];
 	char			*av;
 	int				o;
 	int				i;
+	int				nlinkpad;
+	int				sizepad;
 }					t_env;
 
 typedef struct		s_ls_entry
@@ -84,10 +93,26 @@ int					s_modt(void *s1, void *s2);
 int					s_rmodt(void *s1, void *s2);
 
 
-void	p_standard(void *p, size_t size);
-void	p_cstandard(void *p, size_t size);
-void	p_long(void *p, size_t size);
-void	p_clong(void *p, size_t size);
+void				p_standard(void *p, size_t size);
+void				p_cstandard(void *p, size_t size);
+void				p_long(void *p, size_t size);
+void				p_clong(void *p, size_t size);
+
+/*
+***			***			format.c			***
+*/
+
+char				fmt_filemode(t_ls_entry *e);
+int					fmt_nblink(t_ls_entry *e);
+char				*fmt_owner(t_ls_entry *e);
+char				*fmt_group(t_ls_entry *e);
+char				*fmt_owner_perm(t_ls_entry *e, char *buf);
+char				*fmt_group_perm(t_ls_entry *e, char *buf);
+char				*fmt_other_perm(t_ls_entry *e, char *buf);
+int					fmt_size(t_ls_entry *e);
+char				*fmt_month(t_ls_entry *e, char *buf);
+char				*fmt_day(t_ls_entry *e, char *buf);
+char				*fmt_yhm(t_ls_entry *e, char *buf);
 
 /*
 ***			***			verbose.c			***
@@ -128,5 +153,7 @@ char				*ft_name(char *path);
 */
 int					ft_err(char *key, char *msg);
 t_env				*env(void);
+
+int					ft_intlen(int n);
 
 #endif

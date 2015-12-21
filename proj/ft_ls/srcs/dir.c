@@ -6,13 +6,13 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 16:20:49 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 04:16:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			entry_tree(t_node **ar, struct dirent *entry)
+int	entry_tree(t_node **ar, struct dirent *entry, quad_t *blocks)
 {
 	char		absname[PATHSIZE_LS];
 	t_ls_entry	e;
@@ -29,6 +29,12 @@ int			entry_tree(t_node **ar, struct dirent *entry)
 	if (!(no = tree_newnode((void *)&e, sizeof(t_ls_entry))))
 		return (ft_err(env()->av, absname));
 	tree_add(ar, no, ls_select_sort(env()->o));
+	*blocks += e.stat.st_blocks;
+	if (e.handle || ((env()->o & O_HIDE) == O_HIDE))
+	{
+		env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
+		env()->sizepad = (env()->sizepad > ft_intlen(e.stat.st_size) ? env()->sizepad : ft_intlen(e.stat.st_size));
+	}
 	return (1);
 }
 
@@ -36,11 +42,15 @@ t_node				*dir_tree(DIR *dir)
 {
 	t_node			*root;
 	struct dirent	*entry;
+	long long int	block;
 
+	env()->nlinkpad = 0;
+	env()->sizepad = 0;
+	block = 0;
 	root = NULL;
 	while ((entry = readdir(dir)))
 	{
-		if (!entry_tree(&root, entry))
+		if (!entry_tree(&root, entry, &block))
 		{
 			tree_del(&root, NULL);
 			return (NULL);
@@ -48,6 +58,8 @@ t_node				*dir_tree(DIR *dir)
 	}
 	ft_err(env()->av, env()->path);
 	closedir(dir);
+	//if ((env()->o & O_LONG) == O_LONG)
+		ft_printf("total %lld\n", block);
 	return (root);
 }
 
