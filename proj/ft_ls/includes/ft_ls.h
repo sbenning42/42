@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 04:28:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:00:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 # include <dirent.h>
 # include <time.h>
 # include <errno.h>
@@ -27,6 +29,8 @@
 # define NAMESIZE_LS 510
 # define MSGSIZE_LS 510
 # define PATHSIZE_LS 2096
+# define ATTRSIZE_LS 512
+# define LINKSIZE_LS 512
 # define CSET_O "alRrtvG"
 # define SIZE_O 7
 
@@ -52,8 +56,6 @@
 # define MSG_MEM "Memory allocation failed"
 
 # define SIXMONTH 15778800
-
-# define ABS(X) ((long)X > 0 ? (long)X : (long)-X)
 
 typedef struct		s_env
 {
@@ -113,6 +115,8 @@ int					fmt_size(t_ls_entry *e);
 char				*fmt_month(t_ls_entry *e, char *buf);
 char				*fmt_day(t_ls_entry *e, char *buf);
 char				*fmt_yhm(t_ls_entry *e, char *buf);
+char				fmt_attr(t_ls_entry *e);
+char				*fmt_link(t_ls_entry *e, char *buf);
 
 /*
 ***			***			verbose.c			***

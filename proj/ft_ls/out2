@@ -1,501 +1,193 @@
-total 232
-drwxr-xr-x  19 sbenning  2014_paris    646 Dec 21 02:55 .
-drwxr-xr-x  21 sbenning  2014_paris    714 Dec 20 20:49 ..
--rw-r--r--   1 sbenning  2014_paris   1731 Dec 20 23:55 Makefile
--rwxr-xr-x   1 sbenning  2014_paris   8496 Dec 21 02:51 a.out
--rw-r--r--   1 sbenning  2014_paris      9 Dec 14 15:09 auteur
--rw-r--r--   1 sbenning  2014_paris      0 Dec 21 02:54 fic1
--rw-r--r--   1 sbenning  2014_paris      0 Dec 21 02:54 fic2
--rwxr-xr-x   1 sbenning  2014_paris  47900 Dec 21 02:55 ft_ls
-drwxr-xr-x   3 sbenning  2014_paris    102 Dec 18 17:54 ft_ls.dSYM
-drwxr-xr-x  17 sbenning  2014_paris    578 Dec 21 02:00 includes
-drwxr-xr-x   3 sbenning  2014_paris    102 Dec 14 11:53 lib
--rw-r--r--   1 sbenning  2014_paris  18410 Dec 20 20:54 lsman
--rw-r--r--   1 sbenning  2014_paris    296 Dec 21 02:50 main.c
--rw-r--r--   1 sbenning  2014_paris  18868 Dec 21 02:55 out
--rw-r--r--   1 sbenning  2014_paris      0 Dec 21 02:55 out2
-drwxr-xr-x  32 sbenning  2014_paris   1088 Dec 21 02:55 srcs
-drwxr-xr-x   6 sbenning  2014_paris    204 Dec 18 17:54 test
--rw-r--r--   1 sbenning  2014_paris    222 Dec 18 17:54 test.c
-drwxr-xr-x   6 sbenning  2014_paris    204 Dec 20 20:58 test2
-
-./ft_ls.dSYM:
-total 0
-drwxr-xr-x   3 sbenning  2014_paris  102 Dec 18 17:54 .
-drwxr-xr-x  19 sbenning  2014_paris  646 Dec 21 02:55 ..
-drwxr-xr-x   4 sbenning  2014_paris  136 Dec 18 17:54 Contents
-
-./ft_ls.dSYM/Contents:
-total 8
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
-drwxr-xr-x  3 sbenning  2014_paris  102 Dec 18 17:54 ..
--rw-r--r--  1 sbenning  2014_paris  634 Dec 18 17:54 Info.plist
-drwxr-xr-x  3 sbenning  2014_paris  102 Dec 18 17:54 Resources
-
-./ft_ls.dSYM/Contents/Resources:
-total 0
-drwxr-xr-x  3 sbenning  2014_paris  102 Dec 18 17:54 .
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 ..
-drwxr-xr-x  3 sbenning  2014_paris  102 Dec 18 17:54 DWARF
-
-./ft_ls.dSYM/Contents/Resources/DWARF:
-total 24
-drwxr-xr-x  3 sbenning  2014_paris   102 Dec 18 17:54 .
-drwxr-xr-x  3 sbenning  2014_paris   102 Dec 18 17:54 ..
--rw-r--r--  1 sbenning  2014_paris  8350 Dec 18 17:54 ft_ls
-
-./includes:
-total 128
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:00 .
-drwxr-xr-x  19 sbenning  2014_paris   646 Dec 21 02:55 ..
--rwxr-xr-x   1 sbenning  2014_paris  1344 Dec  5 00:25 ft_ar.h
--rwxr-xr-x   1 sbenning  2014_paris  1191 Dec  5 00:25 ft_buff.h
--rwxr-xr-x   1 sbenning  2014_paris   232 Dec  5 00:25 ft_char.h
--rwxr-xr-x   1 sbenning  2014_paris  1365 Dec  5 00:25 ft_dar.h
--rwxr-xr-x   1 sbenning  2014_paris  1303 Dec  5 00:25 ft_dar2.h
--rwxr-xr-x   1 sbenning  2014_paris  1143 Dec  5 00:25 ft_header.h
--rw-r--r--   1 sbenning  2014_paris  3613 Dec 21 01:11 ft_ls.h
--rwxr-xr-x   1 sbenning  2014_paris  1490 Dec  5 00:25 ft_lst.h
--rwxr-xr-x   1 sbenning  2014_paris   529 Dec  5 00:25 ft_mem.h
--rwxr-xr-x   1 sbenning  2014_paris  4921 Dec  5 00:25 ft_printf.h
--rwxr-xr-x   1 sbenning  2014_paris  1405 Dec 18 17:54 ft_put.h
--rwxr-xr-x   1 sbenning  2014_paris  2379 Dec  5 00:25 ft_str.h
--rwxr-xr-x   1 sbenning  2014_paris  2424 Dec  5 00:25 ft_string.h
--rw-r--r--   1 sbenning  2014_paris  1368 Dec 18 17:54 ft_tree.h
--rwxr-xr-x   1 sbenning  2014_paris  1131 Dec  5 00:25 libft.h
-
-./lib:
-total 0
-drwxr-xr-x   3 sbenning  2014_paris  102 Dec 14 11:53 .
-drwxr-xr-x  19 sbenning  2014_paris  646 Dec 21 02:55 ..
-drwxr-xr-x  17 sbenning  2014_paris  578 Dec 21 02:08 ft
-
-./lib/ft:
-total 256
-drwxr-xr-x  17 sbenning  2014_paris     578 Dec 21 02:08 .
-drwxr-xr-x   3 sbenning  2014_paris     102 Dec 14 11:53 ..
--rwxr-xr-x   1 sbenning  2014_paris    3918 Dec 18 14:20 Makefile
-drwxr-xr-x   8 sbenning  2014_paris     272 Dec 21 02:08 ft_buff
-drwxr-xr-x  16 sbenning  2014_paris     544 Dec 21 02:08 ft_char
-drwxr-xr-x  12 sbenning  2014_paris     408 Dec 21 02:08 ft_dar
-drwxr-xr-x  10 sbenning  2014_paris     340 Dec 21 02:08 ft_dar2
-drwxr-xr-x  18 sbenning  2014_paris     612 Dec 21 02:08 ft_dlst
-drwxr-xr-x  16 sbenning  2014_paris     544 Dec 21 02:08 ft_lst
-drwxr-xr-x  17 sbenning  2014_paris     578 Dec 14 11:53 ft_math
-drwxr-xr-x  22 sbenning  2014_paris     748 Dec 21 02:08 ft_mem
-drwxr-xr-x  42 sbenning  2014_paris    1428 Dec 21 02:08 ft_printf
-drwxr-xr-x  27 sbenning  2014_paris     918 Dec 21 02:08 ft_put
-drwxr-xr-x  64 sbenning  2014_paris    2176 Dec 21 02:08 ft_str
-drwxr-xr-x   6 sbenning  2014_paris     204 Dec 21 02:08 ft_wchar
-drwxr-xr-x  16 sbenning  2014_paris     544 Dec 18 17:54 includes
--rw-r--r--   1 sbenning  2014_paris  124600 Dec 21 02:08 libft.a
-
-./lib/ft/ft_buff:
-total 48
-drwxr-xr-x   8 sbenning  2014_paris   272 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  1066 Dec 14 11:53 ft_buffdel.c
--rw-r--r--   1 sbenning  2014_paris   752 Dec 21 02:08 ft_buffdel.o
--rwxr-xr-x   1 sbenning  2014_paris  1254 Dec 14 11:53 ft_buffexp.c
--rw-r--r--   1 sbenning  2014_paris  1088 Dec 21 02:08 ft_buffexp.o
--rwxr-xr-x   1 sbenning  2014_paris  1210 Dec 14 11:53 ft_buffnew.c
--rw-r--r--   1 sbenning  2014_paris   868 Dec 21 02:08 ft_buffnew.o
-
-./lib/ft/ft_char:
-total 112
-drwxr-xr-x  16 sbenning  2014_paris   544 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris   983 Dec 14 11:53 ft_isalnum.c
--rw-r--r--   1 sbenning  2014_paris   744 Dec 21 02:08 ft_isalnum.o
--rwxr-xr-x   1 sbenning  2014_paris  1004 Dec 14 11:53 ft_isalpha.c
--rw-r--r--   1 sbenning  2014_paris   688 Dec 21 02:08 ft_isalpha.o
--rwxr-xr-x   1 sbenning  2014_paris   971 Dec 14 11:53 ft_isascii.c
--rw-r--r--   1 sbenning  2014_paris   656 Dec 21 02:08 ft_isascii.o
--rwxr-xr-x   1 sbenning  2014_paris   973 Dec 14 11:53 ft_isdigit.c
--rw-r--r--   1 sbenning  2014_paris   656 Dec 21 02:08 ft_isdigit.o
--rwxr-xr-x   1 sbenning  2014_paris   972 Dec 14 11:53 ft_isprint.c
--rw-r--r--   1 sbenning  2014_paris   656 Dec 21 02:08 ft_isprint.o
--rwxr-xr-x   1 sbenning  2014_paris  1001 Dec 14 11:53 ft_tolower.c
--rw-r--r--   1 sbenning  2014_paris   656 Dec 21 02:08 ft_tolower.o
--rwxr-xr-x   1 sbenning  2014_paris  1001 Dec 14 11:53 ft_toupper.c
--rw-r--r--   1 sbenning  2014_paris   656 Dec 21 02:08 ft_toupper.o
-
-./lib/ft/ft_dar:
-total 80
-drwxr-xr-x  12 sbenning  2014_paris   408 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  2516 Dec 14 11:53 ft_daradd.c
--rw-r--r--   1 sbenning  2014_paris  2384 Dec 21 02:08 ft_daradd.o
--rwxr-xr-x   1 sbenning  2014_paris  1018 Dec 14 11:53 ft_dardel.c
--rw-r--r--   1 sbenning  2014_paris   732 Dec 21 02:08 ft_dardel.o
--rwxr-xr-x   1 sbenning  2014_paris  1217 Dec 14 11:53 ft_dardump.c
--rw-r--r--   1 sbenning  2014_paris  1060 Dec 21 02:08 ft_dardump.o
--rwxr-xr-x   1 sbenning  2014_paris  1150 Dec 14 11:53 ft_dardumpi.c
--rw-r--r--   1 sbenning  2014_paris   960 Dec 21 02:08 ft_dardumpi.o
--rwxr-xr-x   1 sbenning  2014_paris   980 Dec 14 11:53 ft_darnew.c
--rw-r--r--   1 sbenning  2014_paris   672 Dec 21 02:08 ft_darnew.o
-
-./lib/ft/ft_dar2:
-total 64
-drwxr-xr-x  10 sbenning  2014_paris   340 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  1662 Dec 14 11:53 ft_dar2add.c
--rw-r--r--   1 sbenning  2014_paris  1444 Dec 21 02:08 ft_dar2add.o
--rwxr-xr-x   1 sbenning  2014_paris  1126 Dec 14 11:53 ft_dar2del.c
--rw-r--r--   1 sbenning  2014_paris   840 Dec 21 02:08 ft_dar2del.o
--rwxr-xr-x   1 sbenning  2014_paris  1051 Dec 14 11:53 ft_dar2dump.c
--rw-r--r--   1 sbenning  2014_paris   704 Dec 21 02:08 ft_dar2dump.o
--rwxr-xr-x   1 sbenning  2014_paris  1204 Dec 14 11:53 ft_dar2new.c
--rw-r--r--   1 sbenning  2014_paris   828 Dec 21 02:08 ft_dar2new.o
-
-./lib/ft/ft_dlst:
-total 128
-drwxr-xr-x  18 sbenning  2014_paris   612 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rw-r--r--   1 sbenning  2014_paris  1185 Dec 14 11:53 ft_dlstaddin.c
--rw-r--r--   1 sbenning  2014_paris   816 Dec 21 02:08 ft_dlstaddin.o
--rw-r--r--   1 sbenning  2014_paris  1173 Dec 14 11:53 ft_dlstaddip.c
--rw-r--r--   1 sbenning  2014_paris   800 Dec 21 02:08 ft_dlstaddip.o
--rw-r--r--   1 sbenning  2014_paris  1100 Dec 14 11:53 ft_dlstaddn.c
--rw-r--r--   1 sbenning  2014_paris   720 Dec 21 02:08 ft_dlstaddn.o
--rw-r--r--   1 sbenning  2014_paris  1086 Dec 14 11:53 ft_dlstaddp.c
--rw-r--r--   1 sbenning  2014_paris   696 Dec 21 02:08 ft_dlstaddp.o
--rw-r--r--   1 sbenning  2014_paris  1077 Dec 14 11:53 ft_dlstdel.c
--rw-r--r--   1 sbenning  2014_paris   724 Dec 21 02:08 ft_dlstdel.o
--rw-r--r--   1 sbenning  2014_paris  1092 Dec 14 11:53 ft_dlstdelone.c
--rw-r--r--   1 sbenning  2014_paris   740 Dec 21 02:08 ft_dlstdelone.o
--rw-r--r--   1 sbenning  2014_paris  1274 Dec 14 11:53 ft_dlstmap.c
--rw-r--r--   1 sbenning  2014_paris   900 Dec 21 02:08 ft_dlstmap.o
--rw-r--r--   1 sbenning  2014_paris  1380 Dec 14 11:53 ft_dlstnew.c
--rw-r--r--   1 sbenning  2014_paris   944 Dec 21 02:08 ft_dlstnew.o
-
-./lib/ft/ft_lst:
-total 112
-drwxr-xr-x  16 sbenning  2014_paris   544 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  1021 Dec 14 11:53 ft_lstadd.c
--rw-r--r--   1 sbenning  2014_paris   660 Dec 21 02:08 ft_lstadd.o
--rwxr-xr-x   1 sbenning  2014_paris  1141 Dec 14 11:53 ft_lstadd_back.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_lstadd_back.o
--rwxr-xr-x   1 sbenning  2014_paris  1101 Dec 14 11:53 ft_lstdel.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_lstdel.o
--rwxr-xr-x   1 sbenning  2014_paris  1098 Dec 14 11:53 ft_lstdelone.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_lstdelone.o
--rwxr-xr-x   1 sbenning  2014_paris  1020 Dec 14 11:53 ft_lstiter.c
--rw-r--r--   1 sbenning  2014_paris   664 Dec 21 02:08 ft_lstiter.o
--rwxr-xr-x   1 sbenning  2014_paris  1145 Dec 14 11:53 ft_lstmap.c
--rw-r--r--   1 sbenning  2014_paris   756 Dec 21 02:08 ft_lstmap.o
--rwxr-xr-x   1 sbenning  2014_paris  1339 Dec 14 11:53 ft_lstnew.c
--rw-r--r--   1 sbenning  2014_paris   888 Dec 21 02:08 ft_lstnew.o
-
-./lib/ft/ft_math:
-total 136
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 14 11:53 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  7520 Dec 14 11:53 arctan
--rw-r--r--   1 sbenning  2014_paris  1423 Dec 14 11:53 ft_mathabs.c
--rw-r--r--   1 sbenning  2014_paris  3462 Dec 14 11:53 ft_mathall.c
--rw-r--r--   1 sbenning  2014_paris   986 Dec 14 11:53 ft_matharccos.c
--rw-r--r--   1 sbenning  2014_paris   986 Dec 14 11:53 ft_matharcsin.c
--rw-r--r--   1 sbenning  2014_paris  1671 Dec 14 11:53 ft_matharctan.c
--rw-r--r--   1 sbenning  2014_paris   977 Dec 14 11:53 ft_mathcos.c
--rw-r--r--   1 sbenning  2014_paris  1829 Dec 14 11:53 ft_mathpow.c
--rw-r--r--   1 sbenning  2014_paris  1710 Dec 14 11:53 ft_mathrsqrt.c
--rw-r--r--   1 sbenning  2014_paris  1720 Dec 14 11:53 ft_mathrsqrt_nosmart.c
--rw-r--r--   1 sbenning  2014_paris  1809 Dec 14 11:53 ft_mathrsqrt_nosmart2.c
--rw-r--r--   1 sbenning  2014_paris   977 Dec 14 11:53 ft_mathsin.c
--rw-r--r--   1 sbenning  2014_paris  1933 Dec 14 11:53 ft_mathtan.c
--rw-r--r--   1 sbenning  2014_paris   248 Dec 14 11:53 out
--rwxr-xr-x   1 sbenning  2014_paris  7984 Dec 14 11:53 tan
-
-./lib/ft/ft_mem:
-total 160
-drwxr-xr-x  22 sbenning  2014_paris   748 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris   971 Dec 14 11:53 ft_bzero.c
--rw-r--r--   1 sbenning  2014_paris   680 Dec 21 02:08 ft_bzero.o
--rwxr-xr-x   1 sbenning  2014_paris  1044 Dec 14 11:53 ft_memalloc.c
--rw-r--r--   1 sbenning  2014_paris   752 Dec 21 02:08 ft_memalloc.o
--rwxr-xr-x   1 sbenning  2014_paris  1011 Dec 14 11:53 ft_membzdel.c
--rw-r--r--   1 sbenning  2014_paris   740 Dec 21 02:08 ft_membzdel.o
--rwxr-xr-x   1 sbenning  2014_paris  1109 Dec 14 11:53 ft_memccpy.c
--rw-r--r--   1 sbenning  2014_paris   752 Dec 21 02:08 ft_memccpy.o
--rwxr-xr-x   1 sbenning  2014_paris  1086 Dec 14 11:53 ft_memchr.c
--rw-r--r--   1 sbenning  2014_paris   756 Dec 21 02:08 ft_memchr.o
--rwxr-xr-x   1 sbenning  2014_paris  1138 Dec 14 11:53 ft_memcmp.c
--rw-r--r--   1 sbenning  2014_paris   812 Dec 21 02:08 ft_memcmp.o
--rwxr-xr-x   1 sbenning  2014_paris  1082 Dec 14 11:53 ft_memcpy.c
--rw-r--r--   1 sbenning  2014_paris   708 Dec 21 02:08 ft_memcpy.o
--rwxr-xr-x   1 sbenning  2014_paris   989 Dec 14 11:53 ft_memdel.c
--rw-r--r--   1 sbenning  2014_paris   692 Dec 21 02:08 ft_memdel.o
--rwxr-xr-x   1 sbenning  2014_paris  1171 Dec 14 11:53 ft_memmove.c
--rw-r--r--   1 sbenning  2014_paris   856 Dec 21 02:08 ft_memmove.o
--rwxr-xr-x   1 sbenning  2014_paris  1062 Dec 14 11:53 ft_memset.c
--rw-r--r--   1 sbenning  2014_paris   716 Dec 21 02:08 ft_memset.o
-
-./lib/ft/ft_printf:
-total 320
-drwxr-xr-x  42 sbenning  2014_paris  1428 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  2158 Dec 14 11:53 ft_printf.c
--rw-r--r--   1 sbenning  2014_paris  2252 Dec 21 02:08 ft_printf.o
--rw-r--r--   1 sbenning  2014_paris  2147 Dec 14 11:53 ft_printf_color.c
--rw-r--r--   1 sbenning  2014_paris  2548 Dec 21 02:08 ft_printf_color.o
--rw-r--r--   1 sbenning  2014_paris  2309 Dec 14 11:53 ft_printf_diouxpcs_val.c
--rw-r--r--   1 sbenning  2014_paris  2360 Dec 21 02:08 ft_printf_diouxpcs_val.o
--rwxr-xr-x   1 sbenning  2014_paris  1602 Dec 14 11:53 ft_printf_family.c
--rw-r--r--   1 sbenning  2014_paris  2936 Dec 21 02:08 ft_printf_family.o
--rw-r--r--   1 sbenning  2014_paris  1726 Dec 14 11:53 ft_printf_finaly.c
--rw-r--r--   1 sbenning  2014_paris  1536 Dec 21 02:08 ft_printf_finaly.o
--rw-r--r--   1 sbenning  2014_paris  2033 Dec 14 11:53 ft_printf_flush.c
--rw-r--r--   1 sbenning  2014_paris  1640 Dec 21 02:08 ft_printf_flush.o
--rw-r--r--   1 sbenning  2014_paris  1987 Dec 14 11:53 ft_printf_getarg.c
--rw-r--r--   1 sbenning  2014_paris  2604 Dec 21 02:08 ft_printf_getarg.o
--rw-r--r--   1 sbenning  2014_paris  1232 Dec 14 11:53 ft_printf_getindex.c
--rw-r--r--   1 sbenning  2014_paris  1024 Dec 21 02:08 ft_printf_getindex.o
--rw-r--r--   1 sbenning  2014_paris  3138 Dec 14 11:53 ft_printf_ini.c
--rw-r--r--   1 sbenning  2014_paris  3832 Dec 21 02:08 ft_printf_ini.o
--rw-r--r--   1 sbenning  2014_paris  1081 Dec 14 11:53 ft_printf_save.c
--rw-r--r--   1 sbenning  2014_paris   800 Dec 21 02:08 ft_printf_save.o
--rw-r--r--   1 sbenning  2014_paris  1245 Dec 14 11:53 ft_printf_set.c
--rw-r--r--   1 sbenning  2014_paris   928 Dec 21 02:08 ft_printf_set.o
--rw-r--r--   1 sbenning  2014_paris  1285 Dec 14 11:53 ft_printf_set_p1.c
--rw-r--r--   1 sbenning  2014_paris  1196 Dec 21 02:08 ft_printf_set_p1.o
--rw-r--r--   1 sbenning  2014_paris  1373 Dec 14 11:53 ft_printf_set_p2.c
--rw-r--r--   1 sbenning  2014_paris  1160 Dec 21 02:08 ft_printf_set_p2.o
--rw-r--r--   1 sbenning  2014_paris  1724 Dec 14 11:53 ft_printf_set_p3.c
--rw-r--r--   1 sbenning  2014_paris  1736 Dec 21 02:08 ft_printf_set_p3.o
--rw-r--r--   1 sbenning  2014_paris  2571 Dec 14 11:53 ft_printf_spec_char.c
--rw-r--r--   1 sbenning  2014_paris  3448 Dec 21 02:08 ft_printf_spec_char.o
--rw-r--r--   1 sbenning  2014_paris  1911 Dec 14 11:53 ft_printf_spec_number_p1.c
--rw-r--r--   1 sbenning  2014_paris  2008 Dec 21 02:08 ft_printf_spec_number_p1.o
--rw-r--r--   1 sbenning  2014_paris  2213 Dec 14 11:53 ft_printf_spec_number_p2.c
--rw-r--r--   1 sbenning  2014_paris  2560 Dec 21 02:08 ft_printf_spec_number_p2.o
--rw-r--r--   1 sbenning  2014_paris  1174 Dec 14 11:53 ft_printf_static.c
--rw-r--r--   1 sbenning  2014_paris  1056 Dec 21 02:08 ft_printf_static.o
--rwxr-xr-x   1 sbenning  2014_paris  1881 Dec 14 11:53 ft_printf_tools.c
--rw-r--r--   1 sbenning  2014_paris  1500 Dec 21 02:08 ft_printf_tools.o
--rw-r--r--   1 sbenning  2014_paris  1445 Dec 14 11:53 ft_printf_vfamily.c
--rw-r--r--   1 sbenning  2014_paris  1264 Dec 21 02:08 ft_printf_vfamily.o
-
-./lib/ft/ft_put:
-total 200
-drwxr-xr-x  27 sbenning  2014_paris   918 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rw-r--r--   1 sbenning  2014_paris  1054 Dec 18 17:54 ft_err.c
--rwxr-xr-x   1 sbenning  2014_paris   963 Dec 14 11:53 ft_putchar.c
--rw-r--r--   1 sbenning  2014_paris   676 Dec 21 02:08 ft_putchar.o
--rwxr-xr-x   1 sbenning  2014_paris   968 Dec 14 11:53 ft_putchar_err.c
--rw-r--r--   1 sbenning  2014_paris   680 Dec 21 02:08 ft_putchar_err.o
--rwxr-xr-x   1 sbenning  2014_paris   971 Dec 14 11:53 ft_putchar_fd.c
--rw-r--r--   1 sbenning  2014_paris   688 Dec 21 02:08 ft_putchar_fd.o
--rwxr-xr-x   1 sbenning  2014_paris   970 Dec 14 11:53 ft_putendl.c
--rw-r--r--   1 sbenning  2014_paris   668 Dec 21 02:08 ft_putendl.o
--rwxr-xr-x   1 sbenning  2014_paris   979 Dec 14 11:53 ft_putendl_err.c
--rw-r--r--   1 sbenning  2014_paris   672 Dec 21 02:08 ft_putendl_err.o
--rwxr-xr-x   1 sbenning  2014_paris  1090 Dec 14 11:53 ft_putendl_fd.c
--rw-r--r--   1 sbenning  2014_paris   888 Dec 21 02:08 ft_putendl_fd.o
--rwxr-xr-x   1 sbenning  2014_paris   960 Dec 14 11:53 ft_putnbr.c
--rw-r--r--   1 sbenning  2014_paris   668 Dec 21 02:08 ft_putnbr.o
--rwxr-xr-x   1 sbenning  2014_paris   969 Dec 14 11:53 ft_putnbr_err.c
--rw-r--r--   1 sbenning  2014_paris   672 Dec 21 02:08 ft_putnbr_err.o
--rwxr-xr-x   1 sbenning  2014_paris  1177 Dec 14 11:53 ft_putnbr_fd.c
--rw-r--r--   1 sbenning  2014_paris   888 Dec 21 02:08 ft_putnbr_fd.o
--rwxr-xr-x   1 sbenning  2014_paris   968 Dec 14 11:53 ft_putstr.c
--rw-r--r--   1 sbenning  2014_paris   668 Dec 21 02:08 ft_putstr.o
--rwxr-xr-x   1 sbenning  2014_paris   977 Dec 14 11:53 ft_putstr_err.c
--rw-r--r--   1 sbenning  2014_paris   672 Dec 21 02:08 ft_putstr_err.o
--rwxr-xr-x   1 sbenning  2014_paris   996 Dec 14 11:53 ft_putstr_fd.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_putstr_fd.o
-
-./lib/ft/ft_str:
-total 496
-drwxr-xr-x  64 sbenning  2014_paris  2176 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  1393 Dec 14 11:53 ft_atoi.c
--rw-r--r--   1 sbenning  2014_paris  1168 Dec 21 02:08 ft_atoi.o
--rwxr-xr-x   1 sbenning  2014_paris  1873 Dec 14 11:53 ft_itoa.c
--rw-r--r--   1 sbenning  2014_paris  1588 Dec 21 02:08 ft_itoa.o
--rwxr-xr-x   1 sbenning  2014_paris  1042 Dec 14 11:53 ft_strcat.c
--rw-r--r--   1 sbenning  2014_paris   740 Dec 21 02:08 ft_strcat.o
--rwxr-xr-x   1 sbenning  2014_paris  1016 Dec 14 11:53 ft_strchr.c
--rw-r--r--   1 sbenning  2014_paris   740 Dec 21 02:08 ft_strchr.o
--rwxr-xr-x   1 sbenning  2014_paris   979 Dec 14 11:53 ft_strclr.c
--rw-r--r--   1 sbenning  2014_paris   732 Dec 21 02:08 ft_strclr.o
--rwxr-xr-x   1 sbenning  2014_paris  1028 Dec 14 11:53 ft_strcmp.c
--rw-r--r--   1 sbenning  2014_paris   740 Dec 21 02:08 ft_strcmp.o
--rwxr-xr-x   1 sbenning  2014_paris  1093 Dec 14 11:53 ft_strcpy.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_strcpy.o
--rwxr-xr-x   1 sbenning  2014_paris   969 Dec 18 17:54 ft_strdel.c
--rw-r--r--   1 sbenning  2014_paris   664 Dec 21 02:08 ft_strdel.o
--rwxr-xr-x   1 sbenning  2014_paris  1075 Dec 14 11:53 ft_strdup.c
--rw-r--r--   1 sbenning  2014_paris   796 Dec 21 02:08 ft_strdup.o
--rwxr-xr-x   1 sbenning  2014_paris  1025 Dec 14 11:53 ft_strequ.c
--rw-r--r--   1 sbenning  2014_paris   736 Dec 21 02:08 ft_strequ.o
--rwxr-xr-x   1 sbenning  2014_paris  1319 Dec 14 11:53 ft_strexp.c
--rw-r--r--   1 sbenning  2014_paris  1052 Dec 21 02:08 ft_strexp.o
--rwxr-xr-x   1 sbenning  2014_paris  1046 Dec 14 11:53 ft_striter.c
--rw-r--r--   1 sbenning  2014_paris   720 Dec 21 02:08 ft_striter.o
--rwxr-xr-x   1 sbenning  2014_paris  1064 Dec 14 11:53 ft_striteri.c
--rw-r--r--   1 sbenning  2014_paris   720 Dec 21 02:08 ft_striteri.o
--rwxr-xr-x   1 sbenning  2014_paris  1360 Dec 14 11:53 ft_strjoin.c
--rw-r--r--   1 sbenning  2014_paris  1112 Dec 21 02:08 ft_strjoin.o
--rwxr-xr-x   1 sbenning  2014_paris  1278 Dec 14 11:53 ft_strlcat.c
--rw-r--r--   1 sbenning  2014_paris  1000 Dec 21 02:08 ft_strlcat.o
--rwxr-xr-x   1 sbenning  2014_paris  1004 Dec 14 11:53 ft_strlen.c
--rw-r--r--   1 sbenning  2014_paris   668 Dec 21 02:08 ft_strlen.o
--rwxr-xr-x   1 sbenning  2014_paris  1045 Dec 14 11:53 ft_strlower.c
--rw-r--r--   1 sbenning  2014_paris   724 Dec 21 02:08 ft_strlower.o
--rwxr-xr-x   1 sbenning  2014_paris  1213 Dec 14 11:53 ft_strmap.c
--rw-r--r--   1 sbenning  2014_paris   888 Dec 21 02:08 ft_strmap.o
--rwxr-xr-x   1 sbenning  2014_paris  1233 Dec 14 11:53 ft_strmapi.c
--rw-r--r--   1 sbenning  2014_paris   896 Dec 21 02:08 ft_strmapi.o
--rwxr-xr-x   1 sbenning  2014_paris  1118 Dec 14 11:53 ft_strncat.c
--rw-r--r--   1 sbenning  2014_paris   832 Dec 21 02:08 ft_strncat.o
--rwxr-xr-x   1 sbenning  2014_paris  1161 Dec 14 11:53 ft_strncmp.c
--rw-r--r--   1 sbenning  2014_paris   816 Dec 21 02:08 ft_strncmp.o
--rwxr-xr-x   1 sbenning  2014_paris  1096 Dec 14 11:53 ft_strncpy.c
--rw-r--r--   1 sbenning  2014_paris   808 Dec 21 02:08 ft_strncpy.o
--rwxr-xr-x   1 sbenning  2014_paris  1040 Dec 14 11:53 ft_strnequ.c
--rw-r--r--   1 sbenning  2014_paris   748 Dec 21 02:08 ft_strnequ.o
--rwxr-xr-x   1 sbenning  2014_paris  1005 Dec 14 11:53 ft_strnew.c
--rw-r--r--   1 sbenning  2014_paris   676 Dec 21 02:08 ft_strnew.o
--rwxr-xr-x   1 sbenning  2014_paris  1185 Dec 14 11:53 ft_strnstr.c
--rw-r--r--   1 sbenning  2014_paris   900 Dec 21 02:08 ft_strnstr.o
--rwxr-xr-x   1 sbenning  2014_paris  1081 Dec 14 11:53 ft_strrchr.c
--rw-r--r--   1 sbenning  2014_paris   768 Dec 21 02:08 ft_strrchr.o
--rwxr-xr-x   1 sbenning  2014_paris  1836 Dec 14 11:53 ft_strsplit.c
--rw-r--r--   1 sbenning  2014_paris  1636 Dec 21 02:08 ft_strsplit.o
--rwxr-xr-x   1 sbenning  2014_paris  1156 Dec 14 11:53 ft_strstr.c
--rw-r--r--   1 sbenning  2014_paris   844 Dec 21 02:08 ft_strstr.o
--rwxr-xr-x   1 sbenning  2014_paris  1200 Dec 14 11:53 ft_strsub.c
--rw-r--r--   1 sbenning  2014_paris   828 Dec 21 02:08 ft_strsub.o
--rwxr-xr-x   1 sbenning  2014_paris  1269 Dec 14 11:53 ft_strtrim.c
--rw-r--r--   1 sbenning  2014_paris  1148 Dec 21 02:08 ft_strtrim.o
--rwxr-xr-x   1 sbenning  2014_paris  1045 Dec 14 11:53 ft_strupper.c
--rw-r--r--   1 sbenning  2014_paris   724 Dec 21 02:08 ft_strupper.o
-
-./lib/ft/ft_wchar:
-total 32
-drwxr-xr-x   6 sbenning  2014_paris   204 Dec 21 02:08 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rw-r--r--   1 sbenning  2014_paris  1011 Dec 14 11:53 ft_wclen.c
--rw-r--r--   1 sbenning  2014_paris   660 Dec 21 02:08 ft_wclen.o
--rw-r--r--   1 sbenning  2014_paris  2093 Dec 14 11:53 ft_wctoa.c
--rw-r--r--   1 sbenning  2014_paris  1600 Dec 21 02:08 ft_wctoa.o
-
-./lib/ft/includes:
-total 120
-drwxr-xr-x  16 sbenning  2014_paris   544 Dec 18 17:54 .
-drwxr-xr-x  17 sbenning  2014_paris   578 Dec 21 02:08 ..
--rwxr-xr-x   1 sbenning  2014_paris  1192 Dec 14 11:53 ft_buff.h
--rwxr-xr-x   1 sbenning  2014_paris  1124 Dec 14 11:53 ft_char.h
--rwxr-xr-x   1 sbenning  2014_paris  1382 Dec 14 11:53 ft_dar.h
--rwxr-xr-x   1 sbenning  2014_paris  1357 Dec 14 11:53 ft_dar2.h
--rw-r--r--   1 sbenning  2014_paris  1601 Dec 14 11:53 ft_dlst.h
--rw-r--r--   1 sbenning  2014_paris  1206 Dec 14 11:53 ft_header.h
--rwxr-xr-x   1 sbenning  2014_paris  1501 Dec 14 11:53 ft_lst.h
--rw-r--r--   1 sbenning  2014_paris  2579 Dec 14 11:53 ft_math.h
--rwxr-xr-x   1 sbenning  2014_paris  1422 Dec 14 11:53 ft_mem.h
--rwxr-xr-x   1 sbenning  2014_paris  6403 Dec 14 11:53 ft_printf.h
--rwxr-xr-x   1 sbenning  2014_paris  1460 Dec 18 17:54 ft_put.h
--rwxr-xr-x   1 sbenning  2014_paris  2384 Dec 14 11:53 ft_str.h
--rw-r--r--   1 sbenning  2014_paris  1105 Dec 14 11:53 ft_wchar.h
--rwxr-xr-x   1 sbenning  2014_paris  1176 Dec 14 11:53 libft.h
-
-./srcs:
-total 240
-drwxr-xr-x  32 sbenning  2014_paris  1088 Dec 21 02:55 .
-drwxr-xr-x  19 sbenning  2014_paris   646 Dec 21 02:55 ..
--rw-r--r--   1 sbenning  2014_paris  2151 Dec 21 00:18 argv.c
--rw-r--r--   1 sbenning  2014_paris  2960 Dec 21 02:08 argv.o
--rw-r--r--   1 sbenning  2014_paris  3143 Dec 20 22:10 dir.c
--rw-r--r--   1 sbenning  2014_paris  3796 Dec 21 02:08 dir.o
--rw-r--r--   1 sbenning  2014_paris  3501 Dec 21 02:32 format.c
--rw-r--r--   1 sbenning  2014_paris  3080 Dec 21 02:55 format.o
--rw-r--r--   1 sbenning  2014_paris  1108 Dec 18 17:54 ft_err.c
--rw-r--r--   1 sbenning  2014_paris   984 Dec 21 02:08 ft_err.o
--rw-r--r--   1 sbenning  2014_paris  2223 Dec 15 17:06 ft_ls.c
--rw-r--r--   1 sbenning  2014_paris  1397 Dec 18 17:54 get_opt.c
--rw-r--r--   1 sbenning  2014_paris  1108 Dec 21 02:08 get_opt.o
--rw-r--r--   1 sbenning  2014_paris  1141 Dec 15 17:03 ls_avprint.c
--rw-r--r--   1 sbenning  2014_paris  2543 Dec 20 20:58 ls_avsort.c
--rw-r--r--   1 sbenning  2014_paris  2044 Dec 21 02:08 ls_avsort.o
--rw-r--r--   1 sbenning  2014_paris  2134 Dec 15 17:06 ls_dir.c
--rw-r--r--   1 sbenning  2014_paris  1222 Dec 18 17:54 ls_msg.c
--rw-r--r--   1 sbenning  2014_paris  2259 Dec 21 02:26 ls_print.c
--rw-r--r--   1 sbenning  2014_paris  2256 Dec 21 02:26 ls_print.o
--rw-r--r--   1 sbenning  2014_paris  1972 Dec 20 20:58 ls_sort.c
--rw-r--r--   1 sbenning  2014_paris  1468 Dec 21 02:08 ls_sort.o
--rwxr-xr-x   1 sbenning  2014_paris  1115 Dec 18 17:54 main.c
--rw-r--r--   1 sbenning  2014_paris  2468 Dec 21 02:08 main.o
--rw-r--r--   1 sbenning  2014_paris  1018 Dec 14 16:04 name.c
--rw-r--r--   1 sbenning  2014_paris   712 Dec 21 02:08 name.o
--rw-r--r--   1 sbenning  2014_paris  1752 Dec 18 17:54 select.c
--rw-r--r--   1 sbenning  2014_paris  1656 Dec 21 02:08 select.o
--rw-r--r--   1 sbenning  2014_paris  2282 Dec 18 17:54 tree.c
--rw-r--r--   1 sbenning  2014_paris  2116 Dec 21 02:08 tree.o
--rw-r--r--   1 sbenning  2014_paris  3151 Dec 18 17:54 verbose.c
--rw-r--r--   1 sbenning  2014_paris  1524 Dec 21 02:08 verbose.o
-
-./test:
+test:
 total 16
-drwxr-xr-x   6 sbenning  2014_paris  204 Dec 18 17:54 .
-drwxr-xr-x  19 sbenning  2014_paris  646 Dec 21 02:55 ..
-drwxr-xr-x   4 sbenning  2014_paris  136 Dec 18 17:54 dir1
 drwxr-xr-x   5 sbenning  2014_paris  170 Dec 18 17:54 dir2
--rw-r--r--   1 sbenning  2014_paris  400 Dec 20 21:27 fic1
+drwxr-xr-x   4 sbenning  2014_paris  136 Dec 18 17:54 dir1
 -rw-r--r--   1 sbenning  2014_paris  160 Dec 20 21:26 fic2
+-rw-r--r--   1 sbenning  2014_paris  400 Dec 20 21:27 fic1
+drwxr-xr-x   7 sbenning  2014_paris  238 Dec 21 09:56 .
+drwxr-xr-x   5 sbenning  2014_paris  170 Dec 21 09:56 .dir3
+drwxr-xr-x  20 sbenning  2014_paris  680 Dec 21 10:03 ..
 
-./test/dir1:
+test/dir2:
 total 0
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
-drwxr-xr-x  6 sbenning  2014_paris  204 Dec 18 17:54 ..
--rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic3
--rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic4
-
-./test/dir2:
-total 0
-drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 .
-drwxr-xr-x  6 sbenning  2014_paris  204 Dec 18 17:54 ..
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 dir3
--rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic5
 -rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic6
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic5
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 dir3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 .
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
 
-./test/dir2/dir3:
+test/dir2/dir3:
 total 0
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
-drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 ..
--rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic7
 -rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic8
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic7
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 ..
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
 
-./test2:
+test/dir1:
 total 0
-drwxr-xr-x   6 sbenning  2014_paris  204 Dec 20 20:58 .
-drwxr-xr-x  19 sbenning  2014_paris  646 Dec 21 02:55 ..
-drwxr-xr-x   4 sbenning  2014_paris  136 Dec 20 20:58 dir1
-drwxr-xr-x   5 sbenning  2014_paris  170 Dec 20 20:58 dir2
--rw-r--r--   1 sbenning  2014_paris    0 Dec 20 20:58 fic1
--rw-r--r--   1 sbenning  2014_paris    0 Dec 20 20:58 fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic4
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic3
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
 
-./test2/dir1:
+test/.dir3:
 total 0
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 20 20:58 .
-drwxr-xr-x  6 sbenning  2014_paris  204 Dec 20 20:58 ..
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic3
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic4
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 dir1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 dir2
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 .dir3
 
-./test2/dir2:
+test/.dir3/dir1:
 total 0
-drwxr-xr-x  5 sbenning  2014_paris  170 Dec 20 20:58 .
-drwxr-xr-x  6 sbenning  2014_paris  204 Dec 20 20:58 ..
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 20 20:58 dir3
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic5
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic6
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
 
-./test2/dir2/dir3:
+test/.dir3/dir2:
 total 0
-drwxr-xr-x  4 sbenning  2014_paris  136 Dec 20 20:58 .
-drwxr-xr-x  5 sbenning  2014_paris  170 Dec 20 20:58 ..
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic7
--rw-r--r--  1 sbenning  2014_paris    0 Dec 20 20:58 fic8
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic3
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
+
+test/.dir3/.dir3:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 .fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 fic3
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 dir1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .dir2
+
+test/.dir3/.dir3/dir1:
+total 0
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 fic3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .
+
+test/.dir3/.dir3/.dir2:
+total 0
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 ..
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .fic1
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .fic3
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 fic2
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .
+
+test/.dir3/.dir3/.dir2/.fic1:
+total 0
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+
+test/.dir3/.dir3/.dir2/.fic3:
+total 0
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+
+test/.dir3/.dir3/.dir2/fic2:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .
+
+test:
+total 16
+drwxr-xr-x   5 sbenning  2014_paris  170 Dec 18 17:54 dir2
+drwxr-xr-x   4 sbenning  2014_paris  136 Dec 18 17:54 dir1
+-rw-r--r--   1 sbenning  2014_paris  160 Dec 20 21:26 fic2
+-rw-r--r--   1 sbenning  2014_paris  400 Dec 20 21:27 fic1
+drwxr-xr-x   7 sbenning  2014_paris  238 Dec 21 09:56 .
+drwxr-xr-x   5 sbenning  2014_paris  170 Dec 21 09:56 .dir3
+drwxr-xr-x  20 sbenning  2014_paris  680 Dec 21 10:03 ..
+
+test/dir2:
+total 0
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic6
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic5
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 dir3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 .
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
+
+test/dir2/dir3:
+total 0
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic8
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic7
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 18 17:54 ..
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
+
+test/dir1:
+total 0
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic4
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 18 17:54 fic3
+drwxr-xr-x  4 sbenning  2014_paris  136 Dec 18 17:54 .
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
+
+test/.dir3:
+total 0
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 09:56 ..
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 dir1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 dir2
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 .dir3
+
+test/.dir3/dir1:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
+
+test/.dir3/dir2:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic3
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 09:56 .fic1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 .
+
+test/.dir3/.dir3:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 09:56 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 .fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:00 fic3
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 dir1
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .dir2
+
+test/.dir3/.dir3/dir1:
+total 0
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 ..
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 fic1
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 .fic2
+-rw-r--r--  1 sbenning  2014_paris    0 Dec 21 10:01 fic3
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .
+
+test/.dir3/.dir3/.dir2:
+total 0
+drwxr-xr-x  7 sbenning  2014_paris  238 Dec 21 10:01 ..
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .fic1
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .fic3
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 fic2
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 .
+
+test/.dir3/.dir3/.dir2/.fic1:
+total 0
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+
+test/.dir3/.dir3/.dir2/.fic3:
+total 0
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+
+test/.dir3/.dir3/.dir2/fic2:
+total 0
+drwxr-xr-x  5 sbenning  2014_paris  170 Dec 21 10:01 ..
+drwxr-xr-x  2 sbenning  2014_paris   68 Dec 21 10:01 .

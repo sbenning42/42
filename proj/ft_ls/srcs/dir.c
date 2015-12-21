@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 04:16:12 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 10:33:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_node				*dir_tree(DIR *dir)
 	}
 	ft_err(env()->av, env()->path);
 	closedir(dir);
-	//if ((env()->o & O_LONG) == O_LONG)
+	if ((env()->o & O_LONG) == O_LONG)
 		ft_printf("total %lld\n", block);
 	return (root);
 }
@@ -104,11 +104,11 @@ void				ls_dir(void *p, size_t size)
 	DIR				*dir;
 
 	e = (t_ls_entry *)p;
-	if (e->type != T_DIR || !e->handle)
+	if (e->type != T_DIR || !e->handle || (e->stat.st_mode & S_IFSOCK) == S_IFSOCK || (e->stat.st_mode & S_IFLNK) == S_IFLNK)
 		return ;
 	handle_path(e->name);
 	dir = opendir(env()->path);
-	ft_err(env()->av, env()->path);
+	ft_err(env()->av, ft_name(env()->path));
 	if (!dir)
 	{
 		handle_path(NULL);

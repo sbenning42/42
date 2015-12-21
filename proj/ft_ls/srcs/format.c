@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 21:48:40 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 04:34:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:01:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ char	fmt_filemode(t_ls_entry *e)
 {
 	if ((e->stat.st_mode & S_IFBLK) == S_IFBLK)
 		return ('b');
-	else if ((e->stat.st_mode & S_IFCHR) == S_IFCHR)
-		return ('c');
 	else if ((e->stat.st_mode & S_IFDIR) == S_IFDIR)
 		return ('d');
 	else if ((e->stat.st_mode & S_IFLNK) == S_IFLNK)
 		return ('l');
+	else if ((e->stat.st_mode & S_IFCHR) == S_IFCHR)
+		return ('c');
 	else if ((e->stat.st_mode & S_IFSOCK) == S_IFSOCK)
 		return ('s');
 	else if ((e->stat.st_mode & S_IFIFO) == S_IFIFO)
@@ -67,6 +67,38 @@ char		*fmt_group_perm(t_ls_entry *e, char *perm)
 		perm[2] = '?';
 	return (perm);
 }
+
+
+
+
+char			fmt_attr(t_ls_entry *e)
+{
+	char		absname[PATHSIZE_LS];
+	char		attr[ATTRSIZE_LS];
+	int			ret_list;
+	acl_t		acl;
+
+	ft_strcpy(absname, env()->path);
+	ft_strcat(absname, "/");
+	ft_strcat(absname, e->name);
+	ft_bzero((void *)attr, ATTRSIZE_LS);
+	if ((ret_list = listxattr(absname, attr, ATTRSIZE_LS, 0)) > 0)
+	{
+		errno = 0;
+		return ('@');
+	}
+	if ((acl = acl_get_file(absname, ACL_TYPE_EXTENDED)))
+	{
+		errno = 0;
+		acl_free((void *)acl);
+		return ('+');
+	}
+	errno = 0;
+	return (' ');
+}
+
+
+
 
 char		*fmt_other_perm(t_ls_entry *e, char *perm)
 {
@@ -144,8 +176,18 @@ char				*fmt_day(t_ls_entry *e, char *buf)
 	return (cp);
 }
 
-
-
+char				*fmt_link(t_ls_entry *e, char *buf)
+{
+	char			absname[PATHSIZE_LS + 1];
+	ft_bzero((void *)buf, LINKSIZE_LS + 1);
+	ft_bzero((void *)absname, PATHSIZE_LS + 1);
+	ft_strcpy(absname, env()->path);
+	ft_strcat(absname, "/");
+	ft_strcat(absname, e->name);
+	if (readlink(absname, buf, (size_t)LINKSIZE_LS) > 0)
+	ft_err(env()->av, e->name);
+	return (buf);
+}
 
 
 

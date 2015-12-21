@@ -17,7 +17,7 @@ void				ls_argv(void *p, size_t size)
 	(void)size;
 	print = ls_select_print(env()->o);
 	if (e->type == T_ERROR)
-		ft_fprintf(2, "{green}%s{eoc}: {red}%s{eoc}: %s\n", env()->av, e->name, e->msg);
+		ft_printf("%s: %s: %s\n", env()->av, e->name, e->msg);
 	else if (e->type == T_FILE)
 	{
 		env()->i++;

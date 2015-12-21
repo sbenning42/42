@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 14:15:42 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 14:26:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/21 16:18:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int ft_err(char *key, char *msg)
 		return (errno);
 	cp = errno;
 	errno = 0;
-	ft_fprintf(2, "{green}%s{eoc}: {red}%s{eoc}: %s\n", key, msg, strerror(cp));
+	if ((env()->o & O_COLOR) == O_COLOR)
+		ft_fprintf(2, "{green}%s{eoc}: {red}%s{eoc}: %s\n", key, msg, strerror(cp));
+	else
+		ft_fprintf(2, "%s: %s: %s\n", key, msg, strerror(cp));
 	return (cp);
 }
