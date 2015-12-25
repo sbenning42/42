@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 13:03:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/14 12:48:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/25 11:29:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 ***
 */
 
-# define MACOS
+# define LINUX
 
 /*
 ***
@@ -53,7 +53,7 @@
 */
 
 # define FORK 1
-# define FDF_SCREEN 1024
+# define FDF_SCREEN 680
 # define NB_KHDL 6
 # define FDF_SNPRINTF_BS 128
 

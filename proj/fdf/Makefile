@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:58:48 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/13 20:18:19 by sbenning         ###   ########.fr       *#
+#*   Updated: 2015/12/25 11:26:54 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ FRAMEWORK =	-framework OpenGL -framework AppKit
 
 LIB_FT =	libft.a
 
-LIB_MLX	=	libmlx.a.old.a
+#LIB_MLX	=	libmlx.a.old.a
 
 LIB_MLX_NUX	=	libmlx.a
 

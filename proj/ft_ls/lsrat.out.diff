@@ -1,0 +1,22 @@
+0a1,4
+> testls:
+> ..
+> .
+> dir2
+4,12d7
+< .
+< dir2
+< ..
+< 
+< testls/dir1:
+< .
+< fic3
+< fic4
+< ..
+25a21,26
+> 
+> testls/dir1:
+> ..
+> .
+> fic3
+> fic4

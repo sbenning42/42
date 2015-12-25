@@ -9,7 +9,7 @@ SRC =		lib/get_next_line.c\
 		srcs/lem.c\
 		main.c
 	
-LIB =		lib/libftprintf.a
+LIB =		lib/ft/libft.a
 
 HEADERS =	includes
 
