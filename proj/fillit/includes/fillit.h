@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/25 10:06:42 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/25 13:31:01 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/27 13:21:30 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 
 # define TETRIMINOEND (USHRT_MAX + 1)
+# define SHRTEND 0x10000
 
 typedef unsigned short int	t_tetrimino;
 

@@ -6,11 +6,14 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/25 12:09:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/26 18:13:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2015/12/27 15:03:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+# define TETRIMINO_SIZE 1
+
+t_tetrimino			g_tetrimino[TETRIMINO_SIZE] = {0xf};
 
 static int			handlebuf(int ret, char *buf, t_tetrimino *t)
 {
@@ -47,15 +50,50 @@ static int			handlenl(int ret, char *nl)
 		return (ft_err("Parser", (ret < 0 ? "Read" : "Tetrimino format"), "error", 1));
 }
 
-static int			check_tetrimino(t_tetrimino t)
+static int			tetrimino_cmp(t_tetrimino t1, t_tetrimino t2, int cpt)
+{
+	int				cpt2;
+
+	cpt2 = 0x1;
+	while (cpt < SHRTEND)
+	{
+		if (((t1 & cpt) == 0 && (t2 & cpt2) != 0) || ((t1 & cpt) != 0 && (t2 && cpt2) == 0))
+			return (0);
+		cpt <<= 0x1;
+		cpt2 <<= 0x1;
+	}
+	while (cpt2 < SHRTEND)
+	{
+		if (t2 & cpt2)
+			return (0);
+		cpt2 <<= 0x1;
+	}
+	return (1);
+}
+
+static int			islegit(t_tetrimino t, int cpt)
 {
 	int				i;
 
 	i = -1;
-	while (g_tetrimino[++i] != USHRT_MAX)
+	while (g_tetrimino[++i])
 	{
-		if (g_tetrimino[i] == t)
+		if (tetrimino_cmp(t, g_tetrimino[i], cpt))
 			return (1);
+	}
+	return (0);
+}
+
+static int			check_tetrimino(t_tetrimino t)
+{
+	int				cpt;
+
+	cpt = 0x1;
+	while (cpt < SHRTEND)
+	{
+		if (t & cpt)
+			return (islegit(t, cpt));
+		cpt <<= 0x1;
 	}
 	return (0);
 }
