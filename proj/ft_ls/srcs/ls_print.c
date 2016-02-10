@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:00:35 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 17:02:31 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:11:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	p_long(void *p, size_t size)
 	if (!e->handle && !((env()->o & O_HIDE) == O_HIDE))
 		return ;
 	env()->i++;
-	ft_printf("%c%s%s%s%c %*d %s  %s %*d %.3s %.2s %s %s",\
+	//ft_printf("%c%s%s%s%c %*d %s  %s %*d %.3s %.2s %s %s",
+	ft_printf("%c%s%s%s%c %*d %- *s %- *s %*d %.3s %.2s %s %s",\
 			fmt_filemode(e),\
 			fmt_owner_perm(e, buf[0]),\
 			fmt_group_perm(e, buf[1]),\
@@ -56,7 +57,9 @@ void	p_long(void *p, size_t size)
 			fmt_attr(e),\
 			env()->nlinkpad,\
 			fmt_nblink(e),\
+			env()->ownerlen + 1,\
 			fmt_owner(e),\
+			env()->grplen + 2,\
 			fmt_group(e),\
 			env()->sizepad + 1,\
 			fmt_size(e),\

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 21:48:40 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 17:01:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:32:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,13 @@ char			fmt_attr(t_ls_entry *e)
 }
 
 
-
-
 char		*fmt_other_perm(t_ls_entry *e, char *perm)
 {
 	ft_bzero((void *)perm, 6);
 	perm[0] = ((e->stat.st_mode & 0x4) == 0x4 ? 'r' : '-');
 	perm[1] = ((e->stat.st_mode & 0x2) == 0x2 ? 'w' : '-');
-	if ((e->stat.st_mode & 0x1) == 0x1)
+	//before was wo the S_ISVTX check
+	if (((e->stat.st_mode & 0x1) == 0x1) && ((e->stat.st_mode & S_ISVTX) != S_ISVTX))
 		perm[2] = 'x';
 	else if (!((e->stat.st_mode & 0x1) == 0x1) && !((e->stat.st_mode & S_ISVTX) == S_ISVTX))
 		perm[2] = '-';
@@ -143,7 +142,6 @@ char				*fmt_yhm(t_ls_entry *e, char *buf)
 	char			*cp;
 
 	ft_bzero((void *)buf, 6);
-	//ft_printf("debug: [%ld][%ld][%ld]", time(NULL), e->stat.st_mtimespec.tv_sec, (long)ABS(time(NULL) - e->stat.st_mtimespec.tv_sec));
 	if (((time(NULL) - e->stat.st_mtimespec.tv_sec) > SIXMONTH) || ((time(NULL) - e->stat.st_mtimespec.tv_sec) < -SIXMONTH))
 	{
 		cp = ctime(&e->stat.st_mtimespec.tv_sec) + 20;

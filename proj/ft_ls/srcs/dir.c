@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 10:33:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:10:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	entry_tree(t_node **ar, struct dirent *entry, quad_t *blocks)
 	{
 		env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
 		env()->sizepad = (env()->sizepad > ft_intlen(e.stat.st_size) ? env()->sizepad : ft_intlen(e.stat.st_size));
+		env()->ownerlen = (env()->ownerlen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->ownerlen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
+		env()->grplen = (env()->grplen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->grplen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
 	}
 	return (1);
 }
@@ -46,6 +48,8 @@ t_node				*dir_tree(DIR *dir)
 
 	env()->nlinkpad = 0;
 	env()->sizepad = 0;
+	env()->ownerlen = 0;
+	env()->grplen = 0;
 	block = 0;
 	root = NULL;
 	while ((entry = readdir(dir)))

@@ -6,11 +6,30 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 17:53:14 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:29:06 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static char			*debuggtype(int type, char *ctype)
+{
+	if (type == T_DIR)
+		return (ft_strcpy(ctype, "DIR"));
+	else if (type == T_FILE)
+		return (ft_strcpy(ctype, "FILE"));
+	else if (type == T_ERROR)
+		return (ft_strcpy(ctype, "ERROR"));
+	return (NULL);
+}
+
+static void			debugg(t_ls_entry e, char *abs)
+{
+	char			type[64];
+	if (!DEBUGG)
+		return ;
+	ft_fprintf(2, "[%s][%s][%s]\n", e.name, abs, debuggtype(e.type, type));
+}
 
 t_ls_entry			ls_newentry(char *name, char *absname)
 {
@@ -23,18 +42,20 @@ t_ls_entry			ls_newentry(char *name, char *absname)
 	lstat(absname, &e.stat);
 	if (errno)
 	{
-		e.type = T_ERROR;
 		e.msg = strerror(errno);
 		errno = 0;
+		e.type = T_ERROR;
 		return (e);
 	}
+	//Before is directory check, may handle LINK
 	if ((e.stat.st_mode & S_IFDIR) == S_IFDIR)
 		e.type = T_DIR;
 	else
 		e.type = T_FILE;
 	/*f ((e.stat.st_mode & S_IFLNK) == S_IFLNK)
 		lstat(absname, &e.stat);
-	*/return (e);
+	*/debugg(e, absname);
+	return (e);
 }
 
 static t_node		*argv_woa_tree()
@@ -81,7 +102,7 @@ t_node				*argv_tree(int ac, char **av)
 		if (*av[i] != '-' || ft_strlen(av[i]) == 1)
 			break ;
 	}
-	if (i + 1 < ac)
+	if (i + 1 < ac) //To trigg path print if more than one argument
 		env()->i++;
-	return ((i == ac ? argv_woa_tree() : argv_wa_tree(ac, i, av)));
+	return ((i == ac ? argv_woa_tree() : argv_wa_tree(ac, i, av))); //To trigg path constructor if no argument (".")
 }

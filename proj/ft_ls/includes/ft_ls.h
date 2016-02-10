@@ -6,12 +6,14 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 17:00:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:08:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
+
+# define DEBUGG 0
 
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -65,6 +67,8 @@ typedef struct		s_env
 	int				i;
 	int				nlinkpad;
 	int				sizepad;
+	size_t			ownerlen;
+	size_t			grplen;
 }					t_env;
 
 typedef struct		s_ls_entry
