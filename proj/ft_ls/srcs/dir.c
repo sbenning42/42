@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/11 13:59:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:41:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	entry_tree(t_node **ar, struct dirent *entry, quad_t *blocks)
 		e.handle = 0;
 	if (!(no = tree_newnode((void *)&e, sizeof(t_ls_entry))))
 		return (ft_err(env()->av, absname));
-	tree_add(ar, no, ls_select_sort(env()->o));
-	*blocks += e.stat.st_blocks;
+	tree_add(ar, no, g_ls_select_sort(env()->o));
+	if (e.handle)
+		*blocks += e.stat.st_blocks;
 	if (e.handle || ((env()->o & O_HIDE) == O_HIDE))
 	{
 		env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
@@ -84,10 +85,6 @@ static void			handle_path(char *name)
 	}
 	else
 	{
-		/*if (env()->path[0] && env()->path[ft_strlen(env()->path) - 1] != '/')
-			ft_strcat(env()->path, "/");
-		ft_strcat(env()->path, name);
-		*/
 		if (ft_strcmp(name, env()->path))
 		{
 			ft_strcat(env()->path, (env()->path[0] && env()->path[ft_strlen(env()->path) - 1] != '/') ? "/" : "");
@@ -126,7 +123,7 @@ void				ls_dir(void *p, size_t size)
 		handle_path(NULL);
 		return ;
 	}
-	tree_doinf(root, ls_select_print(env()->o));
+	tree_doinf(root, g_ls_select_print(env()->o));
 	if ((env()->o & O_RECU) == O_RECU)
 		tree_doinf(root, ls_dir);
 	handle_path(NULL);

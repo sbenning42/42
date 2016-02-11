@@ -17,7 +17,6 @@ NAME_NUX =		ft_ls_nux
 SRC =			srcs/main.c\
 				srcs/get_opt.c\
 				srcs/tree.c\
-				srcs/verbose.c\
 				srcs/select.c\
 				srcs/argv.c\
 				srcs/dir.c\
@@ -28,11 +27,6 @@ SRC =			srcs/main.c\
 				srcs/ft_err.c\
 				srcs/format.c\
 				srcs/ft_intlen.c
-#				srcs/ls_avprint.c\
-				srcs/ft_ls.c\
-				srcs/ls_msg.c
-
-DEPEND =		includes/ft_ls.h
 
 OBJ =			$(SRC:.c=.o)
 
@@ -44,6 +38,8 @@ LIB =			-lft
 
 HEADERS =		includes
 
+DEPEND =		$(HEADERS)/ft_ls.h
+
 CC =			gcc
 
 FLAGS =			-Wall -Wextra -Werror
@@ -51,13 +47,13 @@ FLAGS =			-Wall -Wextra -Werror
 all : $(LIB_FT) $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) -o $@ -I $(HEADERS) $^ -L $(LIB_FT_DIR) $(LIB)
+	$(CC) -o $@ $^ -L $(LIB_FT_DIR) $(LIB)
 
 $(LIB_FT) :
 	make -C $(LIB_FT_DIR)
 
 %.o : %.c $(DEPEND)
-	$(CC) $(FLAGS) -o $@ -I $(HEADERS) -c $<
+	$(CC) $(FLAGS) -o $@ -I $(LIB_FT_DIR)/$(HEADERS) -I $(HEADERS) -c $<
 
 clean:
 	rm -f $(OBJ)
@@ -65,6 +61,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C $(LIB_FT_DIR)
+	rm -f $(LIB_FT_DIR)/$(LIB_FT)
 
 re: fclean all

@@ -6,15 +6,15 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 03:56:01 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/21 04:09:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:28:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_intlen(int n)
+size_t		ft_intlen(int n)
 {
-	int	i;
+	size_t	i;
 
 	i = 1;
 	while (n > 9)

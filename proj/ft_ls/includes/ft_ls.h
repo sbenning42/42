@@ -6,14 +6,12 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/22 16:21:28 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/10 17:08:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:30:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
-
-# define DEBUGG 0
 
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -25,23 +23,18 @@
 # include <pwd.h>
 # include <grp.h>
 # include <uuid/uuid.h>
+
 # include "libft.h"
 # include "ft_tree.h"
 
-# define NAMESIZE_LS 510
-# define MSGSIZE_LS 510
-# define PATHSIZE_LS 2096
-# define ATTRSIZE_LS 512
-# define LINKSIZE_LS 512
-# define CSET_O "alRrtvG"
-# define SIZE_O 7
+# define CSET_O "alRrt"
+# define SIZE_O 5
 
 # define O_HIDE 0x1
 # define O_LONG 0x2
 # define O_RECU 0x4
 # define O_REVE 0x8
 # define O_TIME 0x10
-# define O_VERBOSE 0x20
 # define O_COLOR 0x40
 # define O_PRIVATE_ERROR 0x80
 # define O_PRIVATE_MAX 0x100
@@ -51,13 +44,21 @@
 # define T_FILE 0x2
 # define T_DIR 0x4
 
+# define NAMESIZE_LS 510
+# define MSGSIZE_LS 510
+# define PATHSIZE_LS 2096
+# define ATTRSIZE_LS 512
+# define LINKSIZE_LS 512
+
+# define SIXMONTH 15778800
+
 # define FMT_U1 "{green|gr}%s{eoc}: {gr}%s{eoc} -- {red}%c{eoc}\n"
 # define FMT_U2 "{pink}%s{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}] [{pink}%s{eoc}]\n"
-# define FMT_VERBOSE "{green|gr}%s{eoc}: {yellow}%s{eoc}: {gr}%s{eoc}: "
 
 # define MSG_MEM "Memory allocation failed"
 
-# define SIXMONTH 15778800
+# define SET(X, Y) (Y |= X)
+# define IS(X, Y) ((Y & X) == X ? 1 : 0)
 
 typedef struct		s_env
 {
@@ -65,8 +66,8 @@ typedef struct		s_env
 	char			*av;
 	int				o;
 	int				i;
-	int				nlinkpad;
-	int				sizepad;
+	size_t			nlinkpad;
+	size_t			sizepad;
 	size_t			ownerlen;
 	size_t			grplen;
 }					t_env;
@@ -98,7 +99,6 @@ int					s_rlex(void *s1, void *s2);
 int					s_modt(void *s1, void *s2);
 int					s_rmodt(void *s1, void *s2);
 
-
 void				p_standard(void *p, size_t size);
 void				p_cstandard(void *p, size_t size);
 void				p_long(void *p, size_t size);
@@ -123,18 +123,12 @@ char				fmt_attr(t_ls_entry *e);
 char				*fmt_link(t_ls_entry *e, char *buf);
 
 /*
-***			***			verbose.c			***
-*/
-
-void				verbose_get_opt(void);
-
-/*
 ***			***			select.c			***
 */
 
-int					(*ls_select_argvsort(int o))(void *, void *);
-int					(*ls_select_sort(int o))(void *, void *);
-void				(*ls_select_print(int o))(void *, size_t);
+int					(*g_ls_select_argvsort(int o))(void *, void *);
+int					(*g_ls_select_sort(int o))(void *, void *);
+void				(*g_ls_select_print(int o))(void *, size_t);
 
 /*
 ***			***			argv.c			***
@@ -159,9 +153,14 @@ char				*ft_name(char *path);
 /*
 ***			***			env.c			***
 */
+
 int					ft_err(char *key, char *msg);
 t_env				*env(void);
 
-int					ft_intlen(int n);
+/*
+***			***			ft_intlen.c			***
+*/
+
+size_t				ft_intlen(int n);
 
 #endif

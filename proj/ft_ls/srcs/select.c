@@ -6,13 +6,13 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:14:08 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 14:07:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:30:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		(*ls_select_argvsort(int o))(void *, void *)
+int		(*g_ls_select_argvsort(int o))(void *, void *)
 {
 	if ((o & (O_TIME | O_REVE)) != 0)
 	{
@@ -27,7 +27,7 @@ int		(*ls_select_argvsort(int o))(void *, void *)
 		return (avs_lex);
 }
 
-int		(*ls_select_sort(int o))(void *, void *)
+int		(*g_ls_select_sort(int o))(void *, void *)
 {
 	if ((o & (O_TIME | O_REVE)) != 0)
 	{
@@ -42,7 +42,7 @@ int		(*ls_select_sort(int o))(void *, void *)
 		return (s_lex);
 }
 
-void		(*ls_select_print(int o))(void *, size_t)
+void	(*g_ls_select_print(int o))(void *, size_t)
 {
 	if ((o & (O_LONG | O_COLOR)) != 0)
 	{

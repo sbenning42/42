@@ -6,30 +6,11 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/11 13:56:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:27:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static char			*debuggtype(int type, char *ctype)
-{
-	if (type == T_DIR)
-		return (ft_strcpy(ctype, "DIR"));
-	else if (type == T_FILE)
-		return (ft_strcpy(ctype, "FILE"));
-	else if (type == T_ERROR)
-		return (ft_strcpy(ctype, "ERROR"));
-	return (NULL);
-}
-
-static void			debugg(t_ls_entry e, char *abs)
-{
-	char			type[64];
-	if (!DEBUGG)
-		return ;
-	ft_fprintf(2, "[%s][%s][%s]\n", e.name, abs, debuggtype(e.type, type));
-}
 
 t_ls_entry			ls_newentry(char *name, char *absname)
 {
@@ -47,14 +28,10 @@ t_ls_entry			ls_newentry(char *name, char *absname)
 		e.type = T_ERROR;
 		return (e);
 	}
-	//Before is directory check, may handle LINK
 	if ((e.stat.st_mode & S_IFDIR) == S_IFDIR)
 		e.type = T_DIR;
 	else
 		e.type = T_FILE;
-	/*f ((e.stat.st_mode & S_IFLNK) == S_IFLNK)
-		lstat(absname, &e.stat);
-	*/debugg(e, absname);
 	return (e);
 }
 
@@ -66,6 +43,20 @@ static t_node		*argv_woa_tree()
 	return (tree_newnode((void *)&e, sizeof(t_ls_entry)));
 }
 
+static void		maj_env(t_ls_entry e)
+{
+	size_t		size;
+
+	if ((size = ft_intlen(e.stat.st_nlink)) > env()->nlinkpad)
+		env()->nlinkpad = size;
+	if ((size = ft_intlen(e.stat.st_size)) > env()->sizepad)
+		env()->sizepad = size;
+	if ((size = ft_strlen(getpwuid(e.stat.st_uid)->pw_name)) > env()->ownerlen)
+		env()->ownerlen = size;
+	if ((size = ft_strlen(getgrgid(e.stat.st_gid)->gr_name)) > env()->grplen)
+		env()->grplen = size;
+}
+
 static t_node	*argv_wa_tree(int ac, int i, char **av)
 {
 	int				(*s)(void *, void *);
@@ -74,7 +65,7 @@ static t_node	*argv_wa_tree(int ac, int i, char **av)
 	t_ls_entry		e;
 
 	root = NULL;
-	s = ls_select_argvsort(env()->o);
+	s = g_ls_select_argvsort(env()->o);
 	while (i < ac)
 	{
 		e = ls_newentry(av[i], av[i]);
@@ -86,13 +77,8 @@ static t_node	*argv_wa_tree(int ac, int i, char **av)
 			tree_del(&root, NULL);
 			return (NULL);
 		}
-		if (e.handle || ((env()->o & O_HIDE) == O_HIDE))
-		{
-			env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
-			env()->sizepad = (env()->sizepad > ft_intlen(e.stat.st_size) ? env()->sizepad : ft_intlen(e.stat.st_size));
-			env()->ownerlen = (env()->ownerlen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->ownerlen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
-			env()->grplen = (env()->grplen > ft_strlen(getgrgid(e.stat.st_gid)->gr_name) ? env()->grplen : ft_strlen(getgrgid(e.stat.st_gid)->gr_name));
-		}
+		if (e.handle || IS(env()->o, O_HIDE))
+			maj_env(e);
 		tree_add(&root, no, s);
 		i++;
 	}
@@ -109,7 +95,7 @@ t_node				*argv_tree(int ac, char **av)
 		if (*av[i] != '-' || ft_strlen(av[i]) == 1)
 			break ;
 	}
-	if (i + 1 < ac) //To trigg path print if more than one argument
+	if (i + 1 < ac)
 		env()->i++;
-	return ((i == ac ? argv_woa_tree() : argv_wa_tree(ac, i, av))); //To trigg path constructor if no argument (".")
+	return ((i == ac ? argv_woa_tree() : argv_wa_tree(ac, i, av)));
 }
