@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/11 15:27:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:10:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_ls_entry			ls_newentry(char *name, char *absname)
 	return (e);
 }
 
-static t_node		*argv_woa_tree()
+static t_node		*argv_woa_tree(void)
 {
 	t_ls_entry		e;
 
@@ -43,10 +43,12 @@ static t_node		*argv_woa_tree()
 	return (tree_newnode((void *)&e, sizeof(t_ls_entry)));
 }
 
-static void		maj_env(t_ls_entry e)
+void				maj_env(t_ls_entry e)
 {
-	size_t		size;
+	size_t			size;
 
+	if (!e.handle && !IS(O_HIDE, env()->o))
+		return ;
 	if ((size = ft_intlen(e.stat.st_nlink)) > env()->nlinkpad)
 		env()->nlinkpad = size;
 	if ((size = ft_intlen(e.stat.st_size)) > env()->sizepad)
@@ -57,7 +59,7 @@ static void		maj_env(t_ls_entry e)
 		env()->grplen = size;
 }
 
-static t_node	*argv_wa_tree(int ac, int i, char **av)
+static t_node		*argv_wa_tree(int ac, int i, char **av)
 {
 	int				(*s)(void *, void *);
 	t_node			*root;
@@ -77,8 +79,7 @@ static t_node	*argv_wa_tree(int ac, int i, char **av)
 			tree_del(&root, NULL);
 			return (NULL);
 		}
-		if (e.handle || IS(env()->o, O_HIDE))
-			maj_env(e);
+		maj_env(e);
 		tree_add(&root, no, s);
 		i++;
 	}

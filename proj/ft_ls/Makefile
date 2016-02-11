@@ -25,7 +25,9 @@ SRC =			srcs/main.c\
 				srcs/ls_print.c\
 				srcs/name.c\
 				srcs/ft_err.c\
-				srcs/format.c\
+				srcs/format_mode.c\
+				srcs/format_name.c\
+				srcs/format_time.c\
 				srcs/ft_intlen.c
 
 OBJ =			$(SRC:.c=.o)

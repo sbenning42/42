@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:00:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/11 14:42:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:25:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,19 @@ void	p_long(void *p, size_t size)
 	if (!e->handle && !((env()->o & O_HIDE) == O_HIDE))
 		return ;
 	env()->i++;
-	//ft_printf("%c%s%s%s%c %*d %s  %s %*d %.3s %.2s %s %s",
 	ft_printf("%c%s%s%s%c %*d % -*s % -*s% *d %.3s %.2s %s %s",\
 			fmt_filemode(e),\
 			fmt_owner_perm(e, buf[0]),\
 			fmt_group_perm(e, buf[1]),\
 			fmt_other_perm(e, buf[2]),\
 			fmt_attr(e),\
-			env()->nlinkpad,\
-			fmt_nblink(e),\
-			env()->ownerlen + 1,\
-			fmt_owner(e),\
-			env()->grplen + 1,\
-			fmt_group(e),\
-			env()->sizepad + 1,\
-			fmt_size(e),\
+			env()->nlinkpad, fmt_nblink(e),\
+			env()->ownerlen + 1, fmt_owner(e),\
+			env()->grplen + 1, fmt_group(e),\
+			env()->sizepad + 1, fmt_size(e),\
 			fmt_month(e, buf[3]),\
 			fmt_day(e, buf[4]),\
-			fmt_yhm(e, buf[5]),\
-			e->name);
+			fmt_yhm(e, buf[5]), e->name);
 	if ((e->stat.st_mode & S_IFLNK) == S_IFLNK)
 		ft_printf(" -> %s", fmt_link(e, buflink));
 	ft_putendl("");

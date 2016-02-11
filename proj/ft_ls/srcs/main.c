@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:17:20 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/11 15:27:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:10:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void				ls_argv(void *p, size_t size)
 	(void)size;
 	print = g_ls_select_print(env()->o);
 	if (e->type == T_ERROR)
-		ft_printf("%s: %s: %s\n", env()->av, e->name, e->msg);
+		ft_fprintf(2, "%s: %s: %s\n", env()->av, e->name, e->msg);
 	else if (e->type == T_FILE)
 	{
 		env()->i++;
