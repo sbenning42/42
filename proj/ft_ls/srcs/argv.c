@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 08:50:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/10 14:29:06 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 13:56:21 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,13 @@ static t_node	*argv_wa_tree(int ac, int i, char **av)
 			errno = 0;
 			tree_del(&root, NULL);
 			return (NULL);
+		}
+		if (e.handle || ((env()->o & O_HIDE) == O_HIDE))
+		{
+			env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
+			env()->sizepad = (env()->sizepad > ft_intlen(e.stat.st_size) ? env()->sizepad : ft_intlen(e.stat.st_size));
+			env()->ownerlen = (env()->ownerlen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->ownerlen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
+			env()->grplen = (env()->grplen > ft_strlen(getgrgid(e.stat.st_gid)->gr_name) ? env()->grplen : ft_strlen(getgrgid(e.stat.st_gid)->gr_name));
 		}
 		tree_add(&root, no, s);
 		i++;

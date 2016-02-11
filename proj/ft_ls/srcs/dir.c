@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 10:56:53 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/10 17:10:59 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 13:59:46 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	entry_tree(t_node **ar, struct dirent *entry, quad_t *blocks)
 		env()->nlinkpad = (env()->nlinkpad > ft_intlen(e.stat.st_nlink) ? env()->nlinkpad : ft_intlen(e.stat.st_nlink));
 		env()->sizepad = (env()->sizepad > ft_intlen(e.stat.st_size) ? env()->sizepad : ft_intlen(e.stat.st_size));
 		env()->ownerlen = (env()->ownerlen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->ownerlen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
-		env()->grplen = (env()->grplen > ft_strlen(getpwuid(e.stat.st_uid)->pw_name) ? env()->grplen : ft_strlen(getpwuid(e.stat.st_uid)->pw_name));
+		env()->grplen = (env()->grplen > ft_strlen(getgrgid(e.stat.st_gid)->gr_name) ? env()->grplen : ft_strlen(getgrgid(e.stat.st_gid)->gr_name));
 	}
 	return (1);
 }
@@ -45,15 +45,18 @@ t_node				*dir_tree(DIR *dir)
 	t_node			*root;
 	struct dirent	*entry;
 	long long int	block;
+	int				i;
 
 	env()->nlinkpad = 0;
 	env()->sizepad = 0;
 	env()->ownerlen = 0;
 	env()->grplen = 0;
 	block = 0;
+	i = -2;
 	root = NULL;
 	while ((entry = readdir(dir)))
 	{
+		i++;
 		if (!entry_tree(&root, entry, &block))
 		{
 			tree_del(&root, NULL);
@@ -62,7 +65,7 @@ t_node				*dir_tree(DIR *dir)
 	}
 	ft_err(env()->av, env()->path);
 	closedir(dir);
-	if ((env()->o & O_LONG) == O_LONG)
+	if (((env()->o & O_LONG) == O_LONG) && (i >= 0))
 		ft_printf("total %lld\n", block);
 	return (root);
 }

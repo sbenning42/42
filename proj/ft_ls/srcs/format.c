@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 21:48:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/10 17:32:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:52:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,27 @@ char			fmt_attr(t_ls_entry *e)
 	char		attr[ATTRSIZE_LS];
 	int			ret_list;
 	acl_t		acl;
+	acl_entry_t	dum;
 
 	ft_strcpy(absname, env()->path);
 	ft_strcat(absname, "/");
 	ft_strcat(absname, e->name);
 	ft_bzero((void *)attr, ATTRSIZE_LS);
-	if ((ret_list = listxattr(absname, attr, ATTRSIZE_LS, 0)) > 0)
+	//if ((ret_list = listxattr(absname, attr, ATTRSIZE_LS, 0)) > 0)
+	if ((ret_list = listxattr(absname, NULL, 0, XATTR_NOFOLLOW)) > 0)
 	{
 		errno = 0;
 		return ('@');
 	}
-	if ((acl = acl_get_file(absname, ACL_TYPE_EXTENDED)))
+	//if ((acl = acl_get_file(absname, ACL_TYPE_EXTENDED)))
+	else if ((acl = acl_get_link_np(absname, ACL_TYPE_EXTENDED)))
 	{
-		errno = 0;
-		acl_free((void *)acl);
+		//
+		if (acl_get_entry(acl, ACL_FIRST_ENTRY, &dum) == -1)
+		{
+			acl_free((void *)acl);
+			return (' ');
+		}
 		return ('+');
 	}
 	errno = 0;

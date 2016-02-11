@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/11 14:17:20 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/11 14:17:23 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 t_env				*env(void)
@@ -41,6 +53,10 @@ int					main(int ac, char *av[])
 
 	e = 0;
 	env()->i = 0;
+	env()->nlinkpad = 0;
+	env()->sizepad = 0;
+	env()->ownerlen = 0;
+	env()->grplen = 0;
 	env()->av = ft_name(av[0]);
 	env()->o = get_opt(CSET_O, ac, av, &e);
 	if ((env()->o & O_VERBOSE) == O_VERBOSE)

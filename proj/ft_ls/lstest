@@ -102,3 +102,9 @@
 ./ft_ls -arlR ~ > /tmp/ft ; ls -1arlR ~ > /tmp/sys ; diff /tmp/ft /tmp/sys > /tmp/diff72 ; cat /tmp/diff72
 
 ./ft_ls -arlR .. ~ . > /tmp/ft ; ls -1arlR .. ~ . > /tmp/sys ; diff /tmp/ft /tmp/sys > /tmp/diff73 ; cat /tmp/diff73
+
+./ft_ls -artlR > /tmp/ft ; ls -1artlR > /tmp/sys ; diff /tmp/ft /tmp/sys > /tmp/diff71 ; cat /tmp/diff71
+
+./ft_ls -artlR ~ > /tmp/ft ; ls -1artlR ~ > /tmp/sys ; diff /tmp/ft /tmp/sys > /tmp/diff72 ; cat /tmp/diff72
+
+./ft_ls -artlR .. ~ /toto . > /tmp/ft ; ls -1artlR .. ~ /toto . > /tmp/sys ; diff /tmp/ft /tmp/sys > /tmp/diff73 ; cat /tmp/diff73
