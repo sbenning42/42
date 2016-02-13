@@ -6,48 +6,51 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:57:27 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/12 16:48:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/13 13:48:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void		op_sx(t_dlist **ah_dl)
+void		op_sx(t_dlist **astack, int *stroke)
 {
 	void	*tmp;
 
-	if (!(*ah_dl) || !(*ah_dl)->n)
+	if (!(*astack) || !(*astack)->n)
 		return ;
-	tmp = (*ah_dl)->content;
-	(*ah_dl)->content = (*ah_dl)->n->content;
-	(*ah_dl)->n->content = tmp;
+	tmp = (*astack)->content;
+	(*astack)->content = (*astack)->n->content;
+	(*astack)->n->content = tmp;
+	(*stroke)++;
 }
 
-void		op_rx(t_dlist **ah_dl)
+void		op_rx(t_dlist **astack, int *stroke)
 {
 	t_dlist	*tmp;
 
-	if (!(*ah_dl))
+	if (!(*astack))
 		return ;
-	tmp = *ah_dl;
-	*ah_dl = (*ah_dl)->n;
-	if (*ah_dl)
-		(*ah_dl)->p = NULL;
+	tmp = *astack;
+	*astack = (*astack)->n;
+	if (*astack)
+		(*astack)->p = NULL;
 	tmp->n = NULL;
 	tmp->p = NULL;
-	ft_dlstaddn(ah_dl, tmp);
+	ft_dlstaddn(astack, tmp);
+	(*stroke)++;
 }
 
-void		op_rrx(t_dlist **ah_dl)
+void		op_rrx(t_dlist **astack, int *stroke)
 {
 	t_dlist	*tmp;
 
-	tmp = *ah_dl;
+	tmp = *astack;
 	while (tmp && tmp->n)
 	{
 		tmp = tmp->n;
 	}
 	tmp->p->n = NULL;
 	tmp->p = NULL;
-	ft_dlstaddp(ah_dl, tmp);
+	ft_dlstaddp(astack, tmp);
+	(*stroke)++;
 }

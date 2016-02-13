@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:57:30 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/12 12:45:14 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/13 12:59:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int			get_opt(const char *cset, int ac, char **av, char *err)
 	o = 0x0;
 	while (++i < ac)
 	{
-		if ((av[i][0] != '_') || (ft_strlen(av[i]) == 1))
+		if ((av[i][0] != '-') || (ft_strlen(av[i]) == 1))
+			break ;
+		else if (ft_isdigit(av[i][1]))
 			break ;
 		j = 0;
 		while (av[i][++j])
@@ -54,7 +56,9 @@ int			go_over_opt(int ac, char **av)
 	skip = 0;
 	while (++skip < ac)
 	{
-		if ((av[skip][0] != '_') || (ft_strlen(av[skip]) == 1))
+		if ((av[skip][0] != '-') || (ft_strlen(av[skip]) == 1))
+			break ;
+		else if (ft_isdigit(av[skip][1]))
 			break ;
 	}
 	return (skip);

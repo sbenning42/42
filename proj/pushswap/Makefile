@@ -16,7 +16,6 @@ SRC =			srcs/main.c\
 				srcs/pushswap.c\
 				srcs/resolve.c\
 				srcs/getopt.c\
-				srcs/option.c\
 				srcs/operator_simple.c\
 				srcs/operator_multiple.c\
 				srcs/debug.c\
