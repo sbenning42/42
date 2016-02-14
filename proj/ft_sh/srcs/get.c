@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 19:58:48 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/14 19:49:51 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/14 19:55:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int			handle_cmd\
-				(char *cmd, int size)
+char		*get_shenv\
+				(char *id)
 {
-	(void)cmd;
-	(void)size;
-	return (1);
+	char	**ep;
+	char	*f;
+
+	ep = ENV;
+	while (*ep)
+	{
+		f = ft_strchr(*ep, '=');
+		if (!strncmp(id, *ep, f - *ep))
+			return (f + 1);
+		ep++;
+	}
+	return (NULL);
 }

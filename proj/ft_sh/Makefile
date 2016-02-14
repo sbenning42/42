@@ -20,6 +20,7 @@ SRC =			handle.c\
 				error.c\
 				dic.c\
 				binary.c\
+				get.c\
 				shenv.c\
 				main.c
 

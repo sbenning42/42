@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 18:16:49 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 20:40:07 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int			minishell\
 	char	cmd_buffer[FT_SH_CMD_BUFFER_SIZE + 1];
 
 	ft_bzero((void *)cmd_buffer, sizeof(char) * (FT_SH_CMD_BUFFER_SIZE + 1));
+	ft_printf((IS(O_COLOR, OPT) ? FMT_CPROMPT : FMT_PROMPT));
 	ret = read(0, cmd_buffer, FT_SH_CMD_BUFFER_SIZE);
 	if (ret < 0)
 		read_error();

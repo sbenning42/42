@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:23:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 18:56:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 19:38:46 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ t_dic			*ft_dicnew\
 		ft_memdel((void **)&entry);
 		return (NULL);
 	}
-	if (content_size && !(entry->content = ft_memalloc(content_size)))
+	if (content_size)
 	{
-		ft_memdel((void **)&entry->id);
-		ft_memdel((void **)&entry);
-		return (NULL);
+		if (!(entry->content = ft_memalloc(content_size)))
+		{
+			ft_memdel((void **)&entry->id);
+			ft_memdel((void **)&entry);
+			return (NULL);
+		}
+		ft_memcpy(entry->content, content, content_size);
 	}
 	return (entry);
 }
@@ -40,7 +44,7 @@ int				alpha_sort\
 }
 
 void			ft_dicadd\
-					(t_dic **adic, t_dic *e, int (*s)(char *, char *, size_t))
+					(t_dic **adic, t_dic *e, int (*s)(char *, char *))
 {
 	if (!(*adic))
 		*adic = e;
@@ -66,6 +70,39 @@ void			ft_dicadd\
 	}
 }
 
+void			ft_dicdoinf\
+					(t_dic *dic, void (*f)(t_dic *))
+{
+	if (dic && dic->l)
+		ft_dicdoinf(dic->l, f);
+	if (f)
+		f(dic);
+	if (dic && dic->r)
+		ft_dicdoinf(dic->r, f);
+}
+
+void			ft_dicdopref\
+					(t_dic *dic, void (*f)(t_dic *))
+{
+	if (f)
+		f(dic);
+	if (dic && dic->l)
+		ft_dicdoinf(dic->l, f);
+	if (dic && dic->r)
+		ft_dicdoinf(dic->r, f);
+}
+
+void			ft_dicdosuf\
+					(t_dic *dic, void (*f)(t_dic *))
+{
+	if (dic && dic->l)
+		ft_dicdoinf(dic->l, f);
+	if (dic && dic->r)
+		ft_dicdoinf(dic->r, f);
+	if (f)
+		f(dic);
+}
+
 void			ft_dicdel\
 					(t_dic **adic, void (*del)(void *, size_t))
 {
@@ -75,6 +112,10 @@ void			ft_dicdel\
 		ft_dicdel(&(*adic)->r, del);
 	if (*adic && del)
 		del((*adic)->content, (*adic)->content_size);
-	ft_memdel((void **)adic);
+	if (*adic)
+	{
+		ft_memdel((void **)&(*adic)->id);
+		ft_memdel((void **)&(*adic)->content);
+		ft_memdel((void **)adic);
+	}
 }
-
