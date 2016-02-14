@@ -6,11 +6,56 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:18:31 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/13 12:00:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 14:40:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+static int		isdouble_n(t_dlist *stack, int n)
+{
+	while (stack)
+	{
+		if (n == *(int *)stack->content)
+			return (1);
+		stack = stack->n;
+	}
+	return (0);
+}
+
+static int		isdouble(t_dlist *stack)
+{
+	while (stack)
+	{
+		if (isdouble_n(stack->n, *(int *)stack->content))
+			return (1);
+		stack = stack->n;
+	}
+	return (0);
+}
+
+static int		oneswap(t_dlist **astack, int o)
+{
+	t_dlist		*tmp;
+	int			stroke;
+
+	stroke = 0;
+	tmp = (*astack)->n;
+	if (!nosort(tmp, o, 0) && (!tmp->n || (tmp->n && *(int *)(*astack)->content) < *(int *)tmp->n->content))
+	{
+		ft_printf("sa\n");
+		if (IS(O_DEBUG, o) || IS(O_STROKE, o))
+		{
+			if (IS(O_COLOR, o))
+				ft_printf("{pink}Stroke{eoc}: 1\n");
+			else
+				ft_printf("Stroke: 1\n");
+		}
+		op_sx(astack, &stroke);
+		return (1);
+	}
+	return (0);
+}
 
 static t_dlist	*get_stack(int ac, char *av[], size_t *size)
 {
@@ -50,8 +95,22 @@ int				pushswap(int ac, char *av[], int o)
 	size = 0;
 	if (!(stack_a = get_stack(ac, av, &size)))
 		return (error(EXIT_FAILURE, o));
+	else if (isdouble(stack_a))
+		return (error(EXIT_FAILURE, o));
 	stack_b = NULL;
-	ps_resolve(&stack_a, &stack_b, size, o);
+	if (IS(O_DEBUG, o))
+	{
+		debug(stack_a, "A start", o);
+		debug(stack_b, "B start", o);
+	}
+	if (nosort(stack_a, o, 1) && !oneswap(&stack_a, o))
+		sort(&stack_a, &stack_b, size, o);
+//	ft_printf("\n");
+	if (IS(O_DEBUG, o) || IS(O_FIN, o))
+	{
+		debug(stack_a, "A end", o);
+		debug(stack_b, "B end", o);
+	}
 	ft_dlstdel(&stack_a, NULL);
 	ft_dlstdel(&stack_b, NULL);
 	return (EXIT_SUCCESS);

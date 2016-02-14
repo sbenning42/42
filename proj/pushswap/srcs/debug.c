@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:34:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/13 13:46:43 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 13:50:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,23 @@ void		debug_split\
 }
 
 void		debug\
-				(t_dlist *l, char *name)
+				(t_dlist *l, char *name, int o)
 {
 	t_dlist	*tmp;
 	int		i;
 
 	i = 0;
 	tmp = l;
-	ft_printf("LIST %s:\n", name);
+	if (IS(O_COLOR, o))
+		ft_printf("{yellow}LIST{eoc} %s:\n", name);
+	else
+		ft_printf("LIST %s:\n", name);
 	while (tmp)
 	{
-		ft_printf("Elelm %d: [%d]\n", i++, *(int *)tmp->content);
+		if (IS(O_COLOR, o))
+			ft_printf("{yellow}Elelm{eoc} %d: [%d]\n", i++, *(int *)tmp->content);
+		else
+			ft_printf("Elelm %d: [%d]\n", i++, *(int *)tmp->content);
 		tmp = tmp->n;
 	}
 	ft_printf("\n");

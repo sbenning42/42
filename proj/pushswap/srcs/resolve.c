@@ -6,70 +6,58 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:59:50 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/13 13:56:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 12:44:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static void	handle_stack_b\
-				(t_dlist **astack, int *stroke, int size)
+static void	finish\
+				(t_dlist **astack_a, t_dlist **astack_b, int o, int stroke)
 {
-	int		mem;
-	char	flag;
-
-	mem = 0;
-	flag = 1;
-	while (flag)
+	while (*astack_b)
 	{
-		flag = 0;
-		if ((*astack)\
-				&& (*astack)->n\
-				&& ((*astack)->content > (*astack)->n->content)\
-				&& size--)
-		{
-			flag = 1;
-			mem++;
-			op_sx(astack, stroke);
-			ft_printf("sb ");
-			op_rx(astack, stroke);
-			ft_printf("rb ");
-		}
+		ft_printf("pa ");
+		op_px(astack_b, astack_a, &stroke);
+	}
+	ft_printf("\n");
+	debug_split();
+	if (IS(O_DEBUG) || IS(O_STROKE, o))
+	{
+		if (IS(O_COLOR))
+			ft_printf("\n{pink}Stroke{eoc} = %d\n", stroke);
 		else
-		{
-			while (mem--)
-			{
-				op_rrx(astack, stroke);
-				ft_printf("rrb ");
-			}
-		}
+			ft_printf("\nStroke = %d\n", stroke);
 	}
 }
 
-void		ps_resolve\
-				(t_dlist **astack_a, t_dlist **astack_b, size_t size, int o)
+void	 	select_sort\
+				 (t_dlist **astack_a, t_dlist **astack_b, size_t size, int o)
 {
 	t_dlist	*tmp;
 	int		stroke;
-	int		bsize;
+	int		min;
+	int		flag;
 	
+	(void)o;
 	stroke = 0;
-	tmp = *astack_a;
-	(void)size;
-	bsize = 0;
-	while (42)
+	while (*astack_a)
 	{
-		if (!*astack_a)
-			break ;
-		op_px(astack_a, astack_b, &stroke);
-		ft_printf("pb ");
-		handle_stack_b(astack_b, &stroke, bsize);
-		bsize++;
+		min = INT_MAX;
+		flag = 1;
+		tmp = *astack_a;
+		while (tmp)
+		{
+			if (*(int *)tmp->content == stackenv()->min && flag && !(flag = 0))
+			{
+				ft_printf("pb ");
+				op_px(astack_a, astack_b, &stroke);
+			}
+			else if (min > *(int *)tmp->content)
+				min = *(int *)tmp->content;
+			tmp = tmp->n;
+		}
+		stackenv()->min = min;
 	}
-	ft_printf("\n");
-	if (IS(O_DEBUG, o))
-	{
-		debug(*astack_a, "A");
-		debug(*astack_b, "B");
-	}
+	finish(astack_a, astack_b, o, stroke);
 }

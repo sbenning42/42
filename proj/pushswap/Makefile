@@ -14,7 +14,9 @@ NAME =			push_swap
 
 SRC =			srcs/main.c\
 				srcs/pushswap.c\
-				srcs/resolve.c\
+				srcs/nosort.c\
+				srcs/sort.c\
+				srcs/roll.c\
 				srcs/getopt.c\
 				srcs/operator_simple.c\
 				srcs/operator_multiple.c\
