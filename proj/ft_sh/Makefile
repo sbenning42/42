@@ -12,7 +12,15 @@
 
 NAME =			ft_sh
 
-SRC =			ft_sh.c\
+SRC =			handle.c\
+				ft_sh.c\
+				usage.c\
+				getopt.c\
+				put.c\
+				error.c\
+				dic.c\
+				binary.c\
+				shenv.c\
 				main.c
 
 SRC_DIR =		srcs/
@@ -20,6 +28,8 @@ SRC_DIR =		srcs/
 OBJ_DIR =		obj/
 
 OBJ =			$(addprefix $(SRC_DIR), $(SRC:.c=.o))
+
+COBJ =			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 OBJ_LIB =		libft.a
 
@@ -29,27 +39,30 @@ LIB_DIR =		lib/
 
 HEADER =		includes
 
+DEPEND =		$(HEADER)/ft_sh.h
+
 CC =			gcc
 
-FLAG =			-Wall -Wextra #-Werror
+FLAG =			-Wall -Wextra -Werror
 
-all : $(OBJ_LIB) $(OBJ) $(NAME)
+all : $(OBJ_LIB) $(NAME)
 
 $(OBJ_LIB) :
 	make -C $(LIB_DIR)$(LIB)
 
 $(NAME) : $(OBJ)
-		$(CC) $(FLAG) -L $(LIB_DIR)$(LIB) -l$(LIB) -o $@ $^
+	$(CC) $(FLAG) -L $(LIB_DIR)$(LIB) -l$(LIB) -o $@ $^
+	mv $^ $(OBJ_DIR)
 
-%.o : %.c
+%.o : %.c $(DEPEND)
 	$(CC) $(FLAG) -I $(HEADER) -I $(LIB_DIR)$(LIB)/$(HEADER) -o $@ -c $<
 
 clean :
-	rm -rf $(OBJ)
+	rm -rf $(COBJ)
 	make clean -C $(LIB_DIR)$(LIB)
 
 fclean : clean
 	rm -rf $(NAME)
-	make fclean -C $(LIB_DIR)$(LIB)
+	rm -rf $(LIB_DIR)$(LIB)/$(OBJ_LIB)
 
 re : fclean all

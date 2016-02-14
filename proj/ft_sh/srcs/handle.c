@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 17:43:26 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/14 18:21:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int			main(int arg_c, char *arg_v[])
+int			handle_cmd\
+				(char *cmd, int size)
 {
-	shenv_create(arg_c, arg_v);
-	if (IS(O_DEBUG, OPT))
-	{
-		put_env();
-		put_av();
-		put_opt();
-	}
-	while (minishell())
-		;
-	shenv_destroy();
-	return (EXIT_SUCCESS);
 }

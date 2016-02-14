@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 17:43:26 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/14 16:20:02 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/14 17:28:00 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int			main(int arg_c, char *arg_v[])
+void		usage\
+				(char invalid)
 {
-	shenv_create(arg_c, arg_v);
-	if (IS(O_DEBUG, OPT))
+	if (IS(O_COLOR, OPT))
 	{
-		put_env();
-		put_av();
-		put_opt();
+		ft_fprintf(2, FMT_CU1, AV, invalid);
+		ft_fprintf(2, FMT_CU2, AV, CSET_O);
 	}
-	while (minishell())
-		;
+	else
+	{
+		ft_fprintf(2, FMT_U1, AV, invalid);
+		ft_fprintf(2, FMT_U2, AV, CSET_O);
+	}
 	shenv_destroy();
-	return (EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }
