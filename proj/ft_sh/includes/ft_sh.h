@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 20:43:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 00:57:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,27 @@
 # define O_PRIVATE_ERROR 0x4
 
 # define MSG_SYSCALL "An error occured on system call..."
+# define MSG_NOFOUND "Command not found..."
 
-# define FMT_CPROMPT "{green|gr|}$ `My Awersome Prompt >{eoc}"
+# define FMT_CPROMPT "{green|gr|}$ My Awersome Prompt >{eoc}"
 # define FMT_CU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
 # define FMT_CU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}]\n"
 # define FMT_CREAD "{red}%s{eoc}: {yellow}read{eoc}: %s\n"
 # define FMT_CMEM "{red}%s{eoc}: {yellow}malloc{eoc}: %s\n"
+# define FMT_CBINARY "{yellow}Entry{eoc}: [{gr}%s{eoc}] -> [{ss}%s{eoc}]\n"
+# define FMT_CNOFOUND "{green}%s{eoc}: {cyan}%s{eoc}: {red}%s{eoc}\n"
+# define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
+# define FMT_CARGV "{cyan}Arg_v{eoc}[{yellow}%d{eoc}] -> [{gr}%s{eoc}]\n"
 
 # define FMT_PROMPT "$ My Awersome Prompt >"
 # define FMT_U1 "%s: Invalid option -- %c\n"
 # define FMT_U2 "Usage: %s [-%s]\n"
 # define FMT_READ "%s: read: %s\n"
 # define FMT_MEM "%s: malloc: %s\n"
+# define FMT_BINARY "Entry: [%s] -> [%s]\n"
+# define FMT_NOFOUND "%s: %s: %s\n"
+# define FMT_CMD "%s:\n%{\n\ncmd: [%s%s%s]\n"
+# define FMT_ARGV "Arg_v[%d] -> [%s]\n"
 
 # define OPT shenv()->o
 # define AV shenv()->av
@@ -71,6 +80,14 @@ typedef struct		s_dic
 	struct s_dic	*l;
 	struct s_dic	*r;
 }					t_dic;
+
+typedef struct		s_cmd
+{
+	int				not_found;
+	char			pathbin[FT_SH_BINARY_PATH_SIZE + 1];
+	char			**arg_v;
+	char			**env_p;
+}					t_cmd;
 
 typedef struct		s_shenv
 {
@@ -117,6 +134,8 @@ void				ft_dicdopref\
 						(t_dic *dic, void (*f)(t_dic *));
 void				ft_dicdosuf\
 						(t_dic *dic, void (*f)(t_dic *));
+void				*ft_dicentry\
+						(t_dic *dic, char *id);
 void				ft_dicdel\
 						(t_dic **adic, void (*del)(void *, size_t));
 /*
@@ -171,6 +190,8 @@ void				put_opt\
 						(void);
 void				put_cmd_buffer\
 						(char *cmd, int ret);
+void				put_cmd\
+						(t_cmd cmd);
 
 /*
 ***	****************************************************************************
@@ -214,8 +235,18 @@ int					minishell\
 */
 
 int					handle_cmd\
-						(char *cmd, int size);
+						(char *cmd_buffer, int size);
 
+/*
+***	****************************************************************************
+*/
+
+/*
+***					***	PARSE.C	***
+*/
+
+t_cmd				parse_cmd\
+						(char *cmd_buffer);
 /*
 ***	****************************************************************************
 */

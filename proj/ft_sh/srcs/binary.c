@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:44:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 20:38:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 23:44:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ static void		free_paths\
 	ft_memdel((void **)atab);
 }
 
+static void		myprint\
+					(t_dic *e)
+{
+	if (!e)
+		return ;
+	ft_printf((IS(O_COLOR, OPT) ? FMT_CBINARY : FMT_BINARY)\
+			, e->id, (char *)e->content);
+
+}
+
 void			dic_binary\
 					(void)
 {
@@ -79,4 +89,6 @@ void			dic_binary\
 		i++;
 	}
 	free_paths(&paths);
+	if (IS(O_DEBUG, OPT))
+		ft_dicdoinf(BINARY, myprint);
 }

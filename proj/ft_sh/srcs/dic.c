@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:23:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 19:38:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/14 23:53:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,21 @@ void			ft_dicdosuf\
 		ft_dicdoinf(dic->r, f);
 	if (f)
 		f(dic);
+}
+
+void			*ft_dicentry\
+					(t_dic *dic, char *id)
+{
+	int			ret;
+
+	if (!dic)
+		return (NULL);
+	if (!(ret = ft_strcmp(dic->id, id)))
+		return (dic->content);
+	else if (ret > 0)
+		return (ft_dicentry(dic->l, id));
+	else
+		return (ft_dicentry(dic->r, id));
 }
 
 void			ft_dicdel\

@@ -6,13 +6,14 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2015/12/19 00:09:57 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/02/14 23:27:05 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 NAME =			ft_sh
 
-SRC =			handle.c\
+SRC =			parse.c\
+				handle.c\
 				ft_sh.c\
 				usage.c\
 				getopt.c\
@@ -52,7 +53,7 @@ $(OBJ_LIB) :
 	make -C $(LIB_DIR)$(LIB)
 
 $(NAME) : $(OBJ)
-	$(CC) $(FLAG) -L $(LIB_DIR)$(LIB) -l$(LIB) -o $@ $^
+	$(CC) $(FLAG) -o $@ $^ -L $(LIB_DIR)$(LIB) -l$(LIB)
 	mv $^ $(OBJ_DIR)
 
 %.o : %.c $(DEPEND)

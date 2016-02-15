@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:25:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 18:13:59 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 00:58:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void			put_cmd_buffer\
 	if (IS(O_COLOR, OPT))
 	{
 		ft_printf("{yellow}put_cmd_buffer{eoc}:\n");
-		ft_printf("%{\n\n{yellow}cmd{eoc}: [{cyan}%.*s{eoc}]\n", ret - 1, cmd);
-		ft_printf("{yellow}read return{eoc}: [{cyan}%d{eoc}]\n\n}\n", ret);
+		ft_printf("%{\n\n{cyan}cmd{eoc}: [{gr}%.*s{eoc}]\n", ret - 1, cmd);
+		ft_printf("{cyan}read return{eoc}: [{gr}%d{eoc}]\n\n}\n", ret);
 	}
 	else
 	{
@@ -79,4 +79,20 @@ void			put_cmd_buffer\
 		ft_printf("%{\n\ncmd: [%.*s]\n", ret - 1, cmd);
 		ft_printf("read return: [%d]\n\n}\n", ret);
 	}
+}
+
+void			put_cmd\
+					(t_cmd cmd)
+{
+	int			i;
+
+	ft_printf((IS(O_COLOR, OPT) ? FMT_CCMD : FMT_CMD)\
+			, "put_cmd",  cmd.arg_v[0], "] -> [", cmd.pathbin);
+	i = 0;
+	while (cmd.arg_v[i])
+	{
+		ft_printf((IS(O_COLOR, OPT) ? FMT_CARGV : FMT_ARGV), i, cmd.arg_v[i]);
+		i++;
+	}
+	ft_printf("\n}\n");
 }
