@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:42:45 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 17:45:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 19:49:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void				shenv_create(\
 	e = 0;
 	if (IS(O_PRIVATE_ERROR, (OPT = get_opt(CSET_O, arg_c, arg_v, &e))))
 		usage(e);
-	ENV = environ;
 	ep = environ;
 	len = environsize(ep);
 	if (!(ENV = ft_memalloc(sizeof(char *) * (len + 1))))

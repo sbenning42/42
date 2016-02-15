@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 17:51:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 20:21:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include "libft.h"
 
+# define FT_SH_BUILTIN_SIZE 5
 # define FT_SH_CD_BUILTIN "cd"
 # define FT_SH_EXIT_BUILTIN "exit"
 # define FT_SH_ENV_BUILTIN "env"
@@ -42,7 +43,8 @@
 # define MSG_SYSCALL "An error occured on system call..."
 # define MSG_NOFOUND "Command not found..."
 
-# define FMT_CPROMPT "{green|gr|}$ My Awersome Prompt >{eoc}"
+//# define FMT_CPROMPT "{green|gr|}$ My Awersome Prompt >{eoc}"
+# define FMT_CPROMPT "{green|gr|}ft_sh$>{eoc}"
 # define FMT_CU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
 # define FMT_CU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}]\n"
 # define FMT_CREAD "\n{red}%s{eoc}: {yellow}read{eoc}: %s\n{red|ss}EXIT{eoc}\n"
@@ -55,7 +57,8 @@
 # define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n\t{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
 # define FMT_CARGV "\t{cyan}Arg_v{eoc}[{yellow}%d{eoc}] -> [{gr}%s{eoc}]\n"
 
-# define FMT_PROMPT "$ My Awersome Prompt >"
+//# define FMT_PROMPT "$ My Awersome Prompt >"
+# define FMT_PROMPT "ft_sh$>"
 # define FMT_U1 "%s: Invalid option -- %c\n"
 # define FMT_U2 "Usage: %s [-%s]\n"
 # define FMT_READ "\n%s: read: %s\nEXIT\n"
@@ -142,6 +145,8 @@
 
 extern char			**environ;
 
+typedef void		(*t_built_f)(int arg_c, char **arg_v, char **env_p);
+
 typedef struct		s_dic
 {
 	char			*id;
@@ -151,6 +156,12 @@ typedef struct		s_dic
 	struct s_dic	*l;
 	struct s_dic	*r;
 }					t_dic;
+
+typedef struct		s_built
+{
+	char			*id;
+	t_built_f		built;
+}					t_built;
 
 typedef struct		s_cmd
 {
@@ -167,7 +178,7 @@ typedef struct		s_shenv
 	char			*av;
 	int				o;
 	t_dic			*binary;
-	t_dic			*builtin;
+	t_built			builtin[FT_SH_BUILTIN_SIZE];
 }					t_shenv;
 
 /*
