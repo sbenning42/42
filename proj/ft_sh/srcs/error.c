@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:12:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 10:54:19 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:34:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,31 @@ void	binary_error(\
 {
 	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CMEM : FMT_MEM), AV, MSG_SYSCALL);
 	error();
+}
+
+void	malloc_error(\
+		void)
+{
+	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CMEM : FMT_MEM), AV, MSG_SYSCALL);
+	error();
+}
+
+void	opendir_error(\
+		char *path)
+{
+	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_COPEN : FMT_OPEN),\
+			AV, path, MSG_SYSCALL);
+}
+
+void	exec_error(\
+		char *path)
+{
+	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CEXEC : FMT_EXEC),\
+			AV, path, MSG_SYSCALL);
+}
+
+void	fork_error(\
+		void)
+{
+	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CFORK : FMT_FORK), AV, MSG_SYSCALL);
 }

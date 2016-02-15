@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:44:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 11:25:53 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:10:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static int			extract_binary(\
 	struct dirent	*direntry;
 
 	if (!(dir = opendir(path)))
+	{
+		opendir_error(path);
 		return (1);
+	}
 	while ((direntry = readdir(dir)))
 	{
 		ft_bzero((void *)binpath, sizeof(char) * (FT_SH_BINARY_PATH_SIZE + 1));
@@ -75,7 +78,7 @@ void				dic_binary(\
 	char			**paths;
 
 	BINARY = NULL;
-	if (!(path = get_shenv("PAT")))
+	if (!(path = get_shenv("PATH")))
 	{
 		ft_fprintf(2, "No PATH in system environ...\n");
 		return ;

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 11:19:29 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:51:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int			handle_cmd(\
 		free_cmd(&cmd);
 		return (1);
 	}
+	else if (!cmd.builtin)
+		exec(cmd);
+	else
+		exec_builtin(cmd);
 	if (IS(O_DEBUG, OPT))
 		put_cmd(cmd);
-	exec(cmd);
 	free_cmd(&cmd);
 	return (1);
 }

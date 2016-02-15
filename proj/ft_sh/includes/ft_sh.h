@@ -6,18 +6,28 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 11:19:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:51:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SH_H
 # define FT_SH_H
 
+/*
+***	Fix read error msg
+*/
+
 # include <dirent.h> //opendir, readdir, closedir
 # include <sys/wait.h> //wait, wait3, wait4, waitpid
 # include <signal.h> // signal, kill
 
 # include "libft.h"
+
+# define FT_SH_CD_BUILTIN "cd"
+# define FT_SH_EXIT_BUILTIN "exit"
+# define FT_SH_ENV_BUILTIN "env"
+# define FT_SH_SETENV_BUILTIN "setenv"
+# define FT_SH_UNSETENV_BUILTIN "unsetenv"
 
 # define FT_SH_CMD_BUFFER_SIZE 2048
 # define FT_SH_BINARY_PATH_SIZE 2048
@@ -35,8 +45,11 @@
 # define FMT_CPROMPT "{green|gr|}$ My Awersome Prompt >{eoc}"
 # define FMT_CU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
 # define FMT_CU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}]\n"
-# define FMT_CREAD "{red}%s{eoc}: {yellow}read{eoc}: %s\n"
+# define FMT_CREAD "\n{red}%s{eoc}: {yellow}read{eoc}: %s\n{red|ss}EXIT{eoc}\n"
 # define FMT_CMEM "{red}%s{eoc}: {yellow}malloc{eoc}: %s\n"
+# define FMT_COPEN "{red}%s{eoc}: {yellow}opendir{eoc}: {red}%s{eoc}: %s\n"
+# define FMT_CEXEC "{red}%s{eoc}: {yellow}execve{eoc}: {red}%s{eoc}: %s\n"
+# define FMT_CFORK "{red}%s{eoc}: {yellow}fork{eoc}: %s\n"
 # define FMT_CBINARY "{yellow}Entry{eoc}: [{gr}%s{eoc}] -> [{ss}%s{eoc}]\n"
 # define FMT_CNOFOUND "{green}%s{eoc}: {cyan}%s{eoc}: {red}%s{eoc}\n"
 # define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n\t{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
@@ -45,8 +58,11 @@
 # define FMT_PROMPT "$ My Awersome Prompt >"
 # define FMT_U1 "%s: Invalid option -- %c\n"
 # define FMT_U2 "Usage: %s [-%s]\n"
-# define FMT_READ "%s: read: %s\n"
+# define FMT_READ "\n%s: read: %s\nEXIT\n"
 # define FMT_MEM "%s: malloc: %s\n"
+# define FMT_OPEN "%s: opendir: %s: %s\n"
+# define FMT_FORK "%s: fork: %s\n"
+# define FMT_EXEC "%s: exec: %s: %s\n"
 # define FMT_BINARY "Entry: [%s] -> [%s]\n"
 # define FMT_NOFOUND "%s: %s: %s\n"
 # define FMT_CMD "%s:\n%{\n\n\tcmd: [%s%s%s]\n"
@@ -59,6 +75,66 @@
 # define BUILTIN shenv()->builtin
 
 # define IS(X, Y) ((Y & X) == X ? 1 : 0)
+
+/*
+***	# define SYSCALL_FAILURE_TEST
+***	# define READ_TEST
+***	# define OPENDIR_TEST
+***	# define FORK_TEST
+***	# define EXECVE_TEST
+*/
+
+/*
+***	****************************************************************************
+*/
+
+# ifdef SYSCALL_FAILURE_TEST
+
+/*
+***	****************************************************************************
+*/
+
+#  ifdef READ_TEST
+
+#   define read(X, Y, Z) -1
+
+#  endif
+
+/*
+***	****************************************************************************
+*/
+
+#  ifdef OPENDIR_TEST
+
+#   define opendir(X) NULL
+
+#  endif
+
+/*
+***	****************************************************************************
+*/
+
+#  ifdef FORK_TEST
+
+#   define fork() -1
+
+#  endif
+
+/*
+***	****************************************************************************
+*/
+
+#  ifdef EXECVE_TEST
+
+#   define execve(X, Y, Z) (X == X)
+
+#  endif
+
+/*
+***	****************************************************************************
+*/
+
+# endif
 
 /*
 ***	****************************************************************************
@@ -79,6 +155,7 @@ typedef struct		s_dic
 typedef struct		s_cmd
 {
 	int				not_found;
+	int				builtin;
 	char			pathbin[FT_SH_BINARY_PATH_SIZE + 1];
 	char			**arg_v;
 	char			**env_p;
@@ -168,6 +245,14 @@ void				read_error\
 						(void);
 void				binary_error\
 						(void);
+void				malloc_error\
+						(void);
+void				opendir_error\
+						(char *path);
+void				exec_error\
+						(char *path);
+void				fork_error\
+						(void);
 
 /*
 ***	****************************************************************************
@@ -248,8 +333,17 @@ t_cmd				parse_cmd\
 ***	****************************************************************************
 */
 
-void		exec(\
-			t_cmd cmd);
+/*
+***					***	EXEC.C	***
+*/
+
+void				exec\
+						(t_cmd cmd);
+
+/*
+***	****************************************************************************
+*/
+
 #endif
 
 /*
