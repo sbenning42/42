@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:25:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 02:15:23 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:06:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void			put_env\
-					(void)
+void			put_env(\
+				void)
 {
 	char		**ep;
 
@@ -38,8 +38,8 @@ void			put_env\
 	ft_printf("\n}\n");
 }
 
-void			put_av\
-					(void)
+void			put_av(\
+				void)
 {
 	if (!AV)
 	{
@@ -55,8 +55,8 @@ void			put_av\
 		ft_printf("put_av: %s\n", AV);
 }
 
-void			put_opt\
-					(void)
+void			put_opt(\
+				void)
 {
 	if (IS(O_COLOR, OPT))
 		ft_printf("{yellow}put_opt{eoc}: %#X\n", OPT);
@@ -64,16 +64,16 @@ void			put_opt\
 		ft_printf("put_opt: %#X\n", OPT);
 }
 
-void			put_shenv\
-					(void)
+void			put_shenv(\
+				void)
 {
 	put_env();
 	put_av();
 	put_opt();
 }
 
-void			put_cmd_buffer\
-					(char *cmd, int ret)
+void			put_cmd_buffer(\
+				char *cmd, int ret)
 {
 	if (IS(O_COLOR, OPT))
 	{
@@ -89,13 +89,13 @@ void			put_cmd_buffer\
 	}
 }
 
-void			put_cmd\
-					(t_cmd cmd)
+void			put_cmd(\
+				t_cmd cmd)
 {
 	int			i;
 
-	ft_printf((IS(O_COLOR, OPT) ? FMT_CCMD : FMT_CMD)\
-			, "put_cmd",  cmd.arg_v[0], "] -> [", cmd.pathbin);
+	ft_printf((IS(O_COLOR, OPT) ? FMT_CCMD : FMT_CMD),\
+			"put_cmd", cmd.arg_v[0], "] -> [", cmd.pathbin);
 	i = 0;
 	while (cmd.arg_v[i])
 	{

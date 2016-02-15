@@ -6,14 +6,14 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 23:27:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:59:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:04:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-t_cmd			parse_cmd\
-					(char *cmd_buffer)
+t_cmd			parse_cmd(\
+				char *cmd_buffer)
 {
 	t_cmd		cmd;
 	char		*pathbin;

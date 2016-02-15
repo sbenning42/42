@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 02:12:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:19:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-static void	free_cmd\
-				(t_cmd *cmd)
+static void	free_cmd(\
+			t_cmd *cmd)
 {
 	char	**cp;
 
@@ -26,8 +26,8 @@ static void	free_cmd\
 	ft_memdel((void **)&cmd->arg_v);
 }
 
-int			handle_cmd\
-				(char *cmd_buffer, int size)
+int			handle_cmd(\
+			char *cmd_buffer, int size)
 {
 	t_cmd	cmd;
 
@@ -44,7 +44,7 @@ int			handle_cmd\
 	}
 	if (IS(O_DEBUG, OPT))
 		put_cmd(cmd);
-//	exec(cmd);
+	exec(cmd);
 	free_cmd(&cmd);
 	return (1);
 }

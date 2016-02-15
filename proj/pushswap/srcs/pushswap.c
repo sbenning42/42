@@ -6,13 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:18:31 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 14:40:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:23:45 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static int		isdouble_n(t_dlist *stack, int n)
+static int		isdouble_n(\
+				t_dlist *stack, int n)
 {
 	while (stack)
 	{
@@ -23,7 +24,8 @@ static int		isdouble_n(t_dlist *stack, int n)
 	return (0);
 }
 
-static int		isdouble(t_dlist *stack)
+static int		isdouble(\
+				t_dlist *stack)
 {
 	while (stack)
 	{
@@ -34,14 +36,18 @@ static int		isdouble(t_dlist *stack)
 	return (0);
 }
 
-static int		oneswap(t_dlist **astack, int o)
+static int		oneswap(\
+				t_dlist **astack, int o)
 {
 	t_dlist		*tmp;
 	int			stroke;
 
 	stroke = 0;
 	tmp = (*astack)->n;
-	if (!nosort(tmp, o, 0) && (!tmp->n || (tmp->n && *(int *)(*astack)->content) < *(int *)tmp->n->content))
+	if (!nosort(tmp, o, 0)\
+			&& (!tmp->n\
+			|| (tmp->n\
+			&& *(int *)(*astack)->content) < *(int *)tmp->n->content))
 	{
 		ft_printf("sa\n");
 		if (IS(O_DEBUG, o) || IS(O_STROKE, o))
@@ -57,7 +63,8 @@ static int		oneswap(t_dlist **astack, int o)
 	return (0);
 }
 
-static t_dlist	*get_stack(int ac, char *av[], size_t *size)
+static t_dlist	*get_stack(\
+				int ac, char *av[], size_t *size)
 {
 	t_dlist		*h_stack;
 	t_dlist		*stack;
@@ -86,7 +93,8 @@ static t_dlist	*get_stack(int ac, char *av[], size_t *size)
 	return (NULL);
 }
 
-int				pushswap(int ac, char *av[], int o)
+int				pushswap(\
+				int ac, char *av[], int o)
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
@@ -105,7 +113,6 @@ int				pushswap(int ac, char *av[], int o)
 	}
 	if (nosort(stack_a, o, 1) && !oneswap(&stack_a, o))
 		sort(&stack_a, &stack_b, size, o);
-//	ft_printf("\n");
 	if (IS(O_DEBUG, o) || IS(O_FIN, o))
 	{
 		debug(stack_a, "A end", o);

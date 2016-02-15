@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 19:49:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:43:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:55:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-char		*get_shenv\
-				(char *id)
+char		*get_shenv(\
+			char *id)
 {
 	char	**ep;
 	char	*f;

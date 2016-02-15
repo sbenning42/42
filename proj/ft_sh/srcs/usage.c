@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:20:02 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 17:28:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:08:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void		usage\
-				(char invalid)
+void	usage(\
+		char invalid)
 {
 	if (IS(O_COLOR, OPT))
 	{

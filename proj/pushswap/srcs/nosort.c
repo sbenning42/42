@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 13:20:37 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 13:40:06 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:20:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	nosort\
-		(t_dlist *stack, int o, int finish)
+int	nosort(\
+	t_dlist *stack, int o, int finish)
 {
 	while (stack && stack->n)
 	{

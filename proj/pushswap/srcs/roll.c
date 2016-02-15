@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 13:34:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 14:04:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:24:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int		reverse_roll\
-			(t_dlist **astack, int min, int o)
+int		reverse_roll(\
+		t_dlist **astack, int min, int o)
 {
 	int	stroke;
 
@@ -27,8 +27,8 @@ int		reverse_roll\
 	return (stroke);
 }
 
-int		roll\
-			(t_dlist **astack, int min, int o)
+int		roll(\
+		t_dlist **astack, int min, int o)
 {
 	int	stroke;
 

@@ -6,14 +6,18 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:44:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:48:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:25:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-static int		extract_binary\
-					(char *path)
+/*
+***		Have to put an error msg in case of opendir failure
+*/
+
+static int			extract_binary(\
+					char *path)
 {
 	t_dic			*entry;
 	char			binpath[FT_SH_BINARY_PATH_SIZE + 1];
@@ -21,7 +25,7 @@ static int		extract_binary\
 	struct dirent	*direntry;
 
 	if (!(dir = opendir(path)))
-		return (1); //Have to put an error msg too...
+		return (1);
 	while ((direntry = readdir(dir)))
 	{
 		ft_bzero((void *)binpath, sizeof(char) * (FT_SH_BINARY_PATH_SIZE + 1));
@@ -40,10 +44,10 @@ static int		extract_binary\
 	return (1);
 }
 
-static void		free_paths\
-					(char ***atab)
+static void			free_paths(\
+					char ***atab)
 {
-	char		**cp;
+	char			**cp;
 
 	cp = *atab;
 	while (*cp)
@@ -54,25 +58,24 @@ static void		free_paths\
 	ft_memdel((void **)atab);
 }
 
-static void		myprint\
-					(t_dic *e)
+static void			myprint(\
+					t_dic *e)
 {
 	if (!e)
 		return ;
-	ft_printf((IS(O_COLOR, OPT) ? FMT_CBINARY : FMT_BINARY)\
-			, e->id, (char *)e->content);
-
+	ft_printf((IS(O_COLOR, OPT) ? FMT_CBINARY : FMT_BINARY),\
+			e->id, (char *)e->content);
 }
 
-void			dic_binary\
-					(void)
+void				dic_binary(\
+					void)
 {
-	int			i;
-	char		*path;
-	char		**paths;
+	int				i;
+	char			*path;
+	char			**paths;
 
 	BINARY = NULL;
-	if (!(path = get_shenv("PATH")))
+	if (!(path = get_shenv("PAT")))
 	{
 		ft_fprintf(2, "No PATH in system environ...\n");
 		return ;

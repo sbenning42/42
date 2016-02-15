@@ -6,14 +6,14 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:52:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:54:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int			minishell\
-				(void)
+int			minishell(\
+			void)
 {
 	int		ret;
 	char	cmd_buffer[FT_SH_CMD_BUFFER_SIZE + 1];

@@ -6,21 +6,22 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:42:45 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:36:29 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:07:45 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-t_shenv				*shenv\
-						(void)
+t_shenv				*shenv(\
+					void)
 {
 	static t_shenv	s;
 
 	return (&s);
 }
 
-static int			environsize(char **ep)
+static int			environsize(\
+					char **ep)
 {
 	int				i;
 
@@ -30,8 +31,8 @@ static int			environsize(char **ep)
 	return (i);
 }
 
-void				shenv_create\
-						(int arg_c, char **arg_v)
+void				shenv_create(\
+					int arg_c, char **arg_v)
 {
 	int				i;
 	int				len;
@@ -60,8 +61,8 @@ void				shenv_create\
 //	dic_builtin();
 }
 
-void				shenv_destroy\
-						(void)
+void				shenv_destroy(\
+					void)
 {
 	int				i;
 

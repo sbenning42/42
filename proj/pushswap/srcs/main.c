@@ -6,17 +6,18 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 14:13:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:18:21 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int						main(int ac, char *av[])
+int			main(\
+			int ac, char *av[])
 {
-	char				e;
-	int					skip;
-	int					o;
+	char	e;
+	int		skip;
+	int		o;
 
 	e = 0;
 	o = get_opt(CSET_O, ac, av, &e);

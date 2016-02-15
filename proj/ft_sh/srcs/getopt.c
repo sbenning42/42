@@ -6,13 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:12:12 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 01:40:45 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:03:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-static int	get_solo_opt(const char *cset, char c, char *err)
+static int	get_solo_opt(\
+			const char *cset, char c, char *err)
 {
 	int		o;
 
@@ -28,7 +29,8 @@ static int	get_solo_opt(const char *cset, char c, char *err)
 	return (O_PRIVATE_ERROR);
 }
 
-int			get_opt(const char *cset, int ac, char **av, char *err)
+int			get_opt(\
+			const char *cset, int ac, char **av, char *err)
 {
 	int		i;
 	int		j;

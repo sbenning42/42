@@ -6,13 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:57:27 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/13 13:48:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:21:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void		op_sx(t_dlist **astack, int *stroke)
+void		op_sx(\
+			t_dlist **astack, int *stroke)
 {
 	void	*tmp;
 
@@ -24,7 +25,8 @@ void		op_sx(t_dlist **astack, int *stroke)
 	(*stroke)++;
 }
 
-void		op_rx(t_dlist **astack, int *stroke)
+void		op_rx(\
+			t_dlist **astack, int *stroke)
 {
 	t_dlist	*tmp;
 
@@ -40,7 +42,8 @@ void		op_rx(t_dlist **astack, int *stroke)
 	(*stroke)++;
 }
 
-void		op_rrx(t_dlist **astack, int *stroke)
+void		op_rrx(\
+			t_dlist **astack, int *stroke)
 {
 	t_dlist	*tmp;
 

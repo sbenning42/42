@@ -12,7 +12,8 @@
 
 NAME =			ft_sh
 
-SRC =			parse.c\
+SRC =			exec.c\
+				parse.c\
 				handle.c\
 				ft_sh.c\
 				usage.c\

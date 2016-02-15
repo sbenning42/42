@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:18:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 14:08:05 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:28:04 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int				nosort\
 */
 
 void			sort\
-					(t_dlist **astack_a, t_dlist **astack_b\
-					 , size_t size, int o);
+					(t_dlist **astack_a, t_dlist **astack_b,\
+					size_t size, int o);
 
 /*
 ***				***	ROLL.C	***
