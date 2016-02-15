@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 17:43:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 02:02:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ int			main(int arg_c, char *arg_v[])
 {
 	shenv_create(arg_c, arg_v);
 	if (IS(O_DEBUG, OPT))
-	{
-		put_env();
-		put_av();
-		put_opt();
-	}
+		put_shenv();
 	while (minishell())
 		;
+	write(1, "\n", 1);
 	shenv_destroy();
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 00:57:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 02:14:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # define FMT_CMEM "{red}%s{eoc}: {yellow}malloc{eoc}: %s\n"
 # define FMT_CBINARY "{yellow}Entry{eoc}: [{gr}%s{eoc}] -> [{ss}%s{eoc}]\n"
 # define FMT_CNOFOUND "{green}%s{eoc}: {cyan}%s{eoc}: {red}%s{eoc}\n"
-# define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
-# define FMT_CARGV "{cyan}Arg_v{eoc}[{yellow}%d{eoc}] -> [{gr}%s{eoc}]\n"
+# define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n\t{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
+# define FMT_CARGV "\t{cyan}Arg_v{eoc}[{yellow}%d{eoc}] -> [{gr}%s{eoc}]\n"
 
 # define FMT_PROMPT "$ My Awersome Prompt >"
 # define FMT_U1 "%s: Invalid option -- %c\n"
@@ -49,14 +49,15 @@
 # define FMT_MEM "%s: malloc: %s\n"
 # define FMT_BINARY "Entry: [%s] -> [%s]\n"
 # define FMT_NOFOUND "%s: %s: %s\n"
-# define FMT_CMD "%s:\n%{\n\ncmd: [%s%s%s]\n"
-# define FMT_ARGV "Arg_v[%d] -> [%s]\n"
+# define FMT_CMD "%s:\n%{\n\n\tcmd: [%s%s%s]\n"
+# define FMT_ARGV "\tArg_v[%d] -> [%s]\n"
 
 # define OPT shenv()->o
 # define AV shenv()->av
 # define ENV shenv()->env
 # define BINARY shenv()->binary
 # define BUILTIN shenv()->builtin
+
 # define IS(X, Y) ((Y & X) == X ? 1 : 0)
 
 /*
@@ -64,12 +65,6 @@
 */
 
 extern char			**environ;
-
-typedef enum		e_bool
-{
-	False,
-	True
-}					t_bool;
 
 typedef struct		s_dic
 {
@@ -182,6 +177,8 @@ void				binary_error\
 ***					***	PUT.C	***
 */
 
+void				put_shenv\
+						(void);
 void				put_env\
 						(void);
 void				put_av\

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 20:40:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 01:52:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int			minishell\
 		read_error();
 	else if (!ret)
 		return (0);
-	cmd_buffer[ret] = 0;
+	else if (cmd_buffer[0] == '\n')
+		return (1);
+	cmd_buffer[ret - 1] = 0;
 	if (IS(O_DEBUG, OPT))
 		put_cmd_buffer(cmd_buffer, ret);
 	return (handle_cmd(cmd_buffer, ret));

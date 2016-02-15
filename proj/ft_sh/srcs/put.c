@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:25:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 00:58:23 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 02:15:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			put_env\
 		ft_printf("put_env: %{\n\n");
 	while (*ep)
 	{
-		ft_printf("%s\n", *ep);
+		ft_printf("\t%s\n", *ep);
 		ep++;
 	}
 	ft_printf("\n}\n");
@@ -64,20 +64,28 @@ void			put_opt\
 		ft_printf("put_opt: %#X\n", OPT);
 }
 
+void			put_shenv\
+					(void)
+{
+	put_env();
+	put_av();
+	put_opt();
+}
+
 void			put_cmd_buffer\
 					(char *cmd, int ret)
 {
 	if (IS(O_COLOR, OPT))
 	{
 		ft_printf("{yellow}put_cmd_buffer{eoc}:\n");
-		ft_printf("%{\n\n{cyan}cmd{eoc}: [{gr}%.*s{eoc}]\n", ret - 1, cmd);
-		ft_printf("{cyan}read return{eoc}: [{gr}%d{eoc}]\n\n}\n", ret);
+		ft_printf("%{\n\n\t{cyan}cmd{eoc}: [{gr}%s{eoc}]\n", cmd);
+		ft_printf("\t{cyan}read return{eoc}: [{gr}%d{eoc}]\n\n}\n", ret);
 	}
 	else
 	{
 		ft_printf("put_cmd_buffer:\n");
-		ft_printf("%{\n\ncmd: [%.*s]\n", ret - 1, cmd);
-		ft_printf("read return: [%d]\n\n}\n", ret);
+		ft_printf("%{\n\n\tcmd: [%s]\n", cmd);
+		ft_printf("\tread return: [%d]\n\n}\n", ret);
 	}
 }
 

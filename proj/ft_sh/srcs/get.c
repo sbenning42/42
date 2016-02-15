@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 19:49:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 19:55:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/15 01:43:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char		*get_shenv\
 	while (*ep)
 	{
 		f = ft_strchr(*ep, '=');
-		if (!strncmp(id, *ep, f - *ep))
+		if (f && !ft_strncmp(id, *ep, f - *ep))
 			return (f + 1);
 		ep++;
 	}
