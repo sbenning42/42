@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 23:27:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 20:34:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/16 18:32:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		isbuiltin(\
 		if (!strcmp(cmd->arg_v[0], BUILTIN[i].id))
 		{
 			cmd->built = BUILTIN[i].built;
-			return ;
+			return (1);
 		}
 		i++;
 	}
@@ -44,7 +44,7 @@ t_cmd			parse_cmd(\
 		malloc_error();
 	if (!(pathbin = (char *)ft_dicentry(BINARY, cmd.arg_v[0])))
 	{
-		if (!(cmd.builtin = isbuiltin(*cmd)))
+		if (!(cmd.builtin = isbuiltin(&cmd)))
 			cmd.not_found = 1;
 	}
 	else

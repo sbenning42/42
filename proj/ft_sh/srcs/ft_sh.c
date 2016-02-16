@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 10:54:53 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/16 19:30:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int			minishell(\
 	ft_printf((IS(O_COLOR, OPT) ? FMT_CPROMPT : FMT_PROMPT));
 	ret = read(0, cmd_buffer, FT_SH_CMD_BUFFER_SIZE);
 	if (ret < 0)
+	{
 		read_error();
+		return (1);
+	}
 	else if (!ret)
 		return (0);
 	else if (cmd_buffer[0] == '\n')

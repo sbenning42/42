@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 20:21:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/16 19:23:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 # define FT_SH_BUILTIN_SIZE 5
 # define FT_SH_CD_BUILTIN "cd"
-# define FT_SH_EXIT_BUILTIN "exit"
 # define FT_SH_ENV_BUILTIN "env"
 # define FT_SH_SETENV_BUILTIN "setenv"
 # define FT_SH_UNSETENV_BUILTIN "unsetenv"
+# define FT_SH_EXIT_BUILTIN "exit"
 
 # define FT_SH_CMD_BUFFER_SIZE 2048
 # define FT_SH_BINARY_PATH_SIZE 2048
@@ -145,7 +145,7 @@
 
 extern char			**environ;
 
-typedef void		(*t_built_f)(int arg_c, char **arg_v, char **env_p);
+typedef void		(*t_built_f)(char **arg_v, char **env_p);
 
 typedef struct		s_dic
 {
@@ -167,6 +167,7 @@ typedef struct		s_cmd
 {
 	int				not_found;
 	int				builtin;
+	t_built_f		built;
 	char			pathbin[FT_SH_BINARY_PATH_SIZE + 1];
 	char			**arg_v;
 	char			**env_p;
@@ -351,6 +352,18 @@ t_cmd				parse_cmd\
 void				exec\
 						(t_cmd cmd);
 
+void		dic_builtin(\
+			void);
+void		builtin_cd(\
+			char **arg_v, char **env_p);
+void		builtin_env(\
+			char **arg_v, char **env_p);
+void		builtin_setenv(\
+			char **arg_v, char **env_p);
+void		builtin_unsetenv(\
+			char **arg_v, char **env_p);
+void		builtin_exit(\
+			char **arg_v, char **env_p);
 /*
 ***	****************************************************************************
 */

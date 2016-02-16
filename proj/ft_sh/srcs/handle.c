@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 22:15:54 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/16 18:35:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			handle_cmd(\
 	else if (!cmd.builtin)
 		exec(cmd);
 	else
-		cmd.built(cmd.arg_v);
+		cmd.built(cmd.arg_v, cmd.env_p);
 	if (IS(O_DEBUG, OPT))
 		put_cmd(cmd);
 	free_cmd(&cmd);

@@ -21,6 +21,8 @@ SRC =			exec.c\
 				put.c\
 				error.c\
 				dic.c\
+				built.c\
+				builtin.c\
 				binary.c\
 				get.c\
 				shenv.c\

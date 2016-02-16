@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:12:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 17:34:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/16 19:29:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	read_error(\
 		void)
 {
 	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CREAD : FMT_READ), AV, MSG_SYSCALL);
-	error();
 }
 
 void	binary_error(\
