@@ -6,15 +6,20 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:44:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 17:10:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:42:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-/*
-***		Have to put an error msg in case of opendir failure
-*/
+static void			fill_binpath(\
+					char *binpath, char *path, char *name)
+{
+	ft_bzero((void *)binpath, sizeof(char) * (FT_SH_BINARY_PATH_SIZE + 1));
+	ft_strcpy(binpath, path);
+	ft_strcat(binpath, "/");
+	ft_strcat(binpath, name);
+}
 
 static int			extract_binary(\
 					char *path)
@@ -26,15 +31,12 @@ static int			extract_binary(\
 
 	if (!(dir = opendir(path)))
 	{
-		opendir_error(path);
+		error(Opendir, path, EXIT_SUCCESS);
 		return (1);
 	}
 	while ((direntry = readdir(dir)))
 	{
-		ft_bzero((void *)binpath, sizeof(char) * (FT_SH_BINARY_PATH_SIZE + 1));
-		ft_strcpy(binpath, path);
-		ft_strcat(binpath, "/");
-		ft_strcat(binpath, direntry->d_name);
+		fill_binpath(binpath, path, direntry->d_name);
 		if (!(entry = ft_dicnew(direntry->d_name, (void *)binpath\
 						, sizeof(char) * (ft_strlen(binpath) + 1))))
 		{
@@ -90,7 +92,7 @@ void				dic_binary(\
 		if (!extract_binary(paths[i]))
 		{
 			free_paths(&paths);
-			binary_error();
+			error(Malloc, NULL, EXIT_FAILURE);
 		}
 		i++;
 	}

@@ -6,11 +6,23 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/16 19:30:15 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:17:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
+
+static int	empty_buffer(\
+			char *buffer)
+{
+	while (*buffer)
+	{
+		if (!ft_isblank(*buffer))
+			return (0);
+		buffer++;
+	}
+	return (1);
+}
 
 int			minishell(\
 			void)
@@ -23,15 +35,16 @@ int			minishell(\
 	ret = read(0, cmd_buffer, FT_SH_CMD_BUFFER_SIZE);
 	if (ret < 0)
 	{
-		read_error();
+		error(Read, NULL, EXIT_FAILURE);
 		return (1);
 	}
 	else if (!ret)
 		return (0);
-	else if (cmd_buffer[0] == '\n')
+	else if (empty_buffer(cmd_buffer))
 		return (1);
-	cmd_buffer[ret - 1] = 0;
+	if (cmd_buffer[ret - 1] == '\n')
+		cmd_buffer[ret - 1] = 0;
 	if (IS(O_DEBUG, OPT))
 		put_cmd_buffer(cmd_buffer, ret);
-	return (handle_cmd(cmd_buffer, ret));
+	return (handle_cmd(cmd_buffer));
 }

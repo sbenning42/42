@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 11:53:16 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/17 12:23:41 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/17 12:24:43 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int			main(\
-			int arg_c, char *arg_v[])
+int			builtin_exit(\
+			char **arg_v)
 {
-	shenv_create(arg_c, arg_v);
-	if (IS(O_DEBUG, OPT))
-		put_shenv();
-	while (minishell())
-		;
-	shenv_destroy();
-	return (EXIT_SUCCESS);
+	(void)arg_v;
+	return (0);
 }

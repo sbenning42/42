@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 11:53:16 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/17 11:44:37 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/17 11:48:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "ft_char.h"
 
-int			main(\
-			int arg_c, char *arg_v[])
+int		ft_isblank(int c)
 {
-	shenv_create(arg_c, arg_v);
-	if (IS(O_DEBUG, OPT))
-		put_shenv();
-	while (minishell())
-		;
-	shenv_destroy();
-	return (EXIT_SUCCESS);
+	return (c <= 32 && c >= 8);
 }

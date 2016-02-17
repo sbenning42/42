@@ -6,13 +6,13 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 11:08:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 22:15:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:44:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void		exec(\
+void		exec_binary(\
 			t_cmd cmd)
 {
 	int		stat_loc;
@@ -20,16 +20,13 @@ void		exec(\
 
 	if ((pid = fork()) < 0)
 	{
-		fork_error();
+		error(Fork, NULL, EXIT_SUCCESS);
 		return ;
 	}
-	else if (!pid && execve(cmd.pathbin, cmd.arg_v, cmd.env_p))
-	{
-		exec_error(cmd.pathbin);
-		exit(EXIT_FAILURE);
-	}
+	else if (!pid && execve(cmd.pathbin, cmd.arg_v, ENV))
+		error(Execve, cmd.pathbin, EXIT_FAILURE);
 	else if (!pid)
-		exit(EXIT_SUCCESS);
+		exit_error();
 	else
 		wait(&stat_loc);
 }

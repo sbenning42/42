@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:42:45 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/16 18:37:52 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:39:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void				shenv_create(\
 	ep = environ;
 	len = environsize(ep);
 	if (!(ENV = ft_memalloc(sizeof(char *) * (len + 1))))
-		error(); //Have to put an error msg!!!
+		error(Malloc, NULL, EXIT_FAILURE);
 	ENV[len] = NULL;
 	i = 0;
 	while (*ep)
 	{
 		if (!(ENV[i++] = ft_strdup(*ep)))
-			error(); //IDEM
+			error(Malloc, NULL, EXIT_FAILURE);
 		ep++;
 	}
 	dic_binary();
@@ -67,13 +67,13 @@ void				shenv_destroy(\
 	int				i;
 
 	i = 0;
-	if (BINARY)
-		ft_dicdel(&BINARY, NULL);
 	if (ENV)
 	{
 		while (ENV[i])
 			ft_memdel((void **)(ENV + i));
 		ft_memdel((void **)&ENV);
 	}
+	if (BINARY)
+		ft_dicdel(&BINARY, NULL);
 	AV = NULL;
 }

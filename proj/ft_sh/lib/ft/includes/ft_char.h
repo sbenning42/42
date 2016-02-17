@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 11:23:08 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:23:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 11:48:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	ft_isdigit(int c);
 int	ft_isalnum(int c);
 int	ft_isascii(int c);
 int	ft_isprint(int c);
+int	ft_isblank(int c);
 
 #endif

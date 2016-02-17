@@ -6,14 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:23:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/14 23:53:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 12:59:24 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-t_dic			*ft_dicnew\
-					(char *id, void *content, size_t content_size)
+t_dic			*ft_dicnew(\
+				char *id, void *content, size_t content_size)
 {
 	t_dic		*entry;
 
@@ -37,14 +37,14 @@ t_dic			*ft_dicnew\
 	return (entry);
 }
 
-int				alpha_sort\
-					(char *id1, char *id2)
+int				alpha_sort(\
+				char *id1, char *id2)
 {
 	return ((ft_strcmp(id1, id2) >= 0 ? 1 : 0));
 }
 
-void			ft_dicadd\
-					(t_dic **adic, t_dic *e, int (*s)(char *, char *))
+void			ft_dicadd(\
+				t_dic **adic, t_dic *e, int (*s)(char *, char *))
 {
 	if (!(*adic))
 		*adic = e;
@@ -70,56 +70,8 @@ void			ft_dicadd\
 	}
 }
 
-void			ft_dicdoinf\
-					(t_dic *dic, void (*f)(t_dic *))
-{
-	if (dic && dic->l)
-		ft_dicdoinf(dic->l, f);
-	if (f)
-		f(dic);
-	if (dic && dic->r)
-		ft_dicdoinf(dic->r, f);
-}
-
-void			ft_dicdopref\
-					(t_dic *dic, void (*f)(t_dic *))
-{
-	if (f)
-		f(dic);
-	if (dic && dic->l)
-		ft_dicdoinf(dic->l, f);
-	if (dic && dic->r)
-		ft_dicdoinf(dic->r, f);
-}
-
-void			ft_dicdosuf\
-					(t_dic *dic, void (*f)(t_dic *))
-{
-	if (dic && dic->l)
-		ft_dicdoinf(dic->l, f);
-	if (dic && dic->r)
-		ft_dicdoinf(dic->r, f);
-	if (f)
-		f(dic);
-}
-
-void			*ft_dicentry\
-					(t_dic *dic, char *id)
-{
-	int			ret;
-
-	if (!dic)
-		return (NULL);
-	if (!(ret = ft_strcmp(dic->id, id)))
-		return (dic->content);
-	else if (ret > 0)
-		return (ft_dicentry(dic->l, id));
-	else
-		return (ft_dicentry(dic->r, id));
-}
-
-void			ft_dicdel\
-					(t_dic **adic, void (*del)(void *, size_t))
+void			ft_dicdel(\
+				t_dic **adic, void (*del)(void *, size_t))
 {
 	if ((*adic) && (*adic)->l)
 		ft_dicdel(&(*adic)->l, del);

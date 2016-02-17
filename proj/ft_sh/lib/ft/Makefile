@@ -27,6 +27,7 @@ SRC =	ft_mem/ft_memset.c\
 		ft_char/ft_isascii.c\
 		ft_char/ft_isdigit.c\
 		ft_char/ft_isprint.c\
+		ft_char/ft_isblank.c\
 		ft_char/ft_tolower.c\
 		ft_char/ft_toupper.c\
 		ft_str/ft_atoi.c\

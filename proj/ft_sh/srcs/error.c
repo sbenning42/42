@@ -6,55 +6,42 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:12:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/16 19:29:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:31:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void	error(\
-		void)
+void				exit_error(\
+					void)
 {
 	shenv_destroy();
 	exit(EXIT_FAILURE);
 }
 
-void	read_error(\
-		void)
+void				error(\
+					t_error_msg_id id, char *msg, int status)
 {
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CREAD : FMT_READ), AV, MSG_SYSCALL);
-}
+	char			*fmt;
+	static char		*g_error_msg[FT_SH_ERROR_MSG_SIZE] = {\
+		"Allocate memory - (malloc)",\
+		"Bufferize input - (read)",\
+		"List directory entries - (opendir)",\
+		"Initialize new process - (fork)",\
+		"Execute system binary - (execve)",\
+		"Change current working directory - (chdir)",\
+		"Get current working directory - (getcwd)"};
 
-void	binary_error(\
-		void)
-{
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CMEM : FMT_MEM), AV, MSG_SYSCALL);
-	error();
-}
-
-void	malloc_error(\
-		void)
-{
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CMEM : FMT_MEM), AV, MSG_SYSCALL);
-	error();
-}
-
-void	opendir_error(\
-		char *path)
-{
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_COPEN : FMT_OPEN),\
-			AV, path, MSG_SYSCALL);
-}
-
-void	exec_error(\
-		char *path)
-{
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CEXEC : FMT_EXEC),\
-			AV, path, MSG_SYSCALL);
-}
-
-void	fork_error(\
-		void)
-{
-	ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CFORK : FMT_FORK), AV, MSG_SYSCALL);
+	if (msg)
+	{
+		fmt = (IS(O_COLOR, OPT) ? FMT_COL_MSG_ERROR : FMT_STD_MSG_ERROR);
+		ft_fprintf(2, fmt, AV, g_error_msg[id], msg, MSG_SYSCALL);
+	}
+	else
+	{
+		fmt = (IS(O_COLOR, OPT) ? FMT_COL_ERROR : FMT_STD_ERROR);
+		ft_fprintf(2, fmt, AV, g_error_msg[id], MSG_SYSCALL);
+	}
+	if (status == EXIT_FAILURE)
+		exit_error();
 }

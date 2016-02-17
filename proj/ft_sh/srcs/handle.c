@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/16 18:35:52 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:40:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,26 @@ static void	free_cmd(\
 }
 
 int			handle_cmd(\
-			char *cmd_buffer, int size)
+			char *cmd_buffer)
 {
 	t_cmd	cmd;
+	int		ret;
 
-	(void)size;
+	ret = 1;
 	if ((cmd = parse_cmd(cmd_buffer)).not_found)
-	{
 		ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CNOFOUND : FMT_NOFOUND)\
 				, AV, cmd.arg_v[0], MSG_NOFOUND);
-	}
-	else if (!cmd.arg_v[0])
-	{
-		free_cmd(&cmd);
-		return (1);
-	}
-	else if (!cmd.builtin)
-		exec(cmd);
 	else
-		cmd.built(cmd.arg_v, cmd.env_p);
-	if (IS(O_DEBUG, OPT))
-		put_cmd(cmd);
+	{
+		if (IS(O_DEBUG, OPT))
+			put_cmd(cmd);
+		if (cmd.builtin)
+			ret = cmd.built(cmd.arg_v);
+		else if (cmd.arg_v[0])
+			exec_binary(cmd);
+	}
 	free_cmd(&cmd);
-	return (1);
+	if (IS(O_DEBUG, OPT))
+		put_env();
+	return (ret);
 }

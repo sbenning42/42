@@ -12,7 +12,8 @@
 
 NAME =			ft_sh
 
-SRC =			exec.c\
+SRC =			intern.c\
+				exec.c\
 				parse.c\
 				handle.c\
 				ft_sh.c\
@@ -20,8 +21,11 @@ SRC =			exec.c\
 				getopt.c\
 				put.c\
 				error.c\
+				dic_do.c\
 				dic.c\
-				built.c\
+				exit.c\
+				env.c\
+				cd.c\
 				builtin.c\
 				binary.c\
 				get.c\

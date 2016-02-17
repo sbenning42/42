@@ -6,25 +6,25 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 18:36:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/16 19:23:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 12:05:00 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-static char			*g_builtin_id[FT_SH_BUILTIN_SIZE] =\
-					{"cd",\
-					"env",\
-					"setenv",\
-					"unsetenv",\
-					"exit"};
+static char			*g_builtin_id[FT_SH_BUILTIN_SIZE] = {\
+	"cd",\
+	"env",\
+	"setenv",\
+	"unsetenv",\
+	"exit"};
 
-static t_built_f	g_builtin_built[FT_SH_BUILTIN_SIZE] =\
-					{builtin_cd,\
-					builtin_env,\
-					builtin_setenv,\
-					builtin_unsetenv,\
-					builtin_exit};
+static t_built_f	g_builtin_built[FT_SH_BUILTIN_SIZE] = {\
+	builtin_cd,\
+	builtin_env,\
+	builtin_setenv,\
+	builtin_unsetenv,\
+	builtin_exit};
 
 void				dic_builtin(\
 					void)
