@@ -19,7 +19,8 @@ SRC =			intern.c\
 				ft_sh.c\
 				usage.c\
 				getopt.c\
-				put.c\
+				debug_interne.c\
+				debug.c\
 				error.c\
 				dic_do.c\
 				dic.c\

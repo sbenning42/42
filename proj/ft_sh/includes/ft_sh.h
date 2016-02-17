@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 14:47:06 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:53:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <dirent.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # include "libft.h"
 
@@ -29,46 +31,62 @@
 
 # define IS(X, Y) ((Y & X) == X ? 1 : 0)
 
+# define DEBUG_FILE_NAME "debug.ft_sh"
+
 # define FT_SH_CMD_BUFFER_SIZE 2048
 # define FT_SH_BINARY_PATH_SIZE 2048
 # define FT_SH_CWD_PATH_SIZE 2048
 # define FT_SH_BUILTIN_SIZE 5
-# define FT_SH_ERROR_MSG_SIZE 7
+# define FT_SH_ERROR_MSG_SIZE 8
 
-# define CSET_O "cd"
-# define SIZE_O 2
+# define CSET_O "cdD"
+# define SIZE_O 3
+# define CSET_CD_O "PL"
+# define SIZE_CD_O 2
+# define O_PRIVATE_ERROR 0x8000
 
 # define O_COLOR 0x1
 # define O_DEBUG 0x2
-# define O_PRIVATE_ERROR 0x8000
+# define O_FILEDEBUG 0x4
 
-# define O_CD_
+# define O_CD_NOFOLLOW 0x1
+# define O_CD_FOLLOW 0x2
 
 # define FMT_COL_ERROR "{green}%s{eoc}: {yellow}%s{eoc}: %s\n"
 # define FMT_COL_MSG_ERROR "{green}%s{eoc}: {yellow}%s{eoc}: {red}%s{eoc}: %s\n"
 # define FMT_STD_ERROR "%s: %s: %s\n"
 # define FMT_STD_MSG_ERROR "%s: %s: %s: %s\n"
 
+# define FMT_COL_S_DEBUG "{green}%s{eoc}: {cyan}%s{eoc}: {yellow}%s{eoc}=%{\n"
+# define FMT_COL_E_DEBUG "}={yellow}%s{eoc}\n"
+# define FMT_STD_S_DEBUG "%s: %s: %s=%{\n"
+# define FMT_STD_E_DEBUG "}=%s\n"
+# define FMT_BINARY_DEBUG "\t[%s] -> [%s]\n"
+# define FMT_BUILTIN_DEBUG "\t[%s] -> [%p]\n"
+
+# define FMT_CU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
+# define FMT_CU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}]\n"
+# define FMT_U1 "%s: Invalid option -- %c\n"
+# define FMT_U2 "Usage: %s [-%s]\n"
+
+
+# define FMT_CCDU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
+# define FMT_CCDU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}] [{pink}%s{eoc}]\n"
+# define FMT_CDU1 "%s: Invalid option -- %c\n"
+# define FMT_CDU2 "Usage: %s [-%s] [%s]\n"
+
+# define FMT_STD_PROMPT "ft_sh$>"
+# define FMT_COL_PROMPT "{green|gr|}ft_sh$>{eoc}"
+
+# define FMT_CNOFOUND "{green}%s{eoc}: %s: {red}%s{eoc}\n"
+# define FMT_NOFOUND "%s: %s: %s\n"
+
+# define FMT_ARGV "\tArg_v[%d] -> [%s]\n"
+
 # define MSG_SYSCALL "Error occured on system call"
 # define MSG_NOFOUND "Command not found"
 
-# define FMT_CPROMPT "{green|gr|}ft_sh$>{eoc}"
-# define FMT_CU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
-# define FMT_CU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}]\n"
-
-# define FMT_CBINARY "{yellow}Entry{eoc}: [{gr}%s{eoc}] -> [{ss}%s{eoc}]\n"
-# define FMT_CNOFOUND "{green}%s{eoc}: {cyan}%s{eoc}: {red}%s{eoc}\n"
-# define FMT_CCMD "{yellow}%s{eoc}:\n%{\n\n\t{cyan}cmd{eoc}: [{gr}%s{eoc}%s{ss}%s{eoc}]\n"
-# define FMT_CARGV "\t{cyan}Arg_v{eoc}[{yellow}%d{eoc}] -> [{gr}%s{eoc}]\n"
-
-# define FMT_PROMPT "ft_sh$>"
-# define FMT_U1 "%s: Invalid option -- %c\n"
-# define FMT_U2 "Usage: %s [-%s]\n"
-# define FMT_BINARY "Entry: [%s] -> [%s]\n"
-# define FMT_NOFOUND "%s: %s: %s\n"
-# define FMT_CMD "%s:\n%{\n\n\tcmd: [%s%s%s]\n"
-# define FMT_ARGV "\tArg_v[%d] -> [%s]\n"
-
+# define FDDEBUG shenv()->fd
 # define OPT shenv()->o
 # define AV shenv()->av
 # define ENV shenv()->env
@@ -140,6 +158,7 @@ typedef enum		e_error_msg_id
 	Malloc,
 	Read,
 	Opendir,
+	Open,
 	Fork,
 	Execve,
 	Chdir,
@@ -176,6 +195,7 @@ typedef struct		s_shenv
 	char			**env;
 	char			*av;
 	int				o;
+	int				fd;
 	t_dic			*binary;
 	t_built			builtin[FT_SH_BUILTIN_SIZE];
 }					t_shenv;
@@ -295,6 +315,8 @@ void				put_cmd\
 
 int					get_opt\
 						(const char *cset, int ac, char **av, char *err);
+int					go_over_opt(\
+					int ac, char **av);
 
 /*
 ***	****************************************************************************
@@ -306,6 +328,8 @@ int					get_opt\
 
 void				usage\
 						(char invalid);
+int					cd_usage(\
+					char invalid);
 
 /*
 ***	****************************************************************************
@@ -370,6 +394,18 @@ char				*intern_getenv(\
 					char *key);
 int					intern_setenv(\
 					char *key, char *value);
+void		debug_env(\
+			void);
+void		debug_binary(\
+			void);
+void		debug_builtin(\
+			void);
+void		debug_cmd(\
+			t_cmd cmd);
+void		start_debug(\
+			char *what);
+void		end_debug(\
+			char *what);
 /*
 ***	****************************************************************************
 */

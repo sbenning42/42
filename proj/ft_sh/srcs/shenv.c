@@ -6,11 +6,18 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:42:45 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 13:39:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:59:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
+
+/*
+***	At this step, we have to make a first check of the ENV sensible key
+***	HOME/PATH/PWD/OLDPWD
+***	but don't go as if they are here forever, user still can destroy it
+***	in this case, we could reset these values as they uses to be in the begining
+*/
 
 t_shenv				*shenv(\
 					void)

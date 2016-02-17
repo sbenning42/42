@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 18:36:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 12:05:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 16:26:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void				dic_builtin(\
 		BUILTIN[i].built = g_builtin_built[i];
 		i++;
 	}
+	debug_builtin();
 }

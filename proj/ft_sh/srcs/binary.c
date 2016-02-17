@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:44:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 13:42:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:38:36 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int			extract_binary(\
 	}
 	while ((direntry = readdir(dir)))
 	{
+		if (direntry->d_name[0] == '.')
+			continue ;
 		fill_binpath(binpath, path, direntry->d_name);
 		if (!(entry = ft_dicnew(direntry->d_name, (void *)binpath\
 						, sizeof(char) * (ft_strlen(binpath) + 1))))
@@ -63,15 +65,6 @@ static void			free_paths(\
 	ft_memdel((void **)atab);
 }
 
-static void			myprint(\
-					t_dic *e)
-{
-	if (!e)
-		return ;
-	ft_printf((IS(O_COLOR, OPT) ? FMT_CBINARY : FMT_BINARY),\
-			e->id, (char *)e->content);
-}
-
 void				dic_binary(\
 					void)
 {
@@ -97,6 +90,5 @@ void				dic_binary(\
 		i++;
 	}
 	free_paths(&paths);
-	if (IS(O_DEBUG, OPT))
-		ft_dicdoinf(BINARY, myprint);
+	debug_binary();
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 18:16:58 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 13:40:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:46:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ static void	free_cmd(\
 	ft_memdel((void **)&cmd->arg_v);
 }
 
+static void	nofound(\
+			char *cmd_name)
+{
+	char	*fmt;
+
+	fmt = (IS(O_COLOR, OPT) ? FMT_CNOFOUND : FMT_NOFOUND);
+	ft_fprintf(2, fmt, AV, MSG_NOFOUND, cmd_name);
+}
+
 int			handle_cmd(\
 			char *cmd_buffer)
 {
@@ -33,20 +42,14 @@ int			handle_cmd(\
 	int		ret;
 
 	ret = 1;
-	if ((cmd = parse_cmd(cmd_buffer)).not_found)
-		ft_fprintf(2, (IS(O_COLOR, OPT) ? FMT_CNOFOUND : FMT_NOFOUND)\
-				, AV, cmd.arg_v[0], MSG_NOFOUND);
+	cmd = parse_cmd(cmd_buffer);
+	debug_cmd(cmd);
+	if (cmd.not_found)
+		nofound(cmd.arg_v[0]);
+	else if (cmd.builtin)
+		ret = cmd.built(cmd.arg_v);
 	else
-	{
-		if (IS(O_DEBUG, OPT))
-			put_cmd(cmd);
-		if (cmd.builtin)
-			ret = cmd.built(cmd.arg_v);
-		else if (cmd.arg_v[0])
-			exec_binary(cmd);
-	}
+		exec_binary(cmd);
 	free_cmd(&cmd);
-	if (IS(O_DEBUG, OPT))
-		put_env();
 	return (ret);
 }

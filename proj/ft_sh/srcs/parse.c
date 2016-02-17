@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 23:27:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 13:41:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:45:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,57 @@ static int		isbuiltin(\
 	return (0);
 }
 
+static int		handle_oldpwd_spec(\
+				char **arg_v)
+{
+	char		*cp;
+	char		*value;;
+
+	if (!(value = intern_getenv("OLDPWD")))
+	{
+		ft_fprintf(2, "No oldpwd msg\n");
+		return (0);
+	}
+	cp = *arg_v;
+	if (!(*arg_v = ft_strdup(value)))
+		error(Malloc, NULL, EXIT_FAILURE);
+	free(cp);
+	return (1);
+}
+
+static int		handle_home_spec(\
+				char **arg_v)
+{
+	char		*cp;
+	char		*value;;
+
+	if (!(value = intern_getenv("HOME")))
+	{
+		ft_fprintf(2, "No Home msg\n");
+		return (0);
+	}
+	cp = *arg_v;
+	if (!(*arg_v = ft_strjoin(value, *arg_v + 1)))
+		error(Malloc, NULL, EXIT_FAILURE);
+	free(cp);
+	return (1);
+}
+
+static void		handle_spec(\
+				char **arg_v)
+{
+	int			i;
+
+	i = -1;
+	while (arg_v[++i])
+	{
+		if (!ft_strncmp("~", arg_v[i], 1) && !handle_home_spec(arg_v + i))
+			return ;
+		else if (!ft_strcmp("-", arg_v[i]) && !handle_oldpwd_spec(arg_v + i))
+			return ;
+	}
+}
+
 t_cmd			parse_cmd(\
 				char *cmd_buffer)
 {
@@ -42,6 +93,7 @@ t_cmd			parse_cmd(\
 	cmd.built = NULL;
 	if (!(cmd.arg_v = ft_strsplit(cmd_buffer, ' ')))
 		error(Malloc, NULL, EXIT_FAILURE);
+	handle_spec(cmd.arg_v);
 	if (!(cmd.builtin = isbuiltin(&cmd)))
 	{
 		if (!(pathbin = (char *)ft_dicentry(BINARY, cmd.arg_v[0])))

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 17:12:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 14:31:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 15:47:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void				error(\
 		"Allocate memory - (malloc)",\
 		"Bufferize input - (read)",\
 		"List directory entries - (opendir)",\
+		"Create or open regular file - (open)",\
 		"Initialize new process - (fork)",\
 		"Execute system binary - (execve)",\
 		"Change current working directory - (chdir)",\

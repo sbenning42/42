@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:12:12 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 11:03:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:29:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ int			get_opt(\
 			o |= get_solo_opt(cset, av[i][j], err);
 	}
 	return (o);
+}
+
+int			go_over_opt(\
+			int ac, char **av)
+{
+	int		skip;
+
+	skip = 0;
+	while (++skip < ac)
+	{
+		if ((av[skip][0] != '-') || (ft_strlen(av[skip]) == 1))
+			break ;
+		else if (ft_isdigit(av[skip][1]))
+			break ;
+	}
+	return (skip);
 }
