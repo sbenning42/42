@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/18 15:06:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/18 19:18:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 # define CSET_O "cdD"
 # define SIZE_O 3
-# define CSET_CD_O "PL"
+# define CSET_CD_O "LP"
 # define SIZE_CD_O 2
 # define O_PRIVATE_ERROR 0x8000
 
