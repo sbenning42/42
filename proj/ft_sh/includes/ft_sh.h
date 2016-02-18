@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 18:53:01 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/18 15:06:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define FT_SH_BINARY_PATH_SIZE 2048
 # define FT_SH_CWD_PATH_SIZE 2048
 # define FT_SH_BUILTIN_SIZE 5
-# define FT_SH_ERROR_MSG_SIZE 8
+# define FT_SH_ERROR_MSG_SIZE 19
 
 # define CSET_O "cdD"
 # define SIZE_O 3
@@ -69,7 +69,6 @@
 # define FMT_U1 "%s: Invalid option -- %c\n"
 # define FMT_U2 "Usage: %s [-%s]\n"
 
-
 # define FMT_CCDU1 "{green|gr}%s{eoc}: {gr}Invalid option{eoc} -- {red}%c{eoc}\n"
 # define FMT_CCDU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}] [{pink}%s{eoc}]\n"
 # define FMT_CDU1 "%s: Invalid option -- %c\n"
@@ -83,7 +82,10 @@
 
 # define FMT_ARGV "\tArg_v[%d] -> [%s]\n"
 
-# define MSG_SYSCALL "Error occured on system call"
+# define FMT_STD_NOHOME "Fix HOME to get the no arg cd feature"
+# define FMT_COL_NOHOME "{red}Fix HOME to get the no arg cd feature{eoc}"
+
+# define MSG_SYSCALL "An error occured"
 # define MSG_NOFOUND "Command not found"
 
 # define FDDEBUG shenv()->fd
@@ -162,7 +164,18 @@ typedef enum		e_error_msg_id
 	Fork,
 	Execve,
 	Chdir,
-	Getcwd
+	Getcwd,
+	Minim_path_corruption,
+	Path_corruption,
+	Pwd_corruption,
+	Oldpwd_corruption,
+	Home_corruption,
+	Cdnofound,
+	Cdnoright,
+	Cdstat,
+	Cdnodir,
+	Cdtoomany,
+	Unknow
 }					t_error_msg_id;
 
 typedef struct		s_dic
@@ -269,6 +282,8 @@ char				*get_shenv\
 ***					***	ERROR.C	***
 */
 
+char				cd_error(\
+					t_error_msg_id id, char *msg, int status);
 void				error\
 						(t_error_msg_id id, char *msg, int status);
 void				exit_error\
@@ -406,6 +421,14 @@ void		start_debug(\
 			char *what);
 void		end_debug(\
 			char *what);
+char		*corrupt_path(\
+			char *oldpath);
+void		corrupt_pwd(\
+			void);
+void		corrupt_oldpwd(\
+			void);
+void		corrupt_home(\
+			void);
 /*
 ***	****************************************************************************
 */

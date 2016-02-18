@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 23:27:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 18:45:37 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/18 13:51:06 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,6 @@ static int		isbuiltin(\
 		i++;
 	}
 	return (0);
-}
-
-static int		handle_oldpwd_spec(\
-				char **arg_v)
-{
-	char		*cp;
-	char		*value;;
-
-	if (!(value = intern_getenv("OLDPWD")))
-	{
-		ft_fprintf(2, "No oldpwd msg\n");
-		return (0);
-	}
-	cp = *arg_v;
-	if (!(*arg_v = ft_strdup(value)))
-		error(Malloc, NULL, EXIT_FAILURE);
-	free(cp);
-	return (1);
 }
 
 static int		handle_home_spec(\
@@ -75,8 +57,6 @@ static void		handle_spec(\
 	while (arg_v[++i])
 	{
 		if (!ft_strncmp("~", arg_v[i], 1) && !handle_home_spec(arg_v + i))
-			return ;
-		else if (!ft_strcmp("-", arg_v[i]) && !handle_oldpwd_spec(arg_v + i))
 			return ;
 	}
 }

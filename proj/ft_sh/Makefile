@@ -31,6 +31,7 @@ SRC =			intern.c\
 				binary.c\
 				get.c\
 				shenv.c\
+				corrupt.c\
 				main.c
 
 SRC_DIR =		srcs/
