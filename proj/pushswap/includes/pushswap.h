@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:18:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 10:28:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:06:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ void			op_rrs\
 void			op_px\
 					(t_dlist **astack_pop, t_dlist **astack_push, int *stroke);
 
+int				reverse\
+					(t_dlist **astack, int o);
+int				reverse_swap\
+					(t_dlist **astack, int o);
 /*
 ***				***	NOSORT.C	***
 */

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:18:31 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/15 10:23:45 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:12:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ static int		oneswap(\
 			&& *(int *)(*astack)->content) < *(int *)tmp->n->content))
 	{
 		ft_printf("sa\n");
+		op_sx(astack, &stroke);
 		if (IS(O_DEBUG, o) || IS(O_STROKE, o))
 		{
 			if (IS(O_COLOR, o))
-				ft_printf("{pink}Stroke{eoc}: 1\n");
+				ft_printf("{pink}Stroke{eoc}: %d\n", stroke);
 			else
-				ft_printf("Stroke: 1\n");
+				ft_printf("Stroke: %d\n", stroke);
 		}
-		op_sx(astack, &stroke);
 		return (1);
 	}
 	return (0);
@@ -106,12 +106,8 @@ int				pushswap(\
 	else if (isdouble(stack_a))
 		return (error(EXIT_FAILURE, o));
 	stack_b = NULL;
-	if (IS(O_DEBUG, o))
-	{
-		debug(stack_a, "A start", o);
-		debug(stack_b, "B start", o);
-	}
-	if (nosort(stack_a, o, 1) && !oneswap(&stack_a, o))
+	if (nosort(stack_a, o, 1) && !oneswap(&stack_a, o)\
+			&& !reverse(&stack_a, o) && !reverse_swap(&stack_a, o))
 		sort(&stack_a, &stack_b, size, o);
 	if (IS(O_DEBUG, o) || IS(O_FIN, o))
 	{
