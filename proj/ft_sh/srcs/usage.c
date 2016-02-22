@@ -6,11 +6,27 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:20:02 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/17 18:53:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:08:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
+
+int		unset_usage(\
+		void)
+{
+	if (IS(O_COLOR, OPT))
+	{
+		ft_fprintf(2, FMT_CUNSETU1, "unsetenv");
+		ft_fprintf(2, FMT_CUNSETU2, "unsetenv", "KEYS...");
+	}
+	else
+	{
+		ft_fprintf(2, FMT_UNSETU1, "unsetenv");
+		ft_fprintf(2, FMT_UNSETU2, "unsetenv", "KEYS...");
+	}
+	return (1);
+}
 
 int		cd_usage(\
 		char invalid)

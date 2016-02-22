@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 23:27:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/18 13:51:06 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:15:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		handle_home_spec(\
 				char **arg_v)
 {
 	char		*cp;
-	char		*value;;
+	char		*value;
 
 	if (!(value = intern_getenv("HOME")))
 	{

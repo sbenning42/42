@@ -26,6 +26,9 @@ SRC =			intern.c\
 				dic.c\
 				exit.c\
 				env.c\
+				cd_env.c\
+				clean.c\
+				cd_path.c\
 				cd.c\
 				builtin.c\
 				binary.c\

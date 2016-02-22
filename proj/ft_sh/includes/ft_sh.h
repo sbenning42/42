@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:55:46 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/18 19:18:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:28:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@
 # define FMT_CCDU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}-%s{eoc}] [{pink}%s{eoc}]\n"
 # define FMT_CDU1 "%s: Invalid option -- %c\n"
 # define FMT_CDU2 "Usage: %s [-%s] [%s]\n"
+
+# define FMT_CUNSETU1 "{green|gr}%s: {gr}No enougth argument{eoc}\n"
+# define FMT_CUNSETU2 "{pink}Usage{eoc}: {gr}%s{eoc} [{pink}%s{eoc}]\n"
+# define FMT_UNSETU1 "%s: No enougth argument\n"
+# define FMT_UNSETU2 "Usage: %s [%s]\n"
 
 # define FMT_STD_PROMPT "ft_sh$>"
 # define FMT_COL_PROMPT "{green|gr|}ft_sh$>{eoc}"
@@ -345,6 +350,8 @@ void				usage\
 						(char invalid);
 int					cd_usage(\
 					char invalid);
+int		unset_usage(\
+		void);
 
 /*
 ***	****************************************************************************
@@ -388,6 +395,52 @@ t_cmd				parse_cmd\
 
 void				exec_binary\
 						(t_cmd cmd);
+
+/*
+***	****************************************************************************
+*/
+
+/*
+***					***	CLEAN.C	***
+*/
+
+void		supprtwopoint(\
+			char *s, int *j);
+void		supprpoint(\
+			char *s, int *j);
+void		cleanslash(\
+			char *cp);
+
+/*
+***	****************************************************************************
+*/
+
+/*
+***					***	CD_PATH.C	***
+*/
+
+char		*constructpwd(\
+			char *nrel, char *old);
+void		gothrowrel(\
+			char *dest, char *go, char *pwd);
+void		gothrowabs(\
+			char *dest, char *go);
+
+/*
+***	****************************************************************************
+*/
+
+/*
+***					***	CD_ENV.C	***
+*/
+
+int			cdenv(\
+			char *nwd_path, char put);
+int			fcdenv(\
+			char *nwd_path, char put);
+/*
+***	****************************************************************************
+*/
 
 void				dic_builtin(\
 					void);

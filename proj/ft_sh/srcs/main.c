@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 23:53:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/18 13:28:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:39:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static void		handle_env_corruption(\
 		path = intern_getenv("PATH");
 	else if (cp && ft_strcmp(path, cp))
 	{
+		ft_printf("debug: reset env\n");
 		shenv_destroy();
 		shenv_create(arg_c, arg_v);
+		path = intern_getenv("PATH");
 		debug_env();
 	}
 }
