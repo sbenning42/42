@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook_scget.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/22 10:30:50 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/22 17:13:51 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/22 16:33:37 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/22 16:36:36 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
 
-int					main(int arg_c, char **arg_v, char **env_p)
+int			hook_scget_flush(void)
 {
-	char			*buffer;
+	return (hook->control()->flush);
+}
 
-	if (hook_open())
-		exit(EXIT_FAILURE);
-	if (hook_input(&buffer))
-		exit(EXIT_FAILURE);
-	ft_printf("%s: Buffer=[%s]\n", arg_v[0], buffer);
-	ft_memdel((void **)&buffer);
-	if (hook_close())
-		exit(EXIT_FAILURE);
-	return (0);
-	(void)arg_c;
-	(void)env_p;
+size_t		hook_scget_size_max(void)
+{
+	return (hook->control()->size_max);
+}
+
+size_t		hook_scget_size(void)
+{
+	return (hook->control()->size);
+}
+
+size_t		hook_scget_offset(void)
+{
+	return (hook->control()->offset);
 }

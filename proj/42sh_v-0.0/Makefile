@@ -13,9 +13,12 @@
 NAME =			42sh
 
 SRC =			main.c\
-				hook_log.c\
+				hook_init.c\
+				hook_input.c\
 				hook_read.c\
-				hook_init.c
+				hook_buffer.c\
+				hook_handle.c\
+				hook_control.c
 
 SRC_DIR =		srcs/
 
@@ -33,7 +36,7 @@ LIB_DIR =		lib/
 
 HEADER =		includes
 
-DEPEND =		$(HEADER)/sb42sh.h
+DEPEND =		$(HEADER)/hook.h
 
 CC =			gcc
 

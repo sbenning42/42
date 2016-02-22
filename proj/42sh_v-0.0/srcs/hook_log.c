@@ -6,11 +6,11 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 11:37:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/22 12:27:24 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:16:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sb42sh.h"
+#include "hook.h"
 
 int		hook_input_log(char *buffer, int fd)
 {

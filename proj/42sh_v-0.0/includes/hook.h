@@ -1,23 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_read.c                                        :+:      :+:    :+:   */
+/*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/22 12:17:36 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/22 17:54:05 by sbenning         ###   ########.fr       */
+/*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
+/*   Updated: 2016/02/22 17:51:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook_private.h"
+#ifndef HOOK_H
+# define HOOK_H
 
-int		hook_input_read(char *buffer)
-{
-	int	offset;
+# include "libft.h"
 
-	if ((offset = read(0, buffer, HOOK_PRIVATE_INPUT_SIZE + 1)) < 0)
-		return (-1);
-	buffer[offset] = 0;
-	return (0);
-}
+# include <termios.h>
+# include <signal.h>
+
+/*
+***				***	HOOK_INPUT.C	***
+*/
+
+int				hook_input(char **buffer);
+
+/*
+***				***	HOOK_INIT.C	***
+*/
+
+int				hook_open(void);
+int				hook_close(void);
+
+/*
+***				***	HOOK_LOG.C	***
+*/
+
+int				hook_input_log(char *buffer, int fd);
+
+/*
+***				***	HOOK_INPUT.C	***
+*/
+
+int				hook_input(char **buffer);
+
+#endif
