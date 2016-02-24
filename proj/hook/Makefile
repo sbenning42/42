@@ -13,9 +13,8 @@
 NAME =			42sh
 
 SRC =			main.c\
-				hook_init.c\
-				hook_handler.c\
-				hook_input.c
+				hook_input.c\
+				hook_init.c
 
 SRC_DIR =		srcs/
 

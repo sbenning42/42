@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 00:03:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 13:11:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include "libft.h"
 # include <termios.h>
 # include <signal.h>
+# include <fcntl.h>
 
-# define TAB_KEY_SIZE 3
+# define POSIX_INPUT_OFFSET 4
 # define POSIX_INPUT_SIZE 6
-# define POSIX_INPUT_MAX 4096
-# define POSIX_INPUT_STACK 1024
+# define HOOK_INPUTS_FILE "inputs.list"
 
 typedef struct		s_hook_buffer
 {
@@ -64,28 +64,27 @@ typedef int			(*t_handler)(t_hook_input *);
 
 void				hk_open(t_hook_input *hook);
 void				hk_close(t_hook_input *hook);
+char				*hk_input(t_hook_input *hook);
 
 /*
-***					***	HOOK_INPUT.C	***
+***					***	HOOK_MANAGE.C	***
 */
-/*
-char				*hook_input(t_hook_input *hk);
-*/
+
+char					*hk_flush(t_hook_input *hook);
+int						hk_reset_buffer(t_hook_input *hook);
+int						hk_push_buffer(t_hook_input *hook, char c);
+int						hk_pop_buffer(t_hook_input *hook);
+int						hk_pop_stack(t_hook_input *hook);
+int						hk_push_stack(t_hook_input *hook, char c);
+int						hk_push_buffer_to_stack(t_hook_input *hook);
+int						hk_push_stack_to_buffer(t_hook_input *hook);
+int						hk_expand_buffer(t_hook_input *hook);
+
+
 /*
 ***					***	HOOK_HANDLER_CONF.C	***
 */
 /*
-int					inser_handler(t_hook_input *hk);
-int					suppr_handler(t_hook_input *hk);
-int					retarr_handler(t_hook_input *hk);
-*/
-/*
 ***					***	HOOK_HANDLER_ARROW.C	***
-*/
-/*
-int					right_handler(t_hook_input *hk);
-int					left_handler(t_hook_input *hk);
-int					down_handler(t_hook_input *hk);
-int					up_handler(t_hook_input *hk);
 */
 #endif
