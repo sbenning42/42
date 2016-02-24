@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 10:37:57 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 17:18:30 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 22:06:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void		ft_atexit(int code, char *msg)
 	exit(code);
 }
 
-void		hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t off)
+void		hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t off, char *term)
 {
+	char	no_use[2048];
+
+	tgetent(no_use, term);
 	if (tcgetattr(0, &hook->term.std) < 0)
 		ft_atexit(EXIT_FAILURE, "hk_open: tcgetattr");
 	hook->term.hook = hook->term.std;
@@ -28,8 +31,8 @@ void		hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t off)
 	hook->term.hook.c_cc[VMIN] = 1;
 	if (tcsetattr(0, TCSANOW, &hook->term.hook) < 0)
 		ft_atexit(EXIT_FAILURE, "hk_open: tcsetattr");
-	hook->term.lin = 0;
-	hook->term.col = 0;
+	hook->term.lin = tgetnum("li");
+	hook->term.col = tgetnum("co");
 	hook->inputs = NULL;
 	hook->keymap = kmap;
 	hook->size = size;
@@ -41,8 +44,8 @@ void		hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t off)
 
 void		hk_close(t_hook_input *hook)
 {
-	t_dlist	*cp;
-	int		fd;
+//	t_dlist	*cp;
+//	int		fd;
 
 	if (tcsetattr(0, TCSANOW, &hook->term.std) < 0)
 	{

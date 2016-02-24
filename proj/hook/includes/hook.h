@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 17:13:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 23:19:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HOOK_H
 
 # include "libft.h"
+# include <term.h>
 # include <termios.h>
 # include <signal.h>
 # include <fcntl.h>
@@ -22,10 +23,10 @@
 # define POSIX_INPUT_SIZE 6
 # define HOOK_INPUTS_FILE "inputs.list"
 
-# define IS(X, Y) (((X & Y) == Y) ? 1 : 0)
+# define IS_PRINT(X) (X > 0x1f && X < 0x7f)
+# define ISBIT(X, Y) (((X & Y) == Y) ? 1 : 0)
 # define HOOK_F_FLUSH 0x1
-# define HOOK_F_CC 0x2
-# define HOOK_FLUSH IS(hook->buffer.flag, HOOK_F_FLUSH)
+# define HOOK_FLUSH ISBIT(hook->buffer.flag, HOOK_F_FLUSH)
 
 typedef struct		s_hook_buffer
 {
@@ -71,7 +72,7 @@ extern size_t		g_size;
 ***					***	HOOK_INIT.C	***
 */
 
-void				hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t offset);
+void				hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t offset, char *term);
 void				hk_close(t_hook_input *hook);
 char				*hk_input(t_hook_input *hook);
 
@@ -117,4 +118,11 @@ int					right_handler(t_hook_input *hook);
 int					left_handler(t_hook_input *hook);
 int					up_handler(t_hook_input *hook);
 int					down_handler(t_hook_input *hook);
+
+/*
+***					***	HOOK_OUTPUT.C
+*/
+
+void				hk_output(t_hook_input *hook);
+
 #endif

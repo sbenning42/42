@@ -6,12 +6,11 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 13:8:05 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 17:19:59 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 23:21:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
-
 
 int			hook_cc(t_hook_input *hook, int code)
 {
@@ -21,39 +20,40 @@ int			hook_cc(t_hook_input *hook, int code)
 	while (i < hook->size)
 	{
 		if (code == hook->keymap[i].k_code)
-		{
-			hook->buffer.flag |= HOOK_F_CC;
 			return (hook->keymap[i].k_handle(hook));
-		}
 		i++;
 	}
 	return (0);
 }
 
-char		*hk_input(t_hook_input *hook)
+int			hk_get_input_code(void)
 {
 	char	input[POSIX_INPUT_SIZE + 1];
+	int		ret;
+
+	ft_bzero((void *)input, sizeof(char) * (POSIX_INPUT_SIZE + 1));
+	if ((ret = read(0, input, POSIX_INPUT_SIZE)) < 0)
+		return (0);
+	input[ret] = 0;
+	return (*(int *)input);
+}
+
+char		*hk_input(t_hook_input *hook)
+{
 	int		code;
 
-	while (42)
+	while (!HOOK_FLUSH)
 	{
-		if (HOOK_FLUSH)
-			return (hk_flush(hook));
-		ft_bzero((void *)input, sizeof(char) * (POSIX_INPUT_SIZE + 1));
-		if ((ret = read(0, input, POSIX_INPUT_SIZE)) < 0)
-			continue ;
-		code = *(int *)input;
-		if ((hook_cc(hook, code)))
+		if (!(code = hk_get_input_code()))
 			return (NULL);
-		else if (!IS(hook->buffer.flag, HOOK_F_CC) && ft_isprint(*input))
+		if (IS_PRINT(code))
 		{
-			if (hk_push_buffer(hook, input[0]))
+			if (hk_push_buffer(hook, (char)code))
 				return (NULL);
 		}
-		else if (!IS(hook->buffer.flag, HOOK_F_CC))
-			ft_fprintf(2, "K_code unhandled: [%#X]\n", code);
-		else
-			hook->buffer.flag &= ~HOOK_F_CC;
+		else if (hook_cc(hook, code))
+			return (NULL);
+		hk_output(hook);
 	}
-	return (NULL);
+	return (hk_flush(hook));
 }

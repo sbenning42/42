@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/24 17:01:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 17:01:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 21:12:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char					*hk_flush(t_hook_input *hook)
 {
 	char				*cp;
 
+	write(1, "\n", 1);
 	cp = *hook->buffer.acontent;
 	ft_strcpy(hook->buffer.curs, hook->buffer.stack);
 	if (hk_reset_buffer(hook))
