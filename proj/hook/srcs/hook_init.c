@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 10:37:57 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 12:57:53 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 15:30:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int						hk_reset_buffer(t_hook_input *hook)
 	hook->buffer.stack = empty->content + (sizeof(char) * hook->buffer.offset);
 	hook->buffer.max = (sizeof(char) * hook->buffer.offset);
 	hook->buffer.asize = &empty->content_size;
+	hook->buffer.flag &= ~HOOK_F_FLUSH;
 	return (0);
 }
 
@@ -143,8 +144,6 @@ char					*hk_flush(t_hook_input *hook)
 		return (NULL);
 	return (cp);
 }
-
-extern t_keymap			*g_kmap;
 
 void					hk_open(t_hook_input *hook)
 {
@@ -160,6 +159,7 @@ void					hk_open(t_hook_input *hook)
 	hook->term.col = 0;
 	hook->inputs = NULL;
 	hook->keymap = (hook->keymap ? hook->keymap : g_kmap);
+	hook->size = (hook->size ? hook->size : g_size);
 	hook->buffer.flag = 0x0;
 	hook->buffer.offset = (sizeof(char) * POSIX_INPUT_OFFSET);
 	if (hk_reset_buffer(hook))

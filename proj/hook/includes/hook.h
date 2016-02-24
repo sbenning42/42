@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 13:11:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 15:56:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # define POSIX_INPUT_OFFSET 4
 # define POSIX_INPUT_SIZE 6
 # define HOOK_INPUTS_FILE "inputs.list"
+
+# define IS(X, Y) (((X & Y) == Y) ? 1 : 0)
+# define HOOK_F_FLUSH 0x1
+# define HOOK_F_CC 0x2
+# define HOOK_FLUSH IS(hook->buffer.flag, HOOK_F_FLUSH)
 
 typedef struct		s_hook_buffer
 {
@@ -54,9 +59,13 @@ typedef struct		s_hook_input
 	t_dlist			*input_curs;
 	t_hook_buffer	buffer;
 	t_keymap		*keymap;
+	size_t			size;
 }					t_hook_input;
 
 typedef int			(*t_handler)(t_hook_input *);
+extern t_keymap g_kmap[];
+extern size_t g_size;
+
 
 /*
 ***					***	HOOK_INIT.C	***
