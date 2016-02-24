@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 15:56:14 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 17:13:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ typedef struct		s_hook_input
 }					t_hook_input;
 
 typedef int			(*t_handler)(t_hook_input *);
-extern t_keymap g_kmap[];
-extern size_t g_size;
 
+extern t_keymap		g_kmap[];
+extern size_t		g_size;
 
 /*
 ***					***	HOOK_INIT.C	***
 */
 
-void				hk_open(t_hook_input *hook);
+void				hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t offset);
 void				hk_close(t_hook_input *hook);
 char				*hk_input(t_hook_input *hook);
 
@@ -79,21 +79,42 @@ char				*hk_input(t_hook_input *hook);
 ***					***	HOOK_MANAGE.C	***
 */
 
-char					*hk_flush(t_hook_input *hook);
-int						hk_reset_buffer(t_hook_input *hook);
-int						hk_push_buffer(t_hook_input *hook, char c);
-int						hk_pop_buffer(t_hook_input *hook);
-int						hk_pop_stack(t_hook_input *hook);
-int						hk_push_stack(t_hook_input *hook, char c);
-int						hk_push_buffer_to_stack(t_hook_input *hook);
-int						hk_push_stack_to_buffer(t_hook_input *hook);
-int						hk_expand_buffer(t_hook_input *hook);
+char				*hk_flush(t_hook_input *hook);
+int					hk_expand_buffer(t_hook_input *hook);
+int					hk_reset_buffer(t_hook_input *hook);
 
+/*
+***					***	HOOK_BUFFER.C	***
+*/
+
+int					hk_push_buffer_to_stack(t_hook_input *hook);
+int					hk_push_buffer(t_hook_input *hook, char c);
+int					hk_pop_buffer(t_hook_input *hook);
+
+/*
+***					***	HOOK_STACK.C	***
+*/
+
+int					hk_pop_stack(t_hook_input *hook);
+int					hk_push_stack(t_hook_input *hook, char c);
+int					hk_push_stack_to_buffer(t_hook_input *hook);
 
 /*
 ***					***	HOOK_HANDLER_CONF.C	***
 */
+
+int					exit_handler(t_hook_input *hook);
+int					nline_handler(t_hook_input *hook);
+int					retarr_handler(t_hook_input *hook);
+int					suppr_handler(t_hook_input *hook);
+int					inser_handler(t_hook_input *hook);
+
 /*
 ***					***	HOOK_HANDLER_ARROW.C	***
 */
+
+int					right_handler(t_hook_input *hook);
+int					left_handler(t_hook_input *hook);
+int					up_handler(t_hook_input *hook);
+int					down_handler(t_hook_input *hook);
 #endif

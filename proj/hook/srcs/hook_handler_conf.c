@@ -6,26 +6,39 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 20:48:06 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/23 20:58:37 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/24 17:16:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
 
-int		retarr_handler(t_hook_input *hk)
+int		exit_handler(t_hook_input *hook)
 {
-	(void)hk;
+	hk_close(hook);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-int		suppr_handler(t_hook_input *hk)
+int		nline_handler(t_hook_input *hook)
 {
-	(void)hk;
+	hook->buffer.flag |= HOOK_F_FLUSH;
 	return (0);
 }
 
-int		inser_handler(t_hook_input *hk)
+int		retarr_handler(t_hook_input *hook)
 {
-	(void)hk;
+	(void)hook;
+	return (0);
+}
+
+int		suppr_handler(t_hook_input *hook)
+{
+	(void)hook;
+	return (0);
+}
+
+int		inser_handler(t_hook_input *hook)
+{
+	(void)hook;
 	return (0);
 }
