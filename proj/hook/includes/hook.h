@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 15:16:47 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 23:19:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 14:43:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <signal.h>
 # include <fcntl.h>
 
-# define POSIX_INPUT_OFFSET 4
+# define POSIX_INPUT_OFFSET 4096
 # define POSIX_INPUT_SIZE 6
 # define HOOK_INPUTS_FILE "inputs.list"
 
@@ -72,7 +72,8 @@ extern size_t		g_size;
 ***					***	HOOK_INIT.C	***
 */
 
-void				hk_open(t_hook_input *hook, t_keymap *kmap, size_t size, size_t offset, char *term);
+void				hk_open(t_hook_input *hook, t_keymap *kmap,\
+							size_t size, size_t offset);
 void				hk_close(t_hook_input *hook);
 char				*hk_input(t_hook_input *hook);
 

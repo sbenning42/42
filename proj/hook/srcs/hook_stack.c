@@ -6,27 +6,27 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/24 16:58:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 16:59:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:10:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
 
-int						hk_push_buffer_to_stack(t_hook_input *hook)
+int			hk_push_buffer_to_stack(t_hook_input *hook)
 {
-	char				c;
+	char	c;
 
-	if (hook->buffer.curs >= hook->buffer.stack)
+	if (hook->buffer.curs == *hook->buffer.acontent)
 		return (1);
-	hook->buffer.curs--;
+	hook->buffer.curs -= 1;
 	c = *hook->buffer.curs;
 	*hook->buffer.curs = 0;
-	hook->buffer.stack--;
+	hook->buffer.stack -= 1;
 	*hook->buffer.stack = c;
 	return (0);
 }
 
-int						hk_push_stack(t_hook_input *hook, char c)
+int			hk_push_stack(t_hook_input *hook, char c)
 {
 	if (hook->buffer.stack > *hook->buffer.acontent + hook->buffer.max)
 		return (1);
@@ -43,7 +43,7 @@ int						hk_push_stack(t_hook_input *hook, char c)
 	return (0);
 }
 
-int						hk_pop_stack(t_hook_input *hook)
+int			hk_pop_stack(t_hook_input *hook)
 {
 	if (hook->buffer.stack >= *hook->buffer.acontent + hook->buffer.max)
 		return (1);

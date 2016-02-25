@@ -6,58 +6,56 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/24 22:10:01 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/25 00:10:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 15:35:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
 
-void				hk_clr_between_input(t_hook_input *hook, size_t size)
+void				hk_clr_between_input(size_t size, size_t ssize)
 {
-	char			ret[1024];
-	char			space[1024];
-	char			scape[15];
-	size_t			lin;
-	size_t			col;
+	static	char	sp[2048] = INIT_SP;
+	static	char	cl[2048] = INIT_CL;
+	int				n;
+	int				r;
 
-	if (size + 2 < hook->term.col)
-	{
-		ft_memset(ret, '\b', size);
-		write(1, ret, ft_strlen(ret));
-		ft_memset(space, ' ', size);
-		write(1, space, ft_strlen(space));
-		write(1, ret, ft_strlen(ret));
-	}
-	else if (size + 2 == hook->term.col)
-	{
-		lin = (size + 2) / hook->term.col;
-		ft_snprintf(scape, 14, "\033[%dA", 1);
-		write(1, scape, ft_strlen(scape));
-
-	}
-		col = (size + 2) % hook->term.col;
-		ft_memset(ret, '\b', col);
-		write(1, ret, ft_strlen(ret));
-	if (col >= 2)
-		ft_memset(ret, '\b', col - 2);
-	if (lin)
-	{
-		ft_memset(ret, '\b', hook->term.col - 2);
-	}
-	write(1, ret, col - 2);
+	n = ((size + 2) - ssize) / 2048;
+	r = ((size + 2) - ssize) % 2048;
+	while (n--)
+		write(1, cl, 2048);
+	write(1, cl, r);
+	write(1, "\033[2C", 4);
+	n = size / 2048;
+	r = size % 2048;
+	while (n--)
+		write(1, sp, 2048);
+	write(1, sp, r);
+	n = (size + 2) / 2048;
+	r = (size + 2) % 2048;
+	while (n--)
+		write(1, cl, 2048);
+	write(1, cl, r);
+	write(1, "\033[2C", 4);
 }
 
 void				hk_output(t_hook_input *hook)
 {
+	static	char	cl[2048] = INIT_CL;
 	static size_t	size;
+	static size_t	ssize;
+	size_t			len;
 
 	if (HOOK_FLUSH)
 	{
 		size = 0;
+		ssize = 0;
 		return ;
 	}
-	hk_clr_between_input(hook, size);
-	write(1, *hook->buffer.acontent, hook->buffer.curs - *hook->buffer.acontent);
+	hk_clr_between_input(size, ssize);
+	len = hook->buffer.curs - *hook->buffer.acontent;
+	write(1, *hook->buffer.acontent, len);
 	write(1, hook->buffer.stack, ft_strlen(hook->buffer.stack));
+	ssize = (*hook->buffer.acontent + hook->buffer.max) - hook->buffer.stack;
+	write(1, cl, ssize);
 	size = *hook->buffer.asize;
 }

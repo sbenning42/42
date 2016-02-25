@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 20:57:22 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 17:13:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 14:48:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		right_handler(t_hook_input *hook)
 {
-	(void)hook;
+	hk_push_stack_to_buffer(hook);
 	return (0);
 }
 
 int		left_handler(t_hook_input *hook)
 {
-	(void)hook;
+	hk_push_buffer_to_stack(hook);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 10:30:50 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 23:26:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 15:20:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 t_keymap		g_kmap[] = {\
 	{0xa, nline_handler},\
+	{0x7f, retarr_handler},\
+	{0x435b1b, right_handler},\
+	{0x445b1b, left_handler},\
+	{0x7e335b1b, suppr_handler},\
 	{0x4, exit_handler}\
 };
 
-size_t			g_size = 2;
+size_t			g_size = 6;
 
 char				*ft_getenv(char **env_p, char *key)
 {
@@ -33,19 +37,17 @@ char				*ft_getenv(char **env_p, char *key)
 	return (NULL);
 }
 
-int					main(int arg_c, char **arg_v, char **env_p)
+int					main(int arg_c, char **arg_v)
 {
 	t_hook_input	hook;
-	char			*term;
 	char			*input;
 
-	term = ft_getenv(env_p, "TERM");
 	hook.keymap = g_kmap;
 	hook.size = g_size;
-	hk_open(&hook, g_kmap, g_size, POSIX_INPUT_OFFSET, term);
+	hk_open(&hook, g_kmap, g_size, POSIX_INPUT_OFFSET);
 	while (42)
 	{
-		ft_printf("{green}$>{eoc}");
+		ft_fprintf(1, "{green}$>{eoc}");
 		input = hk_input(&hook);
 		ft_putstr(input);
 		if (*input)

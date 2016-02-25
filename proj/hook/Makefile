@@ -46,6 +46,8 @@ CC =			gcc
 
 FLAG =			-Wall -Wextra -Werror
 
+DEF =			-D "INIT_SP {[0 ... 2047] == ' '}" -D "INIT_CL {[0 ... 2047] == '\b'}"
+
 all : $(OBJ_LIB) $(NAME)
 
 $(OBJ_LIB) :
@@ -56,7 +58,7 @@ $(NAME) : $(OBJ)
 	mv $^ $(OBJ_DIR)
 
 %.o : %.c $(DEPEND)
-	$(CC) $(FLAG) -I $(HEADER) -I $(LIB_DIR)$(LIB)/$(HEADER) -o $@ -c $<
+	$(CC) $(FLAG) -I $(HEADER) -I $(LIB_DIR)$(LIB)/$(HEADER) -o $@ -c $< $(DEF)
 
 clean :
 	rm -rf $(COBJ)

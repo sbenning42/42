@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 20:48:06 by sbenning          #+#    #+#             */
-/*   Updated: 2016/02/24 22:08:43 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/02/25 14:47:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int		nline_handler(t_hook_input *hook)
 
 int		retarr_handler(t_hook_input *hook)
 {
-	(void)hook;
+	hk_pop_buffer(hook);
 	return (0);
 }
 
 int		suppr_handler(t_hook_input *hook)
 {
-	(void)hook;
+	hk_pop_stack(hook);
 	return (0);
 }
 
