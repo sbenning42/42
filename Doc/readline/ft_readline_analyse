@@ -1,0 +1,5 @@
+
+int		rl_set_prompt(const char *prompt) // Dup le prompt || set le prompt a NULL et le display prompt a ""
+	//Use of G char *rl_prompt // Init to NULL
+	//Use of G int rl_visible_prompt_length // Init to 0
+	//Use of rl_display_prompt // Init a prompt ou a "" 
