@@ -1,0 +1,10 @@
+syn on
+set nu
+set ruler
+set cursorline
+set autoindent
+set cindent
+set colorcolumn=80
+
+autocmd InsertEnter * :set rnu
+autocmd InsertLeave * :set nu
