@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:43:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 14:49:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/03 10:04:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_term				*tm_term(void)
 	return (&term);
 }
 
-int					myput(int c)
+int					my_put(int c)
 {
 	ft_putchar((char)c);
 	return (c);
@@ -27,7 +27,7 @@ int					myput(int c)
 
 void				tm_cap(char *id)
 {
-	tputs(tgetstr(id, NULL), 1, myput);
+	tputs(tgetstr(id, NULL), 1, my_put);
 }
 
 int					tm_init(void)

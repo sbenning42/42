@@ -6,63 +6,93 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:55:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 15:07:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/03 12:02:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-t_rl				*echo_rl(void)
+void				rl_gotohome(size_t from)
 {
-	static t_rl		rl;
+	char			buff[2048];
+	int				co;
+	size_t			eco;
+	size_t			eli;
 
-	return (&rl);
+	co = tgetnum("co");
+	eco = from % co;
+	eli = from / co;
+	if (eli)
+	{
+		ft_sprintf(buff, "\033[%dA", eli);
+		eco -= eli;
+	}
+	if (eco)
+	{
+		if (eli)
+			ft_sprintf(buff + ft_strlen(buff), "%s\033[%dD", buff, eco);
+		else
+			ft_sprintf(buff, "\033[%dD", eco);
+	}
+	if (eco || eli)
+		write(1, buff, ft_strlen(buff));
 }
 
-void				rl_clear(size_t len)
+void				rl_gofromhome(size_t to)
 {
-	char			cl[RL_CLEAR_SIZE] = RL_CL_INIT;
+	char			buff[2048];
+	int				co;
+	size_t			eco;
+	size_t			eli;
 
-	if (len < RL_CLEAR_SIZE)
-		write(1, cl, len);
-	else
+	co = tgetnum("co");
+	eco = to % co;
+	eli = to / co;
+	if (eco)
+		ft_sprintf(buff, "\033[%dC", eco);
+	if (eli)
 	{
-		while (len > 0)
-		{
-			len -= RL_CLEAR_SIZE;
-			write(1, cl, RL_CLEAR_SIZE);
-		}
+		if (eco)
+			ft_sprintf(buff + ft_strlen(buff), "%s\033[%dB", buff, eli);
+		else
+			ft_sprintf(buff, "\033[%dB", eli);
 	}
+	if (eco || eli)
+		write(1, buff, ft_strlen(buff));
+}
+
+size_t				*echo_cursor(void)
+{
+	static size_t	cursor;
+
+	return (&cursor);
 }
 
 void				rl_echo_init(t_rl *rl)
 {
-	*echo_rl() = *rl;
+	*echo_cursor() = rl->prompt;
 	write(1, rl->buffer, rl->prompt);
+}
+
+int					myput(int i)
+{
+	ft_putchar((char)i);
+	return (1);
 }
 
 void				rl_echo(t_rl *rl)
 {
-	t_rl			lastrl;
-	size_t			cl_zone;
-	char			move[1024];
 
-	lastrl = *echo_rl();
-	cl_zone = 0;
-	if (lastrl.used > rl->used)
-		cl_zone = lastrl.used - rl->used;
-	if (rl->ante_cursor >= lastrl.ante_cursor)
-		write(1, rl->buffer + lastrl.ante_cursor, rl->ante_cursor - lastrl.ante_cursor);
-	else
-	{
-		ft_sprintf(move, "\033[%dD", lastrl.ante_cursor - rl->ante_cursor);
-		write(1, move, ft_strlen(move));
-		write(1, rl->buffer + lastrl.ante_cursor, ft_strlen(rl->buffer + lastrl.ante_cursor));
-	}
-	tm_cap("sc");
+	size_t			lastcursor;
+
+	lastcursor = *echo_cursor();
+	rl_gotohome(lastcursor);
+	write(1, rl->buffer, rl->ante_cursor);
 	write(1, rl->buffer + rl->post_cursor, rl->real - rl->post_cursor);
-	if (cl_zone)
-		rl_clear(cl_zone);
-	tm_cap("rc");
-	*echo_rl() = *rl;
+	tm_cap("cd");
+	rl_gotohome(rl->used);
+//	rl_gofromhome(rl->ante_cursor);
+/*	if (!(rl->ante_cursor % tgetnum("co")))
+		tm_cap("do");
+*/	*echo_cursor() = rl->ante_cursor;
 }
