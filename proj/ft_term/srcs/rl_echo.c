@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:55:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 13:39:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:07:30 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,7 @@ void				rl_goto(char *buff, size_t from, size_t to)
 		write(1, buff, ft_strlen(buff));
 	}
 }
-/*
-void				rl_gofromhome(size_t to)
-{
-	char			buff[2048];
-	int				co;
-	size_t			eco;
-	size_t			eli;
 
-	co = tgetnum("co");
-	eco = to % co;
-	eli = to / co;
-	ft_bzero((void *)buff, 2048);
-	if (eco)
-	{
-		ft_sprintf(buff, "\033[%dC", eco);
-		write(1, buff, ft_strlen(buff));
-	}
-	if (eli)
-	{
-		ft_sprintf(buff, "\033[%dB", eli);
-		write(1, buff, ft_strlen(buff));
-	}
-}
-*/
 size_t				*echo_cursor(void)
 {
 	static size_t	cursor;
@@ -96,14 +73,14 @@ void				rl_echo(t_rl *rl)
 {
 	char			buff[2048];
 
-	if (rl->begin > 0)
+	if (rl->begin >= 0)
 	{
-		rl_goto(buff, *echo_cursor(), rl->begin);
-		write(1, rl->buffer + rl->begin, rl->diff);
+		rl_goto(buff, *echo_cursor(), 0);
+		write(1, rl->buffer + 0, rl->ante_cursor);
 		write(1, rl->buffer + rl->post_cursor, rl->real - rl->post_cursor);
+		//if (rl->ante_cursor != (size_t)rl->begin)
+		rl_last_co(rl->used);
 		tm_cap("cd");
-		if (ABS(rl->ante_cursor - rl->begin))
-			rl_last_co(rl->used);
 		rl_goto(buff, rl->used, rl->ante_cursor);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:20:03 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 13:34:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:53:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int		rl_maj(t_rl *rl, int code)
 		}
 	}
 	ft_fprintf(2, "code=[%#x]\n", code);
-	return (/*-1*/0);
+	return (-1);
 }
