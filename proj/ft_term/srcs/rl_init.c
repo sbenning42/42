@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:05:22 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 14:56:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:42:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			rl_init(t_rl *rl, int gflag, const char *prompt, char *term)
 	ft_strcpy(rl->buffer, prompt);
 	rl->used = rl->prompt;
 	rl->ante_cursor = rl->prompt;
+	rl->begin = rl->prompt;
 	rl->post_cursor = rl->real;
 	rl->gflag = gflag;
 	rl->lflag = 0;

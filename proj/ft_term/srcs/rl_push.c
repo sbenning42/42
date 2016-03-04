@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:30:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 13:58:54 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:09:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		rl_ante_push(t_rl *rl, int code)
 {
-	rl->lflag |= RL_LBMODIF;
 	if (rl->used + 1 >= rl->real)
 	{
 		if (rl_expand(rl) < 0)
@@ -28,7 +27,6 @@ int		rl_ante_push(t_rl *rl, int code)
 
 int		rl_post_push(t_rl *rl, int code)
 {
-	rl->lflag |= RL_LBMODIF;
 	if (rl->used + 1 >= rl->real)
 	{
 		if (rl_expand(rl) < 0)
