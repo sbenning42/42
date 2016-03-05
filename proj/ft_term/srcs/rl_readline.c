@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:51:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:39:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 17:00:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ char		*rl_readline(t_rl *rl)
 {
 	int		code;
 
-	if (ISATTR(rl->gflag, RL_GECHO))
-		rl_echo_init(rl);
+	rl_echo_init(rl);
 	while (42)
 	{
 		if ((code = rl_read()) == 0)
