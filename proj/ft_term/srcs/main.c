@@ -6,11 +6,11 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 16:04:43 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 17:31:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
+#include "ft_term.h"
 
 char		*ft_getenv(char **ep, const char *key)
 {
@@ -25,23 +25,13 @@ char		*ft_getenv(char **ep, const char *key)
 
 int			main(int ac, char **av, char **ep)
 {
-	char	*line;
-	char	*prompt;
-
-	prompt = (ac < 2 ? "" : av[1]);
-	while (42)
-	{
-		line = ft_readline(prompt, (RL_GECHO | RL_GHISTORY | RL_GSAVE | RL_GLOAD), ft_getenv(ep, "TERM"));
-		if (line)
-		{
-			if (!ft_strcmp(line, "exit"))
-			{
-				ft_memdel((void **)&line);
-				break ;
-			}
-			ft_memdel((void **)&line);
-		}
-	}
-	ft_atexit(EXIT_SUCCESS, av[0], "main: Success");
+	if (tm_init(ft_getenv(ep, "TERM")) < 0)	
+		ft_atexit(EXIT_FAILURE, "term", "tm_init: fail");
+	tm_cap("cl");
+	if (tm_quit() < 0)	
+		ft_atexit(EXIT_FAILURE, "term", "tm_quit: fail");
+	ft_atexit(EXIT_SUCCESS, "term", "main: Success");
 	return (0);
+	(void)ac;
+	(void)av;
 }

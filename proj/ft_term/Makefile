@@ -10,27 +10,11 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-NAME =			readline
+NAME =			term
 
 SRC =			ft_exit.c\
 				main.c\
-				ft_term.c\
-				global.c\
-				rl_echo.c\
-				rl_expand.c\
-				rl_flush.c\
-				rl_handle.c\
-				rl_handle_suite.c\
-				rl_history_handle.c\
-				rl_init.c\
-				rl_maj.c\
-				rl_pop.c\
-				rl_push.c\
-				rl_readline.c\
-				get_next_line.c\
-				rl_history_getrl.c\
-				rl_history.c\
-				ft_readline.c
+				ft_term.c
 
 SRC_DIR =		srcs/
 
@@ -50,8 +34,7 @@ LIB_DIR =		lib/
 
 HEADER =		includes
 
-DEPEND =		$(HEADER)/ft_term.h\
-				$(HEADER)/ft_readline.h
+DEPEND =		$(HEADER)/ft_term.h
 
 CC =			gcc
 
