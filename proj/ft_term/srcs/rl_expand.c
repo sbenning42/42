@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:33:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 13:38:54 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 11:48:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int			rl_expand(t_rl *rl)
 	postlen = rl->real - rl->post_cursor;
 	rl->real += rl->offset;
 	ft_strcpy(rl->buffer - postlen, cp + rl->post_cursor);
+	rl->post_cursor += rl->offset;
 	ft_memdel((void **)&cp);
 	return (0);
 }

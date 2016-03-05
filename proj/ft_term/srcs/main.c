@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 14:59:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 14:48:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,19 @@ int			main(int ac, char **av, char **ep)
 	char	*prompt;
 
 	prompt = (ac < 2 ? "" : av[1]);
-	line = ft_readline(prompt, (RL_GECHO | RL_GHISTORY), ft_getenv(ep, "TERM"));
-	ft_printf("%s: line=[%s]\n", av[0], line);
-	if (line)
-		ft_memdel((void **)&line);
+	while (42)
+	{
+		line = ft_readline(prompt, (RL_GECHO | RL_GHISTORY), ft_getenv(ep, "TERM"));
+		if (line)
+		{
+			if (!ft_strcmp(line, "exit"))
+			{
+				ft_memdel((void **)&line);
+				break ;
+			}
+			ft_memdel((void **)&line);
+		}
+	}
 	ft_atexit(EXIT_SUCCESS, av[0], "main: Success");
 	return (0);
 }

@@ -20,11 +20,15 @@ SRC =			ft_exit.c\
 				rl_expand.c\
 				rl_flush.c\
 				rl_handle.c\
+				rl_history_handle.c\
 				rl_init.c\
 				rl_maj.c\
 				rl_pop.c\
 				rl_push.c\
 				rl_readline.c\
+				get_next_line.c\
+				rl_history_getrl.c\
+				rl_history.c\
 				ft_readline.c
 
 SRC_DIR =		srcs/
