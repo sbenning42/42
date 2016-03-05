@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 15:17:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:57:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:20:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@ int		rl_maj_insert(t_rl *rl)
 		rl->lflag &= ~RL_LINSERT;
 	else
 		rl->lflag |= RL_LINSERT;
+	return (0);
+}
+
+int			rl_maj_d(t_rl *rl)
+{
+	(void)rl;
+	write(1, "\n", 1);
+	return (-1);
+}
+
+int			rl_maj_cl(t_rl *rl)
+{
+	tm_cap("cl");
+	rl_echo_init(rl);
+	rl->diff.type = RL_TAPPEND;
+	rl->diff.begin = rl->prompt;
+	rl->diff.offset = rl->ante_cursor - rl->prompt;
 	return (0);
 }
 

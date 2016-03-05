@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:53:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:58:15 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:17:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define RL_XMALLOC_SIZE 4096
 # define RL_CLEAR_SIZE 4096
 # define RL_INPUT_SIZE 6
-# define RL_GKEY_SIZE 10
+# define RL_GKEY_SIZE 13
 
 # define RL_LOAD_FILE "./.readline.history"
 # define RL_SAVE_FILE "./.readline.history"
@@ -81,12 +81,14 @@ char			*rl_readline(t_rl *rl);
 
 int				rl_maj(t_rl *rl, int code);
 int				rl_maj_nl(t_rl *rl);
+int				rl_maj_cl(t_rl *rl);
 int				rl_maj_retarr(t_rl *rl);
 int				rl_maj_suppr(t_rl *rl);
 int				rl_maj_right(t_rl *rl);
 int				rl_maj_left(t_rl *rl);
 int				rl_maj_down(t_rl *rl);
 int				rl_maj_up(t_rl *rl);
+int				rl_maj_d(t_rl *rl);
 int				rl_maj_end(t_rl *rl);
 int				rl_maj_home(t_rl *rl);
 int				rl_maj_insert(t_rl *rl);
@@ -100,6 +102,7 @@ int				rl_ante_pop(t_rl *rl);
 int				rl_post_pop(t_rl *rl);
 
 char			*rl_flush(t_rl *rl);
+void			rl_goto(char *buff, size_t from, size_t to);
 void			rl_echo_init(t_rl *rl);
 void			rl_echo(t_rl *rl);
 

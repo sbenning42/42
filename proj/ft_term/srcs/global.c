@@ -6,14 +6,17 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:24:12 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:54:54 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:17:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
 t_key	g_key[RL_GKEY_SIZE] = {\
+	{0x1, rl_maj_home},\
 	{0xa, rl_maj_nl},\
+	{0x4, rl_maj_d},\
+	{0xc, rl_maj_cl},\
 	{0x7f, rl_maj_retarr},\
 	{0x1b, rl_maj_insert},\
 	{0x435b1b, rl_maj_right},\
