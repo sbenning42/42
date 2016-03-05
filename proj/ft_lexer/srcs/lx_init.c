@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 16:09:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 19:06:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:18:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		lx_del(t_lex **alst)
 	while (cp)
 	{
 		tmp = cp->next;
-		ft_memdel((void **)&cp->value);
+		if (cp->value)
+			ft_memdel((void **)&cp->value);
 		ft_memdel((void **)&cp);
 		cp = tmp;
 	}

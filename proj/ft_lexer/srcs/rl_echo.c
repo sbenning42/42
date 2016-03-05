@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:55:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 13:53:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 19:32:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void				rl_goto(char *buff, size_t from, size_t to)
 	}
 	if (ABS((eli = ((from / co) - (to / co)))))
 	{
+//		ft_fprintf(2, "eli=[%d]\n", eli);
 		if (eli > 0)
 			c = 'A';
 		else
@@ -38,6 +39,7 @@ void				rl_goto(char *buff, size_t from, size_t to)
 		ft_sprintf(buff, "\033[%d%c", ABS(eli), c);
 		write(1, buff, ft_strlen(buff));
 	}
+//	ft_fprintf(2, "co=[%d];from=[%zu];to=[%zu];eco=[%d];eli=[%d]\n", co, from, to, eco, eli);
 }
 
 size_t				*echo_cursor(void)

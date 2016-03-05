@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 00:15:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 22:32:57 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "ft_readline.h"
 
-# define LX_FSTATE_SIZE 13
-# define LX_STATE_SIZE 19
+# define LX_FSTATE_SIZE 17
+# define LX_STATE_SIZE 18
 
 # define LX_CSET_SEARCH "<012\"`'([|&\\ ~#*!?"
 
@@ -34,6 +34,7 @@ typedef enum		e_lextype
 	TY_Chev_xr,	//	"X>" Xisdigit												//prior	=	5	Chevxr
 	TY_Pipe,		//	'|'															//prior	=	10	Or
 	TY_Bground,	//	'&'															//prior	=	10	And
+	TY_Quote,	//	''' cpt0													//prior	=	5	Quote
 	TY_Quote_dl,	//	'"' cpt0													//prior	=	5	Quoted
 	TY_Quote_il,	//	'`' cpt0													//prior	=	5	Quotei
 	TY_Quote_l,	//	''' cpt0													//prior	=	5	Quote
@@ -53,12 +54,11 @@ typedef enum		e_lextype
 	TY_Match,		//	'*'															//prior	=	50	Explicit
 	TY_Comm,		//	'#'															//prior	=	50	Explicit
 	TY_Neg,		//	'!'															//prior	=	5	Explicit
-	TY_Inter		//	'?'															//prior	=	5	Explicit
+	TY_Sub		//	'?'															//prior	=	5	Explicit
 }					t_lextype;
 
 typedef enum		e_lexstate
 {
-	ST_Entry,
 	ST_Blank,
 	ST_Word,
 	ST_Chevxl,
@@ -71,14 +71,18 @@ typedef enum		e_lexstate
 	ST_Or,
 	ST_And,
 	ST_Escape,
-	ST_End,
+	ST_Tild,
+	ST_Comm,
+	ST_Autocmp,
+	ST_Neg,
+	ST_Sub,
 	ST_Error
 }					t_lexstate;
 
 typedef enum		e_lexcode
 {
 	CO_Success,
-//	CO_Repeat,
+	CO_Repeat,
 	CO_Fail
 }					t_lexcode;
 
@@ -92,14 +96,35 @@ typedef struct		s_lex
 	int				pound;
 }					t_lex;
 
-extern t_lexcode	(*g_state)[LX_STATE_SIZE](char, t_lex **alst, t_lexstate *curr_state);
+typedef t_lexcode	(*t_lexfstate)(char, t_lex *, t_lexstate *state);
 
-t_lex				*ft_lexer(char *line);
-size_t				lx_lexer(char *line, t_lex **alst);
-t_lex				*lx_token(t_lex token);
+extern t_lexstate	g_state[LX_STATE_SIZE];
+extern t_lexfstate	g_fstate[LX_STATE_SIZE];
+
+t_lex				*ft_lexer(char *id, char *line);
+t_lex				*lx_lexer(char *id, char *line);
+t_lexstate			lx_entry(char c);
 void				lx_tokenlist(t_lex **alst, t_lex *token);
 void				lx_print(t_lex *lst);
 void				lx_del(t_lex **alst);
+
+t_lexcode			lx_stblank(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stword(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stchevxl(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stchevxr(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stquoted(char c, t_lex *token, t_lexstate *state);
+t_lexcode		 	lx_stquotei(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stquote(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stparent(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_sthook(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stor(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stand(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stescape(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_sttild(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stcomm(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stautocomp(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stneg(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stsub(char c, t_lex *token, t_lexstate *state);
 
 #endif
 /*
