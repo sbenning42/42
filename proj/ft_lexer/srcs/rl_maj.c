@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:20:03 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 14:53:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:00:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@ int		rl_maj(t_rl *rl, int code)
 {
 	int	i;
 
+	if (ISATTR(rl->lflag, RL_LHISTORY))
+		rl->lflag &= ~RL_LHISTORY;
 	if (code > 0x1f && code < 0x7f)
 	{
-		rl->begin = rl->ante_cursor;
-		rl->diff = 1;
+		if (ISATTR(rl->lflag, RL_LINSERT) && (rl->post_cursor < rl->real))
+			rl_post_pop(rl);
+		rl->diff.type = RL_TAPPEND;
+		rl->diff.begin = rl->ante_cursor;
+		rl->diff.offset = 1;
 		return (rl_ante_push(rl, code));
 	}
 	else
 	{
+		rl->diff.type = RL_TCURSORONLY;
+		rl->diff.begin = -1;
+		rl->diff.offset = 0;
 		i = -1;
 		while (++i < RL_GKEY_SIZE)
 		{

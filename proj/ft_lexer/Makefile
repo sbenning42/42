@@ -6,7 +6,7 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2016/03/04 16:55:48 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/02/24 22:59:49 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -20,17 +20,17 @@ SRC =			ft_exit.c\
 				rl_expand.c\
 				rl_flush.c\
 				rl_handle.c\
+				rl_handle_suite.c\
+				rl_history_handle.c\
 				rl_init.c\
 				rl_maj.c\
 				rl_pop.c\
 				rl_push.c\
 				rl_readline.c\
-				ft_readline.c\
-				lx_print.c\
-				lx_init.c\
-				lx_token.c\
-				lx_lexer.c\
-				ft_lexer.c
+				get_next_line.c\
+				rl_history_getrl.c\
+				rl_history.c\
+				ft_readline.c
 
 SRC_DIR =		srcs/
 

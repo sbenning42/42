@@ -6,11 +6,11 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 19:26:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:04:43 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lexer.h"
+#include "ft_readline.h"
 
 char		*ft_getenv(char **ep, const char *key)
 {
@@ -26,27 +26,22 @@ char		*ft_getenv(char **ep, const char *key)
 int			main(int ac, char **av, char **ep)
 {
 	char	*line;
-	t_lex	*lst;
+	char	*prompt;
 
+	prompt = (ac < 2 ? "" : av[1]);
 	while (42)
 	{
-		if (!(line = ft_readline("$>", RL_GECHO, ft_getenv(ep, "TERM"))))
-			continue ;
-		if (!ft_strcmp("exit", line))
+		line = ft_readline(prompt, (RL_GECHO | RL_GHISTORY | RL_GSAVE | RL_GLOAD), ft_getenv(ep, "TERM"));
+		if (line)
 		{
+			if (!ft_strcmp(line, "exit"))
+			{
+				ft_memdel((void **)&line);
+				break ;
+			}
 			ft_memdel((void **)&line);
-			break ;
 		}
-		if (!(lst = ft_lexer(line)))
-		{
-			ft_memdel((void **)&line);
-			continue ;
-		}
-		ft_memdel((void **)&line);
-		lx_print(lst);
-		lx_del(&lst);
 	}
+	ft_atexit(EXIT_SUCCESS, av[0], "main: Success");
 	return (0);
-	(void)ac;
-	(void)av;
 }

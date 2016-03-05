@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:43:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/03 10:04:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 17:30:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void				tm_cap(char *id)
 	tputs(tgetstr(id, NULL), 1, my_put);
 }
 
-int					tm_init(void)
+int					tm_init(char *term)
 {
+	if (tgetent(term, NULL) < 0)
+		return (-1);
 	if (tcgetattr(0, &tm_term()->global) < 0)
 		return (-1);
 	tm_term()->local = tm_term()->global;
