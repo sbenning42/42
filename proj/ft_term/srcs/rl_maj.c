@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:20:03 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 14:52:48 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:43:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		rl_maj(t_rl *rl, int code)
 {
 	int	i;
 
+	if (ISATTR(rl->lflag, RL_LHISTORY))
+		rl->lflag &= ~RL_LHISTORY;
 	if (code > 0x1f && code < 0x7f)
 	{
 		rl->diff.type = RL_TAPPEND;

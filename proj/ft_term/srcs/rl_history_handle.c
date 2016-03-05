@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 11:47:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 14:44:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:43:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int				rl_maj_up(t_rl *rl)
 {
-	rl->diff.type = RL_TCURSORONLY;
 	if (!ISATTR(rl->gflag, RL_GHISTORY))
 		return (0);
+	rl->lflag |= RL_LHISTORY;
 	if (rl->history_cursor)
 	{
 		if (!rl->history_cursor->n)
@@ -35,11 +35,9 @@ int				rl_maj_up(t_rl *rl)
 
 int			rl_maj_down(t_rl *rl)
 {
-	rl->diff.type = RL_TCURSORONLY;
-	if (!ISATTR(rl->gflag, RL_GHISTORY))
+	if (!ISATTR(rl->gflag, RL_GHISTORY) || !rl->history_cursor)
 		return (0);
-	if (!rl->history_cursor)
-		return (0);
+	rl->lflag |= RL_LHISTORY;
 	rl->history_cursor = rl->history_cursor->p;
 	if (rl_getrl(rl) < 0)
 		return (-1);

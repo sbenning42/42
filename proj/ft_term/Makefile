@@ -20,6 +20,7 @@ SRC =			ft_exit.c\
 				rl_expand.c\
 				rl_flush.c\
 				rl_handle.c\
+				rl_handle_suite.c\
 				rl_history_handle.c\
 				rl_init.c\
 				rl_maj.c\

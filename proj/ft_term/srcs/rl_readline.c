@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:51:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/02 14:33:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:39:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char		*rl_readline(t_rl *rl)
 			return (NULL);
 		if (ISATTR(rl->lflag, RL_LFLUSH))
 			return (rl_flush(rl));
+		if (rl->history_cursor && !ISATTR(rl->lflag, RL_LHISTORY))
+			rl->history_cursor = NULL;
 		if (ISATTR(rl->gflag, RL_GECHO))
 			rl_echo(rl);
 	}
