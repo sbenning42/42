@@ -6,11 +6,20 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 15:17:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:22:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:57:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+
+int		rl_maj_insert(t_rl *rl)
+{
+	if (ISATTR(rl->lflag, RL_LINSERT))
+		rl->lflag &= ~RL_LINSERT;
+	else
+		rl->lflag |= RL_LINSERT;
+	return (0);
+}
 
 int			rl_maj_home(t_rl *rl)
 {

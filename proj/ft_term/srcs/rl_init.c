@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:05:22 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 14:48:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:54:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			rl_quit(t_rl *rl)
 {
 	if (rl->buffer)
 		ft_memdel((void **)&rl->buffer);
-	if (rl->history && !*rl_historytrace())
+	if (ISATTR(rl->gflag, RL_GHISTORY) && rl->history && !*rl_historytrace())
 		ft_dlstdel(&rl->history, NULL);
 	return (0);
 }

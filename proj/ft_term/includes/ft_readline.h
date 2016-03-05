@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:53:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:39:45 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:58:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define RL_XMALLOC_SIZE 4096
 # define RL_CLEAR_SIZE 4096
 # define RL_INPUT_SIZE 6
-# define RL_GKEY_SIZE 9
+# define RL_GKEY_SIZE 10
 
 # define RL_LOAD_FILE "./.readline.history"
 # define RL_SAVE_FILE "./.readline.history"
@@ -32,6 +32,7 @@
 
 # define RL_LFLUSH 0x1
 # define RL_LHISTORY 0x2
+# define RL_LINSERT 0x4
 
 # define RL_TAPPEND 0x1
 # define RL_TERASE 0x2
@@ -88,6 +89,7 @@ int				rl_maj_down(t_rl *rl);
 int				rl_maj_up(t_rl *rl);
 int				rl_maj_end(t_rl *rl);
 int				rl_maj_home(t_rl *rl);
+int				rl_maj_insert(t_rl *rl);
 
 int				rl_expand(t_rl *rl);
 

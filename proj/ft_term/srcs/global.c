@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:24:12 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 15:19:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/05 15:54:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_key	g_key[RL_GKEY_SIZE] = {\
 	{0xa, rl_maj_nl},\
 	{0x7f, rl_maj_retarr},\
+	{0x1b, rl_maj_insert},\
 	{0x435b1b, rl_maj_right},\
 	{0x445b1b, rl_maj_left},\
 	{0x7e335b1b, rl_maj_suppr},\
