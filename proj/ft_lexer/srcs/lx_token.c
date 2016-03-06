@@ -6,25 +6,24 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 16:40:08 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/04 20:59:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:02:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lex		*lx_token(t_lex token)
+t_lex		*lx_newtoken(t_lextype type, int protect, size_t len, int pound)
 {
-	t_lex	*cp;
+	t_lex	*t;
 
-	if (!(cp = (t_lex *)ft_memalloc(sizeof(t_lex))))
-		return (NULL);
-	*cp = token;
-	if (!(cp->value = ft_strdup(token.value)))
+	if ((t = (t_lex *)ft_memalloc(sizeof(t_lex))))
 	{
-		free(cp);
-		return (NULL);
+		t->type = type;
+		t->protect = protect;
+		t->len = len;
+		t->pound = pound;
 	}
-	return (cp);
+	return (t);
 }
 
 void		lx_tokenlist(t_lex **alst, t_lex *token)

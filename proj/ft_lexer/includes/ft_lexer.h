@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 22:32:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:27:24 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,21 @@
 
 # include "ft_readline.h"
 
-# define LX_FSTATE_SIZE 17
-# define LX_STATE_SIZE 18
+# define LX_FSTATE_SIZE 20
+# define LX_STATE_SIZE 20
 
-# define LX_CSET_SEARCH "<012\"`'([|&\\ ~#*!?"
+# define LX_CSET_ALL 	"\\!$\"([|&~#*?';<012 `"
+//# define LX_CSET_ESCAPE "\\!$\"([|&~#*?';<012 `"
+# define LX_CSET_IQUOTE "\\!$\"([|&~#*?';<012 "
+# define LX_CSET_DQUOTE "\\!$"
+# define LX_CSET_QUOTE ""
+
+//# define LX_PESCAPE 0x1
+# define LX_PDQUOTE 0x2
+# define LX_PIQUOTE 0x4
+# define LX_PQUOTE 0x8
+
+# define ISBIT(X, Y) ((X & Y) == Y ? 1 : 0)
 
 typedef enum		e_lextype
 {
@@ -54,11 +65,14 @@ typedef enum		e_lextype
 	TY_Match,		//	'*'															//prior	=	50	Explicit
 	TY_Comm,		//	'#'															//prior	=	50	Explicit
 	TY_Neg,		//	'!'															//prior	=	5	Explicit
-	TY_Sub		//	'?'															//prior	=	5	Explicit
+	TY_Sub,		//	'?'															//prior	=	5	Explicit
+	TY_Var,		//	'?'															//prior	=	5	Explicit
+	TY_Sep		//	'?'															//prior	=	5	Explicit
 }					t_lextype;
 
 typedef enum		e_lexstate
 {
+	ST_Entry,
 	ST_Blank,
 	ST_Word,
 	ST_Chevxl,
@@ -73,9 +87,11 @@ typedef enum		e_lexstate
 	ST_Escape,
 	ST_Tild,
 	ST_Comm,
-	ST_Autocmp,
+	ST_Match,
 	ST_Neg,
 	ST_Sub,
+	ST_Var,
+	ST_Sep,
 	ST_Error
 }					t_lexstate;
 
@@ -91,40 +107,44 @@ typedef struct		s_lex
 	struct s_lex	*next;
 	struct s_lex	*previous;
 	t_lextype		type;
+	int				protect;
 	char			*value;
 	size_t			len;
 	int				pound;
 }					t_lex;
 
-typedef t_lexcode	(*t_lexfstate)(char, t_lex *, t_lexstate *state);
+typedef t_lexcode	(*t_lexfstate)(char, t_lex *, int *, t_lexstate *state);
 
 extern t_lexstate	g_state[LX_STATE_SIZE];
 extern t_lexfstate	g_fstate[LX_STATE_SIZE];
 
-t_lex				*ft_lexer(char *id, char *line);
-t_lex				*lx_lexer(char *id, char *line);
-t_lexstate			lx_entry(char c);
+t_lex				*ft_lexer(char *line);
+t_lexcode			lx_lexer(char *line, t_lex **token, int *protect);
+t_lex				*lx_newtoken(t_lextype type, int protect, size_t len, int pound);
 void				lx_tokenlist(t_lex **alst, t_lex *token);
 void				lx_print(t_lex *lst);
 void				lx_del(t_lex **alst);
 
-t_lexcode			lx_stblank(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stword(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stchevxl(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stchevxr(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stquoted(char c, t_lex *token, t_lexstate *state);
-t_lexcode		 	lx_stquotei(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stquote(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stparent(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_sthook(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stor(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stand(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stescape(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_sttild(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stcomm(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stautocomp(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stneg(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stsub(char c, t_lex *token, t_lexstate *state);
+t_lexcode			lx_stentry(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stword(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stblank(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stescape(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stchevxl(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stchevxr(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stquoted(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stquotei(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stquote(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stparent(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_sthook(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stor(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stand(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_sttild(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stcomm(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stmatch(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stsub(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stneg(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stvar(char c, t_lex *token, int *protect, t_lexstate *state);
+t_lexcode			lx_stsep(char c, t_lex *token, int *protect, t_lexstate *state);
 
 #endif
 /*

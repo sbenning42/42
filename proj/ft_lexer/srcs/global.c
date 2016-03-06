@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 13:24:12 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 21:15:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:00:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,31 @@ t_key	g_key[RL_GKEY_SIZE] = {\
 };
 
 t_lexstate		g_state[LX_STATE_SIZE] = {\
-	ST_Chevxl,\
-	ST_Chevxr,\
-	ST_Chevxr,\
-	ST_Chevxr,\
+	ST_Escape,\
+	ST_Neg,\
+	ST_Var,\
 	ST_Quoted,\
-	ST_Quotei,\
-	ST_Quote,\
 	ST_Parent,\
 	ST_Hook,\
 	ST_Or,\
 	ST_And,\
-	ST_Escape,\
-	ST_Blank,\
 	ST_Tild,\
 	ST_Comm,\
-	ST_Autocmp,\
-	ST_Neg,\
+	ST_Match,\
 	ST_Sub,\
+	ST_Quote,\
+	ST_Sep,\
+	ST_Chevxl,\
+	ST_Chevxr,\
+	ST_Chevxr,\
+	ST_Chevxr,\
+	ST_Blank,\
+	ST_Quotei,\
 	//ST_,\/
-	\
 };
 
 t_lexfstate		g_fstate[LX_STATE_SIZE] = {\
+	lx_stentry,\
 	lx_stblank,\
 	lx_stword,\
 	lx_stchevxl,\
@@ -68,7 +70,9 @@ t_lexfstate		g_fstate[LX_STATE_SIZE] = {\
 	lx_stescape,\
 	lx_sttild,\
 	lx_stcomm,\
-	lx_stautocomp,\
+	lx_stmatch,\
 	lx_stneg,\
-	lx_stsub\
+	lx_stsub,\
+	lx_stvar,\
+	lx_stsep\
 };

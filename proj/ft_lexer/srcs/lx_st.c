@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 23:32:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 22:42:30 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/06 10:34:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,4 +224,12 @@ t_lexcode				lx_stsub(char c, t_lex *token, t_lexstate *state)
 	token->type = TY_Sub;
 	token->len = 1;
 	return (CO_Repeat);
+}
+
+t_lexcode				lx_stvar(char c, t_lex *token, t_lexstate *state)
+{
+	(void)c;
+	(void)token;
+	(void)state;
+	return (CO_Fail);
 }

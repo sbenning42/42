@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 21:25:05 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:03:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			main(int ac, char **av, char **ep)
 				ft_memdel((void **)&line);
 				break ;
 			}
-			if ((lex = ft_lexer(av[0], line)))
+			if ((lex = ft_lexer(line)))
 			{
 				lx_print(lex);
 				lx_del(&lex);
