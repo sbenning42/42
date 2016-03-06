@@ -5,39 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/04 16:40:08 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 14:02:28 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/06 22:02:24 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/06 22:09:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lex		*lx_newtoken(t_lextype type, int protect, size_t len, int pound)
+void		lx_del(t_lxem **alst)
 {
-	t_lex	*t;
+	t_lxem	*cp;
+	t_lxem	*tmp;
 
-	if ((t = (t_lex *)ft_memalloc(sizeof(t_lex))))
+	cp = *alst;
+	while (*alst)
 	{
-		t->type = type;
-		t->protect = protect;
-		t->len = len;
-		t->pound = pound;
+		tmp = (*alst)->next;
+		dyn_strdel(&(*alst)->value);
+		ft_memdel((void **)alst);
+		*alst = tmp;
 	}
-	return (t);
 }
 
-void		lx_tokenlist(t_lex **alst, t_lex *token)
+void		lx_addtoken(t_lxem **alst, t_lxem *token)
 {
-	t_lex	*cp;
+	t_lxem	*cp;
 
-	if (!*alst)
-	{
+	if (!(cp = *alst))
 		*alst = token;
-		return ;
+	else
+	{
+		while (cp->next)
+			cp = cp->next;
+		cp->next = token;
 	}
-	cp = *alst;
-	while (cp->next)
-		cp = cp->next;
-	cp->next = token;
-	token->previous = cp;
 }
