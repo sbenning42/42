@@ -6,47 +6,74 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 19:34:49 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 22:30:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:06:46 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lxem				*lx_dev_wordextract(char *s, char *cset, int *plv)
+static int			*static_lx_isplv(void)
+{
+	static int		plv;
+
+	return (&plv);
+}
+
+t_lxem				*lx_dev_wordextract(char *line, t_lxplv *plv)
 {
 	char			*cp;
-	t_lxcode		code;
 	t_lxstate		state;
 	t_lxem			*token;
 
-	cp = s;
+	cp = line;
 	token = NULL;
-	state = ST_Entry;
-	code = CO_Repeat;
-	while (code == CO_Repeat)
-		code = g_ws_fstate[state](*s++, lx_plvhandle(plv), &state, &token);
-	if (code == CO_Fail)
-		ft_fprintf(2, "Inknow lexem: '%s'\n", s - cp);
+	state = ST_Word;
+	while (state == ST_Word)
+	{
+		cp += lx_plvmaj(*cp, plv);
+		if (plv->bitset)
+			*static_lx_isplv() |= (plv->bitset);
+		if (!*cp)
+			break ;
+		if ((state = g_wsfstate[state](*cp, *plv, &token)) == ST_Skip)
+			state = ST_Word;
+		else
+			cp++;
+	}
+	if (state == ST_Fail)
+		ft_fprintf(2, "Inknow lexem: '%s'\n", cp - line);
+	else if (token)
+		token->plv = *static_lx_isplv();
 	return (token);
 }
 
-t_lxem				*lx_dev_wordsplit(char *s, char *cset)
+t_lxem				*lx_wordsplit_dev(char *line)
 {
-	int				plv;
+	t_lxplv			plv;
 	t_lxem			*lst;
 	t_lxem			*token;
 
 	lst = NULL;
-	plv = LX_PLVNOPROTEC;
-	while (s)
+	plv = g_wsplv[LX_PLVNOPROTEC];
+	while (*line)
 	{
-		if (!(token = lx_dev_wordextract(s, cset, &plv)))
+		if (!(token = lx_dev_wordextract(line, &plv)))
 		{
-			lx_del(&lst);
-			return (NULL);
+			g_skip = 0;
+			*static_lx_isplv() = 0;
+			break ;
 		}
-		s += token->len;
+		line += token->len;
+		line += g_skip;
+		g_skip = 0;
 		lx_addtoken(&lst, token);
+		*static_lx_isplv() = 0;
+	}
+	if (plv.bitset > LX_PLVESCAPE)
+	{
+		ft_fprintf(2, "Lexem quoting error\n");
+		lx_del(&lst);
+		return (NULL);
 	}
 	return (lst);
 }

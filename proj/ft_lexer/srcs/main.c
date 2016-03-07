@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 17:33:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/07 13:04:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			main(int ac, char **av, char **ep)
 {
 	char	*line;
 	char	*prompt;
-	t_lex	*lex;
+	t_lxem	*lex;
 
 	prompt = (ac < 2 ? "" : av[1]);
 	while (42)

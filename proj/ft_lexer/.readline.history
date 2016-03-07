@@ -272,3 +272,316 @@ toto
 "toto" et "tata \" "
 "toto" et "tata ' "
 exit
+toto
+toto
+toto
+toto
+toto
+toto
+toto
+toto
+toto
+toto
+exit
+toto toto
+toto
+exit
+toto toto
+xit
+exit
+toto toto
+toto 
+           toto
+           toto          tooooooooooooooooooooooooooooooooooo rooooooooooo
+toto
+toto 
+toto toto
+totototo
+totototo;toto
+exit
+totototo;toto
+totototo toto
+totototo  toto
+ls > out | cat out && echo success (3 + 5) ; echo toto
+ls > out | cat out && echo success (3 + 5) ; echo toto
+ls > out | cat out && echo success (3 + 5) ; echo toto
+ls > out | cat out && echo success (3 + 5) ; echo toto
+ls > out | cat out && echo success (3 + 5) ; echo tot
+exit
+ls > out | cat out && echo success (3 + 5) ; echo tot
+ls > out | cat out && echo success (3 + 5) ; echo tot
+ls > out | cat out && echo success (3 + 5) ; echo toto
+exit
+ls > out | cat out && echo success (3 + 5) ; echo toto
+ls > out | cat out && echo success (3 + 5) ; echo tot
+ls > out | cat out && echo success (3 + 5) ; echo tot
+ls > out | cat out && echo success (3 + 5) ; echo totooooooooooo
+ls > out | cat out && echo success (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o success (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o suc$cess (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o success (3 + 5) ; echo totoooooooooooy
+ecit
+exit
+ls > out | cat out && ech&o suc[cess (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o suc [[cess (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o suc[[ cess (3 + 5) ; echo totoooooooooooy
+ls > out | cat out && ech&o suc[[ cess (3 + 5) ; echo       totoooooooooooy
+ls > out | cat out && ech&o suc[[ 'cess (3 + 5)' ; echo       totoooooooooooy
+exit
+ls > out | cat out && ech&o suc[[ 'cess (3 + 5)' ; echo       totoooooooooooy
+exit
+ls > out | cat out && ech&o suc[[ 'cess (3 + 5)' ; echo       totoooooooooooy
+exit
+exit
+ls > out | cat out && ech&o suc[[ 'cess (3 + 5)' ; echo       totoooooooooooy
+exit
+ls > out | cat out && ech&o suc[[ 'cess (3 + 5)' ; echo       totoooooooooooy
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+exit
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+ls > out | cat out && echo "[[success \(3 + 5)]]" ; echo \"BRAVO\"
+exit
+ls > out | cat out && echo "[[success \(3 + 5)]]" ; echo \"BRAVO\"
+exit
+ls > out | cat out && echo "[[success \(3 + 5)]]" ; echo \"BRAVO\"
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+exit
+"\a"
+"\a" b
+"a\a" b
+exit
+\a
+"a"
+totot
+toto
+\a
+"a"
+"\a"
+"t\a"
+exit
+"t\a" fgfgf
+exit
+'t\a' fgfgf
+'t\a fg'fgf
+"t\a" fgfgf
+"ta" fgfgf
+exit
+"a\a" b
+exit
+"a\a" b
+exit
+"a\a" b
+"a\a\" b
+"a\a\" "b
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+exit
+ls > out | cat out && echo "[[success (3 + 5)]]" ; echo \"BRAVO\"
+ls > out | cat out && echo "[[success \"(3 + 5)\"]]" ; echo \"BRAVO\"
+ls > out | cat out && echo "[[success \"(3 + 5)\"]]" ; echo \"BRAVO\"
+ls > out | cat out && ech'o "[[success \"(3 + 5)\"]]" ; ec'ho \"BRAVO\"
+exit
+lsto'et to'to
+lsto' et to'to
+lsto ' et to'to
+aa " aa ' aa " aa aa ' aa aa \' aa " aa \" aa aa"
+exit
+ls
+ls -rlR / > /tmp/outls&;cat /dev/outls|wc -l;rm -rf /def/outls
+ls -rlR / 2> /tmp/outls&;cat /dev/outls|wc -l;rm -rf /def/outls
+ls -rlR / 2> /tmp/"out ls"&;cat /dev/'out ls'|wc -l;rm -rf /def/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+exit
+ls [[yoyo]]
+ls [[ yoyo]]
+ls [[ yoyo ]]
+ls $[[ yoyo ]]
+ls $[ [ yoyo ]]
+ls $[ [yoyo ]]
+ls yo(yo
+ls     yo(yo
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls\
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls\"
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls"
+""
+""
+""
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls"
+""
+exit
+\\
+''
+""
+exit
+\\
+''
+""
+exit
+\\
+\\
+\\
+\\
+\\
+""
+''
+"\\"
+'\\'
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls"
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+\\
+''
+""
+"\\"
+exit
+"\\"
+""
+''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+''
+""
+"\\"
+"\\"ezgzgzg
+"\\"ezgzgzg zgzgz
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+"\\"ezgzgzg zgzgz
+"\\"ezgzgzg zgzgz "
+"\\"ezgzgzg zgzgz a
+"\\"ezgzgzg zgzgz 
+"\\"ezgzgzg zgzgz
+ls
+ls \
+ls \
+exit
+toto
+ls \
+toto
+ls \
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+toto
+to\to
+"to\to"
+"to\to" tata
+""
+''
+\\
+"\\"
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""
+""
+"\"
+"\""
+"\\"
+\\
+''
+""
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ""
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls "" a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls""a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls "" a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls " " a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls "" a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls"" a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ""a
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ''
+''
+""
+""
+""
+''
+''
+''
+''
+''
+''
+''
+\\
+\\
+\\
+""
+''
+''
+''
+''
+''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ''
+''
+'' \a
+exit
+toto
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ''
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls ''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+exit
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+toto
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls l
+fg
+dg gh 
+exit
+toto
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls l
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+''
+""
+"\\"
+\\
+''
+'\'
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm"" -rf /tmp/out\ ls''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm "" -rf /tmp/out\ ls''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm '' -rf /tmp/out\ ls''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls ''
+''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls ' '
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls ''
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm ''\\ -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm ''  \\ -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm "" \\ -rf /tmp/out\ ls
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm"" \\ -rf /tmp/out\ ls
+"\\" toto
+"\\"  toto
+"\\ "  toto
+"\ "  toto
+"\a "  toto
+"
+'lkgmlkhet mlerke\g krgje
+xit
+exit
+'lkgmlkhet mlerke\g krgje
+'lkgmlkhet mlerke\g krgj'e
+'lkgmlkhet mlerke\g krgj'e\
+'lkgmlkhet mlerke\g krgj'e\\
+'lkgmlkhet mlerke\g krgj'e \\
+'lkgmlkhet mlerke\g krgj'e \
+fg
+exit
+'lkgmlkhet mlerke\g krgj'e \
+'lkgmlkhet mlerke\g krgj'e\
+'lkgmlkhet mlerke\g krgj'e\
+'lkgmlkhet mlerke\g krgje\
+'lkgm"lkhet mlerke\g krgje\
+'lkgm"lkhet 'mlerke\g krgje\
+"lkgm'lkhet "mlerke\g krgje\
+"lkgm"lkhet "mlerke\g krgje\
+ls "toto*toto"
+exit

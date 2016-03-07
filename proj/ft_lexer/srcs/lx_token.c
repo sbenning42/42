@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 22:02:24 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 22:09:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/07 11:56:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void		lx_del(t_lxem **alst)
 {
-	t_lxem	*cp;
 	t_lxem	*tmp;
 
-	cp = *alst;
 	while (*alst)
 	{
 		tmp = (*alst)->next;
@@ -40,3 +38,20 @@ void		lx_addtoken(t_lxem **alst, t_lxem *token)
 		cp->next = token;
 	}
 }
+
+t_lxem		*lx_newtoken(t_lxtype type, int plv)
+{
+	t_lxem	*token;
+
+	if (!(token = (t_lxem *)ft_memalloc(sizeof(t_lxem))))
+		return (NULL);
+	if (dyn_strnew(&token->value, 64) < 0)
+	{
+		ft_memdel((void **)&token);
+		return (NULL);
+	}
+	token->type = type;
+	token->plv = plv;
+	return (token);
+}
+//t_lxem		*tx_duptoken(t_lxem token);
