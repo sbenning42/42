@@ -5,36 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 11:01:49 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/07 15:00:14 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/15 11:11:41 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/15 14:31:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lxstate		lx_wsstword(char c, t_lxplv plv, t_lxem **token)
+t_lxstate		lx_wsfstate_word(t_lxem *token, char c, t_lxplv plv)
 {
-	if (ft_strchr(plv.protec_cset, c))
-		return (ST_Skip);
-	if (!*token)
+	char		*f;
+
+	if (c && (f = ft_strchr(plv.ws_cset, c)))
 	{
-		if (!(*token = lx_newtoken(TY_Word, plv.bitset)))
-			return (ST_Mfail);
-		if (dyn_strpushstr(&(*token)->value, &c, 1) < 0)
-		{
-			lx_del(token);
-			return (ST_Mfail);
-		}
-		(*token)->len = 1;
-		return (ST_Word);
-	}
-	if (ft_strchr(plv.ws_cset, c))
+		if (token->len)
+			return (ST_Success);
+		token->len = 1;
+		if (dyn_strpushstr(&token->value, &c, 1) < 0)
+			return (ST_Fail);
 		return (ST_Success);
-	(*token)->len += 1;
-	if (dyn_strpushstr(&(*token)->value, &c, 1) < 0)
-	{
-		lx_del(token);
-		return (ST_Mfail);
 	}
+	else if (!c)
+		return (ST_Success);
+	if (dyn_strpushstr(&token->value, &c, 1) < 0)
+		return (ST_Fail);
+	token->len += 1;
+	if (plv.bitset > LX_PLVESCAPE)
+		token->plv = plv.bitset;
 	return (ST_Word);
 }

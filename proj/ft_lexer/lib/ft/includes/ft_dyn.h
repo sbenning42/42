@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 17:40:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 19:13:05 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/15 12:52:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					dyn_strnew(t_dynstr *dynstr, size_t offset);
 int					dyn_strdel(t_dynstr *dynstr);
 int					dyn_strpushstr(t_dynstr *dynstr, char *str, size_t len);
 int					dyn_strpopstr(t_dynstr *dynstr, size_t len);
+void				dyn_strclr(t_dynstr *dynstr);
 
 /*
 ***					***	FT_DYNSTD.C	***

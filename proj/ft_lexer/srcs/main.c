@@ -6,12 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:28:13 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/07 13:04:59 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/15 12:46:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 #include "ft_lexer.h"
+
+char		**g_ftenviron;
 
 char		*ft_getenv(char **ep, const char *key)
 {
@@ -31,6 +33,7 @@ int			main(int ac, char **av, char **ep)
 	t_lxem	*lex;
 
 	prompt = (ac < 2 ? "" : av[1]);
+	g_ftenviron = ep;
 	while (42)
 	{
 		line = ft_readline(prompt, (RL_GECHO | RL_GHISTORY | RL_GSAVE | RL_GLOAD), ft_getenv(ep, "TERM"));
@@ -42,10 +45,7 @@ int			main(int ac, char **av, char **ep)
 				break ;
 			}
 			if ((lex = ft_lexer(line)))
-			{
-				lx_print(lex);
 				lx_del(&lex);
-			}
 			ft_memdel((void **)&line);
 		}
 	}

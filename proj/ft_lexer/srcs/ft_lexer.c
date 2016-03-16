@@ -5,20 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/04 16:08:50 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/07 12:12:21 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/15 10:39:20 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/15 14:35:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lxem			*ft_lexer(char *line)
+void		lx_killblank(t_lxem **alst)
 {
-	t_lxem		*final_lst;
-	t_lxem		*lst;
+	t_lxem	*tmp;
+	t_lxem	*cp;
 
-	if (!(lst = lx_wordsplit_dev(line)))
+	cp = *alst;
+	while (cp)
+	{
+		tmp = cp->next;
+		if ((!cp->plv && !ft_strcmp(" ", cp->value.str)) || !cp->len)
+		{
+			if (cp == *alst)
+				*alst = tmp;
+			if (cp->previous)
+				cp->previous->next = tmp;
+			if (tmp)
+				tmp->previous = cp->previous;
+			cp->next = NULL;
+			lx_del(&cp);
+		}
+		cp = tmp;
+	}
+}
+
+t_lxem		*ft_lexer(char *line)
+{
+	t_lxem	*wslxlist;
+
+	if (!(wslxlist = lx_wslexer(line)))
 		return (NULL);
-	final_lst = lst;
-	return (final_lst);
+	if (lx_tilddev(wslxlist) < 0)
+	{
+		lx_del(&wslxlist);
+		return (NULL);
+	}
+	if (lx_reserveddev(wslxlist) < 0)
+	{
+		lx_del(&wslxlist);
+		return (NULL);
+	}
+	lx_killblank(&wslxlist);
+	lx_print(wslxlist);
+	return (wslxlist);
 }

@@ -608,3 +608,212 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 exit
+exit
+hey! I'm your father!!!!!
+hey! I m your father!!!!!
+hey! I m 'your father!!!!!'
+hey! I m "'your father\"!!!!!'"
+hey! I m "your father\"!!!!!"
+exit
+hey! I m "your father\"?????"
+exit
+toto
+exit
+toto
+hey! I m "your father\"?????"
+hey! I m "your father\"!!!!!"
+hey! I m "your father\"\!\!\!\!\!"
+hey! I m '"your father\"!!!!!'"
+hey! I m '"your father\"!!!!!"'
+hey! I m '"your father\"!!!!!"' 
+hey! I m '"your father\"!!!!!"'
+exit
+hey! I m '"your father\"!!!!!"'
+hey! I m '"your father\"!!!!!'"
+hey! I m '"your father\"!!!!!'
+'
+''
+'''
+''''
+""
+"'"
+'"'
+\
+\\
+'\\'
+"\\"
+"\"
+"\""
+exit
+"\""
+"\"
+"\\"
+\\
+\
+''
+""
+"""
+'''
+exit
+'''
+"""
+\
+\'
+\''
+""
+''
+' '
+'  '
+"  "
+" \ "
+toto\ tata
+toto\  tata
+ls "toto out";ls 'toto out';ls toto\ out
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls ' '
+ls -rlR / 2> /tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm \\ -rf /tmp/out\ ls ''
+ls -rlR / 2>/tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+qghqhgkjehkgzehkgzhlzkzgls -rlR / 2>/tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+''
+     
+pgzkj j lzjzj jzjg zklgjzkl jgjglrj lgjrklg jlrkjg ljlj rjglrkzjg jlgk rgk jred
+exit
+a{b,c,d}e
+a{b, c, d}e
+exit
+cd ~/toto
+cd tata/~/toto
+exit
+toto
+ls /home
+ls /~home
+ls ~
+~
+exit
+~
+exit
+~
+exit
+~
+ls ~/toto
+ls ~tata/toto
+exit
+ls ~tata/toto
+ls ~/toto
+~
+~~
+~/~
+~/ ~
+exit
+~/ ~
+exit
+ls
+ls -rlR / 2>/tmp/"out ls"&;cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm -rf /tmp/out\ ls''
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm [[ -rf /tmp/out\ ls ]]''
+exit
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm [[ -rf /tmp/out\ ls ]]''
+exit
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm [[ -rf /tmp/out\ ls ]]''
+exit
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm [[ -rf /tmp/out\ ls ]]''
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls ]]'
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls ]]
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls ']]
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls ' ]]
+ls -rlR / 2>/tmp/"out ls"&;for cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;"for" cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;"for " cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;\"for\ " cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;\"for\ \" cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;\" for \" cat /tmp/'out ls'|wc -l;rm '[[ -rf /tmp/out\ ls' ]]
+ls -rlR / 2>/tmp/"out ls"&;\" for \" cat in /tmp/'out ls'|wc -l;rm if '[[ -rf /tmp/out\ ls' ]] then toto
+ls -rf;cat out && if [[ a == 2 ]] then rm out elif { a == 3 } then rm out2 2> ~/nul elif &
+cat out && if [[ a == 2 ]] then rm out elif { a == 3 } then rm out2 2> ~/nul elif
+cat out && if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif
+if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif&
+exit
+if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif&
+ls out
+ls out; cat toto
+ 
+toto tata
+toto 
+ toto
+if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif&
+toto
+exit
+toto
+if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif&
+ 
+""
+" "
+" \ "
+"  "
+"                "
+exit
+"  "
+" "
+                
+               ""            " "
+""
+"" ""
+""
+"" a
+""  a
+to""to
+to" "to
+to' 'to
+to' to'
+'to 'to
+t'o 'to
+exit
+toto
+to''to
+to' 'to
+"" a
+" " a
+""
+"" 
+"" 
+""
+"" 
+"" "" ""
+"" 
+''
+""
+'' 
+ '' 
+"  "
+if [[ a==2 ]] then rm out elif { a==3 } then rm out2 2> ~/nul elif&
+if [[ a==2 ]] then rm out "elif { a==3 } then rm out2 2> ~/nul "elif&
+if [[ a==2 ]] then rm out "elif { a==3 } then rm out2 2> ~/nul" elif&
+ 
+''
+fg
+to' 't
+exit
+ 
+''
+' 
+'' 
+"" 
+" "
+""
+""toto""tutu
+""toto" "tutu
+""toto"\ "tutu
+""toto"\\ "tutu
+""toto"\\ \"tutu
+""toto"\\ \"tutu'
+""toto"\\ \"tutu'"
+""toto'\\ \"tutu''
+""toto'\\ \"tutu"'
+exit
+ls
+ls a
+ls|tutu
+ls|tutu&
+ls|tutuv &
+ls|tu vtuv &
+exit

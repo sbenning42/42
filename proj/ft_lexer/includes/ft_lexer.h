@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/07 13:25:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:32:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define LX_WORDSPLIT_QUOTE_CSET ""
 # define LX_WORDSPLIT_DQUOTE_CSET "!$`*"
 
-# define LX_PROTEC_NOPRPTEC_CSET "\\\"'"
+# define LX_PROTEC_NOPROTEC_CSET "\\\"'"
 # define LX_PROTEC_ESCAPE_CSET ""
 # define LX_PROTEC_QUOTE_CSET "\033\033'"
 # define LX_PROTEC_DQUOTE_CSET "\\\""
@@ -33,28 +33,42 @@
 # define LX_WSFSTATE_SIZE 1
 # define LX_WSPLV_SIZE 5
 # define LX_WSPLVBIT_SIZE 3
+# define LX_RESERVED_SIZE 22
 
 # define ISBIT(X, Y) ((X & Y) == Y ? 1 : 0)
 
-typedef enum		e_lxproteclv
-{
-	PLV_Noprotec,
-	PLV_Escape,
-	PLV_Quote,
-	PLV_Dquote
-}					t_lxproteclv;
-
 typedef enum		e_lxtype
 {
-	TY_Word
+	TY_Word,
+	TY_Neg,
+	TY_Case,
+	TY_Coproc,
+	TY_Do,
+	TY_Done,
+	TY_Elif,
+	TY_Else,
+	TY_Esac,
+	TY_Fi,
+	TY_For,
+	TY_Function,
+	TY_If,
+	TY_In,
+	TY_Select,
+	TY_Then,
+	TY_Until,
+	TY_While,
+	TY_Bracket_open,
+	TY_Bracket_close,
+	TY_Time,
+	TY_Hook_open,
+	TY_Hook_close
 }					t_lxtype;
 
 typedef enum		e_lxstate
 {
 	ST_Word,
 	ST_Success,
-	ST_Skip,
-	ST_Mfail,
+	ST_Synfail,
 	ST_Fail
 }					t_lxstate;
 
@@ -69,26 +83,40 @@ typedef struct		s_lxem
 {
 	struct s_lxem	*previous;
 	struct s_lxem	*next;
-	int				plv;
 	t_lxtype		type;
 	t_dynstr		value;
 	size_t			len;
+	int				plv;
 }					t_lxem;
 
-extern t_lxstate	(*g_wsfstate[LX_WSFSTATE_SIZE])(char, t_lxplv plv, t_lxem **token);
-extern t_lxplv		g_wsplv[LX_WSPLV_SIZE];
-extern int			g_wsplvbit[LX_WSPLVBIT_SIZE];
-extern int			g_skip;
+typedef struct		s_lxem_low
+{
+	t_lxtype		type;
+	char			*str;
+}					t_lxem_low;
+
+typedef t_lxstate	(*t_lxfstate)(t_lxem *, char, t_lxplv plv);
+
+extern int			g_plvskip;
+extern int			g_lxplvbit[];
+extern t_lxplv		g_lxplv[];
+extern t_lxfstate	g_lxwsfstate[];
+extern t_lxem_low	g_lxreserved[];
 
 void				lx_del(t_lxem **alst);
-t_lxem				*lx_newtoken(t_lxtype type, int plv);
+t_lxem				*lx_newtoken(t_lxtype type);
 void				lx_addtoken(t_lxem **alst, t_lxem *token);
 void				lx_print(t_lxem *lst);
 
-t_lxstate			lx_wsstword(char c, t_lxplv plv, t_lxem **token);
+int					lx_majplv(char c, t_lxplv *plv);
+t_lxstate			lx_wsfstate_word(t_lxem *token, char c, t_lxplv plv);
 
-size_t				lx_plvmaj(char c, t_lxplv *plv);
-t_lxem				*lx_wordsplit_dev(char *line);
+t_lxem				*lx_wslexem(char *line);
+t_lxem				*lx_wslexer(char *line);
+int					lx_tilddev(t_lxem *list);
+int					lx_reserveddev(t_lxem *list);
 t_lxem				*ft_lexer(char *line);
+
+char				*ft_getenv(char **ep, const char *key);
 
 #endif

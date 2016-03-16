@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 18:55:52 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/06 19:32:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/15 12:59:53 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*dyn_strsub(t_dynstr *dynstr, size_t from, size_t len)
 {
 	size_t	llen;
 
-	if (!(dynstr->str) || (from >= dynstr->used))
+	if (!(dynstr->str) || (from > dynstr->used))
 		return (NULL);
 	llen = ((from + len) <= dynstr->used ? len : (dynstr->used - from));
 	return (ft_strsub(dynstr->str, from, llen));
