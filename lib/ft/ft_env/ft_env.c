@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_header.h                                        :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:54:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 13:30:50 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:05:35 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:35:38 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HEADER_H
-# define FT_HEADER_H
+#include "ft_env.h"
 
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <wchar.h>
-# include <errno.h>
+char		*ft_getenv(char *key)
+{
+	char	**env;
+	size_t	len;
 
-# define MAX_UINT 4294967295
-# define BS 256
-
-typedef unsigned int		t_uint;
-typedef unsigned char		t_uchar;
-typedef unsigned long int	t_ulong;
-typedef unsigned short int	t_ushort;
-
-#endif
+	if (!g_ft_environ)
+		ft_initenv();
+	env = g_ft_environ;
+	len = ft_strlen(key);
+	while (*env)
+	{
+		if (!ft_strncmp(*env, key, len))
+			return (*env + len + 1);
+		env++;
+	}
+	return (NULL);
+}

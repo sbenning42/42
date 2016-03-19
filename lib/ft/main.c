@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mathsin.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/06 12:24:12 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/06 12:24:51 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:31:52 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:37:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "libft.h"
 
-float		ft_mathsin(float angle)
+int		main(void)
 {
-	float	sin;
-
-	return (sin);
+	ft_printf("%s\n", ft_getenv("HOME"));
+	ft_exit(EXIT_SUCCESS, NULL);
+	return (0);
 }

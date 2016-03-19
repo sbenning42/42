@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_header.h                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:54:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 13:30:50 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:23:10 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:37:34 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HEADER_H
-# define FT_HEADER_H
+#include "ft_exit.h"
 
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <wchar.h>
-# include <errno.h>
-
-# define MAX_UINT 4294967295
-# define BS 256
-
-typedef unsigned int		t_uint;
-typedef unsigned char		t_uchar;
-typedef unsigned long int	t_ulong;
-typedef unsigned short int	t_ushort;
-
-#endif
+void		ft_exit(int rval, char *msg)
+{
+	if (!g_ft_program_name)
+		ft_initname();
+	if (!msg)
+		msg = "success";
+	ft_fprintf(2, "%s: %s\n", g_ft_program_name, msg);
+	exit(rval);
+}

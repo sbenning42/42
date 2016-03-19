@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/18 10:12:36 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/19 13:32:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include "ft_header.h"
+# include "ft_global.h"
+# include "ft_env.h"
 # include "ft_char.h"
 # include "ft_str.h"
 # include "ft_wchar.h"
@@ -24,6 +26,7 @@
 # include "ft_mem.h"
 # include "ft_put.h"
 # include "ft_err.h"
+# include "ft_exit.h"
 # include "ft_printf.h"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2015/12/18 10:13:05 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/03/19 13:32:47 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,9 @@ SRC =	ft_mem/ft_memset.c\
 		ft_printf/ft_printf_static.c\
 		ft_printf/ft_printf_tools.c\
 		ft_printf/ft_printf_vfamily.c\
+		ft_env/ft_env.c\
+		ft_exit/ft_exit.c\
+		ft_global/ft_global.c
 
 OBJ =		$(SRC:.c=.o)
 

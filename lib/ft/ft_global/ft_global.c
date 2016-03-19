@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mathcos.c                                       :+:      :+:    :+:   */
+/*   ft_global.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/06 12:23:46 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/06 12:26:49 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:02:36 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:37:10 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ft_global.h"
 
-float		ft_mathcos(float angle)
+char		**g_ft_environ;
+char		*g_ft_program_name;
+
+void		ft_initenv(void)
 {
-	float	cos;
+	g_ft_environ = environ;
+}
 
-	return (cos);
+void		ft_initname(void)
+{
+	g_ft_program_name = program_invocation_short_name;
+}
+
+void		ft_init(void)
+{
+	ft_initname();
+	ft_initenv();
 }

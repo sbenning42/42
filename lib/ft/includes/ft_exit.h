@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_header.h                                        :+:      :+:    :+:   */
+/*   ft_exit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:54:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 13:30:50 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:25:35 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:26:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HEADER_H
-# define FT_HEADER_H
+#ifndef FT_EXIT_H
+# define FT_EXIT_H
 
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <wchar.h>
-# include <errno.h>
+# include "ft_header.h"
+# include "ft_global.h"
+# include "ft_printf.h"
 
-# define MAX_UINT 4294967295
-# define BS 256
-
-typedef unsigned int		t_uint;
-typedef unsigned char		t_uchar;
-typedef unsigned long int	t_ulong;
-typedef unsigned short int	t_ushort;
+void		ft_exit(int rval, char *msg);
 
 #endif

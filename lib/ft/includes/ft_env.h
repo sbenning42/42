@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matharcsin.c                                    :+:      :+:    :+:   */
+/*   ft_env.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/06 12:25:48 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/06 12:26:15 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 13:04:14 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:05:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#ifndef FT_ENV_H
+# define FT_ENV_H
 
-float		ft_matharcsin(float angle)
-{
-	float	arcsin;
+# include "ft_global.h"
+# include "ft_str.h"
 
-	return (arcsin);
-}
+char		*ft_getenv(char *key);
+
+#endif
