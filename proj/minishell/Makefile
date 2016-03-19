@@ -1,0 +1,76 @@
+#* ************************************************************************** *#
+#*                                                                            *#
+#*                                                        :::      ::::::::   *#
+#*   Makefile                                           :+:      :+:    :+:   *#
+#*                                                    +:+ +:+         +:+     *#
+#*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
+#*                                                +#+#+#+#+#+   +#+           *#
+#*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
+#*   Updated: 2016/03/19 17:20:49 by sbenning         ###   ########.fr       *#
+#*                                                                            *#
+#* ************************************************************************** *#
+
+NAME =			minishell
+
+SRC =			main.c\
+				minishell.c
+
+SRC_DIR =		srcs/
+
+OBJ_DIR =		obj/
+
+OBJ =			$(addprefix $(SRC_DIR), $(SRC:.c=.o))
+
+COBJ =			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+
+OBJ_LIB =		libft.a
+
+LIBFT =			ft
+
+LIBFTCAP =		ftcap
+
+LIBFTRL =		ftreadline
+
+TERM =			termcap
+
+LIB_DIR =		lib/
+
+HEADER =		includes
+
+LIB =			-L $(LIB_DIR)$(LIBFTRL) -l$(LIBFTRL) -L $(LIB_DIR)$(LIBFTCAP) -l$(LIBFTCAP) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
+
+LIBHEADER =		-I $(LIB_DIR)$(LIBFT)/$(HEADER) -I $(LIB_DIR)$(LIBFTCAP)/$(HEADER) -I $(LIB_DIR)$(LIBFTRL)/$(HEADER)
+
+DEPEND =		$(HEADER)/minishell.h
+
+CC =			gcc
+
+FLAG =			-Wall -Wextra -Werror
+
+all : $(OBJ_LIB) $(NAME)
+
+$(OBJ_LIB) :
+	make -C $(LIB_DIR)$(LIBFT)
+	make -C $(LIB_DIR)$(LIBFTCAP)
+	make -C $(LIB_DIR)$(LIBFTRL)
+
+$(NAME) : $(OBJ)
+	$(CC) $(FLAG) -o $@ $^ $(LIB) 
+	mv $^ $(OBJ_DIR)
+
+%.o : %.c $(DEPEND)
+	$(CC) $(FLAG) -I $(HEADER) $(LIBHEADER) -o $@ -c $<
+
+clean :
+	rm -rf $(COBJ)
+	make clean -C $(LIB_DIR)$(LIBFT)
+	make clean -C $(LIB_DIR)$(LIBFTCAP)
+	make clean -C $(LIB_DIR)$(LIBFTRL)
+
+fclean : clean
+	rm -rf $(NAME)
+	rm -rf $(LIB_DIR)$(LIBFT)/$(OBJ_LIB)
+	rm -rf $(LIB_DIR)$(LIBFTCAP)/$(OBJ_LIB)
+	rm -rf $(LIB_DIR)$(LIBFTRL)/$(OBJ_LIB)
+
+re : fclean all

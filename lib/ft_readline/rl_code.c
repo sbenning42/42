@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   rl_code.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/19 19:08:18 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 19:16:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_readline.h"
 
-# include "ft_header.h"
-# include "ft_global.h"
-# include "ft_env.h"
-# include "ft_char.h"
-# include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dlst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
-# include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_err.h"
-# include "ft_exit.h"
-# include "ft_printf.h"
+int		rl_searchcode(t_rl *rl, int code)
+{
+	return (0);
+	(void)rl;
+	(void)code;
+}
 
-#endif
+int		rl_defcode(t_rl *rl, int code)
+{
+	if (code == 0xa || code == 0x4)
+		rl->bitset |= RL_BS_FLUSH;
+	else if (code == 0x3)
+	{
+		rl_destroyterm();
+		ft_exit(EXIT_SUCCESS, "Fatal QUIT");
+	}
+	return (0);
+	(void)rl;
+	(void)code;
+}

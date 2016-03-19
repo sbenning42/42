@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_ar.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Created: 2015/09/21 10:54:51 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/25 11:27:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_DAR2_H
+# define FT_DAR2_H
 
 # include "ft_header.h"
-# include "ft_global.h"
-# include "ft_env.h"
-# include "ft_char.h"
-# include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dlst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
 # include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_err.h"
-# include "ft_exit.h"
-# include "ft_printf.h"
+
+# define DAR2_OFFSET 32
+
+typedef void	(*t_dar_del)(void *);
+
+typedef struct	s_dar2
+{
+	void		**ar;
+	size_t		size_content;
+	size_t		size;
+	size_t		size_max;
+	t_dar_del	del;
+}				t_dar2;
+
+int				ft_dar2new(t_dar2 *dar, size_t size, t_dar_del del);
+int				ft_dar2add(t_dar2 *dar, void *data);
+void			ft_dar2dump(t_dar2 *dar, void (*f)(void *));
+int				ft_dar2del(t_dar2 *dar);
 
 #endif

@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Created: 2014/11/16 13:37:32 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/30 18:05:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+/*
+**		man 2 getrlimit
+**		#include sys/ressource.h
+**		And use :
+**		int		getrlimit(int ressource, struct rlimit *rlp)
+**		to get the RLIMIT_NOFILE (current, not max!) on this system!
+*/
 
-# include "ft_header.h"
-# include "ft_global.h"
-# include "ft_env.h"
-# include "ft_char.h"
-# include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dlst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
-# include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_err.h"
-# include "ft_exit.h"
-# include "ft_printf.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include "libft.h"
+# include <fcntl.h>
+
+# define BUFF_S 32
+# define MY_RLIMIT_NOFILE 256
+
+int		get_next_line(int fd, char **line);
 
 #endif

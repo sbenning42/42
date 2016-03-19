@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_header.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/26 14:54:10 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/19 13:30:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_HEADER_H
+# define FT_HEADER_H
 
-# include "ft_header.h"
-# include "ft_global.h"
-# include "ft_env.h"
-# include "ft_char.h"
-# include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dlst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
-# include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_err.h"
-# include "ft_exit.h"
-# include "ft_printf.h"
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <wchar.h>
+# include <errno.h>
+
+# define MAX_UINT 4294967295
+# define BS 256
+
+typedef unsigned int		t_uint;
+typedef unsigned char		t_uchar;
+typedef unsigned long int	t_ulong;
+typedef unsigned short int	t_ushort;
 
 #endif

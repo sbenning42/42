@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_put.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Created: 2015/11/25 11:23:17 by sbenning          #+#    #+#             */
+/*   Updated: 2015/11/25 11:23:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_PUT_H
+# define FT_PUT_H
 
 # include "ft_header.h"
-# include "ft_global.h"
-# include "ft_env.h"
-# include "ft_char.h"
 # include "ft_str.h"
-# include "ft_wchar.h"
-# include "ft_lst.h"
-# include "ft_dlst.h"
-# include "ft_dar.h"
-# include "ft_dar2.h"
-# include "ft_buff.h"
-# include "ft_mem.h"
-# include "ft_put.h"
-# include "ft_err.h"
-# include "ft_exit.h"
-# include "ft_printf.h"
+
+void	ft_putchar(char c);
+void	ft_putstr(char const *s);
+void	ft_putendl(char const *s);
+void	ft_putnbr(int n);
+void	ft_putendl_err(char const *str);
+void	ft_putstr_err(char const *str);
+void	ft_putchar_err(char c);
+void	ft_putnbr_err(int nbr);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char const *s, int fd);
+void	ft_putendl_fd(char const *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
