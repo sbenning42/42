@@ -23,13 +23,17 @@ OBJ =			$(addprefix $(SRC_DIR), $(SRC:.c=.o))
 
 COBJ =			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
-OBJ_LIB =		libft.a
+OBJ_LIBFT =		libft.a
+
+OBJ_LIBCAP =	libftcap.a
+
+OBJ_LIBRL =		libftreadline.a
 
 LIBFT =			ft
 
 LIBFTCAP =		ftcap
 
-LIBFTRL =		ftreadline
+LIBRL =			ftreadline
 
 TERM =			termcap
 
@@ -47,7 +51,7 @@ CC =			gcc
 
 FLAG =			-Wall -Wextra -Werror
 
-all : $(OBJ_LIB) $(NAME)
+all : $(OBJ_LIBFT) $(OBJ_LIBCAP) $(OBJ_LIBRL) $(NAME)
 
 $(OBJ_LIB) :
 	make -C $(LIB_DIR)$(LIBFT)
