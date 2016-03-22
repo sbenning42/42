@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 13:02:36 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 13:37:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/22 10:47:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void		ft_initenv(void)
 	g_ft_environ = environ;
 }
 
-void		ft_initname(void)
+void		ft_initname(char *name)
 {
-	g_ft_program_name = program_invocation_short_name;
+	g_ft_program_name = name;
 }
 
-void		ft_init(void)
+void		ft_init(char *name)
 {
-	ft_initname();
+	ft_initname(name);
 	ft_initenv();
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 13:05:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 13:35:38 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/22 13:11:07 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*ft_getenv(char *key)
 	len = ft_strlen(key);
 	while (*env)
 	{
-		if (!ft_strncmp(*env, key, len))
+		if (!ft_strncmp(*env, key, len) && (*env)[len] == '=')
 			return (*env + len + 1);
 		env++;
 	}

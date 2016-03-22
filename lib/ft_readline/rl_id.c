@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:31:03 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 19:04:24 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/22 12:49:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static int		rl_initdyn(t_dyn *dyn, size_t offset)
 {
 	if (!(dyn->str = ft_strnew(offset)))
 		return (-1);
+	dyn->offset = offset;
 	dyn->real = offset;
 	dyn->used = 0;
 	dyn->ante = 0;
-	dyn->post = offset;
+	dyn->post = 0;
 	return (0);
 }
 
-int				rl_init(t_rl *rl, int settings, size_t promptsize)
+int				rl_init(t_rl *rl, int settings, char *prompt)
 {
 	static int	call;
 
@@ -48,7 +49,8 @@ int				rl_init(t_rl *rl, int settings, size_t promptsize)
 	}
 	rl->bitset = 0;
 	rl->history = NULL;
-	rl->promptsize = promptsize;
+	rl->prompt = prompt;
+	rl->promptsize = ft_strlen(prompt);
 	return (0);
 }
 

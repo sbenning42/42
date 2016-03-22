@@ -6,29 +6,41 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 19:08:18 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 19:16:09 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/22 13:17:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-int		rl_searchcode(t_rl *rl, int code)
+int			rl_searchcode(t_rl *rl, int code)
 {
-	return (0);
-	(void)rl;
-	(void)code;
-}
+	int		i;
 
-int		rl_defcode(t_rl *rl, int code)
-{
-	if (code == 0xa || code == 0x4)
-		rl->bitset |= RL_BS_FLUSH;
-	else if (code == 0x3)
+	i = -1;
+	while (++i < RL_CODESIZE)
 	{
-		rl_destroyterm();
-		ft_exit(EXIT_SUCCESS, "Fatal QUIT");
+		if (code == g_rlcode[i].code)
+			return ((!g_rlcode[i].function(rl) ? 1 : -1));
 	}
 	return (0);
-	(void)rl;
-	(void)code;
+}
+
+int			rl_defcode(t_rl *rl, int code)
+{
+	char	msg[64];
+
+	if (!ft_isprint(code))
+	{
+		ft_sprintf(msg, "Input unhandled: [%#x]\n", code);
+		rl_destroyterm();
+		ft_exit(EXIT_FAILURE, msg);
+	}
+	if (dyn_strpush(&rl->dyn, (char *)&code, 1) < 0)
+	{
+		rl_destroyterm();
+		ft_exit(EXIT_FAILURE, "Memory allocation failed");
+	}
+	if (ISIN(rl->settings, RL_ECHO))
+		write(1, (char *)&code, 1);
+	return (0);
 }

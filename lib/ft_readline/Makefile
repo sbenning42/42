@@ -20,7 +20,13 @@ SRC =		ft_readline.c\
 			rl_read.c\
 			rl_maj.c\
 			rl_code.c\
-			rl_echo.c
+			rl_echo.c\
+			dyn_strpush.c\
+			rl_global.c\
+			rl_code_p1.c\
+			rl_code_p2.c\
+			rl_code_p3.c\
+			rl_code_p4.c
 
 OBJ =		$(SRC:.c=.o)
 

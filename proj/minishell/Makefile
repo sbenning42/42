@@ -41,9 +41,9 @@ LIB_DIR =		lib/
 
 HEADER =		includes
 
-LIB =			-L $(LIB_DIR)$(LIBFTRL) -l$(LIBFTRL) -L $(LIB_DIR)$(LIBFTCAP) -l$(LIBFTCAP) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
+LIB =			-L $(LIB_DIR)$(LIBRL) -l$(LIBRL) -L $(LIB_DIR)$(LIBFTCAP) -l$(LIBFTCAP) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
 
-LIBHEADER =		-I $(LIB_DIR)$(LIBFT)/$(HEADER) -I $(LIB_DIR)$(LIBFTCAP)/$(HEADER) -I $(LIB_DIR)$(LIBFTRL)/$(HEADER)
+LIBHEADER =		-I $(LIB_DIR)$(LIBFT)/$(HEADER) -I $(LIB_DIR)$(LIBFTCAP)/$(HEADER) -I $(LIB_DIR)$(LIBRL)/$(HEADER)
 
 DEPEND =		$(HEADER)/minishell.h
 
@@ -53,10 +53,14 @@ FLAG =			-Wall -Wextra -Werror
 
 all : $(OBJ_LIBFT) $(OBJ_LIBCAP) $(OBJ_LIBRL) $(NAME)
 
-$(OBJ_LIB) :
+$(OBJ_LIBFT) :
 	make -C $(LIB_DIR)$(LIBFT)
+
+$(OBJ_LIBCAP) :
 	make -C $(LIB_DIR)$(LIBFTCAP)
-	make -C $(LIB_DIR)$(LIBFTRL)
+
+$(OBJ_LIBRL) :
+	make -C $(LIB_DIR)$(LIBRL)
 
 $(NAME) : $(OBJ)
 	$(CC) $(FLAG) -o $@ $^ $(LIB) 
@@ -69,12 +73,12 @@ clean :
 	rm -rf $(COBJ)
 	make clean -C $(LIB_DIR)$(LIBFT)
 	make clean -C $(LIB_DIR)$(LIBFTCAP)
-	make clean -C $(LIB_DIR)$(LIBFTRL)
+	make clean -C $(LIB_DIR)$(LIBRL)
 
 fclean : clean
 	rm -rf $(NAME)
-	rm -rf $(LIB_DIR)$(LIBFT)/$(OBJ_LIB)
-	rm -rf $(LIB_DIR)$(LIBFTCAP)/$(OBJ_LIB)
-	rm -rf $(LIB_DIR)$(LIBFTRL)/$(OBJ_LIB)
+	rm -rf $(LIB_DIR)$(LIBFT)/$(OBJ_LIBFT)
+	rm -rf $(LIB_DIR)$(LIBFTCAP)/$(OBJ_LIBCAP)
+	rm -rf $(LIB_DIR)$(LIBFTRL)/$(OBJ_LIBRL)
 
 re : fclean all
