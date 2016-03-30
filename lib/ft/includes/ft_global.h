@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 13:01:07 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/22 10:47:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/29 14:32:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_GLOBAL_H
 
 # include "ft_header.h"
+# include "ft_str.h"
 
 extern char		**environ;
 extern char		**g_ft_environ;

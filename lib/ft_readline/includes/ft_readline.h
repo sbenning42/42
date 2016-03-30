@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/22 12:58:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/29 11:59:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct		s_dyn
 {
 	char			*str;
+	char			*strend;
 	size_t			offset;
 	size_t			real;
 	size_t			used;
@@ -65,7 +66,10 @@ typedef struct		s_rlcode
 
 extern t_rlcode		g_rlcode[RL_CODESIZE];
 
-int					dyn_strpush(t_dyn *dyn, char *str, size_t size);
+int					dyn_strpushante(t_dyn *dyn, char *str, size_t size);
+int					dyn_strpushpost(t_dyn *dyn, char *str, size_t size);
+int					dyn_strpopante(t_dyn *dyn, char *str, size_t size);
+int					dyn_strpoppost(t_dyn *dyn, char *str, size_t size);
 
 void				rl_echo(t_rl *rl);
 

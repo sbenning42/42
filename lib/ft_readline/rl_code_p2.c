@@ -6,11 +6,36 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:39:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/22 13:31:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/29 13:19:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+
+void				rl_code_right_echo(t_rl *rl)
+{
+	int				col;
+
+	col = tgetnum("co");
+	if (!((rl->dyn.ante + rl->promptsize) % col))
+		ft_cap("do", CAP_NOARG);
+	else
+		ft_cap("nd", CAP_NOARG);
+}
+
+void				rl_code_left_echo(t_rl *rl)
+{
+	int				col;
+
+	col = tgetnum("co");
+	if (!((rl->dyn.ante + rl->promptsize) % col))
+	{
+		ft_cap("up", CAP_NOARG);
+		ft_cap("RI", CAP_PARAM(col - 1));
+	}
+	else
+		ft_cap("le", CAP_NOARG);
+}
 
 int					rl_code_right(t_rl *rl)
 {
@@ -18,12 +43,10 @@ int					rl_code_right(t_rl *rl)
 
 	if (!rl->dyn.post)
 		return (0);
-	rl->dyn.post -= 1;
-	c = rl->dyn.str[rl->dyn.real - rl->dyn.post];
-	rl->dyn.str[rl->dyn.ante] = c;
-	rl->dyn.ante += 1;
+	dyn_strpoppost(&rl->dyn, &c, 1);
+	dyn_strpushante(&rl->dyn, &c, 1);
 	if (ISIN(rl->settings, RL_ECHO))
-		ft_cap("nd", CAP_NOARG);
+		rl_code_right_echo(rl);
 	return (0);
 }
 
@@ -33,12 +56,9 @@ int					rl_code_left(t_rl *rl)
 
 	if (!rl->dyn.ante)
 		return (0);
-	rl->dyn.ante -= 1;
-	c = rl->dyn.str[rl->dyn.ante];
-	rl->dyn.str[rl->dyn.ante] = 0;
-	rl->dyn.str[rl->dyn.real - rl->dyn.post] = c;
-	rl->dyn.post += 1;
 	if (ISIN(rl->settings, RL_ECHO))
-		ft_cap("le", CAP_NOARG);
+		rl_code_left_echo(rl);
+	dyn_strpopante(&rl->dyn, &c, 1);
+	dyn_strpushpost(&rl->dyn, &c, 1);
 	return (0);
 }

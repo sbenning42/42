@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:12:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/22 13:29:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:53:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*ft_readline(char *prompt, int settings)
 			return (NULL);
 		}
 	}
-	line = ft_strjoin(rl.dyn.str, rl.dyn.str + (rl.dyn.real - rl.dyn.post));
+	line = ft_strjoin(rl.dyn.str, rl.dyn.strend - rl.dyn.post);
 	rl_destroy(&rl);
 	return (line);
 }
