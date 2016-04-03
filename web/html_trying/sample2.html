@@ -1,0 +1,258 @@
+<HTML>
+
+<HEAD>
+	<META Http-equiv="content-Type" content="text/html; charset=utf-8">
+	<STYLE>
+		#bg_contain
+		{
+			position: absolute;
+			margin: auto;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		#bg
+		{
+			z-index: -1;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		#periodic_contain
+		{
+			position: absolute;
+			top: 10%;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 90%;
+			height: 90%;
+		}
+		#periodic_table
+		{
+			line-height: 20%;
+			opacity: .8;
+		}
+		.cell
+		{
+			border: 1px solid;
+			width: 5%;
+		}
+		.alcalin
+		{
+			background-color: rgb(255, 204, 51);
+		}
+		.alcalino_terreux
+		{
+			background-color: rgb(255, 255, 68);
+		}
+		.non_metaux
+		{
+			background-color: rgb(34, 255, 34);
+		}
+		.metalloide
+		{
+			background-color: rgb(119, 221, 136);
+		}
+		.metaux_de_transition
+		{
+			background-color: rgb(221, 187, 187);
+		}
+		.gaz_rare
+		{
+			background-color: rgb(119, 204, 255);
+		}
+		.halogene
+		{
+			background-color: rgb(34, 238, 204);
+		}
+		.post_transition_metaux
+		{
+			background-color: rgb(153, 221, 204);
+		}
+		.lanthanide
+		{
+			background-color: rgb(255, 187, 153);
+		}
+		.actinide
+		{
+			background-color: rgb(238, 187, 221);
+		}
+		.cell h3
+		{
+			text-align: center;
+		}
+		.cell p
+		{
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 1px;
+			text-align: left;
+			font-size: 10;
+		}
+		.hidden_cell
+		{
+			width: 5%;
+		}
+	</STYLE>
+</HEAD>
+
+<BODY>
+	<div id=bg_contain>
+		<img id=bg src="img/3.jpg" alt="[]">
+	</div>
+	<div id=periodic_contain>
+		<table id=periodic_table align=center>
+			<tr>
+				<td class="cell non_metaux"><p>1</p><h3>H</h3><p>1.008</p></td>
+				<td class=hidden_cell colspan=16></td>
+				<td class="cell gaz_rare"><p>2</p><h3>HE</h3><p>4.002</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>3</p><h3>Li</h3><p>6.94</p></td>
+				<td class="cell alcalino_terreux"><p>4</p><h3>Be</h3><p>9.012</p></td>
+				<td class=hidden_cell colspan=10></td>
+				<td class="cell metalloide"><p>5</p><h3>B</h3><p>10.81</p></td>
+				<td class="cell non_metaux"><p>6</p><h3>C</h3><p>12.011</p></td>
+				<td class="cell non_metaux"><p>7</p><h3>N</h3><p>14.007</p></td>
+				<td class="cell non_metaux"><p>8</p><h3>O</h3><p>15.999</p></td>
+				<td class="cell halogene"><p>9</p><h3>F</h3><p>18.998</p></td>
+				<td class="cell gaz_rare"><p>10</p><h3>Ne</h3><p>20.179</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>11</p><h3>Na</h3><p>22.989</p></td>
+				<td class="cell alcalino_terreux"><p>12</p><h3>Mg</h3><p>24.305</p></td>
+				<td class=hidden_cell colspan=10></td>
+				<td class="cell post_transition_metaux"><p>13</p><h3>Al</h3><p>26.981</p></td>
+				<td class="cell metalloide"><p>14</p><h3>Si</h3><p>28.085</p></td>
+				<td class="cell non_metaux"><p>15</p><h3>P</h3><p>30.973</p></td>
+				<td class="cell non_metaux"><p>16</p><h3>S</h3><p>32.06</p></td>
+				<td class="cell halogene"><p>17</p><h3>Cl</h3><p>35.45</p></td>
+				<td class="cell gaz_rare"><p>18</p><h3>Ar</h3><p>39.948</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>19</p><h3>K</h3><p>39.098</p></td>
+				<td class="cell alcalino_terreux"><p>20</p><h3>Ca</h3><p>40.078</p></td>
+				<td class="cell metaux_de_transition"><p>21</p><h3>Sc</h3><p>44.955</p></td>
+				<td class="cell metaux_de_transition"><p>22</p><h3>Ti</h3><p>47.867</p></td>
+				<td class="cell metaux_de_transition"><p>23</p><h3>V</h3><p>50.941</p></td>
+				<td class="cell metaux_de_transition"><p>24</p><h3>Cr</h3><p>51.996</p></td>
+				<td class="cell metaux_de_transition"><p>25</p><h3>Mn</h3><p>54.938</p></td>
+				<td class="cell metaux_de_transition"><p>26</p><h3>Fe</h3><p>55.845</p></td>
+				<td class="cell metaux_de_transition"><p>27</p><h3>Co</h3><p>58.933</p></td>
+				<td class="cell metaux_de_transition"><p>28</p><h3>Ni</h3><p>58.693</p></td>
+				<td class="cell metaux_de_transition"><p>29</p><h3>Cu</h3><p>63.546</p></td>
+				<td class="cell metaux_de_transition"><p>30</p><h3>Zn</h3><p>65.38</p></td>
+				<td class="cell post_transition_metaux"><p>31</p><h3>Ga</h3><p>69.723</p></td>
+				<td class="cell metalloide"><p>32</p><h3>Ge</h3><p>72.63</p></td>
+				<td class="cell metalloide"><p>33</p><h3>As</h3><p>74.921</p></td>
+				<td class="cell non_metaux"><p>34</p><h3>Se</h3><p>78.971</p></td>
+				<td class="cell halogene"><p>35</p><h3>Br</h3><p>79.904</p></td>
+				<td class="cell gaz_rare"><p>36</p><h3>Kr</h3><p>83.798</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>37</p><h3>Rb</h3><p>85.467</p></td>
+				<td class="cell alcalino_terreux"><p>38</p><h3>Sr</h3><p>87.62</p></td>
+				<td class="cell metaux_de_transition"><p>39</p><h3>Y</h3><p>88.905</p></td>
+				<td class="cell metaux_de_transition"><p>40</p><h3>Zr</h3><p>91.224</p></td>
+				<td class="cell metaux_de_transition"><p>41</p><h3>Nb</h3><p>92.906</p></td>
+				<td class="cell metaux_de_transition"><p>42</p><h3>Mo</h3><p>95.95</p></td>
+				<td class="cell metaux_de_transition"><p>43</p><h3>Tc</h3><p>(98)</p></td>
+				<td class="cell metaux_de_transition"><p>44</p><h3>Ru</h3><p>101.07</p></td>
+				<td class="cell metaux_de_transition"><p>45</p><h3>Rh</h3><p>102.905</p></td>
+				<td class="cell metaux_de_transition"><p>46</p><h3>Pd</h3><p>106.42</p></td>
+				<td class="cell metaux_de_transition"><p>47</p><h3>Ag</h3><p>107.868</p></td>
+				<td class="cell metaux_de_transition"><p>48</p><h3>Cd</h3><p>112.414</p></td>
+				<td class="cell post_transition_metaux"><p>49</p><h3>In</h3><p>114.818</p></td>
+				<td class="cell post_transition_metaux"><p>50</p><h3>Sn</h3><p>118.710</p></td>
+				<td class="cell metalloide"><p>51</p><h3>Sb</h3><p>121.760</p></td>
+				<td class="cell metalloide"><p>52</p><h3>Te</h3><p>127.60</p></td>
+				<td class="cell halogene"><p>53</p><h3>I</h3><p>126.904</p></td>
+				<td class="cell gaz_rare"><p>54</p><h3>Xe</h3><p>131.293</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>55</p><h3>Cs</h3><p>132.905</p></td>
+				<td class="cell alcalino_terreux"><p>56</p><h3>Ba</h3><p>137.327</p></td>
+				<td class=hidden_cell></td>
+				<td class="cell metaux_de_transition"><p>72</p><h3>Hf</h3><p>178.49</p></td>
+				<td class="cell metaux_de_transition"><p>73</p><h3>Ta</h3><p>180.947</p></td>
+				<td class="cell metaux_de_transition"><p>74</p><h3>W</h3><p>183.84</p></td>
+				<td class="cell metaux_de_transition"><p>75</p><h3>Re</h3><p>186.207</p></td>
+				<td class="cell metaux_de_transition"><p>76</p><h3>Os</h3><p>190.23</p></td>
+				<td class="cell metaux_de_transition"><p>77</p><h3>Ir</h3><p>192.217</p></td>
+				<td class="cell metaux_de_transition"><p>78</p><h3>Pt</h3><p>195.084</p></td>
+				<td class="cell metaux_de_transition"><p>79</p><h3>Au</h3><p>196.966</p></td>
+				<td class="cell metaux_de_transition"><p>80</p><h3>Hg</h3><p>200.59</p></td>
+				<td class="cell post_transition_metaux"><p>81</p><h3>Tl</h3><p>204.38</p></td>
+				<td class="cell post_transition_metaux"><p>82</p><h3>Pb</h3><p>207.2</p></td>
+				<td class="cell post_transition_metaux"><p>83</p><h3>Bi</h3><p>208.980</p></td>
+				<td class="cell metalloide"><p>84</p><h3>Po</h3><p>(209)</p></td>
+				<td class="cell halogene"><p>85</p><h3>At</h3><p>(210)</p></td>
+				<td class="cell gaz_rare"><p>86</p><h3>Rm</h3><p>(222)</p></td>
+			</tr>
+			<tr>
+				<td class="cell alcalin"><p>87</p><h3>Fr</h3><p>(223)</p></td>
+				<td class="cell alcalino_terreux"><p>88</p><h3>Ra</h3><p>(226)</p></td>
+				<td class=hidden_cell></td>
+				<td class="cell metaux_de_transition"><p>104</p><h3>Rf</h3><p>(267)</p></td>
+				<td class="cell metaux_de_transition"><p>105</p><h3>Db</h3><p>(268)</p></td>
+				<td class="cell metaux_de_transition"><p>106</p><h3>Sg</h3><p>(271)</p></td>
+				<td class="cell metaux_de_transition"><p>107</p><h3>Bh</h3><p>(272)</p></td>
+				<td class="cell metaux_de_transition"><p>108</p><h3>Hs</h3><p>(270)</p></td>
+				<td class="cell metaux_de_transition"><p>109</p><h3>Mt</h3><p>(276)</p></td>
+				<td class="cell metaux_de_transition"><p>110</p><h3>Ds</h3><p>(281)</p></td>
+				<td class="cell metaux_de_transition"><p>111</p><h3>Rg</h3><p>(280)</p></td>
+				<td class="cell metaux_de_transition"><p>112</p><h3>Cn</h3><p>(285)</p></td>
+				<td class="cell post_transition_metaux"><p>113</p><h3>Uut</h3><p>(284)</p></td>
+				<td class="cell post_transition_metaux"><p>114</p><h3>Fl</h3><p>(289)</p></td>
+				<td class="cell post_transition_metaux"><p>115</p><h3>Uup</h3><p>(288)</p></td>
+				<td class="cell post_transition_metaux"><p>116</p><h3>Lv</h3><p>(293)</p></td>
+				<td class="cell halogene"><p>117</p><h3>Uus</h3><p>(294)</p></td>
+				<td class="cell gaz_rare"><p>118</p><h3>Uus</h3><p>(294)</p></td>
+			</tr>
+			<tr height=20px>
+			</tr>
+			<tr>
+				<td class=hidden_cell colspan=3></td>
+				<td class="cell lanthanide"><p>57</p><h3>La</h3><p>138.905</p></td>
+				<td class="cell lanthanide"><p>58</p><h3>Ce</h3><p>140.116</p></td>
+				<td class="cell lanthanide"><p>59</p><h3>Pr</h3><p>140.907</p></td>
+				<td class="cell lanthanide"><p>60</p><h3>Nd</h3><p>144.242</p></td>
+				<td class="cell lanthanide"><p>61</p><h3>Pm</h3><p>(145)</p></td>
+				<td class="cell lanthanide"><p>62</p><h3>Sm</h3><p>150.36</p></td>
+				<td class="cell lanthanide"><p>63</p><h3>Eu</h3><p>151.964</p></td>
+				<td class="cell lanthanide"><p>64</p><h3>Gb</h3><p>157.25</p></td>
+				<td class="cell lanthanide"><p>65</p><h3>Tb</h3><p>158.925</p></td>
+				<td class="cell lanthanide"><p>66</p><h3>Dy</h3><p>162.5</p></td>
+				<td class="cell lanthanide"><p>67</p><h3>Ho</h3><p>164.93</p></td>
+				<td class="cell lanthanide"><p>68</p><h3>Er</h3><p>167.259</p></td>
+				<td class="cell lanthanide"><p>69</p><h3>Tm</h3><p>168.934</p></td>
+				<td class="cell lanthanide"><p>70</p><h3>Yb</h3><p>173.054</p></td>
+				<td class="cell lanthanide"><p>71</p><h3>Lu</h3><p>174.966</p></td>
+			</tr>
+			<tr>
+				<td class=hidden_cell colspan=3></td>
+				<td class="cell actinide"><p>89</p><h3>Ac</h3><p>(227)</p></td>
+				<td class="cell actinide"><p>90</p><h3>Th</h3><p>232.037</p></td>
+				<td class="cell actinide"><p>91</p><h3>Pa</h3><p>231.035</p></td>
+				<td class="cell actinide"><p>92</p><h3>U</h3><p>238.028</p></td>
+				<td class="cell actinide"><p>93</p><h3>Np</h3><p>(237)</p></td>
+				<td class="cell actinide"><p>94</p><h3>Pu</h3><p>(244)</p></td>
+				<td class="cell actinide"><p>95</p><h3>Am</h3><p>(243)</p></td>
+				<td class="cell actinide"><p>96</p><h3>Cm</h3><p>(247)</p></td>
+				<td class="cell actinide"><p>97</p><h3>Bk</h3><p>(247)</p></td>
+				<td class="cell actinide"><p>98</p><h3>Cf</h3><p>(251)</p></td>
+				<td class="cell actinide"><p>99</p><h3>Es</h3><p>(252)</p></td>
+				<td class="cell actinide"><p>100</p><h3>Fm</h3><p>(257)</p></td>
+				<td class="cell actinide"><p>101</p><h3>Md</h3><p>(258)</p></td>
+				<td class="cell actinide"><p>102</p><h3>No</h3><p>(259)</p></td>
+				<td class="cell actinide"><p>103</p><h3>Lr</h3><p>(262)</p></td>
+			</tr>
+		</table>
+	</div>
+</BODY>
+
+</HTML>
