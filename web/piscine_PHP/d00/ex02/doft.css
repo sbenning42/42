@@ -1,0 +1,135 @@
+html
+{
+	background-color: #505050;
+}
+.border
+{
+	background-color: #909090;
+	border-radius: 20px;
+	box-shadow: 16px 16px 15px #000;
+}
+.header_contain
+{
+	padding: 10px;
+	margin: auto;
+	margin-top: 40px;
+	width: 1800px;
+	height: 210px;
+}
+.header
+{
+	display: inline-block;
+}
+#doft42
+{
+	height: 200px;
+}
+#loupe
+{
+	width: 437px;
+	height: 247px;
+	margin-left: 540px;
+	margin-bottom: -40px;
+}
+.img_contain
+{
+	display: inline-block;
+	margin-left: 5px;
+	width: 20px;
+}
+#close
+{
+	margin-top: 145px;
+	margin-bottom: 15px;
+	height: 25px;
+	width: 25px;
+}
+#reload
+{
+	margin-top: 5px;
+	height: 25px;
+	width: 25px;
+}
+.sub_body
+{
+	border: solid 1px red;
+	margin: auto;
+	margin-top: 40px;
+	width: 1700px;
+	height: 750px;
+}
+.left_menu
+{
+	top: 310px;
+	left: 425px;
+	text-align: center;
+	border: solid 1px blue;
+	height: 550px;
+	width: 210px;
+}
+.picture
+{
+	position: absolute;
+	top: 310px;
+	left: 680px;
+	text-align: center;
+	height: 750px;
+	width: 1170px;
+}
+#cluster
+{
+	height: 720px;
+	width: 1140px;
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+.right_menu
+{
+	position: absolute;
+	top: 310px;
+	left: 1905px;
+	height: 550px;
+	width: 210px;
+}
+.action
+{
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	margin: 10px;
+}
+.action:hover
+{
+	border: red 8px solid;
+	border-radius: 8px;
+}
+#arrow
+{
+	position: absolute;
+	top: 330px;
+	left: 480px;
+}
+#main
+{
+	position: absolute;
+	top: 430px;
+	left: 480px;
+}
+#oeil
+{
+	position: absolute;
+	top: 530px;
+	left: 480px;
+}
+#outil
+{
+	position: absolute;
+	top: 630px;
+	left: 480px;
+}
+#chat-icon
+{
+	position: absolute;
+	top: 730px;
+	left: 480px;
+}
