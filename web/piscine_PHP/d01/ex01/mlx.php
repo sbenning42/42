@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?PHP
+$i = 1000;
+while ($i-- > 0)
+{
+	echo "X";
+}
+echo "\n";
+?>
