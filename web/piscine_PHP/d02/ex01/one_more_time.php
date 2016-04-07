@@ -40,7 +40,7 @@ if (array_search($match[1], $day) === FALSE OR ($index = array_search($match[3],
 	exit ;
 }
 $index++;
-if ((($index == 4 OR $index == 6 OR $index == 9 OR $index == 11) AND $match[2] > 30) OR ($index == 2 AND $match[2] > 28))
+if ((($index == 4 OR $index == 6 OR $index == 9 OR $index == 11) AND $match[2] > 30) OR ($index == 2 AND $match[2] > 29))
 {
 	echo "Wrong Format\n";
 	exit ;
