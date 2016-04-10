@@ -1,0 +1,283 @@
+Array
+(
+    [Red-Rabbit] => Array
+        (
+            [id] => Red-Rabbit
+            [exist] => 1
+        )
+
+    [Bedeux] => Array
+        (
+            [id] => Bedeux
+            [exist] => 1
+        )
+
+    [Blackkross] => Array
+        (
+            [id] => Blackkross
+            [exist] => 1
+        )
+
+    [Bustin] => Array
+        (
+            [id] => Bustin
+            [exist] => 1
+        )
+
+    [Kryptonics] => Array
+        (
+            [id] => Kryptonics
+            [exist] => 1
+        )
+
+    [Venture] => Array
+        (
+            [id] => Venture
+            [exist] => 1
+        )
+
+    [Board] => Array
+        (
+            [id] => Board
+            [exist] => 1
+        )
+
+    [Weels] => Array
+        (
+            [id] => Weels
+            [exist] => 1
+        )
+
+    [Truck] => Array
+        (
+            [id] => Truck
+            [exist] => 1
+        )
+
+)
+Array
+(
+    [Bedeux deck 00] => Array
+        (
+            [id] => Bedeux deck 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bedeux_deck00.jpg
+            [price] => 149.99
+        )
+
+    [Bedeux deck 01] => Array
+        (
+            [id] => Bedeux deck 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bedeux_deck01.jpg
+            [price] => 99.99
+        )
+
+    [Bedeux deck 02] => Array
+        (
+            [id] => Bedeux deck 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bedeux_deck02.jpg
+            [price] => 129.99
+        )
+
+    [Blackkross deck 00] => Array
+        (
+            [id] => Blackkross deck 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Blackkross_deck00.jpg
+            [price] => 169.99
+        )
+
+    [Blackkross deck 01] => Array
+        (
+            [id] => Blackkross deck 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Blackkross_deck01.jpg
+            [price] => 129.99
+        )
+
+    [Blackkross deck 02] => Array
+        (
+            [id] => Blackkross deck 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Blackkross_deck02.jpg
+            [price] => 99.99
+        )
+
+    [Bustin deck 00] => Array
+        (
+            [id] => Bustin deck 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bustin_deck00.jpg
+            [price] => 79.99
+        )
+
+    [Bustin deck 01] => Array
+        (
+            [id] => Bustin deck 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bustin_deck01.jpg
+            [price] => 129.99
+        )
+
+    [Bustin deck 02] => Array
+        (
+            [id] => Bustin deck 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/deck/Bustin_deck02.jpg
+            [price] => 89.99
+        )
+
+    [Venture truck 00] => Array
+        (
+            [id] => Venture truck 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/truck/Venture_truck00.jpg
+            [price] => 5.99
+        )
+
+    [Venture truck 01] => Array
+        (
+            [id] => Venture truck 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/truck/Venture_truck01.jpg
+            [price] => 5.99
+        )
+
+    [Venture truck 02] => Array
+        (
+            [id] => Venture truck 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/truck/Venture_truck02.jpg
+            [price] => 5.99
+        )
+
+    [Venture truck 03] => Array
+        (
+            [id] => Venture truck 03
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/truck/Venture_truck03.jpg
+            [price] => 5.99
+        )
+
+    [Blackkross truck 00] => Array
+        (
+            [id] => Blackkross truck 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/truck/Blackkross_truck00.jpg
+            [price] => 7.99
+        )
+
+    [Bustin weels 00] => Array
+        (
+            [id] => Bustin weels 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Bustin_weels00.jpg
+            [price] => 39.99
+        )
+
+    [Bustin weels 01] => Array
+        (
+            [id] => Bustin weels 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Bustin_weels01.jpg
+            [price] => 35.99
+        )
+
+    [Bustin weels 02] => Array
+        (
+            [id] => Bustin weels 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Bustin_weels02.jpg
+            [price] => 35.99
+        )
+
+    [Kryptonics weels 00] => Array
+        (
+            [id] => Kryptonics weels 00
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Kryptonics_weels00.jpg
+            [price] => 29.99
+        )
+
+    [Kryptonics weels 01] => Array
+        (
+            [id] => Kryptonics weels 01
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Kryptonics_weels01.jpg
+            [price] => 29.99
+        )
+
+    [Kryptonics weels 02] => Array
+        (
+            [id] => Kryptonics weels 02
+            [exist] => 1
+            [nb_category] => 2
+            [img] => img/weels/Kryptonics_weels02.jpg
+            [price] => 29.99
+        )
+
+)
+Array
+(
+    [Bedeux<:>Bedeux deck 00] => 1
+    [Board<:>Bedeux deck 00] => 1
+    [Bedeux<:>Bedeux deck 01] => 1
+    [Board<:>Bedeux deck 01] => 1
+    [Bedeux<:>Bedeux deck 02] => 1
+    [Board<:>Bedeux deck 02] => 1
+    [Blackkross<:>Blackkross deck 00] => 1
+    [Board<:>Blackkross deck 00] => 1
+    [Blackkross<:>Blackkross deck 01] => 1
+    [Board<:>Blackkross deck 01] => 1
+    [Blackkross<:>Blackkross deck 02] => 1
+    [Board<:>Blackkross deck 02] => 1
+    [Bustin<:>Bustin deck 00] => 1
+    [Board<:>Bustin deck 00] => 1
+    [Bustin<:>Bustin deck 01] => 1
+    [Board<:>Bustin deck 01] => 1
+    [Bustin<:>Bustin deck 02] => 1
+    [Board<:>Bustin deck 02] => 1
+    [Venture<:>Venture truck 00] => 1
+    [Truck<:>Venture truck 00] => 1
+    [Venture<:>Venture truck 01] => 1
+    [Truck<:>Venture truck 01] => 1
+    [Venture<:>Venture truck 02] => 1
+    [Truck<:>Venture truck 02] => 1
+    [Venture<:>Venture truck 03] => 1
+    [Truck<:>Venture truck 03] => 1
+    [Blackkross<:>Blackkross truck 00] => 1
+    [Truck<:>Blackkross truck 00] => 1
+    [Bustin<:>Bustin weels 00] => 1
+    [Weels<:>Bustin weels 00] => 1
+    [Bustin<:>Bustin weels 01] => 1
+    [Weels<:>Bustin weels 01] => 1
+    [Bustin<:>Bustin weels 02] => 1
+    [Weels<:>Bustin weels 02] => 1
+    [Kryptonics<:>Kryptonics weels 00] => 1
+    [Weels<:>Kryptonics weels 00] => 1
+    [Kryptonics<:>Kryptonics weels 01] => 1
+    [Weels<:>Kryptonics weels 01] => 1
+    [Kryptonics<:>Kryptonics weels 02] => 1
+    [Weels<:>Kryptonics weels 02] => 1
+)
