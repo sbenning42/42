@@ -1,0 +1,22 @@
+
+<- Matrix ----------------------------------------------------------------------
+The MAtrix class handle Matrix.
+
+new Matrix( array )
+	needed array key: preset = IDENTITY | SCALE | RX | RY | RZ | TRANSLATION | PROJECTION | MULT
+
+	if the optional key orig isn't set it will presum x=0, y=0, z=0, w=1
+
+	Get function:
+	getVtcX();
+	getVtcY();
+	getVtcZ();
+	getVtcW();
+
+Handle function:
+
+	public static function doc();
+	public function mult(Matrix $rhs);
+	public function transformVertex(Vertex $vtx);
+	all returned Matrix are new instance.
+---------------------------------------------------------------------- Matrix ->

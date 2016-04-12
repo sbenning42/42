@@ -1,0 +1,22 @@
+
+<- Vertex ----------------------------------------------------------------------
+The Vertex class handle Vertex.
+
+new Vertex( array );
+needed array key: x, y, z
+optional array key: w, color
+
+Set function:
+	setX( float );
+	setY( float );
+	setZ( float );
+	setW( float );
+	setColor( Color );
+
+Get function:
+	float getX();
+	float getY();
+	float getZ();
+	float getW();
+	Color setColor();
+---------------------------------------------------------------------- Vertex ->

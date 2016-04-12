@@ -1,0 +1,28 @@
+<- Vector ----------------------------------------------------------------------
+The Vector class handle Vector.
+
+new Vector( array )
+	needed array key: dest = Vertex
+	optional array key: orig = Vertex
+
+	if the optional key orig isn't set it will presum x=0, y=0, z=0
+
+	Get function:
+	getX();
+	getY();
+	getZ();
+	getW();
+
+	Handle function:
+	float  magnitude();
+	vector normalize();
+	Vector add(Vector $rhs);
+	Vector sub(Vector $rhs);
+	Vector opposite();
+	vector scalarProduct($f);
+	float  dotProduct(Vector $rhs);
+	float  cos(Vector $rhs);
+	Vector crossProduct(Vector $rhs);
+
+	all returned Vector are new instance.
+---------------------------------------------------------------------- Vector ->
