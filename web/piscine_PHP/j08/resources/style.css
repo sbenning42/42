@@ -1,0 +1,105 @@
+html {
+	/*background: url("http://www.ztconnect.com/wallpapers/space-wallpaper2.jpg") no-repeat center center fixed;*/
+	background-size: cover;
+	background-color: #fff;
+}
+
+.bgimg {
+	/*background: url("http://www.ztconnect.com/wallpapers/space-wallpaper2.jpg") no-repeat center center fixed;*/
+	background-size: cover;
+}
+
+.plateau {
+	position:relative;
+	border: 2px solid #555;
+	float:left;
+}
+.panel {
+	position:relative;
+	float:left;
+    width: 300px;
+    height: 800px;
+    background-color: grey;
+}
+
+.login {
+	width: 500px;
+  margin: 200px auto;
+  z-index: 10;
+  position: relative;
+}
+
+.login a {
+	color:#d15014;
+	text-decoration:none;
+	font-size:40px;
+}
+
+.case {
+	position : absolute;
+	border-right:1px dotted #111;
+	border-bottom:1px dotted #111;
+}
+
+.case:hover {
+	background-color:grey;
+	border: 1px solid white;
+}
+
+.a {
+	background: url("https://www.colourbox.com/preview/11166070-abstract-seamless-moon-texture-6000x6000.jpg") no-repeat center center fixed;
+	background-size: cover;
+}
+
+.v {
+	background-color: green;
+}
+
+.v1 {
+    background-color: red;
+}
+
+.v2 {
+    background-color: blue;
+}
+
+.sub-panel-head{
+	padding: 5px;
+	border: 1px solid #000;
+}
+
+.clickable {
+	cursor:pointer;
+	background-color: #996600;
+}
+
+.viewer {
+	padding:5px;
+	width: 70px;
+	height:40px;
+	float: left;
+	border: 1px solid black;
+}
+
+.btn-rouge {
+	cursor:pointer;
+	color: white;
+	background: #cc0000; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cc0000 0%, #f92100 51%, #cc0000 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #cc0000 0%,#f92100 51%,#cc0000 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #cc0000 0%,#f92100 51%,#cc0000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000',GradientType=0 ); /* IE6-9 */
+}
+
+.hidden{
+	width: 70px;
+	height:40px;
+	float: left;
+	border: 0;
+}
+
+.panel input {
+	width: 50px;
+	height:40px;
+	border: 1px solid black;
+}

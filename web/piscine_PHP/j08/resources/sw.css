@@ -1,0 +1,295 @@
+@import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font: 700 1em "News Cycle", sans-serif;
+  letter-spacing: .15em;
+  color: #d15014;
+  background: #000;
+  overflow: hidden;
+  margin: 0;
+}
+
+.starwars section {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  z-index: 1;
+}
+.starwars .start {
+  font-size: 200%;
+  width: 14em;
+  margin: -4em 0 0 -7em;
+  text-align: center;
+  cursor: pointer;
+}
+.starwars .start span {
+  color: #4bd5ee;
+}
+.starwars .intro {
+  width: 15em;
+  margin: 0 0 0 -7.5em;
+  font-size: 200%;
+  font-weight: 400;
+  color: #4bd5ee;
+  opacity: 0;
+  -webkit-animation: intro 6s ease-out 1s;
+          animation: intro 6s ease-out 1s;
+}
+.starwars .logo {
+  opacity: 0;
+  -webkit-animation: logo 9s ease-out 9s;
+          animation: logo 9s ease-out 9s;
+}
+.starwars .logo svg {
+  width: inherit;
+}
+.starwars .titles {
+  width: 14.65em;
+  margin: 0 0 0 -7.325em;
+  top: auto;
+  bottom: 0;
+  height: 50em;
+  font-size: 350%;
+  text-align: justify;
+  overflow: hidden;
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  -webkit-transform: perspective(300px) rotateX(25deg);
+  transform: perspective(300px) rotateX(25deg);
+}
+.starwars .titles > div {
+  position: absolute;
+  top: 100%;
+  -webkit-animation: titles 81s linear 13s;
+          animation: titles 81s linear 13s;
+}
+.starwars .titles > div > p {
+  margin: 1.35em 0 1.85em 0;
+  line-height: 1.35em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@-webkit-keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes logo {
+  0% {
+    width: 18em;
+    margin: -9em 0 0 -9em;
+    -webkit-transform: scale(2.75);
+    transform: scale(2.75);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    width: 18em;
+    margin: -9em 0 0 -9em;
+  }
+  100% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+    width: 18em;
+    margin: -9em 0 0 -9em;
+  }
+}
+@keyframes logo {
+  0% {
+    width: 18em;
+    margin: -9em 0 0 -9em;
+    -webkit-transform: scale(2.75);
+    transform: scale(2.75);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    width: 18em;
+    margin: -9em 0 0 -9em;
+  }
+  100% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+    width: 18em;
+    margin: -9em 0 0 -9em;
+  }
+}
+@-webkit-keyframes titles {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}
+@keyframes titles {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Sarpanch:800);
+html {
+  background-color: #030405;
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+figure {
+        width: 600px;
+          /*   background-color: green; */
+          -moz-perspective: 1000;
+          -webkit-perspective: 1000;
+            perspective: 1000;
+          }
+figure .logo {
+  position: relative;
+  border: 10px solid black;
+  border-radius: 100%;
+  height: 200px;
+  width: 200px;
+  background-color: black;
+  box-shadow: 0 0 0 10px white inset, 0 0 150px #B99F7E;
+  margin: auto;
+  z-index: 20;
+  -moz-transition: ease 1s all;
+  -o-transition: ease 1s all;
+  -webkit-transition: ease 1s all;
+  transition: ease 1s all;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+}
+figure .logo:before, figure .logo:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border: 10px solid white;
+  left: 50%;
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+  -moz-transition: ease 1s all;
+  -o-transition: ease 1s all;
+  -webkit-transition: ease 1s all;
+  transition: ease 1s all;
+}
+figure .logo:before {
+        top: 5px;
+          height: 170px;
+          width: 0;
+}
+figure .logo:after {
+        top: 0;
+          height: 50px;
+          width: 50px;
+            background: black;
+            border-radius: 100%;
+}
+figure figcaption {
+        color: white;
+          width: 100%;
+          height: 50px;
+            line-height: 50px;
+            white-space: nowrap;
+              overflow: visible;
+              margin-top: 100px;
+                text-align: center;
+                font-family: 'Sarpanch', sans-serif;
+                  font-size: 30px;
+                  text-transform: uppercase;
+                    letter-spacing: 7px;
+                    text-shadow: 0 0 50px #B99F7E, 0 0 10px #B99F7E;
+                      position: relative;
+                      -moz-transition: ease 1s all;
+                        -o-transition: ease 1s all;
+                        -webkit-transition: ease 1s all;
+                          transition: ease 1s all;
+                          -moz-transform-style: preserve-3d;
+                            -webkit-transform-style: preserve-3d;
+                            transform-style: preserve-3d;
+}
+figure figcaption .front,
+      figure figcaption .back {
+              position: absolute;
+                display: block;
+                width: 100%;
+                  height: 100%;
+                  -moz-backface-visibility: hidden;
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+      }
+figure figcaption .front {
+        /*       background-color: purple; */
+}
+figure figcaption .back {
+        /*       background-color: red; */
+        -moz-transform: rotateY(180deg);
+          -ms-transform: rotateY(180deg);
+          -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+}
+figure:hover .logo {
+        -moz-transform: rotateZ(180deg);
+          -ms-transform: rotateZ(180deg);
+          -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
+}
+figure:hover .logo:after {
+        top: 130px;
+}
+figure:hover figcaption {
+        -moz-transform: rotateY(-180deg);
+          -ms-transform: rotateY(-180deg);
+          -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+}
