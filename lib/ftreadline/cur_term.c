@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:45:07 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 15:47:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 10:56:37 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					cur_initterm(void)
 		return (-1);
 	}
 	term()->local = term()->global;
-	term()->local.c_lflag &= ~(ECHO | ICANON);
+	term()->local.c_lflag &= ~(ECHO | ICANON | ISIG);
 	term()->local.c_cc[VMIN] = 1;
 	term()->local.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term()->local) < 0)

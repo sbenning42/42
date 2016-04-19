@@ -1,1 +1,24 @@
-HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111HERE IS THE BUG 111
+minishell: Input unhandled: [0x631b] // alt+c
+
+minishell: Input unhandled: [0x1b] // alt+x
+
+minishell: Input unhandled: [0x761b] // alt+v
+
+minishell: Input unhandled: [0x641b] // alt+d
+
+minishell: Input unhandled: [0x44333b315b1b] // alt+left
+
+minishell: Input unhandled: [0x43333b315b1b] // alt+right
+
+minishell: Input unhandled: [0x7e333b355b1b] // alt+pageup
+
+minishell: Input unhandled: [0x7e333b365b1b] // alt+pagedown
+
+minishell: Input unhandled: [0x48333b315b1b] // alt+home
+
+minishell: Input unhandled: [0x46333b315b1b] // alt+end
+
+minishell: Input unhandled: [0x44343b315b1b] // alt+shift+left
+
+minishell: Input unhandled: [0x43343b315b1b] // alt+shift+right
+

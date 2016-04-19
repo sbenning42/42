@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:39:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 09:06:05 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 10:43:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int			rl_code_wright(t_rl *rl)
 		cur_exit(EXIT_FAILURE, "Memory allocation");
 	dyn_strpoppost(&rl->dyn, str, i);
 	dyn_strpushante(&rl->dyn, str, i);
-	cur_go_forward(i);
+	free(str);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_go_forward(i);
 	return (0);
 }
 
@@ -51,6 +53,8 @@ int			rl_code_wleft(t_rl *rl)
 		cur_exit(EXIT_FAILURE, "Memory allocation");
 	dyn_strpopante(&rl->dyn, str, j - i);
 	dyn_strpushpost(&rl->dyn, str, j - i);
-	cur_go_backward(j - i);
+	free(str);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_go_backward(j - i);
 	return (0);
 }

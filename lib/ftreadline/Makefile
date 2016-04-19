@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/03/30 15:11:02 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/19 11:47:17 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC =		ft_readline.c\
 			rl_code_p2.c\
 			rl_code_p3.c\
 			rl_code_p4.c\
+			rl_code_p5.c\
+			rl_code_p6.c\
 			cur_ask.c\
 			cur_capability.c\
 			cur_clear.c\
@@ -58,7 +60,7 @@ $(NAME) : $(OBJ)
 	ar cr $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-%.o:%.c
+%.o:%.c $(HEADERS)/ft_readline.h
 	$(CC) $(FLAGS) -o $@ -c $< -I $(HEADERS)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:39:14 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 09:14:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 10:43:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int			rl_code_home(t_rl *rl)
 	dyn_strpopante(&rl->dyn, str, len);
 	dyn_strpushpost(&rl->dyn, str, len);
 	free(str);
-	cur_go_backward(len);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_go_backward(len);
 	return (0);
 }
 
@@ -32,12 +33,15 @@ int		rl_code_cl(t_rl *rl)
 {
 	cur_all_clr();
 	cur_write(rl->prompt, rl->promptsize);
-	if (rl->dyn.ante)
-		cur_write(rl->dyn.str, rl->dyn.ante);
-	if (rl->dyn.post)
+	if (ISIN(rl->settings, RL_ECHO))
 	{
-		cur_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
-		cur_go_backward(rl->dyn.post);
+		if (rl->dyn.ante)
+			cur_write(rl->dyn.str, rl->dyn.ante);
+		if (rl->dyn.post)
+		{
+			cur_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
+			cur_go_backward(rl->dyn.post);
+		}
 	}
 	return (0);
 }
@@ -47,10 +51,13 @@ int		rl_code_retarr(t_rl *rl)
 	if (!rl->dyn.ante)
 		return (0);
 	dyn_strpopante(&rl->dyn, NULL, 1);
-	cur_go_backward(1);
-	cur_from_clr();
-	if (rl->dyn.post)
-		cur_static_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
+	if (ISIN(rl->settings, RL_ECHO))
+	{
+		cur_go_backward(1);
+		cur_from_clr();
+		if (rl->dyn.post)
+			cur_static_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
+	}
 	return (0);
 }
 
@@ -68,9 +75,12 @@ int		rl_code_suppr(t_rl *rl)
 	if (!rl->dyn.post)
 		return (0);
 	dyn_strpoppost(&rl->dyn, NULL, 1);
-	cur_from_clr();
-	if (rl->dyn.post)
-		cur_static_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
+	if (ISIN(rl->settings, RL_ECHO))
+	{
+		cur_from_clr();
+		if (rl->dyn.post)
+			cur_static_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
+	}
 	return (0);
 }
 
@@ -98,7 +108,9 @@ int			rl_code_pageup(t_rl *rl)
 		cur_exit(EXIT_FAILURE, "Memory allocation");
 	dyn_strpopante(&rl->dyn, str, co);
 	dyn_strpushpost(&rl->dyn, str, co);
-	cur_up();
+	free(str);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_up();
 	return (0);
 }
 
@@ -114,7 +126,9 @@ int			rl_code_pagedown(t_rl *rl)
 		cur_exit(EXIT_FAILURE, "Memory allocation");
 	dyn_strpoppost(&rl->dyn, str, co);
 	dyn_strpushante(&rl->dyn, str, co);
-	cur_xdo(1);
+	free(str);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_xdo(1);
 	return (0);
 }
 
@@ -130,6 +144,7 @@ int		rl_code_end(t_rl *rl)
 	dyn_strpoppost(&rl->dyn, str, len);
 	dyn_strpushante(&rl->dyn, str, len);
 	free(str);
-	cur_go_forward(len);
+	if (ISIN(rl->settings, RL_ECHO))
+		cur_go_forward(len);
 	return (0);
 }

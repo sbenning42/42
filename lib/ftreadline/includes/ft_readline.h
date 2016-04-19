@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/18 20:27:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 12:52:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 # define RL_XMALLOC_OFFSET 1
 
 # define RL_INPUTSIZE 6
-# define RL_CODESIZE 17
+# define RL_CODESIZE 30
 
 # define RL_ECHO 0x1
 # define RL_HISTORY 0x2
 
 # define RL_BS_FLUSH 0x1
-# define RL_BS_INSERT 0x2
+# define RL_BS_QFLUSH 0x2
+# define RL_BS_INSERT 0x4
+# define RL_BS_SELECT 0x8
 
 # define ISIN(X, Y) ((X & Y) == Y ? 1 : 0)
 
@@ -34,11 +36,14 @@ typedef struct		s_dyn
 {
 	char			*str;
 	char			*strend;
+	char			*slct;
 	size_t			offset;
 	size_t			real;
 	size_t			used;
 	size_t			ante;
 	size_t			post;
+	size_t			slct_ante;
+	size_t			slct_post;
 }					t_dyn;
 
 typedef struct		s_rl
@@ -74,6 +79,7 @@ int					dyn_strpoppost(t_dyn *dyn, char *str, size_t size);
 
 int					rl_code_home(t_rl *rl);
 int					rl_code_nl(t_rl *rl);
+int					rl_code_c(t_rl *rl);
 int					rl_code_d(t_rl *rl);
 int					rl_code_cl(t_rl *rl);
 int					rl_code_retarr(t_rl *rl);
@@ -89,6 +95,18 @@ int					rl_code_home(t_rl *rl);
 int					rl_code_end(t_rl *rl);
 int					rl_code_wright(t_rl *rl);
 int					rl_code_wleft(t_rl *rl);
+int					rl_code_cpy(t_rl *rl);
+int					rl_code_cpe(t_rl *rl);
+int					rl_code_cle(t_rl *rl);
+int					rl_code_del(t_rl *rl);
+int					rl_code_slct_right(t_rl *rl);
+int					rl_code_slct_left(t_rl *rl);
+int					rl_code_slct_pageup(t_rl *rl);
+int					rl_code_slct_pagedown(t_rl *rl);
+int					rl_code_slct_home(t_rl *rl);
+int					rl_code_slct_end(t_rl *rl);
+int					rl_code_slct_wright(t_rl *rl);
+int					rl_code_slct_wleft(t_rl *rl);
 
 int					rl_searchcode(t_rl *rl, long int code);
 int					rl_defcode(t_rl *rl, long int code);

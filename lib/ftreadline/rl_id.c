@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:31:03 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 15:48:19 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 12:13:34 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ static int		rl_initdyn(t_dyn *dyn, size_t offset)
 	if (!(dyn->str = ft_strnew(offset)))
 		return (-1);
 	dyn->strend = dyn->str + offset;
+	dyn->slct = NULL;
 	dyn->offset = offset;
 	dyn->real = offset;
 	dyn->used = 0;
 	dyn->ante = 0;
 	dyn->post = 0;
+	dyn->slct_ante = 0;
+	dyn->slct_post = 0;
 	return (0);
 }
 

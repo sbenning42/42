@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:12:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 15:06:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 11:01:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char			*ft_readline(char *prompt, int settings)
 	if (rl_init(&rl, settings, prompt) < 0)
 		return (NULL);
 	cur_write(prompt, rl.promptsize);
-	while (!ISIN(rl.bitset, RL_BS_FLUSH))
+	while (!ISIN(rl.bitset, RL_BS_FLUSH) && !ISIN(rl.bitset, RL_BS_QFLUSH))
 	{
 		if (!(code = rl_read()))
 			continue ;
@@ -43,7 +43,10 @@ char			*ft_readline(char *prompt, int settings)
 			return (NULL);
 		}
 	}
-	line = ft_strjoin(rl.dyn.str, rl.dyn.strend - rl.dyn.post);
+	if (ISIN(rl.bitset, RL_BS_FLUSH))
+		line = ft_strjoin(rl.dyn.str, rl.dyn.strend - rl.dyn.post);
+	else
+		line = ft_strnew(0);
 	rl_destroy(&rl);
 	return (line);
 }
