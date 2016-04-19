@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:28:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 11:48:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 14:22:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_rlcode	g_rlcode[RL_CODESIZE] = {\
 	{0x1, rl_code_home},\
+	{0x1b, rl_code_esc},\
 	{0xa, rl_code_nl},\
 	{0x3, rl_code_c},\
 	{0x4, rl_code_d},\

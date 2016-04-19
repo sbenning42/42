@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 12:52:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 14:29:57 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define RL_XMALLOC_OFFSET 1
 
 # define RL_INPUTSIZE 6
-# define RL_CODESIZE 30
+# define RL_CODESIZE 31
 
 # define RL_ECHO 0x1
 # define RL_HISTORY 0x2
@@ -25,6 +25,7 @@
 # define RL_BS_QFLUSH 0x2
 # define RL_BS_INSERT 0x4
 # define RL_BS_SELECT 0x8
+# define RL_BS_SKIPNEXT 0x10
 
 # define ISIN(X, Y) ((X & Y) == Y ? 1 : 0)
 
@@ -77,6 +78,7 @@ int					dyn_strpushpost(t_dyn *dyn, char *str, size_t size);
 int					dyn_strpopante(t_dyn *dyn, char *str, size_t size);
 int					dyn_strpoppost(t_dyn *dyn, char *str, size_t size);
 
+int					rl_code_esc(t_rl *rl);
 int					rl_code_home(t_rl *rl);
 int					rl_code_nl(t_rl *rl);
 int					rl_code_c(t_rl *rl);

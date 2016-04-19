@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 19:08:18 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 08:15:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 14:29:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@ int			rl_searchcode(t_rl *rl, long int code)
 	return (0);
 }
 
+int			rl_skipnext(t_rl *rl)
+{
+	rl->bitset &= ~RL_BS_SKIPNEXT;
+	return (0);
+}
+
 int			rl_defcode(t_rl *rl, long int code)
 {
 	char	msg[64];
 
+	if (ISIN(rl->bitset, RL_BS_SKIPNEXT))
+		return (rl_skipnext(rl));
 	if (!ft_isprint(code))
 	{
 		ft_sprintf(msg, "Input unhandled: [%#lx]\n", code);
