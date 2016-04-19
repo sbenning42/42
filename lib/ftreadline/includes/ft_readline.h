@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 22:57:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/18 20:27:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define RL_XMALLOC_OFFSET 1
 
 # define RL_INPUTSIZE 6
-# define RL_CODESIZE 15
+# define RL_CODESIZE 17
 
 # define RL_ECHO 0x1
 # define RL_HISTORY 0x2
@@ -87,6 +87,8 @@ int					rl_code_pageup(t_rl *rl);
 int					rl_code_pagedown(t_rl *rl);
 int					rl_code_home(t_rl *rl);
 int					rl_code_end(t_rl *rl);
+int					rl_code_wright(t_rl *rl);
+int					rl_code_wleft(t_rl *rl);
 
 int					rl_searchcode(t_rl *rl, long int code);
 int					rl_defcode(t_rl *rl, long int code);

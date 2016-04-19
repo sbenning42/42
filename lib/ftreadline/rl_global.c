@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:28:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 23:02:10 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/18 22:38:30 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_rlcode	g_rlcode[RL_CODESIZE] = {\
 	{0x7e355b1b, rl_code_pageup},\
 	{0x7e365b1b, rl_code_pagedown},\
 	{0x485b1b, rl_code_home},\
-	{0x465b1b, rl_code_end}
+	{0x465b1b, rl_code_end},\
+	{0x43353b315b1b, rl_code_wright},\
+	{0x44353b315b1b, rl_code_wleft}
 	/*{, rl_code_},\ */
 };

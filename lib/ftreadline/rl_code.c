@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 19:08:18 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 17:41:19 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 08:15:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			rl_defcode(t_rl *rl, long int code)
 
 	if (!ft_isprint(code))
 	{
-		ft_sprintf(msg, "Input unhandled: [%#x]\n", code);
+		ft_sprintf(msg, "Input unhandled: [%#lx]\n", code);
 		cur_exit(EXIT_FAILURE, msg);
 	}
 	if (dyn_strpushante(&rl->dyn, (char *)&code, 1) < 0)

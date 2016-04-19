@@ -98,61 +98,141 @@ abstract class				Ship
 		return $this->_owner;
 	}
 
+	public function			getOwner()
 	public function			getName()
 	{
 		return $this->_name;
 	}
 
+
+	public function			getName()
+	public function			getOwner()
 	public function			getSprite()
 	{
 		return $this->_spriteSrc;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
 	public function			getSize()
 	{
 		return $this->_size;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
 	public function			getPv()
 	{
 		return $this->_Pv;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
 	public function			getPp()
 	{
 		return $this->_Pp;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
 	public function			getPs()
 	{
 		return $this->_Ps;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
 	public function			getSpeed()
 	{
 		return $this->_speed;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
+	public function			getSpeed()
 	public function			getManeuvre()
 	{
 		return $this->_maneuvre;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
+	public function			getSpeed()
+	public function			getManeuvre()
 	public function			getWeapons()
 	{
 		return $this->_weapons;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
+	public function			getSpeed()
+	public function			getManeuvre()
+	public function			getWeapons()
 	public function			getActivated()
 	{
 		return $this->_activated;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
+	public function			getSpeed()
+	public function			getManeuvre()
+	public function			getWeapons()
+	public function			getActivated()
 	public function			getPosition()
 	{
 		return $this->_position;
 	}
 
+	public function			getName()
+	public function			getOwner()
+	public function			getSprite()
+	public function			getSize()
+	public function			getPv()
+	public function			getPp()
+	public function			getPs()
+	public function			getSpeed()
+	public function			getManeuvre()
+	public function			getWeapons()
+	public function			getActivated()
+	public function			getPosition()
+	{
 	public function			setPosition($position)
 	{
 		if (isset($position['dir']))
@@ -166,6 +246,7 @@ abstract class				Ship
 		$this->_actived = TRUE;
 	}
 
+	public function			active()
 	public function			repare()
 	{
 		if ($this->_Pp < 1)
@@ -175,6 +256,8 @@ abstract class				Ship
 		$this->_Pp -= 1;
 	}
 
+	public function			active()
+	public function			repare()
 	public function			givePPshield($PP)
 	{
 		if ($PP > $this->_Pp)
@@ -183,6 +266,9 @@ abstract class				Ship
 		$this->_Ps += $PP;
 	}
 
+	public function			active()
+	public function			repare()
+	public function			givePPshield($PP)
 	public function			givePPspeed($PP)
 	{
 		if ($PP > $this->_Pp)
@@ -191,6 +277,10 @@ abstract class				Ship
 		$this->_speed += $PP;				//	D6
 	}
 
+	public function			active()
+	public function			repare()
+	public function			givePPshield($PP)
+	public function			givePPspeed($PP)
 	public function			getSpace($physical = FALSE)
 	{
 		$offl = ($this->_size['l'] - 1) / 2;
@@ -215,6 +305,12 @@ abstract class				Ship
 		return $aera;
 	}
 
+	public function			active()
+	public function			repare()
+	public function			givePPshield($PP)
+	public function			givePPspeed($PP)
+	public function			getSpace($physical = FALSE)
+	{
 	public function			reset()
 	{
 		$this->_actived = FALSE;
@@ -223,6 +319,13 @@ abstract class				Ship
 		$this->_moved = 0;
 	}
 
+	public function			active()
+	public function			repare()
+	public function			givePPshield($PP)
+	public function			givePPspeed($PP)
+	public function			getSpace($physical = FALSE)
+	{
+	public function			reset()
 	public function			hearted($damage)
 	{
 		if ($damage >= ($this->_Pv + $this->_Ps))

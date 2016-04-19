@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 20:20:52 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 17:38:54 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/19 09:40:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ int		cur_from_clr(void)
 		cur_goto(li + 1, 0);
 		cur_line_clr();
 		cur_goto(li, co);
-	}
-	else
-	{
-		cur_up_scroll();
-		cur_line_clr();
-		cur_goto(li, co);
-		cur_do_scroll();
 	}
 	return (0);
 }

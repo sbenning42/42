@@ -1,0 +1,79 @@
+Class Ship-------------------------------------------------------->
+The ship class is an abstract for all ships.
+
+It handle the logical gameplay for a ship.
+A ship is defined by these getters:
+
+	getId
+
+An unique id for the ship
+
+	getName
+
+A BADASS name for the ship
+
+	getOwner
+
+The id of the player who own the ship
+
+	getSprite
+
+The link to the image of the ship
+
+	getSize
+
+The size of the ship l: large // L: Long
+
+	getPv
+
+Life point of the ship
+
+	getPp
+
+Power point of the ship
+
+	getPs
+
+Shield point of the ship
+
+	getSpeed
+
+The speed of the ship
+
+	getManeuvre
+
+The manoeuvre of th ship
+
+	getWeapons
+
+The activated state of the ship
+
+	getActivated
+
+An array of the position attribute of the ship: x,y,direction
+
+	getPosition
+
+	setPosition
+
+	active
+
+Active the ship;
+
+	repare
+
+Repare the ship
+
+	givePPshield
+
+Set PP to the shield
+
+	givePPspeed
+
+Set PP for the speed
+
+	getSpace
+	reset
+	hearted
+	
+<--------------------------------------------------------Class Ship
