@@ -6,7 +6,7 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2016/03/30 15:42:52 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/20 13:55:48 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -38,11 +38,11 @@ HEADER =		includes
 
 LIB =			-L $(LIB_DIR)$(LIBRL) -l$(LIBRL) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
 
-LIBHEADER =		-I $(LIB_DIR)$(LIBFT)/$(HEADER) -I $(LIB_DIR)$(LIBRL)/$(HEADER)
+LIBHEADER =		-I $(LIB_DIR)$(LIBRL)/$(HEADER)
 
-CC =			gcc
+CC =			clang
 
-FLAG =			-Wall -Wextra -Werror
+FLAG =			-Wall -Wextra -Werror -Wpedantic
 
 all : $(OBJ_LIBFT) $(OBJ_LIBRL) $(NAME)
 
@@ -57,7 +57,7 @@ $(NAME) : $(OBJ)
 	mv $^ $(OBJ_DIR)
 
 %.o : %.c
-	$(CC) $(FLAG) -I $(HEADER) $(LIBHEADER) -o $@ -c $<
+	$(CC) $(FLAG) -o $@ -c $< $(LIBHEADER)
 
 clean :
 	rm -rf $(COBJ)

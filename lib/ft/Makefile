@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/03/19 13:32:47 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/20 14:00:12 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,9 +130,9 @@ OBJ =		$(SRC:.c=.o)
 
 HEADERS =	includes
 
-CC =		gcc
+CC =		clang
 
-FLAGS =		-Wall -Wextra -Werror 
+FLAGS =		-Wall -Wextra -Werror
 
 all : $(NAME)
 

@@ -6,43 +6,42 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:28:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 14:22:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/20 22:04:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
 t_rlcode	g_rlcode[RL_CODESIZE] = {\
-	{0x1, rl_code_home},\
-	{0x1b, rl_code_esc},\
-	{0xa, rl_code_nl},\
-	{0x3, rl_code_c},\
-	{0x4, rl_code_d},\
-	{0xc, rl_code_cl},\
-	{0x7f, rl_code_retarr},\
-	{0x7e325b1b, rl_code_insert},\
-	{0x435b1b, rl_code_right},\
-	{0x445b1b, rl_code_left},\
-	{0x7e335b1b, rl_code_suppr},\
-	{0x415b1b, rl_code_up},\
-	{0x425b1b, rl_code_down},\
-	{0x7e355b1b, rl_code_pageup},\
-	{0x7e365b1b, rl_code_pagedown},\
-	{0x485b1b, rl_code_home},\
-	{0x465b1b, rl_code_end},\
-	{0x43353b315b1b, rl_code_wright},\
-	{0x44353b315b1b, rl_code_wleft},\
-	{0x631b, rl_code_cpy},\
-	{0x781b, rl_code_cpe},\
-	{0x761b, rl_code_cle},\
-	{0x641b, rl_code_del},\
-	{0x43333b315b1b, rl_code_slct_right},\
-	{0x44333b315b1b, rl_code_slct_left},\
-	{0x7e333b355b1b, rl_code_slct_pageup},\
-	{0x7e333b365b1b, rl_code_slct_pagedown},\
-	{0x48333b315b1b, rl_code_slct_home},\
-	{0x46333b315b1b, rl_code_slct_end},\
-	{0x43343b315b1b, rl_code_slct_wright},\
-	{0x44343b315b1b, rl_code_slct_wleft}
-	/*{, rl_code_},\ */
+	{RL_CODE_CTRL_A, rl_code_home},\
+	{RL_CODE_CTRL_C, rl_code_c},\
+	{RL_CODE_CTRL_D, rl_code_d},\
+	{RL_CODE_CTRL_L, rl_code_cl},\
+	{RL_CODE_RETARR, rl_code_retarr},\
+	{RL_CODE_SUPPR, rl_code_suppr},\
+	{RL_CODE_INSERT, rl_code_insert},\
+	{RL_CODE_ESC, rl_code_esc},\
+	{RL_CODE_NL, rl_code_nl},\
+	{RL_CODE_RIGHT, rl_code_right},\
+	{RL_CODE_LEFT, rl_code_left},\
+	{RL_CODE_UP, rl_code_up},\
+	{RL_CODE_DOWN, rl_code_down},\
+	{RL_CODE_PAGEUP, rl_code_pageup},\
+	{RL_CODE_PAGEDOWN, rl_code_pagedown},\
+	{RL_CODE_HOME, rl_code_home},\
+	{RL_CODE_END, rl_code_end},\
+	{RL_CODE_WRIGHT, rl_code_wright},\
+	{RL_CODE_WLEFT, rl_code_wleft},\
+	{RL_CODE_COPY, rl_code_cpy},\
+	{RL_CODE_CUT, rl_code_cpe},\
+	{RL_CODE_PASTE, rl_code_cle},\
+	{RL_CODE_DELETE, rl_code_del},\
+	{RL_CODE_SELECT_RIGHT, rl_code_slct_right},\
+	{RL_CODE_SELECT_LEFT, rl_code_slct_left},\
+	{RL_CODE_SELECT_PAGEUP, rl_code_slct_pageup},\
+	{RL_CODE_SELECT_PAGEDOWN, rl_code_slct_pagedown},\
+	{RL_CODE_SELECT_HOME, rl_code_slct_home},\
+	{RL_CODE_SELECT_END, rl_code_slct_end},\
+	{RL_CODE_SELECT_WRIGHT, rl_code_slct_wright},\
+	{RL_CODE_SELECT_WLEFT, rl_code_slct_wleft}
 };
