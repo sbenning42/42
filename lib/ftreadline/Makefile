@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/20 22:00:57 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/21 09:26:39 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC =		ft_readline.c\
 			rl_code_p5.c\
 			rl_code_p6.c\
 			rl_cpy.c\
+			rl_cut.c\
 			cur_ask.c\
 			cur_capability.c\
 			cur_clear.c\

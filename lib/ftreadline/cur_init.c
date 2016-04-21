@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 16:13:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 14:26:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 00:25:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int					cur_init(void)
 	char			*term;
 	char			*tmp;
 	char			msg[2048];
-	int				success;	
+	int				success;
 
 	if (!(term = ft_getenv("TERM")))
 		cur_exit(EXIT_FAILURE, CAP_SPECIFYTERM);

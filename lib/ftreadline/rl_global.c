@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:28:10 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/20 22:04:01 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 09:27:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_rlcode	g_rlcode[RL_CODESIZE] = {\
 	{RL_CODE_WRIGHT, rl_code_wright},\
 	{RL_CODE_WLEFT, rl_code_wleft},\
 	{RL_CODE_COPY, rl_code_cpy},\
-	{RL_CODE_CUT, rl_code_cpe},\
+	{RL_CODE_CUT, rl_code_cut},\
 	{RL_CODE_PASTE, rl_code_cle},\
 	{RL_CODE_DELETE, rl_code_del},\
 	{RL_CODE_SELECT_RIGHT, rl_code_slct_right},\

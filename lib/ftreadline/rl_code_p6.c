@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:42:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 13:19:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 10:52:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,61 @@ int			rl_code_slct_left(t_rl *rl)
 
 int			rl_code_slct_home(t_rl *rl)
 {
+	size_t	tmp;
+
+	rl->bitset |= RL_BS_SELECT;
 	if (!rl->dyn.ante)
 		return (0);
+	if (rl->dyn.slct_ante)
+	{
+		tmp = rl->dyn.ante - rl->dyn.slct_ante;
+		cur_go_backward(rl->dyn.slct_ante);
+		cur_write(rl->dyn.str + (rl->dyn.ante - rl->dyn.slct_ante), rl->dyn.slct_ante);
+		rl->dyn.slct_ante = 0;
+	}
+	else
+		tmp = rl->dyn.ante;
+	rl->dyn.slct_post += tmp;
+	rl_code_home(rl);
+	if (tmp)
+	{
+		cur_mode(M_HIGTHLIGHT);
+		cur_static_write(rl->dyn.strend - rl->dyn.post, tmp);
+		cur_mode(M_OFF);
+	}
 	return (0);
-	(void)rl;
 }
 
 int			rl_code_slct_end(t_rl *rl)
 {
+	size_t	tmp;
+	char	*str;
+
+	rl->bitset |= RL_BS_SELECT;
 	if (!rl->dyn.post)
 		return (0);
-	rl->bitset |= RL_BS_SELECT;
+	if (rl->dyn.slct_post)
+	{
+		tmp = rl->dyn.post - rl->dyn.slct_post;
+		cur_write(rl->dyn.strend - rl->dyn.post, rl->dyn.slct_post);
+		if (!(str = ft_strnew(rl->dyn.slct_post)))
+			return (-1);
+		dyn_strpoppost(&rl->dyn, str, rl->dyn.slct_post);
+		dyn_strpushante(&rl->dyn, str, rl->dyn.slct_post);
+		free(str);
+		rl->dyn.slct_post = 0;
+	}
+	else
+		tmp = rl->dyn.post;
+	rl->dyn.slct_ante += tmp;
+	if (tmp)
+	{
+		cur_mode(M_HIGTHLIGHT);
+		cur_static_write(rl->dyn.strend - rl->dyn.post, tmp);
+		cur_mode(M_OFF);
+	}
+	rl_code_end(rl);
 	return (0);
-	(void)rl;
 }
 
 int			rl_code_slct_pageup(t_rl *rl)

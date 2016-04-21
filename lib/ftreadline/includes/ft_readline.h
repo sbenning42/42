@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/20 22:03:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 09:27:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int					rl_code_end(t_rl *rl);
 int					rl_code_wright(t_rl *rl);
 int					rl_code_wleft(t_rl *rl);
 int					rl_code_cpy(t_rl *rl);
-int					rl_code_cpe(t_rl *rl);
+int					rl_code_cut(t_rl *rl);
 int					rl_code_cle(t_rl *rl);
 int					rl_code_del(t_rl *rl);
 int					rl_code_slct_right(t_rl *rl);

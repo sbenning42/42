@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:40:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 19:40:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 09:22:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 int			rl_code_esc(t_rl *rl)
 {
 	rl->bitset |= RL_BS_SKIPNEXT;
-	return (0);
-	(void)rl;
-}
-
-int			rl_code_cpe(t_rl *rl)
-{
 	return (0);
 	(void)rl;
 }

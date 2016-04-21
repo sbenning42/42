@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 18:55:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 13:18:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 09:26:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				rl_maj(t_rl *rl, long int code)
 			cur_go_backward(rl->dyn.ante);
 			cur_write(rl->dyn.str, rl->dyn.ante);
 		}
+		cur_from_clr();
 		if (rl->dyn.post)
 			cur_static_write(rl->dyn.strend - rl->dyn.post, rl->dyn.post);
 	}
