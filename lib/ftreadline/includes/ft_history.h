@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_history.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/29 14:19:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:45:27 by sbenning         ###   ########.fr       */
+/*   Created: 2016/04/21 11:31:56 by sbenning          #+#    #+#             */
+/*   Updated: 2016/04/21 11:45:45 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
-#include "ft_history.h"
+#ifndef FT_HISTORY_H
+# define FT_HISTORY_H
 
-int				main(int ac, char *av[])
+# include "libft.h"
+# include "get_next_line.h"
+
+typedef struct		s_hist
 {
-	t_hist		hist;
+	t_dlist			*list;
+	t_dlist			*cursor;
+}					t_hist;
 
-	hist_load(&hist);
-	hist_save(&hist);
-/*	char		*line;
+int					hist_load(t_hist *hist);
+int					hist_save(t_hist *hist);
 
-	ft_initname(av[0]);
-	if (ac > 1)
-		line = ft_readline(av[1], RL_ECHO);
-	else
-		line = ft_readline("$>", 0);
-	ft_printf("line: [%s]\n", line);
-	if (line)
-		free(line);
-*/	return (0);	
-	(void)ac;
-	(void)av;
-}
+#endif

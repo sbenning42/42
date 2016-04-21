@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 09:27:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/21 11:34:51 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@
 
 # include <fcntl.h>
 # include "cursor.h"
-# include "get_next_line.h"
 
 typedef struct		s_dyn
 {

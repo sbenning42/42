@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hist_save.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/29 14:19:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:45:27 by sbenning         ###   ########.fr       */
+/*   Created: 2016/04/21 11:41:38 by sbenning          #+#    #+#             */
+/*   Updated: 2016/04/21 11:46:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
 #include "ft_history.h"
 
-int				main(int ac, char *av[])
+int		hist_save(t_hist *hist)
 {
-	t_hist		hist;
+	int	fd;
 
-	hist_load(&hist);
-	hist_save(&hist);
-/*	char		*line;
-
-	ft_initname(av[0]);
-	if (ac > 1)
-		line = ft_readline(av[1], RL_ECHO);
-	else
-		line = ft_readline("$>", 0);
-	ft_printf("line: [%s]\n", line);
-	if (line)
-		free(line);
-*/	return (0);	
-	(void)ac;
-	(void)av;
+	if (!(fd = open(".42sh_history", O_WRONLY | O_APPEND)))
+		return (-1);
+	hist->cursor = hist->list;
+	while (hist->cursor)
+	{
+		ft_fprintf(fd, "%s\n", (char *)hist->cursor->content);
+		hist->cursor = hist->cursor->n;
+	}
+	ft_dlstdel(&hist->list, NULL);
+	close(fd);
+	return (0);
 }
