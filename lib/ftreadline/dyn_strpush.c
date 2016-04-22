@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:03:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 08:15:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 11:37:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int			dyn_strpushpost(t_dyn *dyn, char *str, size_t size)
 	if (dyn->real <= (dyn->used + size))
 	{
 		if (dyn_expand(dyn, size) < 0)
+		{
 			return (-1);
+		}
 	}
 	dyn->post += size;
 	ft_strncpy(dyn->strend - dyn->post, str, size);

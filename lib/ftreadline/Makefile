@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/21 11:46:12 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 08:17:02 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRC =		ft_readline.c\
 			cur_term.c\
 			cur_xmotion.c\
 			hist_load.c\
-			hist_save.c
+			hist_save.c\
+			hist_copy.c
 
 OBJ =		$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:34:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 08:54:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@
 
 # include <fcntl.h>
 # include "cursor.h"
+#include "ft_history.h"
 
 typedef struct		s_dyn
 {
@@ -123,7 +124,7 @@ typedef struct		s_rl
 	size_t			promptsize;
 	char			*prompt;
 	t_dyn			dyn;
-	t_dlist			*history;
+	t_hist			hist_cp;
 }					t_rl;
 
 typedef struct		s_rlterm
@@ -183,10 +184,8 @@ int					rl_searchcode(t_rl *rl, long int code);
 int					rl_defcode(t_rl *rl, long int code);
 int					rl_maj(t_rl *rl, long int code);
 long int			rl_read(void);
-int					rl_loadhistory(void);
-void				rl_destroyhistory(void);
-int					rl_init(t_rl *rl, int settings, char *prompt);
+int					rl_init(t_rl *rl, t_hist *hist, int settings, char *prompt);
 int					rl_destroy(t_rl *rl);
-char				*ft_readline(char *prompt, int settings);
+char				*ft_readline(char *prompt, t_hist *hist, int settings);
 
 #endif

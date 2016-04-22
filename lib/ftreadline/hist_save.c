@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:41:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:46:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 11:58:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		hist_save(t_hist *hist)
 {
 	int	fd;
 
-	if (!(fd = open(".42sh_history", O_WRONLY | O_APPEND)))
+	if (!(fd = open(".42sh_history", O_WRONLY)))
 		return (-1);
 	hist->cursor = hist->list;
 	while (hist->cursor)

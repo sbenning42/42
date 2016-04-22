@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:21:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:41:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 09:42:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static int	hist_parse(t_hist *hist, int fd)
 			return (ret);
 		if ((len = ft_strlen(line)))
 		{
-			if (!(entry = ft_dlstnew(line, len)))
+			if (!(entry = ft_dlstnew(line, len + 1)))
 			{
 				free(line);
+				ft_dlstdel(&hist->list, NULL);
 				return (-1);
 			}
 			ft_dlstaddn(&hist->list, entry);
@@ -50,13 +51,5 @@ int			hist_load(t_hist *hist)
 		close(fd);
 		return (-1);
 	}
-
-	hist->cursor = hist->list;
-	while (hist->cursor)
-	{
-		ft_printf("%s\n", (char *)hist->cursor->content);
-		hist->cursor = hist->cursor->n;
-	}
-
 	return (0);
 }

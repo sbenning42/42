@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:31:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 11:45:45 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 08:40:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct		s_hist
 
 int					hist_load(t_hist *hist);
 int					hist_save(t_hist *hist);
+int					hist_copy(t_hist *hist, t_hist *hist_cp);
 
 #endif

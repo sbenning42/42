@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:12:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 01:03:41 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 11:54:24 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void dumpdyn(t_dyn d)
 	ft_fprintf(2, "\n");
 }
 
-char			*ft_readline(char *prompt, int settings)
+char			*ft_readline(char *prompt, t_hist *hist, int settings)
 {
 	t_rl		rl;
 	char		*line;
 	long int	code;
 
-	if (rl_init(&rl, settings, prompt) < 0)
+	if (rl_init(&rl, hist, settings, prompt) < 0)
 		return (NULL);
 	cur_write(prompt, rl.promptsize);
 	while (!ISIN(rl.bitset, RL_BS_FLUSH) && !ISIN(rl.bitset, RL_BS_QFLUSH))
@@ -44,7 +44,16 @@ char			*ft_readline(char *prompt, int settings)
 		}
 	}
 	if (ISIN(rl.bitset, RL_BS_FLUSH))
+	{
 		line = ft_strjoin(rl.dyn.str, rl.dyn.strend - rl.dyn.post);
+		if (ft_strlen(line))
+		{
+			if (!(hist->cursor = ft_dlstnew(line, ft_strlen(line) + 1)))
+				ft_memdel((void **)&line);
+			else
+				ft_dlstaddn(&hist->list, hist->cursor);
+		}
+	}
 	else
 		line = ft_strnew(0);
 	rl_destroy(&rl);
