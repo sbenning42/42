@@ -6,13 +6,22 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2016/04/20 13:55:48 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 13:11:33 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 NAME =			minishell
 
-SRC =			main.c
+SRC =			main.c\
+				ft_lexer.c\
+				lx_global.c\
+				lx_plv.c\
+				lx_print.c\
+				lx_reserveddev.c\
+				lx_tilddev.c\
+				lx_wsfstate.c\
+				lx_wslexem.c\
+				lx_wslexer.c
 
 SRC_DIR =		srcs/
 
@@ -38,7 +47,7 @@ HEADER =		includes
 
 LIB =			-L $(LIB_DIR)$(LIBRL) -l$(LIBRL) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
 
-LIBHEADER =		-I $(LIB_DIR)$(LIBRL)/$(HEADER)
+LIBHEADER =		-I $(LIB_DIR)$(LIBRL)/$(HEADER) -I $(HEADER)
 
 CC =			clang
 

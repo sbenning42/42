@@ -6,164 +6,117 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 22:32:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:32:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LEXER_H
 # define FT_LEXER_H
 
-# include "ft_readline.h"
+# include "libft.h"
 
-# define LX_FSTATE_SIZE 17
-# define LX_STATE_SIZE 18
+# define LX_WORDSPLIT_NOPROTEC_CSET "|&;()<>!$` \t"
+# define LX_WORDSPLIT_ESCAPE_CSET ""
+# define LX_WORDSPLIT_QUOTE_CSET ""
+# define LX_WORDSPLIT_DQUOTE_CSET "!$`*"
 
-# define LX_CSET_SEARCH "<012\"`'([|&\\ ~#*!?"
+# define LX_PROTEC_NOPROTEC_CSET "\\\"'"
+# define LX_PROTEC_ESCAPE_CSET ""
+# define LX_PROTEC_QUOTE_CSET "\033\033'"
+# define LX_PROTEC_DQUOTE_CSET "\\\""
 
-typedef enum		e_lextype
+# define LX_PLVNOPROTEC 0x0
+# define LX_PLVESCAPE 0x1
+# define LX_PLVDQUOTE 0x2
+# define LX_PLVQUOTE 0x4
+
+# define LX_WSFSTATE_SIZE 1
+# define LX_WSPLV_SIZE 5
+# define LX_WSPLVBIT_SIZE 3
+# define LX_RESERVED_SIZE 22
+
+# define ISBIT(X, Y) ((X & Y) == Y ? 1 : 0)
+
+typedef enum		e_lxtype
 {
-	TY_None,
-	TY_Blank,		// 	' ', '\t';													//prior	=	0	Blank
-	TY_Word,		// 	!other_token && (isalnum + '_' || (maybe) isprint)			//prior	=	0	Word
-	TY_And,		// 	"&&"														//prior	=	10	And
-	TY_Or,			// 	"||"														//prior	=	10	Or
-	TY_Chev_xtl,	//	"<<<X" Xisdigit												//prior	=	5	Chevxl
-	TY_Chev_xdl,	//	"<<X" Xisdigit												//prior	=	5	Chevxl
-	TY_Chev_xl,	//	"<X" Xisdigit												//prior	=	5	Chevxl
-	TY_Chev_xdr,	//	"X>>" Xisdigit												//prior	=	5	Chevxr
-	TY_Chev_xr,	//	"X>" Xisdigit												//prior	=	5	Chevxr
-	TY_Pipe,		//	'|'															//prior	=	10	Or
-	TY_Bground,	//	'&'															//prior	=	10	And
-	TY_Quote,	//	''' cpt0													//prior	=	5	Quote
-	TY_Quote_dl,	//	'"' cpt0													//prior	=	5	Quoted
-	TY_Quote_il,	//	'`' cpt0													//prior	=	5	Quotei
-	TY_Quote_l,	//	''' cpt0													//prior	=	5	Quote
-	TY_Quote_dr,	//	'"' cpt!0													//prior	=	5	Quoted
-	TY_Quote_ir,	//	'`' cpt!0													//prior	=	5	Quotei
-	TY_Quote_r,	//	''' cpt!0													//prior	=	5	Quote
-	TY_Parent_dl,	//	"(("														//prior	=	10	Parentd
-	TY_Parent_l,	//	'('															//prior	=	10	Parent
-	TY_Parent_dr,	//	"))"														//prior	=	10	Parentd
-	TY_Parent_r,	//	')'															//prior	=	10	Parent
-	TY_Hook_dl,	//	"[["														//prior	=	10	Hookd
-	TY_Hook_l,		//	'['															//prior	=	10	Hook
-	TY_Hook_dr,	//	"]]"														//prior	=	10	Hookd
-	TY_Hook_r,		//	']'															//prior	=	10	Hook
-	TY_Escape,		//	'\' NEXT NO ACTION (all cpts, space, ALL, AAAAALLLLL)		//prior	=	100	Explicit
-	TY_Tild,		//	'~'															//prior	=	50	Explicit
-	TY_Match,		//	'*'															//prior	=	50	Explicit
-	TY_Comm,		//	'#'															//prior	=	50	Explicit
-	TY_Neg,		//	'!'															//prior	=	5	Explicit
-	TY_Sub		//	'?'															//prior	=	5	Explicit
-}					t_lextype;
+	TY_Word,
+	TY_Neg,
+	TY_Case,
+	TY_Coproc,
+	TY_Do,
+	TY_Done,
+	TY_Elif,
+	TY_Else,
+	TY_Esac,
+	TY_Fi,
+	TY_For,
+	TY_Function,
+	TY_If,
+	TY_In,
+	TY_Select,
+	TY_Then,
+	TY_Until,
+	TY_While,
+	TY_Bracket_open,
+	TY_Bracket_close,
+	TY_Time,
+	TY_Hook_open,
+	TY_Hook_close
+}					t_lxtype;
 
-typedef enum		e_lexstate
+typedef enum		e_lxstate
 {
-	ST_Blank,
 	ST_Word,
-	ST_Chevxl,
-	ST_Chevxr,
-	ST_Quoted,
-	ST_Quotei,
-	ST_Quote,
-	ST_Parent,
-	ST_Hook,
-	ST_Or,
-	ST_And,
-	ST_Escape,
-	ST_Tild,
-	ST_Comm,
-	ST_Autocmp,
-	ST_Neg,
-	ST_Sub,
-	ST_Error
-}					t_lexstate;
+	ST_Success,
+	ST_Synfail,
+	ST_Fail
+}					t_lxstate;
 
-typedef enum		e_lexcode
+typedef struct		s_lxplv
 {
-	CO_Success,
-	CO_Repeat,
-	CO_Fail
-}					t_lexcode;
+	int				bitset;
+	char			*ws_cset;
+	char			*protec_cset;
+}					t_lxplv;
 
-typedef struct		s_lex
+typedef struct		s_lxem
 {
-	struct s_lex	*next;
-	struct s_lex	*previous;
-	t_lextype		type;
-	char			*value;
+	struct s_lxem	*previous;
+	struct s_lxem	*next;
+	t_lxtype		type;
+	t_dynstr		value;
 	size_t			len;
-	int				pound;
-}					t_lex;
+	int				plv;
+}					t_lxem;
 
-typedef t_lexcode	(*t_lexfstate)(char, t_lex *, t_lexstate *state);
+typedef struct		s_lxem_low
+{
+	t_lxtype		type;
+	char			*str;
+}					t_lxem_low;
 
-extern t_lexstate	g_state[LX_STATE_SIZE];
-extern t_lexfstate	g_fstate[LX_STATE_SIZE];
+typedef t_lxstate	(*t_lxfstate)(t_lxem *, char, t_lxplv plv);
 
-t_lex				*ft_lexer(char *id, char *line);
-t_lex				*lx_lexer(char *id, char *line);
-t_lexstate			lx_entry(char c);
-void				lx_tokenlist(t_lex **alst, t_lex *token);
-void				lx_print(t_lex *lst);
-void				lx_del(t_lex **alst);
+extern int			g_plvskip;
+extern int			g_lxplvbit[];
+extern t_lxplv		g_lxplv[];
+extern t_lxfstate	g_lxwsfstate[];
+extern t_lxem_low	g_lxreserved[];
 
-t_lexcode			lx_stblank(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stword(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stchevxl(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stchevxr(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stquoted(char c, t_lex *token, t_lexstate *state);
-t_lexcode		 	lx_stquotei(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stquote(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stparent(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_sthook(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stor(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stand(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stescape(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_sttild(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stcomm(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stautocomp(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stneg(char c, t_lex *token, t_lexstate *state);
-t_lexcode			lx_stsub(char c, t_lex *token, t_lexstate *state);
+void				lx_del(t_lxem **alst);
+t_lxem				*lx_newtoken(t_lxtype type);
+void				lx_addtoken(t_lxem **alst, t_lxem *token);
+void				lx_print(t_lxem *lst);
+
+int					lx_majplv(char c, t_lxplv *plv);
+t_lxstate			lx_wsfstate_word(t_lxem *token, char c, t_lxplv plv);
+
+t_lxem				*lx_wslexem(char *line);
+t_lxem				*lx_wslexer(char *line);
+int					lx_tilddev(t_lxem *list);
+int					lx_reserveddev(t_lxem *list);
+t_lxem				*ft_lexer(char *line);
+
+char				*ft_getenv(char **ep, const char *key);
 
 #endif
-/*
-ST_Entry,	CO_Success,		{ST_Blank, ST_Word, ST_Chevxl, ST_Chevxr, ST_Quoted, ST_Quotei, ST_Quote, ST_Parent, ST_Hook, ST_Or, ST_And, ST_Escape}
-ST_Entry,	CO_Fail,		ST_And
-ST_Blank,	CO_Success,		ST_Entry
-ST_Blank,	CO_Repeat,		ST_Blank
-ST_Blank,	CO_Fail,		ST_End
-ST_Word,	CO_Success,		ST_Entry
-ST_Word,	CO_Repeat,		ST_Word
-ST_Word,	Co_Fail,		ST_End
-ST_Chevxl,	Co_Success,		ST_Entry
-ST_Chevxl,	Co_Repeat,		ST_Chevxl
-ST_Chevxl,	Co_Fail,		ST_End
-ST_Chevxr,	Co_Success,		ST_Entry
-ST_Chevxr,	Co_Repeat,		ST_Chevxr
-ST_Chevxr,	Co_Fail,		ST_End
-ST_Quoted,	Co_Success,		ST_Entry
-ST_Quoted,	Co_Repeat,		ST_Quoted
-ST_Quoted,	Co_Fail,		ST_End
-ST_Quotei,	Co_Success,		ST_Entry
-ST_Quotei,	Co_Repeat,		ST_Quotei
-ST_Quotei,	Co_Fail,		ST_End
-ST_Quote,	Co_Success,		ST_Entry
-ST_Quote,	Co_Repeat,		ST_Quote
-ST_Quote,	Co_Fail,		ST_End
-ST_Parent,	Co_Success,		ST_Entry
-ST_Parent,	Co_Repeat,		ST_Parent
-ST_parent,	Co_Fail,		ST_End
-ST_Hook,	Co_Success,		ST_Entry
-ST_Hook,	Co_Repeat,		ST_Hook
-ST_Hook,	Co_Fail,		ST_End
-ST_Or,		Co_Success,		ST_Entry
-ST_Or,		Co_Repeat,		ST_Or
-ST_Or,		Co_Fail,		ST_End
-ST_And,		Co_Success,		ST_Entry
-ST_And,		Co_Repeat,		ST_
-ST_And,		Co_Fail,		ST_End
-ST_Escape,	Co_Success,		ST_Entry
-ST_Escape,	Co_Repeat,		ST_Escape
-ST_Escape,	Co_Fail,		ST_End
-*/

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/25 17:59:34 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/19 18:13:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 13:19:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "ft_dlst.h"
 # include "ft_dar.h"
 # include "ft_dar2.h"
+# include "ft_dyn.h"
 # include "ft_buff.h"
 # include "ft_mem.h"
 # include "ft_put.h"

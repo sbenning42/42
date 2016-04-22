@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lx_entry.c                                         :+:      :+:    :+:   */
+/*   lx_reserveddev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/05 20:45:33 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/05 21:18:42 by sbenning         ###   ########.fr       */
+/*   Created: 2016/03/15 13:30:42 by sbenning          #+#    #+#             */
+/*   Updated: 2016/03/15 14:02:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lexstate		lx_entry(char c)
+void		lx_reserveddevlexem(t_lxem *list)
 {
-	char		*s;
-	char		*f;
+	int		i;
 
-	s = LX_CSET_SEARCH;
-	if ((f = ft_strchr(s, c)))
-		return (g_state[f - s]);
-	if (ft_isprint(c))
-		return (ST_Word);
-	return (ST_Error);
+	i = -1;
+	while (++i < LX_RESERVED_SIZE)
+	{
+		if (!ft_strcmp(list->value.str, g_lxreserved[i].str))
+		{
+			list->type = g_lxreserved[i].type;
+			break ;
+		}
+	}
+}
+
+int			lx_reserveddev(t_lxem *list)
+{
+	while (list)
+	{
+		if (!list->plv)
+			lx_reserveddevlexem(list);
+		list = list->next;
+	}
+	return (0);
 }

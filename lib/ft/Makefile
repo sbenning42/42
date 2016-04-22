@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/20 14:00:12 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 13:26:14 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC =	ft_mem/ft_memset.c\
 		ft_str/ft_strclr.c\
 		ft_str/ft_strcmp.c\
 		ft_str/ft_strcpy.c\
+		ft_str/ft_strlcpy.c\
 		ft_str/ft_strdel.c\
 		ft_str/ft_strdup.c\
 		ft_str/ft_strequ.c\
@@ -122,6 +123,8 @@ SRC =	ft_mem/ft_memset.c\
 		ft_printf/ft_printf_static.c\
 		ft_printf/ft_printf_tools.c\
 		ft_printf/ft_printf_vfamily.c\
+		ft_dyn/ft_dyn.c\
+		ft_dyn/ft_dynstd.c\
 		ft_env/ft_env.c\
 		ft_exit/ft_exit.c\
 		ft_global/ft_global.c

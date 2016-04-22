@@ -6,11 +6,12 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 14:19:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/22 11:55:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 13:10:45 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+#include "ft_lexer.h"
 
 int				main(int ac, char *av[])
 {
@@ -30,6 +31,7 @@ int				main(int ac, char *av[])
 				free(line);
 				break ;
 			}
+			ft_lexer(line);
 			free(line);
 		}
 	}
