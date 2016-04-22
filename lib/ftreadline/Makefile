@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/22 08:17:02 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 19:30:49 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ HEADERS =	includes
 
 CC =		clang
 
-FLAGS =		-Wall -Wextra -Wpedantic
+FLAGS =		-Wall -Wextra -Wpedantic -Werror
 
 all : $(NAME)
 
@@ -66,7 +66,7 @@ $(NAME) : $(OBJ)
 	ranlib $(NAME)
 
 %.o:%.c $(HEADERS)/ft_readline.h
-	$(CC) $(FLAGS) -o $@ -c $< -I $(HEADERS)
+	$(CC) $(FLAGS) -o $@ -c $< -I $(HEADERS) -I ../ft/includes
 
 clean:
 	rm -f $(OBJ)

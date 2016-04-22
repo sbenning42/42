@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:03:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/22 11:37:09 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 18:35:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ int			dyn_strpushpost(t_dyn *dyn, char *str, size_t size)
 	if (dyn->real <= (dyn->used + size))
 	{
 		if (dyn_expand(dyn, size) < 0)
-		{
 			return (-1);
-		}
 	}
 	dyn->post += size;
 	ft_strncpy(dyn->strend - dyn->post, str, size);
@@ -66,7 +64,7 @@ int			dyn_strpopante(t_dyn *dyn, char *str, size_t size)
 	dyn->ante -= size;
 	if (str)
 		ft_strncpy(str, dyn->str + dyn->ante, size);
-	ft_bzero((void *)dyn->str + dyn->ante, size);
+	ft_bzero((void *)(dyn->str + dyn->ante), size);
 	dyn->used -= size;
 	return (0);
 }
@@ -77,7 +75,7 @@ int			dyn_strpoppost(t_dyn *dyn, char *str, size_t size)
 		return (-1);
 	if (str)
 		ft_strncpy(str, dyn->strend - dyn->post, size);
-	ft_bzero((void *)dyn->strend - dyn->post, size);
+	ft_bzero((void *)(dyn->strend - dyn->post), size);
 	dyn->post -= size;
 	dyn->used -= size;
 	return (0);

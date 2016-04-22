@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/22 13:26:14 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 19:40:26 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,7 @@ HEADERS =	includes
 
 CC =		clang
 
-FLAGS =		-Wall -Wextra -Werror
+FLAGS =		-Wall -Wextra -Wpedantic -Werror
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/26 00:06:39 by sbenning          #+#    #+#             */
-/*   Updated: 2014/11/20 19:23:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 19:28:06 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		return (dst);
 	else if (dst > src)
 	{
-		dst += len;
-		src += len;
+		dst = (t_uchar *)dst + len;
+		src = (t_uchar *)src + len;
 		while (len--)
-			*(t_uchar *)dst-- = *(t_uchar *)src--;
+		{
+			*(t_uchar *)dst = *(t_uchar *)src;
+			dst = (t_uchar *)dst - 1;
+			src = (t_uchar *)src - 1;
+		}
 	}
 	else
 		ft_memcpy(dst, src, len);

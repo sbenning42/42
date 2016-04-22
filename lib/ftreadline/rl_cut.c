@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 09:22:04 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 10:52:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 18:36:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	rl_cut_post(t_rl *rl)
 
 static int	rl_cut_line(t_rl *rl)
 {
-	void	*src;
 	size_t	co;
 	size_t	scrco;
 	size_t	len_ante;

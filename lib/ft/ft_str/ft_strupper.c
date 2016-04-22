@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 11:21:47 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:21:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 19:33:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*ft_strupper(char *const s)
 	cp = (char *)s;
 	while (*cp)
 	{
-		*cp = ft_toupper(*cp);
+		*cp = (char)ft_toupper(*cp);
 		cp++;
 	}
 	return (s);

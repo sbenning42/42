@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_global.h                                        :+:      :+:    :+:   */
+/*   lx_grpdev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/19 13:01:07 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/22 10:51:20 by sbenning         ###   ########.fr       */
+/*   Created: 2016/04/22 20:40:20 by sbenning          #+#    #+#             */
+/*   Updated: 2016/04/23 00:57:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GLOBAL_H
-# define FT_GLOBAL_H
+#include "ft_lexer.h"
 
-# include "ft_header.h"
+int					lx_grpdev(t_lxem *list)
+{
+	while (list)
+	{
 
-extern char		**environ;
-extern char		**g_ft_environ;
-extern char		*g_ft_program_name;
+		list = list->next;
+	}
+}
 
-void			ft_init(char *name);
-void			ft_initname(char *name);
-void			ft_initenv(void);
-
-#endif

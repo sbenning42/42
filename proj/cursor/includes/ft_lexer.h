@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/22 13:16:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/23 00:57:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ t_lxstate			lx_wsfstate_word(t_lxem *token, char c, t_lxplv plv);
 t_lxem				*lx_wslexem(char *line);
 t_lxem				*lx_wslexer(char *line);
 int					lx_tilddev(t_lxem *list);
-int					lx_reserveddev(t_lxem *list);
+//int					lx_reserveddev(t_lxem *list);
+int					lx_grpdev(t_lxem *list);
 t_lxem				*ft_lexer(char *line);
 
 #endif

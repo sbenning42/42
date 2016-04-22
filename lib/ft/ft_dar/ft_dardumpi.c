@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 13:09:19 by sbenning          #+#    #+#             */
-/*   Updated: 2015/09/21 15:36:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 19:18:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_ardumpi(t_dar *ar, t_uint i)
 	ft_printf("adress: %p\t|", ar->address[i].data);
 	while (j < ar->address[i].size)
 	{
-		ft_printf("%d|", *((t_uchar *)(ar->address[i].data + j)));
+		ft_printf("%d|", *((t_uchar *)ar->address[i].data + j));
 		j++;
 	}
 	ft_printf("\n");

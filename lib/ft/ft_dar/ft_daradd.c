@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 11:27:22 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:15:36 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 19:38:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	ar_majaddr(t_dar *ar)
 {
 	size_t	i;
-	void	*tmp;
+	t_uchar	*tmp;
 
 	i = 0;
-	tmp = ar->data;
+	tmp = (t_uchar *)ar->data;
 	while (i < ar->i)
 	{
-		ar->address[i].data = tmp;
+		ar->address[i].data = (void *)tmp;
 		tmp += ar->address[i].size;
 		i++;
 	}
@@ -39,7 +39,7 @@ static int	ar_init(t_dar *ar, size_t size)
 		return (1);
 	}
 	ar->curr = ar->data;
-	ar->end = ar->curr + (size * 2);
+	ar->end = (void *)(((t_uchar *)ar->curr) + (size * 2));
 	ar->size = 2;
 	return (0);
 }
@@ -50,7 +50,7 @@ static int	ar_expdata(t_dar *ar)
 	size_t	size;
 
 	tmp = ar->data;
-	size = ar->end - ar->data;
+	size = (size_t)((t_uchar *)ar->end - (t_uchar *)ar->data);
 	ar->data = ft_memalloc(size * 2);
 	if (!ar->data)
 	{
@@ -59,8 +59,8 @@ static int	ar_expdata(t_dar *ar)
 		return (0);
 	}
 	ft_memcpy(ar->data, tmp, size);
-	ar->curr = ar->data + (ar->curr - tmp);
-	ar->end = ar->data + (size * 2);
+	ar->curr = (void *)((t_uchar *)ar->data + (((t_uchar *)ar->curr) - (t_uchar *)tmp));
+	ar->end = (void *)((t_uchar *)ar->data + (size * 2));
 	free(tmp);
 	ar_majaddr(ar);
 	return (1);
@@ -93,7 +93,7 @@ int			ft_daradd(t_dar *ar, void *data, size_t size)
 	}
 	else
 	{
-		while ((size + ar->curr) > ar->end)
+		while ((size + ((t_uchar *)ar->curr)) > (t_uchar *)ar->end)
 		{
 			if (!ar_expdata(ar))
 				return (1);
@@ -106,7 +106,7 @@ int			ft_daradd(t_dar *ar, void *data, size_t size)
 	ar->address[ar->i].data = ar->curr;
 	ar->address[ar->i].size = size;
 	ft_memcpy(ar->curr, data, size);
-	ar->curr += size;
+	ar->curr = (void *)(((t_uchar *)ar->curr) + size);
 	ar->i++;
 	return (0);
 }

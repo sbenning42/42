@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 13:14:27 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/25 11:15:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/22 19:39:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_ardump(t_dar *ar)
 	while (i < ar->i)
 	{
 		ft_printf("\t");
-		ft_dardumpi(ar, i);
+		ft_dardumpi(ar, (t_uint)i);
 		i++;
 	}
 	ft_printf("\nEND DUMP\n");

@@ -6,7 +6,7 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2016/04/22 13:11:33 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/22 19:40:51 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -47,11 +47,11 @@ HEADER =		includes
 
 LIB =			-L $(LIB_DIR)$(LIBRL) -l$(LIBRL) -L $(LIB_DIR)$(LIBFT) -l$(LIBFT) -l$(TERM)
 
-LIBHEADER =		-I $(LIB_DIR)$(LIBRL)/$(HEADER) -I $(HEADER)
+LIBHEADER =		-I $(LIB_DIR)$(LIBRL)/$(HEADER) -I $(LIB_DIR)$(LIBFT)/$(HEADER) -I $(HEADER)
 
 CC =			clang
 
-FLAG =			-Wall -Wextra -Werror -Wpedantic
+FLAG =			-Wall -Wextra -Wpedantic -Werror
 
 all : $(OBJ_LIBFT) $(OBJ_LIBRL) $(NAME)
 
