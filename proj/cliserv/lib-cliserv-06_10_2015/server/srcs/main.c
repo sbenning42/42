@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 20:34:31 by sbenning          #+#    #+#             */
-/*   Updated: 2015/06/10 17:58:09 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/30 15:39:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			main(void)
 	int		sock;
 	int		status;
 
-	sock = srv_init(2424);
+	sock = srv_init(4242);
 	status = fork();
 	if (status == 0)
 		srv_handle(sock, test_co);

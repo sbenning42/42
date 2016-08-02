@@ -1,0 +1,124 @@
+	< ls -a >
+
+-ls -a-|:
+
+=======================================================
+
+	< cat .42_log.binary >
+
+-cat .42_log.binary-|:
+
+=======================================================
+
+	< cat .42sh_log.binary >
+
+-cat .42sh_log.binary-|:
+
+=======================================================
+
+	< cat .42sh_log.binary |less >
+
+     -cat .42sh_log.binary-|:
+-|-[
+     -less-|:
+
+=======================================================
+
+	< cat .42sh_log.history |less >
+
+     -cat .42sh_log.history-|:
+-|-[
+     -less-|:
+
+=======================================================
+
+	< ls | wc > out && cat out && rm out && echo ok || echo ko ; echo finish >
+
+                              -ls-|:
+                         -|-[
+                                   -wc-|:
+                              ->-[
+                                   -out-|:
+                    -&&-[
+                         -cat out-|:
+               -&&-[
+                    -rm out-|:
+          -&&-[
+               -echo ok-|:
+     -||-[
+          -echo ko-|:
+-;-[
+     -echo finish-|:
+
+=======================================================
+
+	< ls | wc > out && cat out | cat && rm -rf out && echo ok | cat || echo ko ; echo finish >
+
+                              -ls-|:
+                         -|-[
+                                   -wc-|:
+                              ->-[
+                                   -out-|:
+                    -&&-[
+                              -cat out-|:
+                         -|-[
+                              -cat-|:
+               -&&-[
+                    -rm -rf out-|:
+          -&&-[
+                    -echo ok-|:
+               -|-[
+                    -cat-|:
+     -||-[
+          -echo ko-|:
+-;-[
+     -echo finish-|:
+
+=======================================================
+
+	< ls | wc > out && cat out | cat && rm -rf out && echo ok | cat || echo ko ; ls | wc > out && cat out | cat && rm -rf out && echo ok | cat || echo ko >
+
+                              -ls-|:
+                         -|-[
+                                   -wc-|:
+                              ->-[
+                                   -out-|:
+                    -&&-[
+                              -cat out-|:
+                         -|-[
+                              -cat-|:
+               -&&-[
+                    -rm -rf out-|:
+          -&&-[
+                    -echo ok-|:
+               -|-[
+                    -cat-|:
+     -||-[
+          -echo ko-|:
+-;-[
+                              -ls-|:
+                         -|-[
+                                   -wc-|:
+                              ->-[
+                                   -out-|:
+                    -&&-[
+                              -cat out-|:
+                         -|-[
+                              -cat-|:
+               -&&-[
+                    -rm -rf out-|:
+          -&&-[
+                    -echo ok-|:
+               -|-[
+                    -cat-|:
+     -||-[
+          -echo ko-|:
+
+=======================================================
+
+	< exit >
+
+-exit-|:
+
+=======================================================
+

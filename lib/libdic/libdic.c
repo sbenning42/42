@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 16:26:43 by sbenning          #+#    #+#             */
-/*   Updated: 2015/11/14 15:20:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/26 08:44:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void				ft_dicdel(t_dic_entry **dic, t_dic_del del)
 		ft_dicdel(&((*dic)->l), del);
 	if ((*dic)->r)
 		ft_dicdel(&((*dic)->r), del);
-	del((*dic)->content);
+	if (del)
+		del((*dic)->content);
 	free((*dic)->content);
 	free((*dic)->key);
 	free(*dic);

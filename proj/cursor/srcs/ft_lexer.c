@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:39:20 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/22 20:15:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/26 09:51:01 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,11 @@ t_lxem		*ft_lexer(char *line)
 		lx_del(&wslxlist);
 		return (NULL);
 	}
-	if (lx_grpdev(&wslxlist) < 0)
+	if (lx_grpdev(wslxlist) < 0)
 	{
 		lx_del(&wslxlist);
 		return (NULL);
 	}
 	lx_killblank(&wslxlist);
-	lx_print(wslxlist);
 	return (wslxlist);
 }

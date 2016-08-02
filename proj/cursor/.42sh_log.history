@@ -1,0 +1,235 @@
+ls
+ls -R
+ls -R
+ls -R ~
+ls -R ~ > out
+cat out
+vim out
+exit
+ls -R > out
+cat out
+ls -lR > out
+cat out
+exit
+ls|cat|wc>out&&cat out&&rm out&&ls -l|cat|wc>out&&cat out&&echo "test ok">out&&cat out && rm out || echo "test error"
+ls|cat|wc>out&&cat out&&rm out;ls -l|cat|wc>out&&cat out&&echo "test ok">out&&cat out && rm out || echo "test error"
+cat out
+ls|cat|wc>out&&cat out&&rm out;ls -l|cat|wc>out&&cat out&&echo "test ok">out&&cat out || echo "test error"
+cat out
+î
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+cat out
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+fg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outtat1
+fg
+exit
+rm outtaat1
+rm outtat1
+ls
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+exit
+ls;ls
+exit
+ls;ls
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+fg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+fg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+ls
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+fg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">outsg
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out
+ls
+rm out ; rm outsg
+ls
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out && cat out && rm out
+ls
+fg
+exit
+ls|cat|wc>out&&cat out;ls -l|cat|wc>out&&cat out&&echo "test ok">out && cat out && rm out
+ls|cat|wc>out&&cat out;ls -l ~|cat|wc>out&&cat out&&echo "test ok">out && cat out && rm out
+ls|cat|wc>out&&cat out;ls -l ~|cat|wc>out&&cat out&&echo "test ok">out && cat out && rm out
+ls|cat|wc>out;ls -l ~|cat|wc>out&&echo "test ok">out && rm out
+ls -l ~|cat|wc>out&&echo "test ok">out && rm out;ls|cat|wc>out;
+ls -l ~|cat|wc>out&&echo "test ok">out && rm out;ls|cat|wc>out
+ls -l ~|cat|wc>out&&echo "test ok">out && rm out;ls|cat|wc>out
+ls -l ~|cat|wc>out&&echo "test ok">out && rm out;ls|cat|wc>out
+ls
+;
+exit
+ls
+;
+ls -l ~|cat|wc>out&&echo "test ok">out && rm out;ls|cat|wc>out
+ls
+exit
+ls
+eflzlmze
+exit
+ls
+exit
+exit
+ls
+ls
+lsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+ls
+ls
+ls
+ll
+exit
+exit
+ls
+zzef
+exit
+ld
+exit
+mmdf
+exit
+exit
+ls
+exit
+ls>out;ls>out;ls|wc>out;ls out>out&&rm out
+ls
+ls > out ; ls > out ; ls | wc > out ;ls out > out && rm out
+ls
+ls > out ; ls > out ; ls | wc > out ;ls out > out
+cat out
+ls > out ; ls > out ; ls | wc > out 
+cat out
+./toto
+ls
+rm out
+ls -l -a .
+exit
+exit
+exit
+ls
+exit
+ls
+exit
+bbbbbbbbbbbbb
+exit
+ls
+azflzeml,vzv k k ln nel nel nekl nkenk nenl aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa                                                                                       aa a a ab a a a
+exit
+ls -la toto
+ls -la toto-
+ls -la toto-
+ls -la to
+ls -la toto
+ls -la toto
+ls -la tot
+ls -la 
+ls -la toto
+ls -la toto
+exit
+ls
+exit
+ls
+sdvsvdvsllllkvnsvnlndlvknfvnldfnkdnvlkklvnlnlfkvnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+exit
+exit
+exit
+lzaafaj
+exit
+ls aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbb           bbbbbbbbbbba
+exit
+s aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbb           bbbbbbbbbbba
+exit
+exit
+exit
+exit
+exit
+exit
+exit
+exit
+ls
+ls |wc
+ls |wc && echo ok || echo ko
+ls |wc|wc && echo ok || echo ko
+ls |wc|wc>out && echo ok || echo ko
+ls |wc|toto>out && echo ok || echo ko
+ls |wc|toto && echo ok || echo ko
+cat out
+ls |wc|toto>out && echo ok || echo ko
+ls |wc|wc>out && echo ok || echo ko
+ls
+cat out
+exit
+ls
+exit
+ls
+ls;ls
+exit
+ls
+ls;ls
+exit
+ls
+ls;ls
+exit
+ls
+ls;ls
+exit
+ls
+ls;ls
+exit
+ls
+ls |wc|wc>out && echo ok || echo ko
+ls
+rm out
+exit
+ls
+exit
+ls |wc|wc>out && echo ok || echo ko
+rm out
+exit
+ls |wc|wc>out && echo ok || echo ko
+rm out
+exit
+ls |wc|wc>out && echo ok || echo ko
+exit
+ls
+exit
+ls |wc|wc>out && echo ok || echo ko
+exit
+ls
+rm out
+ls
+cat exec/exec.c
+cat exec/exec.c
+ls
+ls > out
+cat out
+wc out
+rm out
+ls | wc
+ls | wc && echo ok
+ls | wc > out && echo ok
+ls | wc > out && echo ok || echo ko
+ls | toto > out && echo ok || echo ko
+ls toto | wc > out && echo ok || echo ko
+ls toto > out && echo ok || echo ko
+ls toto && echo ok || echo ko
+exit
+ls
+exit
+ls
+ls toto | wc > out && echo ok || echo ko
+ls -a
+exit

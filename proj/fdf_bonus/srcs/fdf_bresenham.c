@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 10:35:32 by sbenning          #+#    #+#             */
-/*   Updated: 2015/12/14 10:37:52 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/04/25 21:07:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		bres_put(t_env *env, t_fdf_pxi p1, t_fdf_pxi p2, \
 
 	c = (info.clr ? 0 : bres_color(p1[Color], p2[Color]));
 	e = info.d1;
-	info.d1 = e * 2;
+	info.d1 =  e * 2;
 	info.d2 *= 2;
 	while (42)
 	{
@@ -73,6 +73,7 @@ static void		bres_put(t_env *env, t_fdf_pxi p1, t_fdf_pxi p2, \
 		e += info.i0 * info.d2;
 		if ((info.c1 && e < 0) || (!info.c1 && e > 0) || (info.c2 && e == 0))
 		{
+			mlx_pixel_put(env->mlx, env->win, p1[X_scr], p1[Y_scr], c);
 			p1[info.id_e] += info.i2;
 			e += info.d1;
 		}

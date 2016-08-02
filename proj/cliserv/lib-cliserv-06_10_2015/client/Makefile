@@ -6,7 +6,7 @@
 #    By: sbenning <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/27 13:50:09 by sbenning          #+#    #+#              #
-#    Updated: 2015/06/10 00:32:59 by sbenning         ###   ########.fr        #
+#*   Updated: 2016/04/30 15:36:21 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ all : $(NAME)
 OBJ =	$(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
-	$(CC) $(FLAGS) -I $(HEADERS) -o $(NAME) $(LIB) $^
+	$(CC) $(FLAGS) -I $(HEADERS) -o $(NAME) $^ -L../../../../lib/ft -lft
 
 %.o: $(addprefix srcs/, %.c)
 	$(CC) $(FLAGS) -c $^ -I $(HEADERS)

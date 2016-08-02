@@ -6,7 +6,7 @@
 #*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/18 23:33:22 by sbenning          #+#    #+#             *#
-#*   Updated: 2016/04/22 19:40:51 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/04/28 18:42:25 by sbenning         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -17,11 +17,18 @@ SRC =			main.c\
 				lx_global.c\
 				lx_plv.c\
 				lx_print.c\
-				lx_reserveddev.c\
+				lx_grpdev.c\
+				lx_fgrp.c\
 				lx_tilddev.c\
 				lx_wsfstate.c\
 				lx_wslexem.c\
-				lx_wslexer.c
+				lx_wslexer.c\
+				ft_parser.c\
+				libdic.c\
+				ft_exec.c\
+				cmd.c\
+				exec.c\
+				ft_getopt.c
 
 SRC_DIR =		srcs/
 
