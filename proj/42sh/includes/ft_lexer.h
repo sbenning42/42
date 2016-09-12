@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/28 08:18:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:18:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@
 # define LX_GROUP_SIZE 5
 
 # define ISBIT(X, Y) ((X & Y) == Y ? 1 : 0)
+
+#define LX_NOWORD "\t[{pink|ss}%s{eoc}][{cyan}%s{eoc}][{yellow}%zu{eoc}]\n"
+#define LX_WORD "\t[{red|ss}%s{eoc}][{cyan}%s{eoc}][{yellow}%zu{eoc}]\n"
 
 typedef enum		e_lxtype
 {

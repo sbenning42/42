@@ -6,14 +6,14 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/29 19:11:57 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/08/31 12:46:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_READLINE_H
 # define FT_READLINE_H
 
-# define LINUX
+# define MACOSX
 
 # define RL_XMALLOC_OFFSET 1
 
@@ -38,37 +38,37 @@
 # define RL_BS_SKIPNEXT 0x10
 
 # ifdef MACOSX
-#  define RL_CODE_CTRL_A
-#  define RL_CODE_CTRL_C
-#  define RL_CODE_CTRL_D
-#  define RL_CODE_CTRL_L
-#  define RL_CODE_RETARR
-#  define RL_CODE_SUPPR
-#  define RL_CODE_INSERT
-#  define RL_CODE_ESC
-#  define RL_CODE_NL
-#  define RL_CODE_RIGHT
-#  define RL_CODE_LEFT
-#  define RL_CODE_UP
-#  define RL_CODE_DOWN
-#  define RL_CODE_PAGEUP
-#  define RL_CODE_PAGEDOWN
-#  define RL_CODE_HOME
-#  define RL_CODE_END
-#  define RL_CODE_WRIGHT
-#  define RL_CODE_WLEFT
-#  define RL_CODE_COPY
-#  define RL_CODE_CUT
-#  define RL_CODE_PASTE
-#  define RL_CODE_DELETE
-#  define RL_CODE_SELECT_RIGHT
-#  define RL_CODE_SELECT_LEFT
-#  define RL_CODE_SELECT_PAGEUP
-#  define RL_CODE_SELECT_PAGEDOWN
-#  define RL_CODE_SELECT_HOME
-#  define RL_CODE_SELECT_END
-#  define RL_CODE_SELECT_WRIGHT
-#  define RL_CODE_SELECT_WLEFT
+#  define RL_CODE_CTRL_A 0x1
+#  define RL_CODE_CTRL_C 0x3
+#  define RL_CODE_CTRL_D 0x4
+#  define RL_CODE_CTRL_L 0xc
+#  define RL_CODE_RETARR 0x7f
+#  define RL_CODE_SUPPR 0x7e335b1b
+#  define RL_CODE_INSERT 0x53323b315b1b
+#  define RL_CODE_ESC 0x1b
+#  define RL_CODE_NL 0xa
+#  define RL_CODE_RIGHT 0x435b1b
+#  define RL_CODE_LEFT 0x445b1b
+#  define RL_CODE_UP 0x415b1b
+#  define RL_CODE_DOWN 0x425b1b
+#  define RL_CODE_PAGEUP 0x7e355b1b
+#  define RL_CODE_PAGEDOWN 0x7e365b1b
+#  define RL_CODE_HOME 0x485b1b
+#  define RL_CODE_END 0x465b1b
+#  define RL_CODE_WRIGHT 0x43323b315b1b
+#  define RL_CODE_WLEFT 0x44323b315b1b
+#  define RL_CODE_COPY 0xa7c3
+#  define RL_CODE_CUT 0x8889e2
+#  define RL_CODE_PASTE 0x9a88e2
+#  define RL_CODE_DELETE 0x8288e2
+#  define RL_CODE_SELECT_RIGHT 0x435b1b1b
+#  define RL_CODE_SELECT_LEFT 0x445b1b1b
+#  define RL_CODE_SELECT_PAGEUP 0x7e355b1b1b
+#  define RL_CODE_SELECT_PAGEDOWN 0x7e365b1b1b
+#  define RL_CODE_SELECT_HOME 0x48393b315b1b
+#  define RL_CODE_SELECT_END 0x46393b315b1b
+#  define RL_CODE_SELECT_WRIGHT 0x4330313b315b1b
+#  define RL_CODE_SELECT_WLEFT 0x4430313b315b1b
 # endif
 
 # ifdef LINUX

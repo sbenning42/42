@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:42:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/21 10:52:51 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/08/31 12:50:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ int			rl_code_slct_wright(t_rl *rl)
 {
 	if (!rl->dyn.post)
 		return (0);
+
 	rl->bitset |= RL_BS_SELECT;
 	return (0);
 	(void)rl;
@@ -150,6 +151,7 @@ int			rl_code_slct_wleft(t_rl *rl)
 {
 	if (!rl->dyn.ante)
 		return (0);
+
 	rl->bitset |= RL_BS_SELECT;
 	return (0);
 	(void)rl;

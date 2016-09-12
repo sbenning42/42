@@ -12,7 +12,10 @@
 
 NAME =			minishell
 
-MAIN_SRC =		main.c
+MAIN_SRC =		main.c\
+				init.c\
+				loop_comp.c\
+				dump_tree.c
 CURSOR_SRC =	cur_ask.c\
 				cur_capability.c\
 				cur_clear.c\
@@ -71,6 +74,7 @@ BUILTIN_SRC =	built_exit.c\
 LOOP_SRC =
 TOOL_SRC =		get_next_line.c\
 				libdic.c\
+				libdic_dump.c\
 				dyn_strpush.c\
 				ft_getopt.c
 

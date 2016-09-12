@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 18:27:54 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/30 14:55:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/08/31 12:49:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ long int		rl_read(void)
 
 	buffer = 0;
 	read(0, (char *)&buffer, sizeof(buffer));
+//	ft_fprintf(2, "%#lx\n", buffer);
 	return (buffer);
 }

@@ -6,13 +6,16 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:45:23 by sbenning          #+#    #+#             */
-/*   Updated: 2016/03/15 14:32:37 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:22:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-t_lxem			*lx_handlestate(t_lxem **token, t_lxstate state, char c, int plv)
+t_lxem			*lx_handlestate(t_lxem **token,\
+								t_lxstate state,\
+								char c,\
+								int plv)
 {
 	if ((state == ST_Fail) || (state == ST_Synfail) || plv)
 		lx_del(token);

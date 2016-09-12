@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 16:27:36 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/19 09:15:07 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:16:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,10 @@ int			cur_go_forward(int x)
 int			cur_go_backward(int x)
 {
 	int	co;
-	//int		li;
 	int	scrco;
 	int	res;
 	int	rest;
 
-	//li = cur_get_li();
 	scrco = cur_get_scrco() + 1;
 	co = cur_get_co();
 	if (x <= co)

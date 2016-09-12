@@ -1,6 +1,10 @@
 #ifndef LIBDIC_H
 # define LIBDIC_H
 
+# define DIC_ROOTFORMAT "%{{cyan|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n"
+# define DIC_LFORMAT "%{{blue|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n"
+# define DIC_RFORMAT "%{{red|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n"
+
 # include "libft.h"
 
 typedef struct			s_dic_test

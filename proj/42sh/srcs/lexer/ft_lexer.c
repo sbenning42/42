@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:39:20 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/29 20:13:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:19:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		lx_killblank(t_lxem **alst)
 	while (cp)
 	{
 		tmp = cp->next;
-		if ((!cp->plv && !ft_strcmp(" ", cp->value.str))/* || !cp->len*/)
+		if ((!cp->plv && !ft_strcmp(" ", cp->value.str)))
 		{
 			if (cp == *alst)
 				*alst = tmp;

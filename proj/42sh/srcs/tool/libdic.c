@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 16:26:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/28 20:52:11 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 10:36:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,6 @@ int					dic_sort(char *k1, char *k2)
 	if (ft_strcmp(k1, k2) >= 0)
 		return (1);
 	return (0);
-}
-
-void				dic_del(void *content)
-{
-	t_dic_test		*content_test;
-
-	content_test = (t_dic_test *)content;
-	free(content_test->user);
-	free(content_test->group);
-	free(content_test->shell);
-	free(content_test->home);
 }
 
 t_dic_entry			*ft_dicnew(char *key, void *content, size_t size)
@@ -92,33 +81,6 @@ void				ft_dicdel(t_dic_entry **dic, t_dic_del del)
 	*dic = NULL;
 }
 
-void				ft_dicdumpc(t_dic_entry *dic, int asc)
-{
-	if (!dic)
-		return ;
-	if (dic->l)
-		ft_dicdumpc(dic->l, 1);
-	if (!asc)
-		ft_printf("%{{cyan|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n", dic->key, (char *)dic->content);
-	else if (asc > 0)
-		ft_printf("%{{blue|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n", dic->key, (char *)dic->content);
-	else if (asc < 0)
-		ft_printf("%{{red|gr}%s{eoc}}: `{green|gr}%s{eoc}`\n", dic->key, (char *)dic->content);
-	if (dic->r)
-		ft_dicdumpc(dic->r, -1);
-}
-
-void				ft_dicdump(t_dic_entry *dic, int fd)
-{
-	if (!dic)
-		return ;
-	if (dic->l)
-		ft_dicdump(dic->l, fd);
-	ft_fprintf(fd, "%{%s} : `%s`\n", dic->key, (char *)dic->content);
-	if (dic->r)
-		ft_dicdump(dic->r, fd);
-}
-
 void				*ft_dicget(t_dic_entry *dic, char *key)
 {
 	int				ret;
@@ -138,6 +100,18 @@ void				*ft_dicget(t_dic_entry *dic, char *key)
 	return (NULL);
 }
 /*
+
+void				dic_del(void *content)
+{
+	t_dic_test		*content_test;
+
+	content_test = (t_dic_test *)content;
+	free(content_test->user);
+	free(content_test->group);
+	free(content_test->shell);
+	free(content_test->home);
+}
+
 int	main(void)
 {
 	t_dic_entry	*testdic;
@@ -173,14 +147,4 @@ int	main(void)
 	return ;
 }
 */
-
-
-
-
-
-
-
-
-
-
 

@@ -1,0 +1,38 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    BUG.trace                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sbenning <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/01 09:44:01 by sbenning          #+#    #+#              #
+#    Updated: 2016/09/01 09:55:11 by sbenning         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+BUG-01:
+{
+	srcs/main/main.c:
+	{
+		l-109 : 'exit' must  be a builtin as another one;
+		l-136 : Call to sh_break has to desepear;
+	}
+}
+
+BUG-02:
+{
+	srcs/main/main.c:
+	{
+		l-138 : gg_status() must be in the t_sh structure not as volatil as it is;
+	}
+}
+
+BUG-03:
+{
+	srcs/main/main.c:
+	{
+		l-15 : the tree dumping is not conform to the norme
+		l-47 : the tree dumping is not conform to the norme
+	}
+}

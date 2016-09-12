@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 16:13:00 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/28 09:45:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:14:41 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int					cur_init_coo(void)
 {
 	int				li;
 	int				co;
-	
+
 	if (cur_ask_lico(&li, &co) < 0)
 		return (-1);
 	cur_set_li(li);
@@ -48,7 +48,8 @@ int					cur_init(void)
 	else if (success)
 	{
 		signal(SIGWINCH, cur_resize);
-		PC = ((tmp = tgetstr("pc", NULL)) ? *tmp : 0);
+		tmp = tgetstr("pc", NULL);
+		PC = (tmp ? *tmp : 0);
 		UP = tgetstr("up", NULL);
 		BC = tgetstr("le", NULL);
 		cur_init_scr();

@@ -6,19 +6,12 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:45:07 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/27 20:11:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/09 11:15:08 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cursor.h"
-/*
-static int			*call()
-{
-	static int		i;
 
-	return (&i);
-}
-*/
 static t_term		*term(void)
 {
 	static t_term	t;
