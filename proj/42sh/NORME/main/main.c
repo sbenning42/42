@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 14:19:40 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/09 10:23:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/12 14:43:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void			sh_loop(t_sh *sh)
 	{
 		if (sh_readline(sh) < 0)
 			continue ;
-		if (sh_break(&sh->line))
-			break ;
 		*gg_status() = 1;
 		if (sh_lexer(sh, &lexem_list) < 0)
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 15:48:55 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/09 11:18:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/12 12:20:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ t_lxem				*lx_wslexer(char *line);
 int					lx_tilddev(t_lxem *list);
 
 int					lx_grpdev(t_lxem *list);
+
+int					static_lx_merge(t_lxem *list, t_lxtype type);
 
 int					lx_grp_bg(t_lxem *list);
 int					lx_grp_pipe(t_lxem *list);

@@ -1,0 +1,150 @@
+NAME =			ft_cd
+
+SRC_DIR =		sh/
+OBJ_DIR =		obj/
+HEADER_DIR =	includes/
+LIB_DIR =		lib/ft/
+
+SRC = 			clean.c\
+				oldpwd.c\
+				cdlst.c\
+				cd_currentrep.c\
+				getopt.c\
+				main.c
+
+OBJ =			$(SRC:.c=.o)
+
+LIB =			ft
+
+LIBFT =			libft.a
+
+HEADER =		ft_cd.h
+
+CC =			gcc
+
+FLAG =			-Wall -Wextra -Werror
+
+all : $(addprefix $(LIB_DIR), $(LIBFT)) $(NAME)
+
+$(NAME) : $(addprefix $(OBJ_DIR), $(OBJ))
+	$(CC) $(FLAG) -L $(LIB_DIR) -l$(LIB) -o $@ $^
+
+$(addprefix $(OBJ_DIR), %.o) : $(addprefix $(SRC_DIR), %.c) $(addprefix $(HEADER_DIR), $(HEADER))
+	$(CC) $(FLAG) -I $(HEADER_DIR) -I $(addprefix $(LIB_DIR), $(HEADER_DIR)) -o $@ -c $<
+
+clean :
+	rm -f $(addprefix $(OBJ_DIR), $(OBJ))
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
+
+relib :
+	make re -C $(LIB_DIR)
+
+builtin
+cursor
+exec
+history
+lexer
+main
+parser
+readline
+tool
+
+srcs/builtin:
+built_cd.c
+built_exit.c
+built_prompt.c
+
+srcs/cursor:
+cur_ask.c
+cur_capability.c
+cur_clear.c
+cur_fmotion.c
+cur_get.c
+cur_global.c
+cur_goto.c
+cur_init.c
+cur_maj.c
+cur_mode.c
+cur_motion.c
+cur_put.c
+cur_scroll.c
+cur_set.c
+cur_signal.c
+cur_term.c
+cur_write.c
+cur_xmotion.c
+
+srcs/exec:
+exec_pipe.c
+exec_redir.c
+exec_redir_append.c
+exec_sep.c
+exec_word.c
+ft_exec.c
+
+srcs/history:
+hist_copy.c
+hist_dump.c
+hist_load.c
+hist_save.c
+
+srcs/lexer:
+ft_lexer.c
+lx_fgrp.c
+lx_global.c
+lx_grpdev.c
+lx_merge.c
+lx_plv.c
+lx_print.c
+lx_reserveddev.c
+lx_tilddev.c
+lx_wsfstate.c
+lx_wslexem.c
+lx_wslexer.c
+
+srcs/main:
+dump_tree.c
+init.c
+loop_comp.c
+main.c
+
+srcs/parser:
+cmd.c
+ft_parser.c
+
+srcs/readline:
+ft_readline.c
+rl_42_prompt.c
+rl_42_prompt_constr.c
+rl_code.c
+rl_code_arrow.c
+rl_code_moves_hist.c
+rl_code_moves_part_1.c
+rl_code_moves_part_2.c
+rl_code_other_moves.c
+rl_code_quit.c
+rl_code_select.c
+rl_code_select_not_implemented.c
+rl_code_word_moves.c
+rl_cpy.c
+rl_cut.c
+rl_display.c
+rl_dump.c
+rl_global.c
+rl_history.c
+rl_id.c
+rl_maj.c
+rl_prompt.c
+rl_read.c
+rl_reset_display.c
+
+srcs/tool:
+dyn_strpush.c
+ft_getopt.c
+get_next_line.c
+libdic.c
+libdic_dump.c

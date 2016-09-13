@@ -6,7 +6,7 @@
 #    By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/08 20:00:17 by sbenning          #+#    #+#              #
-#*   Updated: 2016/04/22 19:40:26 by sbenning         ###   ########.fr       *#
+#*   Updated: 2016/03/19 13:32:47 by sbenning         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ SRC =	ft_mem/ft_memset.c\
 		ft_str/ft_strclr.c\
 		ft_str/ft_strcmp.c\
 		ft_str/ft_strcpy.c\
-		ft_str/ft_strlcpy.c\
 		ft_str/ft_strdel.c\
 		ft_str/ft_strdup.c\
 		ft_str/ft_strequ.c\
@@ -51,6 +50,7 @@ SRC =	ft_mem/ft_memset.c\
 		ft_str/ft_strncat.c\
 		ft_str/ft_strncmp.c\
 		ft_str/ft_strncpy.c\
+		ft_str/ft_strlcpy.c\
 		ft_str/ft_strnequ.c\
 		ft_str/ft_strnew.c\
 		ft_str/ft_strnstr.c\
@@ -123,19 +123,19 @@ SRC =	ft_mem/ft_memset.c\
 		ft_printf/ft_printf_static.c\
 		ft_printf/ft_printf_tools.c\
 		ft_printf/ft_printf_vfamily.c\
-		ft_dyn/ft_dyn.c\
-		ft_dyn/ft_dynstd.c\
 		ft_env/ft_env.c\
 		ft_exit/ft_exit.c\
+		ft_dyn/ft_dyn.c\
+		ft_dyn/ft_dynstd.c\
 		ft_global/ft_global.c
 
 OBJ =		$(SRC:.c=.o)
 
 HEADERS =	includes
 
-CC =		clang
+CC =		gcc
 
-FLAGS =		-Wall -Wextra -Wpedantic -Werror
+FLAGS =		-Wall -Wextra -Werror 
 
 all : $(NAME)
 

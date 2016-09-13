@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 11:33:42 by sbenning          #+#    #+#             */
-/*   Updated: 2016/04/29 14:01:47 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/13 12:07:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int			exec_root(t_sh *sh, t_tree *root)
 	if (!root)
 		return (0);
 	success = g_exec[root->content->type](sh, root);
+	ft_initname("minishell");
 	return (success);
 }

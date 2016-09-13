@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 08:42:11 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/09 10:45:34 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/12 14:46:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int			bin_load(t_dic_entry **root)
 	if (ret < 0)
 	{
 		if (*root)																//If an error occurs, clean memory if necessary
-			ft_dicdel(root, NULL/*dic_del*/);
+			ft_dicdel(root, NULL);
 	}
 	ft_memdel((void **)&raw_path);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/08/31 12:46:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/12 13:23:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define RL_BS_INSERT 0x4
 # define RL_BS_SELECT 0x8
 # define RL_BS_SKIPNEXT 0x10
+
+# define RL_SH_STYLE_CPROMPT_FORMAT "{green}%s{eoc}{grey|gr}$>{eoc} "
+# define RL_SH_STYLE_PROMPT_FORMAT "%s$> "
 
 # ifdef MACOSX
 #  define RL_CODE_CTRL_A 0x1
@@ -207,7 +210,29 @@ long int			rl_read(void);
 void 				rl_sh_prompt(t_rl *rl, char *base, int settings);
 void 				rl_bash_prompt(t_rl *rl, char *base, int settings);
 void 				rl_omzsh_prompt(t_rl *rl, char *base, int settings);
-void 				rl_42_prompt(t_rl *rl, char *base, int settings);
+
+void 				rl_42_prompt(\
+						t_rl *rl,\
+						char *base,\
+						int settings,\
+						size_t len);
+void				rl_42_prompt_date_constr(\
+						char *prompt,\
+						char *date,\
+						int settings);
+void				rl_42_prompt_pwd_constr(\
+						char *prompt,\
+						char *pwd,\
+						int settings);
+void				rl_42_prompt_col_constr(\
+						char *prompt,\
+						char *status,\
+						int settings);
+void				rl_42_prompt_base_constr(\
+						char *prompt,\
+						char *base,\
+						int settings,\
+						size_t *len);
 
 int					rl_init(t_rl *rl, t_hist *hist, int settings, char *prompt);
 int					rl_destroy(t_rl *rl);

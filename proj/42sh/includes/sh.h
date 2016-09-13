@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 18:17:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/09 10:09:33 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/13 11:49:16 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "ft_readline.h"
 # include "ft_lexer.h"
 # include "ft_parser.h"
+# include "ft_cd.h"
 # include <time.h>
 
 # define SH_DEFAULT_PROMPT ""
@@ -63,6 +64,7 @@ typedef struct	s_sh
 }				t_sh;
 
 void			sh_init(t_sh *sh, int ac, char **av);
+void			sh_clear(t_sh *sh);
 
 int				sh_readline(t_sh *sh);
 int				sh_break(char **line);
@@ -97,5 +99,6 @@ int				exec_stderr_append_redir(t_sh *sh, t_tree *root);
 
 int				built_exit(t_sh *sh, t_tree *root);
 int				built_prompt(t_sh *sh, t_tree *root);
+int				built_cd(t_sh *sh, t_tree *root);
 
 #endif

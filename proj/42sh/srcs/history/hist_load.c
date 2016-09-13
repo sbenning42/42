@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:21:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/01 09:28:20 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/12 12:25:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int			hist_load(t_hist *hist)
 		close(fd);
 		return (-1);
 	}
+	close(fd);
 	return (0);
 }

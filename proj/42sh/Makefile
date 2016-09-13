@@ -35,42 +35,60 @@ CURSOR_SRC =	cur_ask.c\
 				cur_term.c\
 				cur_xmotion.c
 READLINE_SRC =	ft_readline.c\
-				rl_id.c\
-				rl_read.c\
-				rl_maj.c\
+				rl_42_prompt.c\
+				rl_42_prompt_constr.c\
 				rl_code.c\
-				rl_dump.c\
-				rl_display.c\
-				rl_global.c\
-				rl_code_quit.c\
 				rl_code_arrow.c\
-				rl_code_moves.c\
-				rl_code_word_moves.c\
+				rl_code_moves_hist.c\
+				rl_code_moves_part_1.c\
+				rl_code_moves_part_2.c\
 				rl_code_other_moves.c\
+				rl_code_quit.c\
 				rl_code_select.c\
+				rl_code_select_not_implemented.c\
+				rl_code_word_moves.c\
 				rl_cpy.c\
 				rl_cut.c\
-				rl_prompt.c
+				rl_dump.c\
+				rl_global.c\
+				rl_history.c\
+				rl_id.c\
+				rl_maj.c\
+				rl_prompt.c\
+				rl_read.c\
+				rl_reset_display.c
+#				rl_display.c
 HISTORY_SRC =	hist_dump.c\
 				hist_load.c\
 				hist_save.c\
 				hist_copy.c
 LEXER_SRC =		ft_lexer.c\
+				lx_fgrp.c\
 				lx_global.c\
+				lx_grpdev.c\
+				lx_merge.c\
 				lx_plv.c\
 				lx_print.c\
-				lx_grpdev.c\
-				lx_fgrp.c\
 				lx_tilddev.c\
 				lx_wsfstate.c\
 				lx_wslexem.c\
 				lx_wslexer.c
+#				lx_reserveddev.c
 PARSER_SRC =	ft_parser.c\
 				cmd.c
 EXEC_SRC =		ft_exec.c\
-				exec.c
+				exec_pipe.c\
+				exec_redir.c\
+				exec_redir_append.c\
+				exec_sep.c\
+				exec_word.c
 BUILTIN_SRC =	built_exit.c\
-				built_prompt.c
+				built_prompt.c\
+				built_cd.c
+CD_SRC =		cd_cleanpath.c\
+				cd_currentrep.c\
+				cd_error.c\
+				getopt.c
 LOOP_SRC =
 TOOL_SRC =		get_next_line.c\
 				libdic.c\
@@ -88,6 +106,7 @@ LEXER_DIR =		lexer/
 PARSER_DIR =	parser/
 EXEC_DIR =		exec/
 BUILTIN_DIR =	builtin/
+CD_DIR =		cd/
 LOOP_DIR =		loop/
 TOOL_DIR =		tool/
 
@@ -99,6 +118,7 @@ LEXER =			$(addprefix $(LEXER_DIR), $(LEXER_SRC))
 PARSER =		$(addprefix $(PARSER_DIR), $(PARSER_SRC))
 EXEC =			$(addprefix $(EXEC_DIR), $(EXEC_SRC))
 BUILTIN =		$(addprefix $(BUILTIN_DIR), $(BUILTIN_SRC))
+CD =			$(addprefix $(CD_DIR), $(CD_SRC))
 LOOP =			$(addprefix $(LOOP_DIR), $(LOOP_SRC))
 TOOL =			$(addprefix $(TOOL_DIR), $(TOOL_SRC))
 
@@ -110,6 +130,7 @@ SRC =			$(TOOL)\
 				$(PARSER)\
 				$(EXEC)\
 				$(BUILTIN)\
+				$(CD)\
 				$(MAIN)\
 				$(LOOP)
 
@@ -147,7 +168,7 @@ $(NAME) : $(ABS_OBJ)
 	$(CC) $(FLAG) -o $@ $^ -L$(LIBFT_DIR) -l$(LIBFT) -l$(LIBTERMCAP)
 
 $(COR_OBJ) : $(COR_SRC)
-	$(CC) $(FLAG) -o $@ -c $< -I$(HEADER) -I$(LIBFT_HEADER)
+	$(CC) $(FLAG) -o $@ -c $< -I$(LIBFT_HEADER) -I$(HEADER)
 
 $(ABS_OBJ_LIBFT) :
 	make -C $(LIBFT_DIR)
@@ -178,5 +199,7 @@ config :
 	mkdir -p $(addprefix $(OBJ_DIR), $(PARSER_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(EXEC_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(BUILTIN_DIR))
+	mkdir -p $(addprefix $(OBJ_DIR), $(CD_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(LOOP_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
+
