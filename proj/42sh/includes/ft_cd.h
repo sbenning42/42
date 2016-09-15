@@ -21,4 +21,13 @@ char		*convertlst(t_dlist **alst);
 
 void  	    cd_exit(char *msg);
 
+char		*getcwd_wrapper(void);
+int			access_wrapper(char *path, char *rep);
+int			chdir_wrapper(char *path, char *rep);
+
+t_dlist		*makelst(char *path);
+t_dlist		*cleanlst(t_dlist *e);
+t_dlist		*cleanlstparent(t_dlist *lst);
+char		*convertlst(t_dlist **alst);
+
 #endif

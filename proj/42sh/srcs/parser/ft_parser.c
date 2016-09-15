@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:58:59 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/12 14:42:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/15 12:10:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void		parse_del(t_tree **root)
 	if (*root && (*root)->r)
 		parse_del(&(*root)->r);
 	cmd_destroy(&(*root)->cmd.arg);
-	cmd_destroy(&(*root)->cmd.env);
 	ft_memdel((void **)root);
 }
 
@@ -69,11 +68,7 @@ t_tree		*tree_create(t_lxem *lxem)
 		ft_memdel((void **)&node);
 		return (NULL);
 	}
-	if (!(node->cmd.env = cmd_env()))
-	{
-		cmd_destroy(&node->cmd.arg);
-		ft_memdel((void **)&node);
-	}
+	node->cmd.env = g_ft_environ;
 	return (node);
 }
 

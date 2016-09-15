@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_error.c                                         :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/29 09:53:26 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/15 12:28:32 by sbenning         ###   ########.fr       */
+/*   Created: 2016/09/15 17:40:18 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/15 17:45:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cd.h"
+#include "sh.h"
 
-void		cd_exit(char *msg)
+int			ft_env(int ac, char **av)
 {
-	char	err[1024];
+	int		o;
+	int		i;
+	char	**env;
 
-	ft_sprintf(err, "cd: %s", msg);
-	ft_error(err);
+	o = ft_getopt(ac, av, "i");
+	ft_printf("%#X\n", o);
+	env = NULL;
+	if ((o & 0x1) == 0x1)
+	{
+		i  = 0;
+		while (++i < ac)
+	
+		}
+	}
+	else
+	{
+		env = g_ft_environ;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 18:17:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/13 11:49:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/15 17:38:25 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char			**exec_env(void);
 int				exec_root(t_sh *sh, t_tree *root);
 
 int				exec_word(t_sh *sh, t_tree *root);
+int				exec_builtin(t_sh *sh, t_tree *root);
 int				exec_strict_sep(t_sh *sh, t_tree *root);
 int				exec_and_sep(t_sh *sh, t_tree *root);
 int				exec_or_sep(t_sh *sh, t_tree *root);
@@ -100,5 +101,12 @@ int				exec_stderr_append_redir(t_sh *sh, t_tree *root);
 int				built_exit(t_sh *sh, t_tree *root);
 int				built_prompt(t_sh *sh, t_tree *root);
 int				built_cd(t_sh *sh, t_tree *root);
+int				built_echo(t_sh *sh, t_tree *root);
+int				built_env(t_sh *sh, t_tree *root);
+int				built_setenv(t_sh *sh, t_tree *root);
+int				built_unsetenv(t_sh *sh, t_tree *root);
+
+int				ft_cd(int ac, char **av);
+int				ft_env(int ac, char **av);
 
 #endif

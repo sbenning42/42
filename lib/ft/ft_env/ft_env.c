@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 13:05:35 by sbenning          #+#    #+#             */
-/*   Updated: 2016/06/30 10:48:43 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/15 17:30:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,34 @@ int			ft_setenv(char *key, char *value)
 		return (-1);
 	free(tmp);
 	g_ft_environ = env;
+	return (0);
+}
+
+int			ft_unsetenv(char *key)
+{
+	char	**env;
+	int		i;
+	size_t	len;
+	char	*tmp;
+
+	env = g_ft_environ;
+	len = ft_strlen(key);
+	tmp = NULL;
+	i = -1;
+	while (env[++i])
+	{
+		if (!ft_strncmp(key, env[i], len) && env[i][len] == '=')
+		{
+			tmp = env[i];
+			while (env[i])
+			{
+				env[i] = env[i + 1];
+				i++;
+			}
+			break ;
+		}
+	}
+	if (tmp)
+		ft_memdel((void **)&tmp);
 	return (0);
 }

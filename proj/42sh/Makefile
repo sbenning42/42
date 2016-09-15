@@ -81,14 +81,23 @@ EXEC_SRC =		ft_exec.c\
 				exec_redir.c\
 				exec_redir_append.c\
 				exec_sep.c\
-				exec_word.c
+				exec_word.c\
+				exec_builtin.c
 BUILTIN_SRC =	built_exit.c\
 				built_prompt.c\
+				built_echo.c\
+				built_env.c\
+				built_setenv.c\
+				built_unsetenv.c\
 				built_cd.c
 CD_SRC =		cd_cleanpath.c\
 				cd_currentrep.c\
 				cd_error.c\
-				getopt.c
+				getopt.c\
+				ft_cd.c\
+				wrapper.c\
+				cd_lst.c
+ENV_SRC =		ft_env.c
 LOOP_SRC =
 TOOL_SRC =		get_next_line.c\
 				libdic.c\
@@ -107,6 +116,7 @@ PARSER_DIR =	parser/
 EXEC_DIR =		exec/
 BUILTIN_DIR =	builtin/
 CD_DIR =		cd/
+ENV_DIR =		env/
 LOOP_DIR =		loop/
 TOOL_DIR =		tool/
 
@@ -119,6 +129,7 @@ PARSER =		$(addprefix $(PARSER_DIR), $(PARSER_SRC))
 EXEC =			$(addprefix $(EXEC_DIR), $(EXEC_SRC))
 BUILTIN =		$(addprefix $(BUILTIN_DIR), $(BUILTIN_SRC))
 CD =			$(addprefix $(CD_DIR), $(CD_SRC))
+ENV =			$(addprefix $(ENV_DIR), $(ENV_SRC))
 LOOP =			$(addprefix $(LOOP_DIR), $(LOOP_SRC))
 TOOL =			$(addprefix $(TOOL_DIR), $(TOOL_SRC))
 
@@ -131,6 +142,7 @@ SRC =			$(TOOL)\
 				$(EXEC)\
 				$(BUILTIN)\
 				$(CD)\
+				$(ENV)\
 				$(MAIN)\
 				$(LOOP)
 
@@ -200,6 +212,7 @@ config :
 	mkdir -p $(addprefix $(OBJ_DIR), $(EXEC_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(BUILTIN_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(CD_DIR))
+	mkdir -p $(addprefix $(OBJ_DIR), $(ENV_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(LOOP_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
 

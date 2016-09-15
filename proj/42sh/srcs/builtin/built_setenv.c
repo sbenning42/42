@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_cd.c                                         :+:      :+:    :+:   */
+/*   built_setenv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 14:52:51 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/15 16:53:59 by sbenning         ###   ########.fr       */
+/*   Created: 2016/09/15 16:54:13 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/15 17:30:11 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int				built_cd(t_sh *sh, t_tree *root)
+int			built_setenv(t_sh *sh, t_tree *root)
 {
-	int			ac;
+	char	*k;
+	char	key[1024];
+	char	*v;
 
-	ac = 0;
-	while (root->cmd.arg[ac])
-		ac++;
+	k = NULL;
+	v = NULL;
+	if (root->cmd.arg[1])
+	{
+		k = root->cmd.arg[1];
+		ft_sprintf(key, "%s=", k);
+		if (root->cmd.arg[2])
+			v = root->cmd.arg[2];
+	}
+	if (k && v)
+		ft_setenv(key, v);
 	if ((root->cmd.bitset & EX_OUTPIPE) == EX_OUTPIPE\
 			|| (root->cmd.bitset & EX_OUTREDIR) == EX_OUTREDIR)
-	{
-		ft_cd(ac, root->cmd.arg);
 		exit(EXIT_SUCCESS);
-	}
-	return (ft_cd(ac, root->cmd.arg));
+	return (0);
 	(void)sh;
 }

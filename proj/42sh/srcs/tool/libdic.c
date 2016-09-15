@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 16:26:43 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/09 10:36:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:04:05 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,52 +99,3 @@ void				*ft_dicget(t_dic_entry *dic, char *key)
 	}
 	return (NULL);
 }
-/*
-
-void				dic_del(void *content)
-{
-	t_dic_test		*content_test;
-
-	content_test = (t_dic_test *)content;
-	free(content_test->user);
-	free(content_test->group);
-	free(content_test->shell);
-	free(content_test->home);
-}
-
-int	main(void)
-{
-	t_dic_entry	*testdic;
-	t_dic_entry	*testentry;
-	t_dic_test	user;
-	t_dic_test	*cp;
-
-	testdic = NULL;
-	
-	user.user = ft_strdup("root");
-	user.group = ft_strdup("root");
-	user.shell = ft_strdup("sh");
-	user.home = ft_strdup("/root");
-	
-	testentry = ft_dicnew("root", &user, sizeof(t_dic_test));
-	ft_dicadd(&testdic, testentry, dic_sort);
-
-	user.user = ft_strdup("m4s");
-	user.group = ft_strdup("m4s");
-	user.shell = ft_strdup("sh");
-	user.home = ft_strdup("/home/m4s");
-	
-	testentry = ft_dicnew("m4s", &user, sizeof(t_dic_test));
-	ft_dicadd(&testdic, testentry, dic_sort);
-
-	cp = (t_dic_test *)ft_dicget(testdic, "m4s");
-	ft_printf("m4s: %s\n", cp->home);
-	
-	cp = (t_dic_test *)ft_dicget(testdic, "root");
-	ft_printf("root: %s\n", cp->home);
-	
-	ft_dicdel(&testdic, dic_del);
-	return ;
-}
-*/
-

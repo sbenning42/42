@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/12 13:51:50 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/13 10:52:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:51:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int			exec_new_cmd(t_sh *sh, t_tree *root)
 {
 	char	*path;
 	char	*key;
+	char	msg[1024];
 
 	ft_bzero((void *)root->cmd.bin, 2048);
 	key = root->content->value.str;
@@ -31,7 +32,8 @@ int			exec_new_cmd(t_sh *sh, t_tree *root)
 		ft_strcat(root->cmd.bin, key);
 		return (0);
 	}
-	ft_fprintf(2, "%s: command not found\n", root->content->value.str);
+	ft_sprintf(msg, "%s: command not found", root->content->value.str);
+	ft_error(msg);
 	return (-1);
 }
 
@@ -71,20 +73,15 @@ int			exec_is_builtin(t_tree *root)
 		return (1);
 	else if (!ft_strcmp(root->content->value.str, "cd"))
 		return (1);
-	return (0);
-}
-
-int			exec_builtin(t_sh *sh, t_tree *root)
-{
-	if ((root->cmd.bitset & EX_OUTPIPE) == EX_OUTPIPE)
+	else if (!ft_strcmp(root->content->value.str, "echo"))
 		return (1);
-	if (!ft_strcmp(root->content->value.str, "exit"))
-		return (built_exit(sh, root));
-	else if (!ft_strcmp(root->content->value.str, "prompt"))
-		return (built_prompt(sh, root));
-	else if (!ft_strcmp(root->content->value.str, "cd"))
-		return (built_cd(sh, root));
-	return (1);
+	else if (!ft_strcmp(root->content->value.str, "env"))
+		return (1);
+	else if (!ft_strcmp(root->content->value.str, "setenv"))
+		return (1);
+	else if (!ft_strcmp(root->content->value.str, "unsetenv"))
+		return (1);
+	return (0);
 }
 
 int			exec_word(t_sh *sh, t_tree *root)
