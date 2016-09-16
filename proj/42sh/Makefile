@@ -97,7 +97,10 @@ CD_SRC =		cd_cleanpath.c\
 				ft_cd.c\
 				wrapper.c\
 				cd_lst.c
-ENV_SRC =		ft_env.c
+ENV_SRC =		ft_env.c\
+				destroy.c\
+				env_error.c\
+				getentries.c
 LOOP_SRC =
 TOOL_SRC =		get_next_line.c\
 				libdic.c\
@@ -215,4 +218,5 @@ config :
 	mkdir -p $(addprefix $(OBJ_DIR), $(ENV_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(LOOP_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
+
 

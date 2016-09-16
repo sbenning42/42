@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_env.c                                        :+:      :+:    :+:   */
+/*   env_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/15 16:52:04 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/16 09:38:54 by sbenning         ###   ########.fr       */
+/*   Created: 2016/09/16 09:05:35 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/16 09:10:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "sh_env.h"
 
-int			built_env(t_sh *sh, t_tree *root)
+int			env_error(char *msg)
 {
-	int		ac;
-	int		ret;
+	char	err[1024];
 
-	ac = 0;
-	while (root->cmd.arg[ac])
-		ac++;
-	ret = ft_env(ac, root->cmd.arg);
-	if ((root->cmd.bitset & EX_OUTPIPE) == EX_OUTPIPE\
-			|| (root->cmd.bitset & EX_OUTREDIR) == EX_OUTREDIR)
-		exit((ret ? EXIT_FAILURE : EXIT_SUCCESS));
-	return (ret);
-	(void)sh;
+	ft_snprintf(err, 1024, "env: %s", msg);
+	ft_error(err);
+	return (-1);
 }

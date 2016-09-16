@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 18:17:38 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/15 17:38:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/09/16 09:08:59 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "ft_lexer.h"
 # include "ft_parser.h"
 # include "ft_cd.h"
+# include "sh_env.h"
 # include <time.h>
 
 # define SH_DEFAULT_PROMPT ""
@@ -105,8 +106,5 @@ int				built_echo(t_sh *sh, t_tree *root);
 int				built_env(t_sh *sh, t_tree *root);
 int				built_setenv(t_sh *sh, t_tree *root);
 int				built_unsetenv(t_sh *sh, t_tree *root);
-
-int				ft_cd(int ac, char **av);
-int				ft_env(int ac, char **av);
 
 #endif

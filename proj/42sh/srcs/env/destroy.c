@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_env.c                                        :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/15 16:52:04 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/16 09:38:54 by sbenning         ###   ########.fr       */
+/*   Created: 2016/09/16 09:15:46 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/16 09:47:47 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "sh_env.h"
 
-int			built_env(t_sh *sh, t_tree *root)
+void		env_destroy(char ***env)
 {
-	int		ac;
-	int		ret;
+	char	**tmp;
 
-	ac = 0;
-	while (root->cmd.arg[ac])
-		ac++;
-	ret = ft_env(ac, root->cmd.arg);
-	if ((root->cmd.bitset & EX_OUTPIPE) == EX_OUTPIPE\
-			|| (root->cmd.bitset & EX_OUTREDIR) == EX_OUTREDIR)
-		exit((ret ? EXIT_FAILURE : EXIT_SUCCESS));
-	return (ret);
-	(void)sh;
+	tmp = *env;
+	while (*tmp)
+	{
+		ft_memdel((void **)tmp);
+		tmp++;
+	}
+	ft_memdel((void **)env);
 }

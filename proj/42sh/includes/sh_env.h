@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_env.c                                        :+:      :+:    :+:   */
+/*   sh_env.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/15 16:52:04 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/16 09:38:54 by sbenning         ###   ########.fr       */
+/*   Created: 2016/09/16 09:06:05 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/16 09:49:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#ifndef SH_ENV_H
+# define SH_ENV_H
 
-int			built_env(t_sh *sh, t_tree *root)
-{
-	int		ac;
-	int		ret;
+# define ENV_O_EMPTY 0x1
+# define IS_O(X, Y) (X & Y)
 
-	ac = 0;
-	while (root->cmd.arg[ac])
-		ac++;
-	ret = ft_env(ac, root->cmd.arg);
-	if ((root->cmd.bitset & EX_OUTPIPE) == EX_OUTPIPE\
-			|| (root->cmd.bitset & EX_OUTREDIR) == EX_OUTREDIR)
-		exit((ret ? EXIT_FAILURE : EXIT_SUCCESS));
-	return (ret);
-	(void)sh;
-}
+# include "libft.h"
+
+int			env_error(char *msg);
+int			ft_env(int ac, char **av);
+
+char		**env_getentries(int ac, char **av, int *size);
+void		env_destroy(char ***env);
+
+int			ft_getopt(int ac, char **av, char *charset);
+
+#endif

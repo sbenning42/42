@@ -8,6 +8,8 @@
 # include "libft.h"
 # include <sys/stat.h>
 
+
+int			ft_cd(int ac, char **av);
 int			cd_getopt(int ac, char **av, char *charset);
 int			ft_countarg(int ac, char **av);
 char		*cd_currentrep(void);
