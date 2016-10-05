@@ -1,0 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/25 17:58:59 by sbenning          #+#    #+#             */
+/*   Updated: 2016/09/15 12:10:02 by sbenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_parser.h"
+
+int			parse_error(char *token)
+{
+	char	msg[1024];
+
+	ft_bzero((void *)msg, 1024);
+	ft_sprintf(msg, "parse error near token `%s`", token);
+	ft_error(msg);
+	return (1);
+}
+
+void		parse_del(t_tree **root)
+{
+	if (*root && (*root)->l)
+		parse_del(&(*root)->l);
+	if (*root && (*root)->r)
+		parse_del(&(*root)->r);
+	cmd_destroy(&(*root)->cmd.arg);
+	ft_memdel((void **)root);
+}
+
+t_lxem		*parse_prior(t_lxem *list)
+{
+	t_lxem	*tmp;
+
+	tmp = NULL;
+	while (list)
+	{
+		if (list->type == TY_Strict_sep)
+			return (list);
+		if (list->type == TY_And_sep || list->type == TY_Or_sep)
+			tmp = list;
+		else if ((!tmp || (tmp && tmp->type > TY_Pipe))\
+					&& list->type == TY_Pipe)
+			tmp = list;
+		else if ((!tmp || (tmp && tmp->type > TY_Pipe)) && list->type > TY_Pipe)
+			tmp = list;
+		list = list->next;
+	}
+	return (tmp);
+}
+
+t_tree		*tree_create(t_lxem *lxem)
+{
+	t_tree	*node;
+
+	if (!(node = ft_memalloc(sizeof(t_tree))))
+		return (NULL);
+	node->content = lxem;
+	node->l = NULL;
+	node->r = NULL;
+	node->cmd.bitset |= (EX_WAIT | EX_NOPIPE);
+	if (!(node->cmd.arg = cmd_arg(node->content)))
+	{
+		ft_memdel((void **)&node);
+		return (NULL);
+	}
+	node->cmd.env = g_ft_environ;
+	return (node);
+}
+
+int			ft_parser(t_tree **root, t_lxem *list)
+{
+	t_lxem	*prior;
+	int		error;
+
+	prior = NULL;
+	if (!list)
+		return (0);
+	if (!(prior = parse_prior(list)))
+		return (((!(*root = tree_create(list))) ? -1 : 0));
+	if (!prior->previous)
+		return (parse_error(prior->value.str));
+	prior->previous->next = NULL;
+	prior->previous = NULL;
+	if (!(*root = tree_create(prior)))
+		return (-1);
+	if (prior->next)
+		prior->next->previous = NULL;
+	if (!(error = ft_parser(&(*root)->l, list)))
+	{
+		if (!(error = ft_parser(&(*root)->r, prior->next)))
+			return (0);
+		parse_del(&(*root)->l);
+	}
+	return (error);
+}
