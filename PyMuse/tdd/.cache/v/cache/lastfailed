@@ -1,0 +1,7 @@
+{
+  "test_MuseAPI.py::TestMuseAPI::()::test_subscribe_failure": true,
+  "test_MuseAPI.py::TestMuseAPI::()::test_subscribe_success": true,
+  "test_MuseAPI.py::TestMuseAPI::()::test_wrong_args_address": true,
+  "test_MuseAPI.py::TestMuseAPI::()::test_wrong_args_port_cmd": true,
+  "test_MuseAPI.py::TestMuseAPI::()::test_wrong_args_port_comm": true
+}

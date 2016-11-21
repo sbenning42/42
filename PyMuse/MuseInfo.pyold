@@ -1,0 +1,319 @@
+import threading
+
+class Keys:
+    ALL = 0
+    ACC = 1
+    BATT = 2
+    ISGOOD = 3
+    EEG = 4
+    BLINK = 5
+    JAWCLENCH = 6
+    EEGQUANTIZATION = 7
+    CONCENTRATION = 8
+    MELLOW = 9
+    LOWFREQS = 10
+    DELTAABS = 11
+    THETAABS = 12
+    ALPHAABS = 13
+    BETAABS = 14
+    GAMMAABS = 15
+    DELTAREL = 16
+    THETAREL = 17
+    ALPHAREL = 18
+    BETAREL = 19
+    GAMMAREL = 20
+    DELTASSC = 21
+    THETASSC = 22
+    ALPHASSC = 23
+    BETASSC = 24
+    GAMMASSC = 25
+    TOUCHING = 26
+    HORSE = 27
+    DRLREF = 28
+    CONFIG = 29
+    VERSION = 30
+    END = 31
+
+global MuseInfoUrls
+
+MuseInfoUrls = {
+'ALL' : Keys.ALL,
+'/muse/acc' : Keys.ACC,
+'/muse/batt' : Keys.BATT,
+'/muse/elements/is_good' : Keys.ISGOOD,
+'/muse/eeg' : Keys.EEG,
+'/muse/elements/blink' : Keys.BLINK,
+'/muse/elements/jaw_clench' : Keys.JAWCLENCH,
+'/muse/eeg/quantization' : Keys.EEGQUANTIZATION,
+'/muse/elements/experimental/concentration' : Keys.CONCENTRATION,
+'/muse/elements/experimental/mellow' : Keys.MELLOW,
+'/muse/elements/low_freqs' : Keys.LOWFREQS,
+'/muse/elements/delta_absolute' : Keys.DELTAABS,
+'/muse/elements/theta_absolute' : Keys.THETAABS,
+'/muse/elements/alpha_absolute' : Keys.ALPHAABS,
+'/muse/elements/beta_absolute' : Keys.BETAABS,
+'/muse/elements/gamma_absolute' : Keys.GAMMAABS,
+'/muse/elements/delta_relative' : Keys.DELTAREL,
+'/muse/elements/theta_relative' : Keys.THETAREL,
+'/muse/elements/alpha_relative' : Keys.ALPHAREL,
+'/muse/elements/beta_relative' : Keys.BETAREL,
+'/muse/elements/gamma_relative' : Keys.GAMMAREL,
+'/muse/elements/delta_session_score' : Keys.DELTASSC,
+'/muse/elements/theta_session_score' : Keys.THETASSC,
+'/muse/elements/alpha_session_score' : Keys.ALPHASSC,
+'/muse/elements/beta_session_score' : Keys.BETASSC,
+'/muse/elements/gamma_session_score' : Keys.GAMMASSC,
+'/muse/elements/touching_forehead' : Keys.TOUCHING,
+'/muse/elements/horseshoe' : Keys.HORSE,
+'/muse/drlref' : Keys.DRLREF,
+'/muse/config' : Keys.CONFIG,
+'/muse/version' : Keys.VERSION
+}
+
+def url_to_key(url):
+    if not url in MuseInfoUrls:
+        return -1
+    return MuseInfoUrls[url]
+
+class MuseInfo:
+    def __init__(self):
+        self._keys = range(Keys.END)
+        self._init_lock()
+        self._init_str_values()
+        self._init_values()
+
+    def str_sget(self, key):
+        if not key in self._keys:
+            return False
+        self._str_lock[key].acquire()
+        value = self._str_values[key]
+        self._str_lock[key].release()
+        return value
+
+    def sget(self, key):
+        if not key in self._keys:
+            return False
+        self._lock[key].acquire()
+        value = self._values[key]
+        self._lock[key].release()
+        return value
+
+    def sset(self, key, value):
+        if not key in self._keys:
+            return False
+        self._lock[key].acquire()
+        self._values[key] = value
+        self._lock[key].release()
+
+    def str_sset(self, key, value):
+        if not key in self._keys:
+            return False
+        self._str_lock[key].acquire()
+        self._str_values[key] = value
+        self._str_lock[key].release()
+
+    def _init_lock(self):
+        self._lock = {}
+        self._str_lock = {}
+        for key in self._keys:
+            self._lock[key] = threading.RLock()
+        for key in self._keys:
+            self._str_lock[key] = threading.RLock()
+
+
+    def _init_str_values(self):
+        self._str_values = {}
+        for key in self._keys:
+            self._str_values[key] = None
+
+
+    def _init_values(self):
+        self._values = {
+                Keys.ACC : [0.0, 0.0, 0.0],
+                Keys.BATT : [0, 0, 0, 0],
+                Keys.ISGOOD : [0, 0, 0, 0],
+                Keys.EEG : [0.0, 0.0, 0.0, 0.0],
+                Keys.BLINK : [0],
+                Keys.JAWCLENCH : [0],
+                Keys.EEGQUANTIZATION : [0],
+                Keys.CONCENTRATION : [0.0],
+                Keys.MELLOW : [0.0],
+                Keys.LOWFREQS : [0.0, 0.0, 0.0, 0.0],
+                Keys.DELTAABS : [0.0, 0.0, 0.0, 0.0],
+                Keys.THETAABS : [0.0, 0.0, 0.0, 0.0],
+                Keys.ALPHAABS : [0.0, 0.0, 0.0, 0.0],
+                Keys.BETAABS : [0.0, 0.0, 0.0, 0.0],
+                Keys.GAMMAABS : [0.0, 0.0, 0.0, 0.0],
+                Keys.DELTAREL : [0.0, 0.0, 0.0, 0.0],
+                Keys.THETAREL : [0.0, 0.0, 0.0, 0.0],
+                Keys.ALPHAREL : [0.0, 0.0, 0.0, 0.0],
+                Keys.BETAREL : [0.0, 0.0, 0.0, 0.0],
+                Keys.GAMMAREL : [0.0, 0.0, 0.0, 0.0],
+                Keys.DELTASSC : [0.0, 0.0, 0.0, 0.0],
+                Keys.THETASSC : [0.0, 0.0, 0.0, 0.0],
+                Keys.ALPHASSC : [0.0, 0.0, 0.0, 0.0],
+                Keys.BETASSC : [0.0, 0.0, 0.0, 0.0],
+                Keys.GAMMASSC : [0.0, 0.0, 0.0, 0.0],
+                Keys.TOUCHING : [0],
+                Keys.HORSE : [0.0, 0.0, 0.0, 0.0],
+                Keys.DRLREF : [0.0, 0.0],
+                Keys.CONFIG : [None],
+                Keys.VERSION : [None]
+                }
+
+    def _init_valuesOLD(self):
+        self._valuesOLD = {
+                Keys.ACC : {
+                    'X' : None,
+                    'Y' : None,
+                    'Z' : None
+                    },
+                Keys.BATT : {
+                    'StateOfCharge' : None,
+                    'FuelGaugeBatteryVoltage' : None,
+                    'ADCBatteryVoltage' : None,
+                    'Temperature' : None
+                    },
+                Keys.ISGOOD : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.EEG : {
+                    '' : None,
+                    '' : None,
+                    '' : None,
+                    '' : None
+                    },
+                Keys.BLINK : {
+                    'Blink' : None
+                    },
+                Keys.JAWCLENCH : {
+                    'JawClench' : None
+                    },
+                Keys.EEGQUANTIZATION : {
+                    'EegQuantization' : None
+                    },
+                Keys.CONCENTRATION : {
+                    'Concentration' : None
+                    },
+                Keys.MELLOW : {
+                    'Mellow' : None
+                    },
+                Keys.LOWFREQS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.DELTAABS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.THETAABS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.ALPHAABS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.BETAABS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.GAMMAABS : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.DELTAREL : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.THETAREL : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.ALPHAREL : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.BETAREL : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.GAMMAREL : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.DELTASSC : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.THETASSC : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.ALPHASSC : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.BETASSC : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.GAMMASSC : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.TOUCHING : {
+                    'TouchingForehead' : None
+                    },
+                Keys.HORSE : {
+                    'Channel1' : None,
+                    'Channel2' : None,
+                    'Channel3' : None,
+                    'Channel4' : None
+                    },
+                Keys.DRLREF : {
+                    'DLRVoltage' : None,
+                    'REFVoltage' : None
+                    },
+                Keys.CONFIG : {
+                    'Config' : None
+                    },
+                Keys.VERSION : {
+                    'Version' : None
+                    }
+                }
