@@ -1,7 +1,8 @@
 IP_SERVER = ''
 IP = 'localhost'
-IO_PORT = 5000
-COM_PORT = 5001
+COM_PORT = 5000
+CMD_PORT = 5001
+CLI_PORT = CMD_PORT
 
 ACC = 0
 EEG = 1
@@ -14,3 +15,13 @@ MuseTable = {
         2 : {'path' : '/muse/elements/is_good', 'args' : {'c1' : int, 'c2' : int, 'c3' : int, 'c4' : int},          'freq' : 10},
         3 : {'path' : '/muse/elements/blink',   'args' : int,                                                       'freq' : 10}
         }
+
+Keys = list(k for k in MuseTable)
+Paths = list(MuseTable[k]['path'] for k in MuseTable)
+
+def get_key_from_path(path):
+    for i, p in enumerate(Paths):
+        if p == path:
+            return i
+    return -1
+            
