@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 17:00:45 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/12 13:20:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/12/01 16:46:46 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ int				*gg_status(void)
 void			rl_sh_prompt(t_rl *rl, char *base, int settings)
 {
 	static char	prompt[4096];
-	int			ret;
 
 	if (ISIN(settings, RL_COLOR))
-		ret = ft_snprintf(prompt, 4096, RL_SH_STYLE_CPROMPT_FORMAT, base);
+		ft_snprintf(prompt, 4096, RL_SH_STYLE_CPROMPT_FORMAT, base);
 	else
-		ret = ft_snprintf(prompt, 4096, RL_SH_STYLE_PROMPT_FORMAT, base);
+		ft_snprintf(prompt, 4096, RL_SH_STYLE_PROMPT_FORMAT, base);
 	rl->prompt = prompt;
 	rl->promptsize = ft_strlen(base) + 3;
 }

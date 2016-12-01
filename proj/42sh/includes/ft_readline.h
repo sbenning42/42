@@ -6,14 +6,15 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:11:56 by sbenning          #+#    #+#             */
-/*   Updated: 2016/09/12 13:23:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2016/12/01 16:44:36 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_READLINE_H
 # define FT_READLINE_H
 
-# define MACOSX
+//# define MACOSX
+# define LINUX
 
 # define RL_XMALLOC_OFFSET 1
 
