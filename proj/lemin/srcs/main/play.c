@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:56:58 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/09 15:05:19 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/12 09:34:17 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	play_solution(t_cons *rules, t_graph *paths, t_graph *rooms, t_sol *sol)
 		}
 	}
 	finish = 0;
+	char	*name;
 	while (!finish)
 	{
 		finish = 1;
@@ -54,7 +55,8 @@ void	play_solution(t_cons *rules, t_graph *paths, t_graph *rooms, t_sol *sol)
 				if (!finish)
 					ft_printf(" ");
 				finish = 0;
-				ft_printf("L%d-%s", i, ((t_room *)rooms->node[((t_path *)paths->node[lem[i].id_path].meta)->step[lem[i].stage]].meta)->name);
+				name = ((t_room *)rooms->node[((t_path *)paths->node[lem[i].id_path].meta)->step[lem[i].stage]].meta)->name;
+				ft_printf("L%d-%s", i, name);
 				lem[i].stage += 1;
 				if (lem[i].stage == ((t_path *)paths->node[lem[i].id_path].meta)->size)
 					lem[i].timer = -1;
