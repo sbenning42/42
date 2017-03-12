@@ -1,0 +1,13 @@
+2
+##START
+Start 0 0
+Room_1 5 5
+Room_2 6 6  
+Room_3 8 8
+##END
+End_R 9 9
+Start-Room_1
+Start-Room_2
+Room_1-End_R
+Room_2-Room_3
+Room_3-End_R
