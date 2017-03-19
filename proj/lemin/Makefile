@@ -17,20 +17,36 @@ MAIN_SRC =		main.c\
 				resolve.c\
 				play.c\
 				lemin.c
+PARSER_SRC =	parse_tag.c\
+				parse_pop.c\
+				parse_room.c\
+				parse_hall.c
+META_SRC =		tool.c
+GLOBAL_SRC =	global.c
 TOOL_SRC =		get_next_line.c\
 				ft_getopt.c\
-				proginfo.c
+				proginfo.c\
+				delete_tab.c
 
 SRC_DIR =		srcs/
 OBJ_DIR =		obj/
 MAIN_DIR =		main/
+PARSER_DIR =	parser/
+META_DIR =		meta/
+GLOBAL_DIR =	global/
 TOOL_DIR =		tool/
 
 MAIN =			$(addprefix $(MAIN_DIR), $(MAIN_SRC))
+PARSER =		$(addprefix $(PARSER_DIR), $(PARSER_SRC))
+META =			$(addprefix $(META_DIR), $(META_SRC))
+GLOBAL =		$(addprefix $(GLOBAL_DIR), $(GLOBAL_SRC))
 TOOL =			$(addprefix $(TOOL_DIR), $(TOOL_SRC))
 
 SRC =			$(TOOL)\
-			$(MAIN)
+				$(PARSER)\
+				$(META)\
+				$(GLOBAL)\
+				$(MAIN)
 
 OBJ =			$(SRC:.c=.o)
 
@@ -44,7 +60,7 @@ HEADER =		includes
 
 DEPEND =		lemin.h
 
-ABS_DEPEND =		$(addprefix $(HEADER)/, $(DEPEND))
+ABS_DEPEND =	$(addprefix $(HEADER)/, $(DEPEND))
 
 LIBFT =			ft
 
@@ -54,9 +70,9 @@ LIB_DIR =		lib/
 
 LIBFT_DIR =		$(addprefix $(LIB_DIR), $(LIBFT))
 
-ABS_OBJ_LIBFT =		$(addprefix $(LIBFT_DIR)/, $(OBJ_LIBFT))
+ABS_OBJ_LIBFT =	$(addprefix $(LIBFT_DIR)/, $(OBJ_LIBFT))
 
-LIBFT_HEADER =		$(addprefix $(LIBFT_DIR)/, $(HEADER))
+LIBFT_HEADER =	$(addprefix $(LIBFT_DIR)/, $(HEADER))
 
 CC =			gcc
 
@@ -92,4 +108,7 @@ re : fclean all
 
 config :
 	mkdir -p $(addprefix $(OBJ_DIR), $(MAIN_DIR))
+	mkdir -p $(addprefix $(OBJ_DIR), $(PARSER_DIR))
+	mkdir -p $(addprefix $(OBJ_DIR), $(META_DIR))
+	mkdir -p $(addprefix $(OBJ_DIR), $(GLOBAL_DIR))
 	mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))

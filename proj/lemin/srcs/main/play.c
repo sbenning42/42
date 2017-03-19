@@ -6,20 +6,47 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:56:58 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/12 09:34:17 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/19 09:02:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-typedef struct s_lem t_lem;
-
-struct s_lem
+int		havetoswap(t_lem l1, t_lem l2, t_graph *paths)
 {
-	int	id_path;
-	int	timer;
-	int	stage;
-};
+	if (l1.timer > l2.timer)
+		return (1);
+	if (l1.timer == l2.timer)
+	{
+		if (((t_path *)paths->node[l1.id_path].meta)->size > ((t_path *)paths->node[l2.id_path].meta)->size)
+			return (1);
+	}
+	return (0);
+}
+
+void	sortlem(t_lem *lem, size_t size, t_graph *paths)
+{
+	int	finish;
+	t_lem	tmp;
+	int		i;
+
+	finish = 0;
+	while (!finish)
+	{
+		finish = 1;
+		i = -1;
+		while (++i < (size - 1))
+		{
+			if (havetoswap(lem[i], lem[i + 1], paths))
+			{
+				finish = 0;
+				tmp = lem[i];
+				lem[i] = lem[i + 1];
+				lem[i + 1] = tmp;
+			}
+		}
+	}
+}
 
 void	play_solution(t_cons *rules, t_graph *paths, t_graph *rooms, t_sol *sol)
 {
@@ -42,6 +69,7 @@ void	play_solution(t_cons *rules, t_graph *paths, t_graph *rooms, t_sol *sol)
 			lem[k].stage = 1;
 		}
 	}
+	sortlem(lem, rules->pop, paths);
 	finish = 0;
 	char	*name;
 	while (!finish)
