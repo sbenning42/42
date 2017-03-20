@@ -27,6 +27,14 @@ TOOL_SRC =		get_next_line.c\
 				ft_getopt.c\
 				proginfo.c\
 				delete_tab.c
+DUMP_SRC =		dump_graph.c\
+				dump_solution.c
+BACKT_SRC =		get_paths.c\
+				save_path.c\
+				neig.c\
+				get_solutions.c\
+				tools.c
+LEM_SRC =		get_lem.c
 
 SRC_DIR =		srcs/
 OBJ_DIR =		obj/
@@ -35,17 +43,26 @@ PARSER_DIR =	parser/
 META_DIR =		meta/
 GLOBAL_DIR =	global/
 TOOL_DIR =		tool/
+DUMP_DIR =		dump/
+BACKT_DIR =		backtrack/
+LEM_DIR =		lem/
 
 MAIN =			$(addprefix $(MAIN_DIR), $(MAIN_SRC))
 PARSER =		$(addprefix $(PARSER_DIR), $(PARSER_SRC))
 META =			$(addprefix $(META_DIR), $(META_SRC))
 GLOBAL =		$(addprefix $(GLOBAL_DIR), $(GLOBAL_SRC))
 TOOL =			$(addprefix $(TOOL_DIR), $(TOOL_SRC))
+DUMP =			$(addprefix $(DUMP_DIR), $(DUMP_SRC))
+BACKT =			$(addprefix $(BACKT_DIR), $(BACKT_SRC))
+LEM =			$(addprefix $(LEM_DIR), $(LEM_SRC))
 
 SRC =			$(TOOL)\
 				$(PARSER)\
 				$(META)\
 				$(GLOBAL)\
+				$(DUMP)\
+				$(BACKT)\
+				$(LEM)\
 				$(MAIN)
 
 OBJ =			$(SRC:.c=.o)
@@ -107,8 +124,11 @@ fclean : clean
 re : fclean all
 
 config :
-	mkdir -p $(addprefix $(OBJ_DIR), $(MAIN_DIR))
-	mkdir -p $(addprefix $(OBJ_DIR), $(PARSER_DIR))
-	mkdir -p $(addprefix $(OBJ_DIR), $(META_DIR))
-	mkdir -p $(addprefix $(OBJ_DIR), $(GLOBAL_DIR))
-	mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(MAIN_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(PARSER_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(META_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(GLOBAL_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(DUMP_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(BACKT_DIR))
+	@mkdir -p $(addprefix $(OBJ_DIR), $(LEM_DIR))

@@ -6,13 +6,12 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 09:36:49 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/19 11:11:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 11:56:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static 
 static int		check_room_integrity(t_graph *rooms, char **room)
 {
 	size_t		size;
@@ -31,7 +30,7 @@ static int		check_room_integrity(t_graph *rooms, char **room)
 
 static int		add_room(t_graph *rooms, char **room, int id)
 {
-	t_node*		tmp;
+	t_node		*tmp;
 	char		*name;
 
 	tmp = rooms->node;

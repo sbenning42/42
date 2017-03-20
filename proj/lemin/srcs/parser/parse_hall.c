@@ -6,17 +6,16 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 09:36:47 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/19 11:36:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 17:11:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int			check_hall_integrity(char **hall, t_graph *rooms, int *pid1, int *pid2)
+static int	check_hall_integrity(char **hall, t_graph *rooms,\
+								int *id1, int *id2)
 {
-	size_t			size;
-	int				id1;
-	int				id2;
+	size_t	size;
 
 	if (!hall)
 		return (LEM_MALLOC_ERR);
@@ -27,21 +26,19 @@ static int			check_hall_integrity(char **hall, t_graph *rooms, int *pid1, int *p
 		return (LEM_HALL_FMT_ERR);
 	else if (!ft_strcmp(hall[0], hall[1]))
 		return (LEM_CYCLE_HALL_ERR);
-	id1 = get_id_by_name(rooms, hall[0]);
-	*pid1 = id1;
-	id2 = get_id_by_name(rooms, hall[1]);
-	*pid2 = id2;
-	if (id1 < 0 || id2 < 0)
+	*id1 = get_id_by_name(rooms, hall[0]);
+	*id2 = get_id_by_name(rooms, hall[1]);
+	if (*id1 < 0 || *id2 < 0)
 		return (LEM_UNKNOW_ROOM_ERR);
-	if (is_in_neig(rooms, id1, id2) || is_in_neig(rooms, id2, id1))
+	if (is_in_neig(rooms, *id1, *id2) || is_in_neig(rooms, *id2, *id1))
 		return (LEM_DUPLICATE_HALL_ERR);
 	return (LEM_NOERR);
 }
 
-static int			add_neig(t_graph *rooms, int id1, int id2)
-{	
-	int				*tmp;
-	size_t			size;
+static int	add_neig(t_graph *rooms, int id1, int id2)
+{
+	int		*tmp;
+	size_t	size;
 
 	tmp = rooms->node[id1].neig;
 	size = rooms->node[id1].neig_size;
@@ -55,19 +52,19 @@ static int			add_neig(t_graph *rooms, int id1, int id2)
 	return (LEM_NOERR);
 }
 
-static int			add_hall(t_graph *rooms, int id1, int id2)
+static int	add_hall(t_graph *rooms, int id1, int id2)
 {
 	if (add_neig(rooms, id1, id2) || add_neig(rooms, id2, id1))
 		return (LEM_MALLOC_ERR);
 	return (LEM_NOERR);
 }
 
-int					parse_hall(char *line, int *state, t_graph *rooms)
+int			parse_hall(char *line, int *state, t_graph *rooms)
 {
-	char			**hall;
-	int				id1;
-	int				id2;
-	int				ret;
+	char	**hall;
+	int		id1;
+	int		id2;
+	int		ret;
 
 	if (*state < LEM_DEFAULT_STATE)
 		return (LEM_NOPOP_ERR);

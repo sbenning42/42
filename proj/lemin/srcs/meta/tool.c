@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 10:57:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/19 11:24:04 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 17:13:00 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			get_id_by_name(t_graph *rooms, char *name)
 	int		id;
 
 	id = 0;
-	while (id < rooms->size)
+	while (id < (int)rooms->size)
 	{
 		if (!ft_strcmp(ACCESS_ROOM_META(rooms, id)->name, name))
 			return (id);
@@ -31,7 +31,7 @@ int			is_in_neig(t_graph *rooms, int id1, int id2)
 	int		i;
 
 	i = 0;
-	while (i < rooms->node[id1].neig_size)
+	while (i < (int)rooms->node[id1].neig_size)
 	{
 		if (rooms->node[id1].neig[i] == id2)
 			return (1);

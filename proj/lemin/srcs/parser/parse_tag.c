@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 09:34:05 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/19 10:04:58 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 13:22:35 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int					parse_tag(char *line, int *state)
 
 	if (*(line + 1) != LEM_COMMENT_CHAR)
 		return (LEM_NOERR);
-	if (*state != LEM_DEFAULT_STATE)
+	if (*state < LEM_DEFAULT_STATE)
 		return (LEM_NOPOP_ERR);
 	i = -1;
 	while (g_cmd[++i].cmd)
