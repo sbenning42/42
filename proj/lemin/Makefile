@@ -10,60 +10,35 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-NAME =			lemin
+NAME =			lem-in
 
-MAIN_SRC =		main.c\
+SRC =			main.c\
 				parsing.c\
 				resolve.c\
 				play.c\
-				lemin.c
-PARSER_SRC =	parse_tag.c\
+				lemin.c\
+				parse_tag.c\
 				parse_pop.c\
 				parse_room.c\
-				parse_hall.c
-META_SRC =		tool.c
-GLOBAL_SRC =	global.c
-TOOL_SRC =		get_next_line.c\
+				parse_hall.c\
+				meta_tool.c\
+				global.c\
+				get_next_line.c\
 				ft_getopt.c\
 				proginfo.c\
-				delete_tab.c
-DUMP_SRC =		dump_graph.c\
-				dump_solution.c
-BACKT_SRC =		get_paths.c\
+				delete_tab.c\
+				dump_graph.c\
+				dump_solution.c\
+				get_paths.c\
 				save_path.c\
 				neig.c\
 				get_solutions.c\
-				tools.c
-LEM_SRC =		get_lem.c
+				tools.c\
+				get_lem.c\
+				destroy.c
 
 SRC_DIR =		srcs/
 OBJ_DIR =		obj/
-MAIN_DIR =		main/
-PARSER_DIR =	parser/
-META_DIR =		meta/
-GLOBAL_DIR =	global/
-TOOL_DIR =		tool/
-DUMP_DIR =		dump/
-BACKT_DIR =		backtrack/
-LEM_DIR =		lem/
-
-MAIN =			$(addprefix $(MAIN_DIR), $(MAIN_SRC))
-PARSER =		$(addprefix $(PARSER_DIR), $(PARSER_SRC))
-META =			$(addprefix $(META_DIR), $(META_SRC))
-GLOBAL =		$(addprefix $(GLOBAL_DIR), $(GLOBAL_SRC))
-TOOL =			$(addprefix $(TOOL_DIR), $(TOOL_SRC))
-DUMP =			$(addprefix $(DUMP_DIR), $(DUMP_SRC))
-BACKT =			$(addprefix $(BACKT_DIR), $(BACKT_SRC))
-LEM =			$(addprefix $(LEM_DIR), $(LEM_SRC))
-
-SRC =			$(TOOL)\
-				$(PARSER)\
-				$(META)\
-				$(GLOBAL)\
-				$(DUMP)\
-				$(BACKT)\
-				$(LEM)\
-				$(MAIN)
 
 OBJ =			$(SRC:.c=.o)
 
@@ -83,9 +58,7 @@ LIBFT =			ft
 
 OBJ_LIBFT =		libft.a
 
-LIB_DIR =		lib/
-
-LIBFT_DIR =		$(addprefix $(LIB_DIR), $(LIBFT))
+LIBFT_DIR =		libft
 
 ABS_OBJ_LIBFT =	$(addprefix $(LIBFT_DIR)/, $(OBJ_LIBFT))
 
@@ -93,7 +66,7 @@ LIBFT_HEADER =	$(addprefix $(LIBFT_DIR)/, $(HEADER))
 
 CC =			gcc
 
-FLAG =			-Wall -Wextra #-Werror
+FLAG =			-Wall -Wextra -Werror
 
 all : $(ABS_OBJ_LIBFT) $(NAME)
 
@@ -122,13 +95,3 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
-
-config :
-	@mkdir -p $(addprefix $(OBJ_DIR), $(MAIN_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(PARSER_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(META_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(GLOBAL_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(TOOL_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(DUMP_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(BACKT_DIR))
-	@mkdir -p $(addprefix $(OBJ_DIR), $(LEM_DIR))

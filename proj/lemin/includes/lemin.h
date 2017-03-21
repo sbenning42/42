@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:15:34 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/21 10:30:55 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 12:04:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define LEM_LOGIC_ERR -11
 # define LEM_LITIGE_ROOM_ERR -12
 # define LEM_FORBIDDEN_ROOM_ERR -13
+# define LEM_POSITION_ROOM_ERR -14
 
 # define LEM_SMALLPOP_MSG "Lem-in Population must be at least `1`"
 # define LEM_NOPOP_MSG "Can't find the Population size"
@@ -68,6 +69,7 @@
 # define LEM_UNKNOW_CODE "Unknow error code... Doesn't expect that to happend"
 # define LEM_LITIGE_ROOM_MSG "Can't have '-' in a room name"
 # define LEM_FORBIDDEN_ROOM_MSG "Can't have 'L' on first char of a room's name"
+# define LEM_POSITION_ROOM_MSG "X or Y position is to big/small for an int"
 
 # define LEM_SYNERR_FMT "%s: Syntax error. Line %d: `%s` -> %s.\n"
 # define LEM_LOGERR_FMT "%s: Logical error. Line %d: `%s` -> %s.\n"
@@ -257,5 +259,8 @@ void					dump_room(void *meta);
 void					dump_path(void *meta);
 void					dump_graph(t_graph *g, char *name, void (*f)(void *));
 void					dump_solutions(t_list *l);
+
+void					destroy_all\
+						(t_graph *rooms, t_graph *paths, t_list **solutions);
 
 #endif
