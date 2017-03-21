@@ -1,0 +1,22 @@
+asm convert ASM source code into destination opcode.
+
+An ASM instruction can be:
+	[:label]	instruction [param1,param2,...]
+Or:
+	[:label]
+				instruction [param1,param2,...]
+
+The conresponding opcode is:
+	instruction_opcode,[OCP],[param_values]
+
+OCP is an octet who define the types of param
+param is encoded switch instruction
+
+Param can be one of the three following type:
+	registre (r)
+	indirect N
+	direct %(N or :label)
+
+registre is encoded as one byte taking the value of the registre number
+indirect is encoded as two byte taking the value N
+direct is encoded as two or four byte (switch instruction) taking the value N or the offset between current instruction and the labeled one
