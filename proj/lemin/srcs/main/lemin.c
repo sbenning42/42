@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:23:55 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 16:38:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 20:27:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	lem_init(t_graph *rooms, t_graph *paths,\
 	rules->pop = -1;
 	rules->id_s = -1;
 	rules->id_e = -1;
+	rules->lucky = 0;
 }
 
 void		lemin(int fd)
@@ -51,20 +52,20 @@ void		lemin(int fd)
 	lem_init(&rooms, &paths, &rules, &solutions);
 	if (parsing(fd, &rooms, &rules))
 	{
-		ft_fprintf(2, "Error\n");
+		ft_printf("ERROR\n");
 		return ;
 	}
 	may_dump_room(&rooms);
 	if (resolve(&rooms, &paths, &rules, &solutions))
 	{
-		ft_fprintf(2, "Error\n");
+		ft_printf("ERROR\n");
 		return ;
 	}
 	may_dump_path(&paths);
 	may_dump_solution(solutions);
 	if (play(&rooms, &paths, &rules, &solutions))
 	{
-		ft_fprintf(2, "Error\n");
+		ft_printf("ERROR\n");
 		return ;
 	}
 }

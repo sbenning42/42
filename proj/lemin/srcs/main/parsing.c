@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:56:19 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 12:32:15 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 10:30:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,43 @@ char		*get_error_msg(int errcode)
 	return (LEM_UNKNOW_CODE);
 }
 
-int			syn_error(char **line, int li, int errcode)
+int			syn_error(char **line, int li, int err)
 {
 	if (PI_ISOPT(proginfo()->opt, O_VERB))
 	{
-		ft_fprintf(2, LEM_SYNERR_FMT,\
+		ft_fprintf(2, (err != LEM_LOGIC_ERR ? LEM_SYNERR_FMT : LEM_LOGERR_FMT),\
 					proginfo()->name, li, (line ? *line : ""),\
-					get_error_msg(errcode));
+					get_error_msg(err));
 	}
 	if (line)
 		ft_memdel((void **)line);
-	return (-1);
+	return (((err == LEM_MALLOC_ERR || err == LEM_LOGIC_ERR) ? -1 : 0));
 }
 
-int			parse_line(char *line, t_graph *rooms, t_cons *rules, int *state)
+int			parse_line(char *rawline, t_graph *rooms, t_cons *rules, int *state)
 {
-	if (*line == LEM_COMMENT_CHAR)
-		return (parse_tag(line, state));
-	if (*state == LEM_POP_STATE)
-		return (parse_pop(line, state, rules));
+	char	*line;
+	int		ret;
+
+	if (!(line = ft_strtrim(rawline)))
+		return (LEM_MALLOC_ERR);
+	else if (*line == LEM_COMMENT_CHAR)
+		ret = parse_tag(line, state);
+	else if (*state == LEM_POP_STATE)
+		ret = parse_pop(line, state, rules);
 	else if (ft_strchr(line, LEM_ROOM_CHAR))
-		return (parse_room(line, state, rooms, rules));
+		ret = parse_room(line, state, rooms, rules);
 	else if (ft_strchr(line, LEM_HALL_CHAR))
-		return (parse_hall(line, state, rooms));
+		ret = parse_hall(line, state, rooms);
 	else
-		return (LEM_LINE_FMT_ERR);
-	return (LEM_NOERR);
+		ret = LEM_LINE_FMT_ERR;
+	free(line);
+	return (ret);
+}
+
+static int	bad_rules(t_cons *rules)
+{
+	return ((rules->id_s < 0 || rules->id_e < 0 || rules->id_s == rules->id_e));
 }
 
 int			parsing(int fd, t_graph *rooms, t_cons *rules)
@@ -66,16 +77,16 @@ int			parsing(int fd, t_graph *rooms, t_cons *rules)
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (!*line)
+			break ;
+		if ((errcode = parse_line(line, rooms, rules, &state)))
 		{
-			ft_memdel((void **)&line);
+			syn_error(&line, li, errcode);
 			break ;
 		}
-		if ((errcode = parse_line(line, rooms, rules, &state)))
-			return (syn_error(&line, li, errcode));
 		ft_memdel((void **)&line);
 		li++;
 	}
-	if (ret >= 0 && (rules->id_s < 0 || rules->id_e < 0))
+	if (ret >= 0 && bad_rules(rules))
 		return (syn_error(NULL, li, LEM_LOGIC_ERR));
 	return ((ret < 0 ? ret : 0));
 }

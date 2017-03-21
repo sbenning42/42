@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 15:14:50 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 17:07:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 10:02:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int				save_path(t_graph *path, t_btrack *backtrack)
 	static int	id;
 
 	size = lst_size(backtrack->path);
+	if (!size)
+		id = 0;
 	step = (int *)ft_memalloc(sizeof(int) * size);
 	fill_step(step, backtrack->path);
 	tmp = path->node;

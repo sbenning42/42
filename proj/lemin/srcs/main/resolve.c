@@ -6,7 +6,7 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:56:46 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 17:18:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 09:06:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ static void		get_timer_switch_solution(t_graph *paths, t_list *solutions)
 int				resolve(t_graph *rooms, t_graph *paths,\
 						t_cons *rules, t_list **solutions)
 {
+	if (is_in_neig(rooms, rules->id_s, rules->id_e))
+	{
+		rules->lucky = 1;
+		return (0);
+	}
 	get_paths_by_backtrack(rooms, paths, rules);
 	if (!paths->size)
 	{

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 11:19:13 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 12:29:31 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 08:08:54 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_err				g_err[] = {\
 	{LEM_UNKNOW_ROOM_ERR, LEM_UNKNOW_ROOM_MSG},\
 	{LEM_DUPLICATE_HALL_ERR, LEM_DUPLICATE_HALL_MSG},\
 	{LEM_LINE_FMT_ERR, LEM_LINE_FMT_MSG},\
+	{LEM_LITIGE_ROOM_ERR, LEM_LITIGE_ROOM_MSG},\
+	{LEM_FORBIDDEN_ROOM_ERR, LEM_FORBIDDEN_ROOM_MSG},\
 	{LEM_LOGIC_ERR, LEM_LOGIC_MSG},\
 	{0, NULL}\
 };

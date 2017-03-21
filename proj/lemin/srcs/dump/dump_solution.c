@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 14:54:22 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 17:14:44 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/20 20:13:44 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ void		dump_solutions(t_list *l)
 		}
 		l = l->next;
 	}
-	ft_printf(LEM_BEST_SOLUTION_FMT, best_id, best);
+	ft_printf(LEM_BEST_SOLUTION_FMT, best_id, (best_id < 0 ? 1 : best));
 }

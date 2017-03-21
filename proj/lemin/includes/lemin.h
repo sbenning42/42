@@ -6,17 +6,19 @@
 /*   By: sbenning <sbenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:15:34 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 18:15:13 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 10:30:55 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
-# define CS_O "vsc"
+# define CS_O "vscdn"
 # define O_VERB 1
 # define O_STEP 2
 # define O_COUNT 4
+# define O_DEBUG 8
+# define O_NAME 16
 
 # define LEM_NOERR 0
 # define LEM_SMALLPOP_ERR -1
@@ -30,6 +32,8 @@
 # define LEM_DUPLICATE_HALL_ERR -9
 # define LEM_LINE_FMT_ERR -10
 # define LEM_LOGIC_ERR -11
+# define LEM_LITIGE_ROOM_ERR -12
+# define LEM_FORBIDDEN_ROOM_ERR -13
 
 # define LEM_SMALLPOP_MSG "Lem-in Population must be at least `1`"
 # define LEM_NOPOP_MSG "Can't find the Population size"
@@ -62,8 +66,11 @@
 
 # define LEM_LOGIC_MSG "Missing command ##start or ##end, or there definition"
 # define LEM_UNKNOW_CODE "Unknow error code... Doesn't expect that to happend"
+# define LEM_LITIGE_ROOM_MSG "Can't have '-' in a room name"
+# define LEM_FORBIDDEN_ROOM_MSG "Can't have 'L' on first char of a room's name"
 
 # define LEM_SYNERR_FMT "%s: Syntax error. Line %d: `%s` -> %s.\n"
+# define LEM_LOGERR_FMT "%s: Logical error. Line %d: `%s` -> %s.\n"
 # define FMT_EOPEN "%s: Cannot open file `%s`\n"
 
 # define LEM_GRAPH_DUMP_1FMT "{gr|ss}Dumping graph "
@@ -151,6 +158,7 @@ struct					s_cons
 	int					pop;
 	int					id_s;
 	int					id_e;
+	int					lucky;
 };
 
 struct					s_sol

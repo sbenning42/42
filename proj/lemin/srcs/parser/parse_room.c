@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 09:36:49 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/20 11:56:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/21 10:02:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ static int		check_room_integrity(t_graph *rooms, char **room)
 		++size;
 	if (size != LEM_ROOM_SIZE)
 		return (LEM_ROOM_FMT_ERR);
+	if (room[0][0] == 'L')
+		return (LEM_FORBIDDEN_ROOM_ERR);
 	if (get_id_by_name(rooms, room[0]) != -1)
 		return (LEM_DUPLICATE_ROOM_ERR);
+	if (ft_strchr(room[0], '-'))
+		return (LEM_LITIGE_ROOM_ERR);
 	return (LEM_NOERR);
 }
 
@@ -60,6 +64,8 @@ int				parse_room(char *line, int *state,\
 	int			ret;
 	static int	id;
 
+	if (!rooms->size)
+		id = 0;
 	if (*state < LEM_DEFAULT_STATE)
 		return (LEM_NOPOP_ERR);
 	else if (*state == LEM_START_STATE)
