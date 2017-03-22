@@ -1,0 +1,4 @@
+.command "test literal %: !. char"
+instruction0 param0_1, %:param0_2, 42 #comment0
+instruction1 param1_1, %:param1_2, 42 #comment1
+fin

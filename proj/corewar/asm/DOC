@@ -20,3 +20,12 @@ Param can be one of the three following type:
 registre is encoded as one byte taking the value of the registre number
 indirect is encoded as two byte taking the value N
 direct is encoded as two or four byte (switch instruction) taking the value N or the offset between current instruction and the labeled one
+
+
+
+valide lines are:
+
+.cmd "literal"
+word:
+word: word word, %:word, word
+word word, %:word, word
