@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flush_and_comment_state.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/22 10:40:02 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/23 14:13:38 by sbenning         ###   ########.fr       */
+/*   Created: 2017/03/23 12:05:30 by sbenning          #+#    #+#             */
+/*   Updated: 2017/03/23 12:08:09 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				main(int ac, char **av)
+static int	actual_flush_state(t_lexem *lexem, char c, int state)
 {
-	int			fd;
-	int			i;
-
-	if (ac < 2)
-		return (0);
-	proginfo_init(ac, av, NULL, O_CHARSET);
-	ac = proginfo()->oarg_c;
-	av = proginfo()->oarg_v;
-	i = -1;
-	while (++i < ac)
+	lexem->token.type = state;
+	if (c == NL_CHAR)
 	{
-		fd = open(av[i], O_RDONLY);
-		if (fd < 0)
-			return (-1);
-		ft_printf("\nOpen file `%s`:\n\n", av[i]);
-		compile(fd);
-		ft_printf("\nClose file `%s`:\n\n", av[i]);
-		close(fd);
+		token_reset(lexem);
+		return (default_state(lexem, c));
 	}
 	return (0);
+}
+
+int			flush_state(t_lexem *lexem, char c)
+{
+	return (actual_flush_state(lexem, c, ST_FLUSH));
+}
+
+int			comment_state(t_lexem *lexem, char c)
+{
+	return (actual_flush_state(lexem, c, ST_COMMENT));
 }

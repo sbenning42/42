@@ -6,15 +6,17 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:24:20 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/22 19:19:14 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/23 12:00:31 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
 
-# define ALL_CHARS			"abcdefghijklmnopqrstuvwxyz_%:0123456789"
 # define LABEL_CHARS		"abcdefghijklmnopqrstuvwxyz_0123456789"
+# define NUMERIC_CHARS		"0123456789"
+# define WHITE_CHARS		" \t\v\f\r"
+# define NL_CHAR			'\n'
 # define LABEL_CHAR			':'
 # define SEPARATOR_CHAR		','
 # define DIRECT_CHAR		'%'
@@ -86,7 +88,6 @@
 # define ASM_AFF_ID			"aff"
 # define ASM_AFF_DESC		"aff"
 # define ASM_AFF_ARGS		T_REG
-
 
 typedef char				t_arg_type;
 typedef struct header_s		header_t;
