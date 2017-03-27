@@ -123,6 +123,8 @@ SRC =	ft_mem/ft_memset.c\
 		ft_printf/ft_printf_static.c\
 		ft_printf/ft_printf_tools.c\
 		ft_printf/ft_printf_vfamily.c\
+		ft_parser/ft_parser.c\
+		ft_parser/parse_position.c\
 		ft_env/ft_env.c\
 		ft_exit/ft_exit.c\
 		ft_dyn/ft_dyn.c\
