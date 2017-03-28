@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 08:22:30 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/27 12:18:49 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/28 16:36:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_position	t_position;
 typedef struct s_token		t_token;
 typedef struct s_parser		t_parser;
+typedef int					(*t_cback)(t_parser *, t_token **lst);
 typedef t_token				*(*t_match)(t_parser *, char **, void *);
 
 struct					s_position
@@ -44,8 +45,9 @@ struct					s_parser
 {
 	int					id;
 	char				*key;
-	t_match				match;
 	int					whitespace;
+	t_cback				callback;
+	t_match				match;
 	int					child[FT_PARSE_MAX_CHILD];
 	size_t				size;
 };

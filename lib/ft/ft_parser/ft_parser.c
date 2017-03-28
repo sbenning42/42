@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 09:08:05 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/27 12:32:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/28 18:17:56 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_token		*new_token(int id, char *value, size_t size, t_position position)
 
 	if (!(token = (t_token *)ft_memalloc(sizeof(t_token))))
 		return (NULL);
-	if (!(token->value = ft_strsub(value, 0, size)))
+	if (!(token->value = ft_strsub(value, 0, (size ? size : 1))))
 	{
 		free(token);
 		return (NULL);
@@ -65,8 +65,8 @@ t_token		*match_and(t_parser *self, char **scan, void *data)
 	t_token		*trunk;
 	t_parser	*next_parser;
 
-	i = 0;
 	lst = NULL;
+	i = 0;
 	while (i < self->size)
 	{
 		next_parser = (self - self->id) + self->child[i];
@@ -159,7 +159,7 @@ t_token		*match_char(t_parser *self, char **scan, void *data, char c)
 
 void		skip_whitespace(char **scan)
 {
-	while (**scan == ' ')
+	while (**scan == ' ' || **scan == '\t')
 	{
 		*scan += 1;
 		inc_co_position(1);
@@ -181,7 +181,11 @@ t_token		*ft_parse(t_parser *self, char **scan, void *data)
 		skip_whitespace(scan);
 	start_match = *scan;
 	if ((lst = self->match(self, scan, data)))
+	{
+		if (self->callback && self->callback(self, &lst))
+			exit(1);
 		return (lst);
+	}
 	single_position()->column -= (*scan - start_scan);
 	*scan = start_scan;
 	return (NULL);
