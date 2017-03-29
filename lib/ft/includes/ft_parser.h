@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 08:22:30 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/28 16:36:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/29 11:42:27 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct					s_position
 struct					s_token
 {
 	int					id;
+	char				*key;
 	char				*value;
 	size_t				size;
 	t_position			position;
@@ -60,6 +61,7 @@ void					inc_co_position(int offset);
 
 t_token					*new_token(int id, char *value, size_t size, t_position pos);
 void					add_token(t_token **lst, t_token *token);
+void					pop_token(t_token **lst);
 void					del_token(t_token **lst);
 
 t_token					*match_and(t_parser *self, char **scan, void *data);

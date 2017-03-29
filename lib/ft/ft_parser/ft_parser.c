@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 09:08:05 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/28 18:17:56 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/29 11:42:29 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void		del_token(t_token **lst)
 		free(drive);
 		drive = *lst;
 	}
+}
+
+void		pop_token(t_token **lst)
+{
+	t_token	*tmp;
+
+	if (!*lst)
+		return ;
+	tmp = (*lst)->next;
+	free((*lst)->value);
+	free(*lst);
+	*lst = tmp;
 }
 
 t_token		*new_token(int id, char *value, size_t size, t_position position)
@@ -110,6 +122,7 @@ t_token		*match_id(t_parser *self, char **scan, void *data)
 		++i;
 	if (!(token = new_token(self->id, *scan, i, *single_position())))
 		return (NULL);
+	token->key = self->key;
 	*scan += i;
 	inc_co_position(i);
 	return (token);
@@ -132,6 +145,7 @@ t_token		*match_num(t_parser *self, char **scan, void *data)
 		return (NULL);
 	if (!(token = new_token(self->id, *scan, i + neg, *single_position())))
 		return (NULL);
+	token->key = self->key;
 	*scan += (i + neg);
 	inc_co_position(i + neg);
 	return (token);
@@ -149,6 +163,7 @@ t_token		*match_char(t_parser *self, char **scan, void *data, char c)
 			ft_fprintf(2, "MALLOC ERROR\n");
 			return (NULL);
 		}
+		token->key = self->key;
 		*scan += 1;
 		inc_co_position(1);
 		return (token);
