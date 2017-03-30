@@ -24,9 +24,9 @@ SRC =			main.c\
 				asm_dump_payload.c\
 				asm_grammar.c\
 				asm_header.c\
-				asm_payload.c\
-				asm_label.c\
 				asm_compile.c
+				#asm_payload.c\
+				asm_label.c\
 
 SRC_DIR =		srcs/
 OBJ_DIR =		obj/
@@ -62,10 +62,10 @@ FLAG =			-Wall -Wextra -Werror
 all : $(ABS_OBJ_LIBFT) $(NAME)
 
 $(NAME) : $(ABS_OBJ)
-	$(CC) $(FLAG) -o $@ $^ -L$(LIBFT_DIR) -l$(LIBFT)
+	$(CC) $(FLAG) -g -o $@ $^ -L$(LIBFT_DIR) -l$(LIBFT)
 
 $(COR_OBJ) : $(COR_SRC) $(ABS_DEPEND)
-	$(CC) $(FLAG) -o $@ -c $< -I$(HEADER) -I$(LIBFT_HEADER)
+	$(CC) $(FLAG) -g -o $@ -c $< -I$(HEADER) -I$(LIBFT_HEADER)
 
 $(ABS_OBJ_LIBFT) :
 	make -C $(LIBFT_DIR)

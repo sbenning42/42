@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 08:22:30 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 11:42:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 10:56:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ struct					s_token
 	size_t				size;
 	t_position			position;
 	t_token				*next;
+	void				*meta;
 };
 
 struct					s_parser

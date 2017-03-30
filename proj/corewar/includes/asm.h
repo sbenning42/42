@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 17:39:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 11:56:39 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@
 typedef struct s_op			t_op;
 typedef struct s_payload	t_payload;
 typedef struct s_label		t_label;
-typedef struct s_instruction	t_instruction;
 
 struct						s_op
 {
@@ -103,7 +102,6 @@ struct						s_payload
 	t_label					*labels;
 	size_t					size;
 	size_t					offset;
-	t_intruction			*instructions;
 };
 
 struct						s_label
@@ -111,10 +109,6 @@ struct						s_label
 	char					*id;
 	size_t					offset;
 	t_label					*next;
-};
-
-struct						s_instruction
-{
 };
 
 extern t_parser				g_asm_grammar[];
@@ -127,7 +121,7 @@ char						*header_fmt(void);
 
 void						open_error(char *file);
 void						read_error(char *file);
-void						compile_error(int fd, char *file);
+void						compile_error(char *file);
 
 void						asm_dump_token_lst(t_token *lst);
 void						asm_dump_header(header_t h);

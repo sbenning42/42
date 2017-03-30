@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 16:16:25 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 10:22:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 12:00:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,41 @@ int					smart_delete(t_parser *self, t_token **lst)
 	(void)self;
 }
 
+int					get_op(t_parser *self, t_token **lst)
+{
+	int				i;
+
+	i = -1;
+	while (g_op[++i].id)
+	{
+		if (!ft_strcmp((*lst)->value, g_op[i].id))
+		{
+			if (!((*lst)->meta = ft_memalloc(sizeof(t_op))))
+				return (-1);
+			(*lst)->meta = (t_op *)(g_op + i);
+			return (0);
+		}
+	}
+	return (0);
+	(void)self;
+}
+
+int					get_mask(t_parser *self, t_token **lst)
+{
+	if (!((*lst)->meta = ft_memalloc(sizeof(int))))
+		return (-1);
+	if ((*lst)->id == T_REGISTRE)
+		*(int *)((*lst)->meta) = T_REG;
+	else if ((*lst)->id == T_INDIRECT)
+		*(int *)((*lst)->meta) = T_IND;
+	else if ((*lst)->id == N_DIR_ARG)
+		*(int *)((*lst)->meta) = T_DIR;
+	else if ((*lst)->id == N_DIR_LAB)
+		*(int *)((*lst)->meta) = T_LAB;
+	return (0);
+	(void)self;
+}
+
 t_parser			g_asm_grammar[] = {\
 	{N_DUMB,			"DUMB",				FALSE,	NULL,			match_or,				{N_LINE, T_EMPTY},							2},\
 	{N_LINE,			"LINE",				FALSE,	cleanup,		match_and,				{N_CONTENT, T_EMPTY},						2},\
@@ -222,7 +257,7 @@ t_parser			g_asm_grammar[] = {\
 	{N_INSTRUCTION,		"INSTRUCTION",		FALSE,	NULL,			match_and,				{T_ID, N_SUITE_ARG},						2},\
 	{N_SUITE_ARG,		"ARGUMENTS",		FALSE,	NULL,			match_or,				{N_SEP_ARG, N_ARGUMENT},					2},\
 	{N_SEP_ARG,			"ARG SEPARATOR",	FALSE,	smart_delete,	match_and,				{N_ARGUMENT, T_SEPARATOR, N_SUITE_ARG},		3},\
-	{N_ARGUMENT,		"ARGUMENT",			FALSE,	NULL,			match_or,				{T_REGISTRE, T_INDIRECT, N_DIRECT},			3},\
+	{N_ARGUMENT,		"ARGUMENT",			FALSE,	get_mask,		match_or,				{T_REGISTRE, T_INDIRECT, N_DIRECT},			3},\
 	{N_DIRECT,			"DIRECT",			FALSE,	NULL,			match_or,				{N_DIR_LAB, N_DIR_ARG},						2},\
 	{N_DIR_ARG,			"DIRECT VALUE",		FALSE,	refactor,		match_and,				{T_DIRECT, T_INDIRECT},						2},\
 	{N_DIR_LAB,			"DIRECT LABEL",		FALSE,	refactor,		match_and,				{T_DIR_LAB, T_ID},							2},\
@@ -231,7 +266,7 @@ t_parser			g_asm_grammar[] = {\
 	{T_COMMENT,			"CHAR COMMENT",		TRUE,	NULL,			match_comment,			{},	0},\
 	{T_SKIP_EMPTY,		"SKIP EMPTY",		TRUE,	NULL,			match_skip_empty,		{},	0},\
 	{T_COMMAND,			"CHAR COMMAND",		TRUE,	NULL,			match_command,			{},	0},\
-	{T_ID,				"IDENTIFIER",		TRUE,	NULL,			match_id,				{},	0},\
+	{T_ID,				"IDENTIFIER",		TRUE,	get_op,			match_id,				{},	0},\
 	{T_LITERAL,			"CHAR LITERAL",		TRUE,	NULL,			match_literal,			{},	0},\
 	{T_SKIP_LITERAL,	"SKIP LITERAL",		TRUE,	NULL,			match_skip_literal,		{},	0},\
 	{T_LABEL,			"CHAR LABEL",		FALSE,	NULL,			match_label,			{},	0},\

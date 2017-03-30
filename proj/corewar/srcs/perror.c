@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 10:03:19 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 10:05:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 11:55:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void		read_error(char *file)
 	errno = 0;
 }
 
-void		compile_error(int fd, char *file)
+void		compile_error(char *file)
 {
-	char	*line;
+/*	char	*line;
 
 	while (get_next_line(fd, &line) > 0)
 		ft_memdel((void **)&line);
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, "Can't compile");
+*/	ft_fprintf(2, error_fmt(), proginfo()->name, file, "Can't compile");
 }

@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:03:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 17:25:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 11:58:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int				asm_compile(int fd, char *file)
 {
 	t_token		*lst;
 	header_t	header;
-	t_payload	payload;
+	//t_payload	payload;
 
 	lst = NULL;
 	if (asm_parse(fd, file, &lst))
@@ -111,13 +111,13 @@ int				asm_compile(int fd, char *file)
 	}
 	dump_h(header);
 	dump_tk(lst);
-	ft_bzero((void *)&payload, sizeof(t_payload));
+	/*ft_bzero((void *)&payload, sizeof(t_payload));
 	if (asm_payload(&payload, &lst))
 	{
 		del_token(&lst);
 		return (-1);
 	}
 	dump_pl(&payload);
-	del_token(&lst);
+	*/del_token(&lst);
 	return (0);
 }
