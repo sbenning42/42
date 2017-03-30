@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror.c                                           :+:      :+:    :+:   */
+/*   asm_dump_switch_opt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/29 10:03:19 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:00:42 by sbenning         ###   ########.fr       */
+/*   Created: 2017/03/30 17:03:13 by sbenning          #+#    #+#             */
+/*   Updated: 2017/03/30 18:11:22 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		open_error(char *file)
+void			dump_header(header_t header)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, strerror(errno));
-	errno = 0;
+	if (PI_ISOPT(proginfo()->opt, ASM_VERBOSE_OPT))
+		asm_dump_header(header);
 }
 
-void		read_error(char *file)
+void			dump_token(t_token *token)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, strerror(errno));
-	errno = 0;
+	if (PI_ISOPT(proginfo()->opt, ASM_VERBOSE_OPT))
+		asm_dump_token_lst(token);
 }
 
-void		compile_error(char *file)
+void			dump_payload(t_payload *payload)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, "Can't compile");
+	if (PI_ISOPT(proginfo()->opt, ASM_VERBOSE_OPT))
+		asm_dump_payload(payload);
 }

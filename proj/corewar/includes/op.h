@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:24:20 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 17:34:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 18:33:48 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define DIRECT_CHAR		'%'
 # define COMMENT_CHAR		'#'
 # define COMMAND_CHAR		'.'
-# define LITTERAL_CHAR		'"'
+# define LITERAL_CHAR		'"'
 
 # define REG_CODE			1
 # define DIR_CODE			2

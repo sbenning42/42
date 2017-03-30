@@ -19,14 +19,16 @@ SRC =			main.c\
 				op.c\
 				ft_printf_fmt.c\
 				perror.c\
+				asm_dump_switch_opt.c\
 				asm_dump_token.c\
 				asm_dump_header.c\
 				asm_dump_payload.c\
 				asm_grammar.c\
 				asm_header.c\
-				asm_compile.c
-				#asm_payload.c\
+				asm_payload.c\
 				asm_label.c\
+				asm_instruction.c\
+				asm_compile.c
 
 SRC_DIR =		srcs/
 OBJ_DIR =		obj/

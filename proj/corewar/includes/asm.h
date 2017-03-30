@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 11:56:39 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 18:33:50 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # define ASM_OPT_CHARSET	"vc"
 # define ASM_VERBOSE_OPT	0x1
 # define ASM_COLOR_OPT		0x2
+
+/*
+***#############################################################################
+*/
 
 # define SEP0LINE			"--------------------------------"
 # define SEPLINE			SEP0LINE SEP0LINE
@@ -34,9 +38,13 @@
 
 # define ASM_TOKEN_P0		"({gr|yellow}%03d{eoc}, {gr|cyan}%03d{eoc})"
 # define ASM_TOKEN_P1		" {gr|green}%20s{eoc}"
-# define ASM_TOKEN_P2		" ---->\t\t| {gr}%s{eoc} |\n"
+# define ASM_TOKEN_P2		" ---->\t\t| {gr}%s{eoc} |{gr|blue}%p{eoc}\n"
 # define ASM_TOKEN_CFMT		ASM_TOKEN_P0 ASM_TOKEN_P1 ASM_TOKEN_P2
-# define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t| %s |\n"
+# define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t| %s |%p\n"
+
+/*
+***#############################################################################
+*/
 
 # define N_DUMB				0
 # define N_LINE				1
@@ -72,90 +80,263 @@
 # define T_DIRECT			30
 # define T_DIR_LAB			31
 
-# include					"ft_parser.h"
-# include					"proginfo.h"
-# include					"get_next_line.h"
-# include					"libft.h"
-# include					"op.h"
-# include					<errno.h>
+/*
+***#############################################################################
+*/
 
-typedef struct s_op			t_op;
-typedef struct s_payload	t_payload;
-typedef struct s_label		t_label;
-
-struct						s_op
-{
-	char					*id;
-	unsigned int			opcode;
-	unsigned int			nb_arg;
-	int						args_type[MAX_ARGS_NUMBER];
-	char					*desc;
-	unsigned int			cycle;
-	unsigned int			carry;
-	unsigned int			ocp;
-	unsigned int			label_size;
-};
-
-struct						s_payload
-{
-	unsigned char			*payload;
-	t_label					*labels;
-	size_t					size;
-	size_t					offset;
-};
-
-struct						s_label
-{
-	char					*id;
-	size_t					offset;
-	t_label					*next;
-};
-
-extern t_parser				g_asm_grammar[];
-extern t_op					g_op[];
-
-char						*error_fmt(void);
-char						*success_fmt(void);
-char						*token_fmt(void);
-char						*header_fmt(void);
-
-void						open_error(char *file);
-void						read_error(char *file);
-void						compile_error(char *file);
-
-void						asm_dump_token_lst(t_token *lst);
-void						asm_dump_header(header_t h);
-void						asm_dump_payload(t_payload *payload);
-
-
-t_label						*new_label(char *id, unsigned char offset);
-void						add_label(t_label **label_lst, t_label *label);
-void						del_label(t_label **label);
-t_label						*get_label(t_label *label, char *id);
-
-int							asm_header(header_t *h, t_token **lst);
-int							asm_payload(t_payload *payload, t_token **lst);
-
-int							asm_compile(int fd, char *file);
-
-
-
-
-
-
+# include "ft_parser.h"
+# include "proginfo.h"
+# include "get_next_line.h"
+# include "libft.h"
+# include "op.h"
+# include <errno.h>
 
 /*
-int					match_t_comment(t_parser *self, char **scan, void *data);
-int					match_t_command(t_parser *self, char **scan, void *data);
-int					match_t_litteral(t_parser *self, char **scan, void *data);
-int					match_t_separator(t_parser *self, char **scan, void *data);
-int					match_t_direct(t_parser *self, char **scan, void *data);
-int					match_t_label(t_parser *self, char **scan, void *data);
-int					match_t_registre(t_parser *self, char **scan, void *data);
-int					match_t_indirect(t_parser *self, char **scan, void *data);
-int					match_t_identifier(t_parser *self, char **scan, void *data);
-int					match_t_skip_litteral(t_parser *self, char **scan, void *data);
-int					match_t_skip_all(t_parser *self, char **scan, void *data);
-int					match_t_end_line(t_parser *self, char **scan, void *data);
+***#############################################################################
 */
+
+typedef struct s_op				t_op;
+typedef struct s_payload		t_payload;
+typedef struct s_label			t_label;
+typedef struct s_instruction	t_instruction;
+
+/*
+***#############################################################################
+*/
+
+struct							s_op
+{
+	char						*id;
+	unsigned int				opcode;
+	unsigned int				nb_arg;
+	int							args_type[MAX_ARGS_NUMBER];
+	char						*desc;
+	unsigned int				cycle;
+	unsigned int				carry;
+	unsigned int				ocp;
+	unsigned int				label_size;
+};
+
+struct							s_payload
+{
+	t_label						*labels;
+	t_instruction				*instruction;
+	unsigned char				*payload;
+	size_t						size;
+};
+
+struct							s_label
+{
+	char						*id;
+	size_t						offset;
+	t_label						*next;
+};
+
+struct							s_instruction
+{
+	t_op						*op;
+	unsigned int				ocp;
+	char						*str_arguments[MAX_ARGS_NUMBER];
+	unsigned int				arguments[MAX_ARGS_NUMBER];
+	size_t						size;
+	t_instruction				*next;
+};
+
+/*
+***#############################################################################
+*/
+
+extern t_parser					g_asm_grammar[];
+extern t_op						g_op[];
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_match_chars_1.c
+*/
+
+t_token							*match_comment\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_command\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_literal\
+									(t_parser *self, char **scan, void *data);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_match_chars_2.c
+*/
+
+t_token							*match_label\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_separator\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_direct\
+									(t_parser *self, char **scan, void *data);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_match_arguments.c
+*/
+
+t_token							*match_directlab\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_registre\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_skip_literal\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_skip_empty\
+									(t_parser *self, char **scan, void *data);
+t_token							*match_empty\
+									(t_parser *self, char **scan, void *data);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_callback.c
+*/
+
+int								cleanup(t_parser *self, t_token **lst);
+int								refactor(t_parser *self, t_token **lst);
+int								smart_delete(t_parser *self, t_token **lst);
+int								get_op(t_parser *self, t_token **lst);
+int								get_mask(t_parser *self, t_token **lst);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								ft_printf_fmt.c
+*/
+
+char							*error_fmt(void);
+char							*success_fmt(void);
+char							*token_fmt(void);
+char							*header_fmt(void);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								perror.c
+*/
+
+void							open_error(char *file);
+void							read_error(char *file);
+void							compile_error(char *file);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_dump_header.c
+*/
+
+void							dump_header(header_t header);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_dump_token.c
+*/
+
+void							dump_token(t_token *token);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_dump_payload.c
+*/
+
+void							dump_payload(t_payload *payload);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_dump_switch_opt.c
+*/
+
+void							asm_dump_token_lst(t_token *lst);
+void							asm_dump_header(header_t h);
+void							asm_dump_payload(t_payload *payload);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_label.c
+*/
+
+t_label							*new_label(char *id, unsigned char offset);
+void							add_label(t_label **label_lst, t_label *label);
+void							del_label(t_label **label);
+t_label							*get_label(t_label *label, char *id);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_instruction.c
+*/
+
+t_instruction					*new_instruction(t_op *op);
+void							add_instruction\
+									(t_instruction **lst, t_instruction *ins);
+void							del_instruction(t_instruction **lst);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_header.c
+*/
+
+int								asm_header(header_t *h, t_token **lst);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_payload.c
+*/
+
+int								asm_payload(t_payload *payload, t_token **lst);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_compile.c
+*/
+
+int								asm_compile(int fd, char *file);
+
+/*
+***#############################################################################
+*/
+
 #endif

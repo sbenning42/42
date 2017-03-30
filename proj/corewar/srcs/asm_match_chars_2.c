@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror.c                                           :+:      :+:    :+:   */
+/*   asm_match_chars_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/29 10:03:19 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:00:42 by sbenning         ###   ########.fr       */
+/*   Created: 2017/03/30 18:17:12 by sbenning          #+#    #+#             */
+/*   Updated: 2017/03/30 18:18:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		open_error(char *file)
+t_token	*match_label(t_parser *self, char **scan, void *data)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, strerror(errno));
-	errno = 0;
+	return (match_char(self, scan, data, LABEL_CHAR));
 }
 
-void		read_error(char *file)
+t_token	*match_separator(t_parser *self, char **scan, void *data)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, strerror(errno));
-	errno = 0;
+	return (match_char(self, scan, data, SEPARATOR_CHAR));
 }
 
-void		compile_error(char *file)
+t_token	*match_direct(t_parser *self, char **scan, void *data)
 {
-	ft_fprintf(2, error_fmt(), proginfo()->name, file, "Can't compile");
+	return (match_char(self, scan, data, DIRECT_CHAR));
 }
