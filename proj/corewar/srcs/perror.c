@@ -6,11 +6,17 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 10:03:19 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:00:42 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 20:52:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void		argument_error(char *id, int i, t_token *token)
+{
+	ft_fprintf(2, argument_fmt(),\
+			i, token->key, id, token->position.line, token->position.column);
+}
 
 void		open_error(char *file)
 {

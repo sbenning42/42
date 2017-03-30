@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 16:16:25 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:31:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 18:46:52 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_parser			g_asm_grammar[] = {\
 	{N_DIRECT,			"DIRECT",			FALSE,	NULL,			match_or,				{N_DIR_LAB, N_DIR_ARG},						2},\
 	{N_DIR_ARG,			"DIRECT VALUE",		FALSE,	refactor,		match_and,				{T_DIRECT, T_INDIRECT},						2},\
 	{N_DIR_LAB,			"DIRECT LABEL",		FALSE,	refactor,		match_and,				{T_DIR_LAB, T_ID},							2},\
-\
 	{T_EMPTY,			"EMPTY",			TRUE,	NULL,			match_empty,			{},	0},\
 	{T_COMMENT,			"CHAR COMMENT",		TRUE,	NULL,			match_comment,			{},	0},\
 	{T_SKIP_EMPTY,		"SKIP EMPTY",		TRUE,	NULL,			match_skip_empty,		{},	0},\

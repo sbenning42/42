@@ -18,6 +18,7 @@ SRC =			main.c\
 				get_next_line.c\
 				op.c\
 				ft_printf_fmt.c\
+				ft_printf_fmt_2.c\
 				perror.c\
 				asm_dump_switch_opt.c\
 				asm_dump_token.c\
@@ -28,6 +29,10 @@ SRC =			main.c\
 				asm_payload.c\
 				asm_label.c\
 				asm_instruction.c\
+				asm_callback.c\
+				asm_match_argument.c\
+				asm_match_chars_1.c\
+				asm_match_chars_2.c\
 				asm_compile.c
 
 SRC_DIR =		srcs/

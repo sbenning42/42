@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:33:50 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 20:59:03 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@
 # define ASM_TOKEN_P2		" ---->\t\t| {gr}%s{eoc} |{gr|blue}%p{eoc}\n"
 # define ASM_TOKEN_CFMT		ASM_TOKEN_P0 ASM_TOKEN_P1 ASM_TOKEN_P2
 # define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t| %s |%p\n"
+
+# define ASM_ARGUMENT_CP0	"{gr|red}Bad argument{eoc} %d type '{gr|yellow}%s" 
+# define ASM_ARGUMENT_CP1	"{eoc}' for instruction `{gr|cyan}%s{eoc}`"
+# define ASM_ARGUMENT_CP2	" ({yellow|gr}%03d{eoc}, {gr|pink}%03d{eoc})\n"
+# define ASM_ARGUMENT_CFMT	ASM_ARGUMENT_CP0 ASM_ARGUMENT_CP1 ASM_ARGUMENT_CP2
+# define ASM_ARGUMENT_P0	"Bad argument %d type '%s' for instruction "
+# define ASM_ARGUMENT_P1	"`%s` (%03d, %03d)\n"
+# define ASM_ARGUMENT_FMT	ASM_ARGUMENT_P0 ASM_ARGUMENT_P1
 
 /*
 ***#############################################################################
@@ -230,12 +238,23 @@ char							*header_fmt(void);
 */
 
 /*
+***								ft_printf_fmt_2.c
+*/
+
+char							*argument_fmt(void);
+
+/*
+***#############################################################################
+*/
+
+/*
 ***								perror.c
 */
 
 void							open_error(char *file);
 void							read_error(char *file);
 void							compile_error(char *file);
+void							argument_error(char *id, int i, t_token *token);
 
 /*
 ***#############################################################################

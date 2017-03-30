@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:44:02 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 16:50:08 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/30 20:52:28 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				payload_pop_argument(t_instruction *ins, t_token **lst)
 		}
 		if ((*((int *)((*lst)->meta)) & ins->op->args_type[i]) == 0)
 		{
-			ft_fprintf(2, "Bad argument type for [%s] in instruction `%s` (%03d, %03d)\n", (*lst)->value, ins->op->id, (*lst)->position.line, (*lst)->position.column);
+			argument_error(ins->op->id, i, *lst);
 			return (-1);
 		}
 		if (ins->op->ocp)
