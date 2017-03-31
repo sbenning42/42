@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:03:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 14:35:32 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 15:53:18 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,36 +104,34 @@ static int		asm_parse(int fd, char *file, t_token **token_lst)
 	return (0);
 }
 
-int				asm_compile(int fd, char *file)
+t_payload		asm_compile(int fd, char *file)
 {
 	t_token		*lst;
 	header_t	header;
 	t_payload	payload;
 
 	lst = NULL;
+	ft_bzero((void *)&payload, sizeof(t_payload));
 	if (asm_parse(fd, file, &lst))
-		return (-1);
+		return (payload);
 	if (asm_header(&header, &lst))
 	{
 		del_token(&lst);
-		return (-1);
+		return (payload);
 	}
 	dump_header(header);
 	dump_token(lst);
-	ft_bzero((void *)&payload, sizeof(t_payload));
 	if (asm_payload(&payload, &lst))
 	{
 		del_token(&lst);
-		return (-1);
+		return (payload);
 	}
 	if (resolve_label(&payload))
-		return (-1);
+		return (payload);
 	make_payload(&payload, header);
 	dump_payload(&payload);
-	int fd2 = open("test.asmo", O_WRONLY|O_CREAT, 0777);
-	write(fd2, payload.payload, payload.size);
-	close(fd2);
-
 	del_token(&lst);
-	return (0);
+	del_label(&payload.labels);
+	del_instruction(&payload.instruction);
+	return (payload);
 }

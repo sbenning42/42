@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 14:32:00 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 15:50:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,29 @@
 ***#############################################################################
 */
 
-#define MASK_0 (0xff << 0x18)
-#define MASK_1 (0xff << 0x10)
-#define MASK_2 (0xff << 0x8)
-#define MASK_3 (0xff)
+# define ASM_SOURCE_EXTENTION ".s"
+# define ASM_OBJECT_EXTENTION ".cor"
 
-#define SHORT_FIRST(X) ((X & MASK_2) >> 0x8)
-#define SHORT_SECOND(X) ((X & MASK_3) << 0x8)
-#define SHORT_BIG2LITTLE(X) (SHORT_FIRST(X) + SHORT_SECOND(X))
+/*
+***#############################################################################
+*/
 
-#define INT_FIRST(X) ((X & MASK_0) >> 0x18)
-#define INT_SECOND(X) ((X & MASK_1) >> 0x8)
-#define INT_THIRD(X) ((X & MASK_2) << 0x8)
-#define INT_FOURTH(X) ((X & MASK_3) << 0x18)
-#define INT_COUPLE_FIRST(X) (INT_FIRST(X) + INT_SECOND(X))
-#define INT_COUPLE_SECOND(X) (INT_THIRD(X) + INT_FOURTH(X))
-#define INT_BIG2LITTLE(X) (INT_COUPLE_FIRST(X) + INT_COUPLE_SECOND(X))
+# define MASK_0 (0xff << 0x18)
+# define MASK_1 (0xff << 0x10)
+# define MASK_2 (0xff << 0x8)
+# define MASK_3 (0xff)
+
+# define SHORT_FIRST(X) ((X & MASK_2) >> 0x8)
+# define SHORT_SECOND(X) ((X & MASK_3) << 0x8)
+# define SHORT_BIG2LITTLE(X) (SHORT_FIRST(X) + SHORT_SECOND(X))
+
+# define INT_FIRST(X) ((X & MASK_0) >> 0x18)
+# define INT_SECOND(X) ((X & MASK_1) >> 0x8)
+# define INT_THIRD(X) ((X & MASK_2) << 0x8)
+# define INT_FOURTH(X) ((X & MASK_3) << 0x18)
+# define INT_COUPLE_FIRST(X) (INT_FIRST(X) + INT_SECOND(X))
+# define INT_COUPLE_SECOND(X) (INT_THIRD(X) + INT_FOURTH(X))
+# define INT_BIG2LITTLE(X) (INT_COUPLE_FIRST(X) + INT_COUPLE_SECOND(X))
 
 /*
 ***#############################################################################
@@ -430,7 +437,7 @@ int								asm_payload(t_payload *payload, t_token **lst);
 ***								asm_compile.c
 */
 
-int								asm_compile(int fd, char *file);
+t_payload						asm_compile(int fd, char *file);
 
 /*
 ***#############################################################################
