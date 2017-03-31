@@ -6,47 +6,26 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:44:02 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 20:52:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 11:36:19 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-unsigned int	get_arg_size(t_token *lst, size_t label_size)
+int					payload_pop_argument(t_instruction *ins, t_token **lst)
 {
-	if (lst->id == T_REGISTRE)
-		return (1);
-	if (lst->id == T_INDIRECT)
-		return (2);
-	if (lst->id == N_DIR_ARG)
-		return (label_size);
-	if (lst->id == N_DIR_LAB)
-		return (label_size);
-	return (0);
-}
-
-int				payload_pop_argument(t_instruction *ins, t_token **lst)
-{
-	unsigned int			i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < ins->op->nb_arg)
 	{
-		if (!*lst)
+		if (bad_argument_count(lst))
 		{
-			ft_printf("No enougth arguments\n");
+			argument_count_error(ins->op->id);
 			return (-1);
 		}
-		if ((*((int *)((*lst)->meta)) & ins->op->args_type[i]) == 0)
-		{
-			argument_error(ins->op->id, i, *lst);
+		if (asm_handle_ocp(ins, lst, i))
 			return (-1);
-		}
-		if (ins->op->ocp)
-		{
-			ins->ocp <<= 0x2;
-			ins->ocp |= *((int *)((*lst)->meta));
-		}
 		ins->str_arguments[i] = ft_strdup((*lst)->value);
 		ins->size += get_arg_size(*lst, ins->op->label_size);
 		pop_token(lst);
@@ -60,9 +39,9 @@ int				payload_pop_argument(t_instruction *ins, t_token **lst)
 	return (0);
 }
 
-int				payload_pop_label(t_payload *payload, t_token **lst)
+int					payload_pop_label(t_payload *payload, t_token **lst)
 {
-	t_label		*label;
+	t_label			*label;
 
 	if (!(label = new_label((*lst)->value, payload->size)))
 		return (-1);
@@ -71,7 +50,7 @@ int				payload_pop_label(t_payload *payload, t_token **lst)
 	return (0);
 }
 
-int				payload_pop_instruction(t_payload *payload, t_token **lst)
+int					payload_pop_instruction(t_payload *payload, t_token **lst)
 {
 	t_instruction	*ins;
 
@@ -82,6 +61,7 @@ int				payload_pop_instruction(t_payload *payload, t_token **lst)
 	}
 	if (!(ins = new_instruction((t_op *)(*lst)->meta)))
 		return (-1);
+	ins->offset = payload->size;
 	add_instruction(&payload->instruction, ins);
 	pop_token(lst);
 	if (payload_pop_argument(ins, lst))
@@ -90,12 +70,11 @@ int				payload_pop_instruction(t_payload *payload, t_token **lst)
 	return (0);
 }
 
-int				asm_payload(t_payload *payload, t_token **lst)
+int					asm_payload(t_payload *payload, t_token **lst)
 {
-	while (*lst)
-	{
-		if (payload_pop_instruction(payload, lst))
-			return (-1);
-	}
-	return (0);
+	if (!*lst)
+		return (0);
+	if (payload_pop_instruction(payload, lst))
+		return (-1);
+	return (asm_payload(payload, lst));
 }

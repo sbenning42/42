@@ -6,12 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:24:20 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:33:48 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 13:47:26 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
+
+# define COREWAR_EXEC_MAGIC		0xea83f3
 
 # define NAME_CMD_STRING	".name"
 # define COMMENT_CMD_STRING	".comment"

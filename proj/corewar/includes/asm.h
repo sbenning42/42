@@ -6,16 +6,38 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 20:59:03 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 14:32:00 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# define ASM_OPT_CHARSET	"vc"
+# define ASM_OPT_CHARSET	"vVc"
 # define ASM_VERBOSE_OPT	0x1
-# define ASM_COLOR_OPT		0x2
+# define ASM_VERY_VERBOSE_OPT	0x2
+# define ASM_COLOR_OPT		0x4
+
+/*
+***#############################################################################
+*/
+
+#define MASK_0 (0xff << 0x18)
+#define MASK_1 (0xff << 0x10)
+#define MASK_2 (0xff << 0x8)
+#define MASK_3 (0xff)
+
+#define SHORT_FIRST(X) ((X & MASK_2) >> 0x8)
+#define SHORT_SECOND(X) ((X & MASK_3) << 0x8)
+#define SHORT_BIG2LITTLE(X) (SHORT_FIRST(X) + SHORT_SECOND(X))
+
+#define INT_FIRST(X) ((X & MASK_0) >> 0x18)
+#define INT_SECOND(X) ((X & MASK_1) >> 0x8)
+#define INT_THIRD(X) ((X & MASK_2) << 0x8)
+#define INT_FOURTH(X) ((X & MASK_3) << 0x18)
+#define INT_COUPLE_FIRST(X) (INT_FIRST(X) + INT_SECOND(X))
+#define INT_COUPLE_SECOND(X) (INT_THIRD(X) + INT_FOURTH(X))
+#define INT_BIG2LITTLE(X) (INT_COUPLE_FIRST(X) + INT_COUPLE_SECOND(X))
 
 /*
 ***#############################################################################
@@ -38,9 +60,9 @@
 
 # define ASM_TOKEN_P0		"({gr|yellow}%03d{eoc}, {gr|cyan}%03d{eoc})"
 # define ASM_TOKEN_P1		" {gr|green}%20s{eoc}"
-# define ASM_TOKEN_P2		" ---->\t\t| {gr}%s{eoc} |{gr|blue}%p{eoc}\n"
+# define ASM_TOKEN_P2		" ---->\t\t%s| {gr}%s{eoc} |\n"
 # define ASM_TOKEN_CFMT		ASM_TOKEN_P0 ASM_TOKEN_P1 ASM_TOKEN_P2
-# define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t| %s |%p\n"
+# define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t%s| %s |\n"
 
 # define ASM_ARGUMENT_CP0	"{gr|red}Bad argument{eoc} %d type '{gr|yellow}%s" 
 # define ASM_ARGUMENT_CP1	"{eoc}' for instruction `{gr|cyan}%s{eoc}`"
@@ -49,6 +71,11 @@
 # define ASM_ARGUMENT_P0	"Bad argument %d type '%s' for instruction "
 # define ASM_ARGUMENT_P1	"`%s` (%03d, %03d)\n"
 # define ASM_ARGUMENT_FMT	ASM_ARGUMENT_P0 ASM_ARGUMENT_P1
+
+# define ASM_C_ARGUMENT_C0 "{gr|red}Bad argument count{eoc} "
+# define ASM_C_ARGUMENT_C1	"for instruction `{gr|cyan}%s{eoc}`\n"
+# define ASM_C_ARGUMENT_CFMT	ASM_C_ARGUMENT_C0 ASM_C_ARGUMENT_C1
+# define ASM_C_ARGUMENT_FMT	"Bad argument count for instruction `%s`\n"
 
 /*
 ***#############################################################################
@@ -143,9 +170,13 @@ struct							s_label
 struct							s_instruction
 {
 	t_op						*op;
+	size_t						offset;
 	unsigned int				ocp;
+	unsigned int				arguments_id[MAX_ARGS_NUMBER];
+	unsigned int				arguments_type[MAX_ARGS_NUMBER];
 	char						*str_arguments[MAX_ARGS_NUMBER];
-	unsigned int				arguments[MAX_ARGS_NUMBER];
+	unsigned char				*arg_payload;
+	size_t						arg_size;
 	size_t						size;
 	t_instruction				*next;
 };
@@ -242,6 +273,7 @@ char							*header_fmt(void);
 */
 
 char							*argument_fmt(void);
+char							*argument_count_fmt(void);
 
 /*
 ***#############################################################################
@@ -255,6 +287,7 @@ void							open_error(char *file);
 void							read_error(char *file);
 void							compile_error(char *file);
 void							argument_error(char *id, int i, t_token *token);
+void							argument_count_error(char *id);
 
 /*
 ***#############################################################################
@@ -291,12 +324,57 @@ void							dump_payload(t_payload *payload);
 */
 
 /*
+***								asm_payload_argument.c
+*/
+
+unsigned int					get_arg_size(t_token *lst, size_t label_size);
+int								asm_handle_ocp\
+								(t_instruction *ins, t_token **lst,\
+								unsigned int i);
+int								bad_argument_count(t_token **lst);
+
+/*
+***#############################################################################
+*/
+
+/*
 ***								asm_dump_switch_opt.c
 */
 
 void							asm_dump_token_lst(t_token *lst);
 void							asm_dump_header(header_t h);
 void							asm_dump_payload(t_payload *payload);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_resolve_label.c
+*/
+
+int								resolve_label(t_payload *payload);
+
+/*
+***#############################################################################
+*/
+
+/*
+***								asm_encode_argument.c
+*/
+
+int								encode_registre\
+									(t_instruction *ins, t_payload *payload,\
+									 unsigned int i);
+int								encode_indirect\
+									(t_instruction *ins, t_payload *payload,\
+									 unsigned int i);
+int								encode_direct_value\
+									(t_instruction *ins, t_payload *payload,\
+									 unsigned int i);
+int								encode_direct_label\
+									(t_instruction *ins, t_payload *payload,\
+									 unsigned int i);
 
 /*
 ***#############################################################################

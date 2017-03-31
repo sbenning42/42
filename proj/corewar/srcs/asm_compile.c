@@ -6,11 +6,39 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:03:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 17:56:23 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 14:35:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static int		make_payload(t_payload *payload, header_t header)
+{
+	size_t		cursor;
+	t_instruction	*drive;
+
+	header.prog_size = INT_BIG2LITTLE(payload->size);
+	payload->size += sizeof(header_t);
+	if (!(payload->payload = ft_memalloc(payload->size)))
+		return (-1);
+	ft_memcpy(payload->payload, &header, sizeof(header_t));
+	cursor = sizeof(header_t);
+	drive = payload->instruction;
+	while (drive)
+	{
+		ft_memcpy(payload->payload + cursor, &drive->op->opcode, 1);
+		cursor += 1;
+		if (drive->op->ocp)
+		{
+			ft_memcpy(payload->payload + cursor, &drive->ocp, 1);
+			cursor += 1;
+		}
+		ft_memcpy(payload->payload + cursor, drive->arg_payload, drive->arg_size);
+		cursor += drive->arg_size;
+		drive = drive->next;
+	}
+	return (0);
+}
 
 static void		clean_token(t_token **lst)
 {
@@ -98,7 +126,14 @@ int				asm_compile(int fd, char *file)
 		del_token(&lst);
 		return (-1);
 	}
+	if (resolve_label(&payload))
+		return (-1);
+	make_payload(&payload, header);
 	dump_payload(&payload);
+	int fd2 = open("test.asmo", O_WRONLY|O_CREAT, 0777);
+	write(fd2, payload.payload, payload.size);
+	close(fd2);
+
 	del_token(&lst);
 	return (0);
 }

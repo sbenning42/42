@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 10:52:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/29 11:57:46 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 13:55:12 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int			asm_header(header_t *h, t_token **lst)
 {
 	size_t	len;
 
+	ft_bzero(h, sizeof(header_t));
+	h->magic = INT_BIG2LITTLE(COREWAR_EXEC_MAGIC);
 	if (check_command(NAME_CMD_STRING, *lst))
 		return (-1);
 	pop_token(lst);
@@ -42,7 +44,6 @@ int			asm_header(header_t *h, t_token **lst)
 	ft_strncpy(h->comment, (*lst)->value + 1, COMMENT_LENGTH);
 	h->comment[len - 2] = 0;
 	pop_token(lst);
-	h->magic = 0;
 	h->prog_size = 0;
 	return (0);
 	(void)h;

@@ -27,12 +27,15 @@ SRC =			main.c\
 				asm_grammar.c\
 				asm_header.c\
 				asm_payload.c\
+				asm_payload_argument.c\
 				asm_label.c\
+				asm_resolve_label.c\
 				asm_instruction.c\
 				asm_callback.c\
 				asm_match_argument.c\
 				asm_match_chars_1.c\
 				asm_match_chars_2.c\
+				asm_encode_argument.c\
 				asm_compile.c
 
 SRC_DIR =		srcs/

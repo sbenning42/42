@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 17:03:13 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:11:22 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 14:36:49 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void			dump_token(t_token *token)
 
 void			dump_payload(t_payload *payload)
 {
-	if (PI_ISOPT(proginfo()->opt, ASM_VERBOSE_OPT))
+	if (PI_ISOPT(proginfo()->opt, ASM_VERY_VERBOSE_OPT))
 		asm_dump_payload(payload);
 }

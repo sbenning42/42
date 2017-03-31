@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 10:45:42 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 17:01:21 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 14:38:20 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int			main(int ac, char **av)
 	int		i;
 
 	proginfo_init(ac, av, NULL, ASM_OPT_CHARSET);
+	if (PI_ISOPT(proginfo()->opt, ASM_VERY_VERBOSE_OPT))
+		PI_SETOPT(proginfo()->opt, ASM_VERBOSE_OPT);
 	ac = proginfo()->oarg_c;
 	av = proginfo()->oarg_v;
 	if (!(fd = ft_memalloc(sizeof(int) * ac)))
