@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:03:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 15:53:18 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 17:32:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ t_payload		asm_compile(int fd, char *file)
 	ft_bzero((void *)&payload, sizeof(t_payload));
 	if (asm_parse(fd, file, &lst))
 		return (payload);
+	dump_token(lst);
+	while (42);
 	if (asm_header(&header, &lst))
 	{
 		del_token(&lst);

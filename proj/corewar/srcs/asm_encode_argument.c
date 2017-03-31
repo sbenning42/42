@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 10:20:49 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 14:04:25 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 16:09:00 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int		encode_indirect(t_instruction *ins, t_payload *payload, unsigned int i)
 	tmp = ins->arg_payload;
 	if (!(ins->arg_payload = ft_memalloc(sizeof(short) + ins->arg_size)))
 		return (-1);
+	ft_printf("str arg: %s\n", ins->str_arguments[i]);
 	if (ins->arg_size)
 	{
 		ft_memcpy(ins->arg_payload, tmp, ins->arg_size);
@@ -121,6 +122,7 @@ int		encode_indirect(t_instruction *ins, t_payload *payload, unsigned int i)
 	}
 	val = (short)ft_atoi(ins->str_arguments[i]);
 	val = SHORT_BIG2LITTLE(val);
+	ft_printf("arg: %d\n", val);
 	ft_memcpy(ins->arg_payload + ins->arg_size, &val, sizeof(short));
 	ins->arg_size += sizeof(short);
 	return (0);

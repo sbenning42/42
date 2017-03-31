@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:24:20 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 13:47:26 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/03/31 16:23:02 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # define T_REG				0x1
 # define T_DIR				0x2
-# define T_IND				0x4
+# define T_IND				0x3
 # define T_LAB				0x8
 # define T_NOP				0x10
 
