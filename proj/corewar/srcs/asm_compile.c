@@ -6,12 +6,12 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:03:12 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 17:32:40 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 09:41:34 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
+/*
 static int		make_payload(t_payload *payload, header_t header)
 {
 	size_t		cursor;
@@ -39,7 +39,7 @@ static int		make_payload(t_payload *payload, header_t header)
 	}
 	return (0);
 }
-
+*/
 static void		clean_token(t_token **lst)
 {
 	t_token		*drive;
@@ -57,6 +57,8 @@ static void		clean_token(t_token **lst)
 			free(drive);
 			if (tmp_previous)
 				tmp_previous->next = tmp_next;
+			else
+				*lst = tmp_next;
 		}
 		else
 			tmp_previous = drive;
@@ -114,8 +116,6 @@ t_payload		asm_compile(int fd, char *file)
 	ft_bzero((void *)&payload, sizeof(t_payload));
 	if (asm_parse(fd, file, &lst))
 		return (payload);
-	dump_token(lst);
-	while (42);
 	if (asm_header(&header, &lst))
 	{
 		del_token(&lst);
@@ -128,12 +128,12 @@ t_payload		asm_compile(int fd, char *file)
 		del_token(&lst);
 		return (payload);
 	}
-	if (resolve_label(&payload))
+/*	if (resolve_label(&payload))
 		return (payload);
-	make_payload(&payload, header);
-	dump_payload(&payload);
-	del_token(&lst);
-	del_label(&payload.labels);
-	del_instruction(&payload.instruction);
+	//make_payload(&payload, header);
+	//dump_payload(&payload);
+*/	del_token(&lst);
+//	del_label(&payload.labels);
+//	del_instruction(&payload.instruction);
 	return (payload);
 }
