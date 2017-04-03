@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "asm.h"
-/*
+
 static int		make_payload(t_payload *payload, header_t header)
 {
 	size_t		cursor;
@@ -39,7 +39,7 @@ static int		make_payload(t_payload *payload, header_t header)
 	}
 	return (0);
 }
-*/
+
 static void		clean_token(t_token **lst)
 {
 	t_token		*drive;
@@ -128,12 +128,12 @@ t_payload		asm_compile(int fd, char *file)
 		del_token(&lst);
 		return (payload);
 	}
-/*	if (resolve_label(&payload))
+	if (resolve_label(&payload))
 		return (payload);
-	//make_payload(&payload, header);
-	//dump_payload(&payload);
-*/	del_token(&lst);
-//	del_label(&payload.labels);
-//	del_instruction(&payload.instruction);
+	make_payload(&payload, header);
+	dump_payload(&payload);
+	del_token(&lst);
+	del_label(&payload.labels);
+	del_instruction(&payload.instruction);
 	return (payload);
 }

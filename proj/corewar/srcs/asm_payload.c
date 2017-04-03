@@ -54,12 +54,13 @@ int					payload_pop_instruction(t_payload *payload, t_token **lst)
 {
 	t_instruction	*ins;
 
-	while ((*lst)->id == N_LABEL)
+	while ((*lst) && (*lst)->id == N_LABEL)
 	{
 		if (payload_pop_label(payload, lst))
 			return (-1);
 	}
-	ft_printf("[%s]\n", (*lst)->key);
+	if (!*lst)
+		return (0);
 	if (!(ins = new_instruction((t_op *)(*lst)->meta)))
 		return (-1);
 	ins->offset = payload->size;

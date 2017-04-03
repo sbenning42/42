@@ -1,0 +1,301 @@
+----------------------------------------------------------------
+
+	fluttershy: oh, my, what a scary project
+----------------------------------------------------------------
+
+(007, 000)                LABEL ---->		| entry: |
+(008, 001)           IDENTIFIER ---->			| fork |
+(008, 006)         DIRECT LABEL ---->				| %:coregeni |
+(009, 001)           IDENTIFIER ---->			| st |
+(009, 005)             REGISTRE ---->				| r1 |
+(009, 009)             INDIRECT ---->				| 6 |
+(010, 001)           IDENTIFIER ---->			| live |
+(010, 006)         DIRECT VALUE ---->				| %42 |
+(011, 001)           IDENTIFIER ---->			| fork |
+(011, 006)         DIRECT LABEL ---->				| %:torpgeni |
+(012, 001)           IDENTIFIER ---->			| st |
+(012, 005)             REGISTRE ---->				| r1 |
+(012, 009)             INDIRECT ---->				| 6 |
+(013, 001)           IDENTIFIER ---->			| live |
+(013, 006)         DIRECT VALUE ---->				| %42 |
+(014, 001)           IDENTIFIER ---->			| fork |
+(014, 006)         DIRECT LABEL ---->				| %:avdefgeni |
+(016, 000)                LABEL ---->		| ardeftgt: |
+(018, 000)                LABEL ---->		| ardefgeni: |
+(019, 001)           IDENTIFIER ---->			| st |
+(019, 006)             REGISTRE ---->				| r1 |
+(019, 010)             INDIRECT ---->				| 6 |
+(021, 000)                LABEL ---->		| ardefgen: |
+(022, 001)           IDENTIFIER ---->			| live |
+(022, 007)         DIRECT VALUE ---->				| %213904 |
+(023, 001)           IDENTIFIER ---->			| fork |
+(023, 007)         DIRECT LABEL ---->				| %:ardefgen |
+(025, 000)                LABEL ---->		| ardefinit: |
+(026, 001)           IDENTIFIER ---->			| sti |
+(026, 006)             REGISTRE ---->				| r1 |
+(026, 010)         DIRECT LABEL ---->				| %:ardefl1 |
+(026, 021)         DIRECT VALUE ---->				| %1 |
+(027, 001)           IDENTIFIER ---->			| st |
+(027, 005)             REGISTRE ---->				| r1 |
+(027, 009)             INDIRECT ---->				| 6 |
+(028, 001)           IDENTIFIER ---->			| live |
+(028, 006)         DIRECT VALUE ---->				| %43123 |
+(029, 001)           IDENTIFIER ---->			| sti |
+(029, 006)             REGISTRE ---->				| r1 |
+(029, 010)         DIRECT LABEL ---->				| %:ardefchk |
+(029, 022)         DIRECT VALUE ---->				| %1 |
+(030, 001)           IDENTIFIER ---->			| ld |
+(030, 005)         DIRECT VALUE ---->				| %-6 |
+(030, 010)             REGISTRE ---->				| r2 |
+(031, 001)           IDENTIFIER ---->			| ld |
+(031, 005)         DIRECT VALUE ---->				| %-6 |
+(031, 010)             REGISTRE ---->				| r3 |
+(032, 001)           IDENTIFIER ---->			| ld |
+(032, 005)         DIRECT VALUE ---->				| %150994953 |
+(032, 017)             REGISTRE ---->				| r4 |
+(033, 001)           IDENTIFIER ---->			| ld |
+(033, 005)         DIRECT VALUE ---->				| %-186 |
+(033, 012)             REGISTRE ---->				| r5 |
+(035, 000)                LABEL ---->		| ardefwrite: |
+(036, 000)                LABEL ---->		| ardefl1: |
+(037, 001)           IDENTIFIER ---->			| live |
+(037, 006)         DIRECT VALUE ---->				| %295423 |
+(038, 001)           IDENTIFIER ---->			| sti |
+(038, 006)             REGISTRE ---->				| r4 |
+(038, 010)         DIRECT LABEL ---->				| %:ardeftgt |
+(038, 022)             REGISTRE ---->				| r2 |
+(039, 001)           IDENTIFIER ---->			| add |
+(039, 006)             REGISTRE ---->				| r2 |
+(039, 010)             REGISTRE ---->				| r3 |
+(039, 014)             REGISTRE ---->				| r2 |
+(040, 001)           IDENTIFIER ---->			| sti |
+(040, 006)             REGISTRE ---->				| r4 |
+(040, 010)         DIRECT LABEL ---->				| %:ardeftgt |
+(040, 022)             REGISTRE ---->				| r2 |
+(041, 001)           IDENTIFIER ---->			| add |
+(041, 006)             REGISTRE ---->				| r2 |
+(041, 010)             REGISTRE ---->				| r3 |
+(041, 014)             REGISTRE ---->				| r2 |
+(042, 000)                LABEL ---->		| ardefchk: |
+(043, 001)           IDENTIFIER ---->			| live |
+(043, 006)         DIRECT VALUE ---->				| %3940641 |
+(044, 001)           IDENTIFIER ---->			| xor |
+(044, 006)             REGISTRE ---->				| r2 |
+(044, 010)             REGISTRE ---->				| r5 |
+(044, 014)             REGISTRE ---->				| r15 |
+(045, 001)           IDENTIFIER ---->			| zjmp |
+(045, 006)         DIRECT LABEL ---->				| %:ardefinit |
+(046, 000)                LABEL ---->		| ardefloop: |
+(047, 001)           IDENTIFIER ---->			| ld |
+(047, 005)         DIRECT VALUE ---->				| %0 |
+(047, 009)             REGISTRE ---->				| r16 |
+(048, 001)           IDENTIFIER ---->			| zjmp |
+(048, 006)         DIRECT LABEL ---->				| %:ardefwrite |
+(051, 000)                LABEL ---->		| coregeni: |
+(052, 001)           IDENTIFIER ---->			| st |
+(052, 005)             REGISTRE ---->				| r1 |
+(052, 009)             INDIRECT ---->				| 6 |
+(054, 000)                LABEL ---->		| coregen: |
+(055, 001)           IDENTIFIER ---->			| live |
+(055, 006)         DIRECT VALUE ---->				| %123012 |
+(056, 001)           IDENTIFIER ---->			| fork |
+(056, 006)         DIRECT LABEL ---->				| %:coregen |
+(058, 000)                LABEL ---->		| coreinit: |
+(059, 001)           IDENTIFIER ---->			| st |
+(059, 005)             REGISTRE ---->				| r1 |
+(059, 009)             INDIRECT ---->				| 58 |
+(060, 001)           IDENTIFIER ---->			| st |
+(060, 005)             REGISTRE ---->				| r1 |
+(060, 009)             INDIRECT ---->				| 58 |
+(061, 001)           IDENTIFIER ---->			| st |
+(061, 005)             REGISTRE ---->				| r1 |
+(061, 009)             INDIRECT ---->				| 58 |
+(062, 001)           IDENTIFIER ---->			| st |
+(062, 005)             REGISTRE ---->				| r1 |
+(062, 009)             INDIRECT ---->				| 58 |
+(063, 001)           IDENTIFIER ---->			| st |
+(063, 005)             REGISTRE ---->				| r1 |
+(063, 009)             INDIRECT ---->				| 58 |
+(064, 001)           IDENTIFIER ---->			| st |
+(064, 005)             REGISTRE ---->				| r1 |
+(064, 009)             INDIRECT ---->				| 58 |
+(065, 001)           IDENTIFIER ---->			| st |
+(065, 005)             REGISTRE ---->				| r1 |
+(065, 009)             INDIRECT ---->				| 58 |
+(066, 001)           IDENTIFIER ---->			| st |
+(066, 005)             REGISTRE ---->				| r1 |
+(066, 009)             INDIRECT ---->				| 58 |
+(067, 001)           IDENTIFIER ---->			| st |
+(067, 005)             REGISTRE ---->				| r1 |
+(067, 009)             INDIRECT ---->				| 58 |
+(068, 001)           IDENTIFIER ---->			| st |
+(068, 005)             REGISTRE ---->				| r1 |
+(068, 009)             INDIRECT ---->				| 58 |
+(069, 001)           IDENTIFIER ---->			| ld |
+(069, 005)         DIRECT VALUE ---->				| %0 |
+(069, 009)             REGISTRE ---->				| r16 |
+(071, 000)                LABEL ---->		| corelive: |
+(072, 001)           IDENTIFIER ---->			| live |
+(072, 006)         DIRECT VALUE ---->				| %985341 |
+(073, 001)           IDENTIFIER ---->			| live |
+(073, 006)         DIRECT VALUE ---->				| %985341 |
+(074, 001)           IDENTIFIER ---->			| live |
+(074, 006)         DIRECT VALUE ---->				| %985341 |
+(075, 001)           IDENTIFIER ---->			| live |
+(075, 006)         DIRECT VALUE ---->				| %985341 |
+(076, 001)           IDENTIFIER ---->			| live |
+(076, 006)         DIRECT VALUE ---->				| %985341 |
+(077, 001)           IDENTIFIER ---->			| live |
+(077, 006)         DIRECT VALUE ---->				| %985341 |
+(078, 001)           IDENTIFIER ---->			| live |
+(078, 006)         DIRECT VALUE ---->				| %985341 |
+(079, 001)           IDENTIFIER ---->			| live |
+(079, 006)         DIRECT VALUE ---->				| %985341 |
+(080, 001)           IDENTIFIER ---->			| live |
+(080, 006)         DIRECT VALUE ---->				| %985341 |
+(081, 001)           IDENTIFIER ---->			| live |
+(081, 006)         DIRECT VALUE ---->				| %985341 |
+(082, 001)           IDENTIFIER ---->			| zjmp |
+(082, 006)         DIRECT LABEL ---->				| %:corelive |
+(084, 000)                LABEL ---->		| avdefgeni: |
+(085, 001)           IDENTIFIER ---->			| st |
+(085, 006)             REGISTRE ---->				| r1 |
+(085, 010)             INDIRECT ---->				| 6 |
+(087, 000)                LABEL ---->		| avdefgen: |
+(088, 001)           IDENTIFIER ---->			| live |
+(088, 007)         DIRECT VALUE ---->				| %213904 |
+(089, 001)           IDENTIFIER ---->			| fork |
+(089, 007)         DIRECT LABEL ---->				| %:avdefgen |
+(091, 000)                LABEL ---->		| avdefinit: |
+(092, 001)           IDENTIFIER ---->			| sti |
+(092, 006)             REGISTRE ---->				| r1 |
+(092, 010)         DIRECT LABEL ---->				| %:avdefl1 |
+(092, 021)         DIRECT VALUE ---->				| %1 |
+(093, 001)           IDENTIFIER ---->			| st |
+(093, 005)             REGISTRE ---->				| r1 |
+(093, 009)             INDIRECT ---->				| 6 |
+(094, 001)           IDENTIFIER ---->			| live |
+(094, 006)         DIRECT VALUE ---->				| %43123 |
+(095, 001)           IDENTIFIER ---->			| sti |
+(095, 006)             REGISTRE ---->				| r1 |
+(095, 010)         DIRECT LABEL ---->				| %:avdefchk |
+(095, 022)         DIRECT VALUE ---->				| %1 |
+(096, 001)           IDENTIFIER ---->			| ld |
+(096, 005)         DIRECT VALUE ---->				| %0 |
+(096, 009)             REGISTRE ---->				| r2 |
+(097, 001)           IDENTIFIER ---->			| ld |
+(097, 005)         DIRECT VALUE ---->				| %6 |
+(097, 009)             REGISTRE ---->				| r3 |
+(098, 001)           IDENTIFIER ---->			| ld |
+(098, 005)         DIRECT VALUE ---->				| %150994953 |
+(098, 017)             REGISTRE ---->				| r4 |
+(099, 001)           IDENTIFIER ---->			| ld |
+(099, 005)         DIRECT VALUE ---->				| %180 |
+(099, 011)             REGISTRE ---->				| r5 |
+(101, 000)                LABEL ---->		| avdefwrite: |
+(102, 000)                LABEL ---->		| avdefl1: |
+(103, 001)           IDENTIFIER ---->			| live |
+(103, 006)         DIRECT VALUE ---->				| %295423 |
+(104, 001)           IDENTIFIER ---->			| sti |
+(104, 006)             REGISTRE ---->				| r4 |
+(104, 010)         DIRECT LABEL ---->				| %:avdeftgt |
+(104, 022)             REGISTRE ---->				| r2 |
+(105, 001)           IDENTIFIER ---->			| add |
+(105, 006)             REGISTRE ---->				| r2 |
+(105, 010)             REGISTRE ---->				| r3 |
+(105, 014)             REGISTRE ---->				| r2 |
+(106, 001)           IDENTIFIER ---->			| sti |
+(106, 006)             REGISTRE ---->				| r4 |
+(106, 010)         DIRECT LABEL ---->				| %:avdeftgt |
+(106, 022)             REGISTRE ---->				| r2 |
+(107, 001)           IDENTIFIER ---->			| add |
+(107, 006)             REGISTRE ---->				| r2 |
+(107, 010)             REGISTRE ---->				| r3 |
+(107, 014)             REGISTRE ---->				| r2 |
+(108, 000)                LABEL ---->		| avdefchk: |
+(109, 001)           IDENTIFIER ---->			| live |
+(109, 006)         DIRECT VALUE ---->				| %3940641 |
+(110, 001)           IDENTIFIER ---->			| xor |
+(110, 006)             REGISTRE ---->				| r2 |
+(110, 010)             REGISTRE ---->				| r5 |
+(110, 014)             REGISTRE ---->				| r15 |
+(111, 001)           IDENTIFIER ---->			| zjmp |
+(111, 006)         DIRECT LABEL ---->				| %:avdefinit |
+(112, 000)                LABEL ---->		| avdefloop: |
+(113, 001)           IDENTIFIER ---->			| ld |
+(113, 005)         DIRECT VALUE ---->				| %0 |
+(113, 009)             REGISTRE ---->				| r16 |
+(114, 001)           IDENTIFIER ---->			| zjmp |
+(114, 006)         DIRECT LABEL ---->				| %:avdefwrite |
+(116, 000)                LABEL ---->		| torpgeni: |
+(117, 001)           IDENTIFIER ---->			| st |
+(117, 005)             REGISTRE ---->				| r1 |
+(117, 009)             INDIRECT ---->				| 6 |
+(119, 000)                LABEL ---->		| torpgen: |
+(120, 001)           IDENTIFIER ---->			| live |
+(120, 006)         DIRECT VALUE ---->				| %96824 |
+(121, 001)           IDENTIFIER ---->			| fork |
+(121, 006)         DIRECT LABEL ---->				| %:torpgen |
+(123, 000)                LABEL ---->		| torpinit: |
+(124, 001)           IDENTIFIER ---->			| ld |
+(124, 005)         DIRECT VALUE ---->				| %0 |
+(124, 009)             REGISTRE ---->				| r2 |
+(125, 001)           IDENTIFIER ---->			| ld |
+(125, 005)         DIRECT VALUE ---->				| %4 |
+(125, 009)             REGISTRE ---->				| r3 |
+(126, 001)           IDENTIFIER ---->			| ld |
+(126, 005)         DIRECT VALUE ---->				| %96 |
+(126, 010)             REGISTRE ---->				| r5 |
+(127, 001)           IDENTIFIER ---->			| sti |
+(127, 006)             REGISTRE ---->				| r1 |
+(127, 010)         DIRECT LABEL ---->				| %:torpchk |
+(127, 021)         DIRECT VALUE ---->				| %1 |
+(128, 001)           IDENTIFIER ---->			| st |
+(128, 005)             REGISTRE ---->				| r1 |
+(128, 009)             INDIRECT ---->				| 6 |
+(130, 000)                LABEL ---->		| torpwrite: |
+(131, 000)                LABEL ---->		| torpl1: |
+(132, 001)           IDENTIFIER ---->			| live |
+(132, 006)         DIRECT VALUE ---->				| %8008135 |
+(133, 001)           IDENTIFIER ---->			| ldi |
+(133, 006)         DIRECT LABEL ---->				| %:torpinit |
+(133, 018)             REGISTRE ---->				| r2 |
+(133, 022)             REGISTRE ---->				| r4 |
+(134, 001)           IDENTIFIER ---->			| sti |
+(134, 006)             REGISTRE ---->				| r4 |
+(134, 010)         DIRECT VALUE ---->				| %400 |
+(134, 016)             REGISTRE ---->				| r2 |
+(135, 001)           IDENTIFIER ---->			| add |
+(135, 006)             REGISTRE ---->				| r2 |
+(135, 010)             REGISTRE ---->				| r3 |
+(135, 014)             REGISTRE ---->				| r2 |
+(136, 001)           IDENTIFIER ---->			| ldi |
+(136, 006)         DIRECT LABEL ---->				| %:torpinit |
+(136, 018)             REGISTRE ---->				| r2 |
+(136, 022)             REGISTRE ---->				| r4 |
+(137, 001)           IDENTIFIER ---->			| sti |
+(137, 006)             REGISTRE ---->				| r4 |
+(137, 010)         DIRECT VALUE ---->				| %383 |
+(137, 016)             REGISTRE ---->				| r2 |
+(138, 001)           IDENTIFIER ---->			| add |
+(138, 006)             REGISTRE ---->				| r2 |
+(138, 010)             REGISTRE ---->				| r3 |
+(138, 014)             REGISTRE ---->				| r2 |
+(139, 000)                LABEL ---->		| torpchk: |
+(140, 001)           IDENTIFIER ---->			| live |
+(140, 006)         DIRECT VALUE ---->				| %89523 |
+(141, 001)           IDENTIFIER ---->			| xor |
+(141, 006)             REGISTRE ---->				| r2 |
+(141, 010)             REGISTRE ---->				| r5 |
+(141, 014)             REGISTRE ---->				| r15 |
+(142, 001)           IDENTIFIER ---->			| zjmp |
+(142, 006)         DIRECT VALUE ---->				| %362 |
+(143, 000)                LABEL ---->		| torploop: |
+(144, 001)           IDENTIFIER ---->			| ld |
+(144, 005)         DIRECT VALUE ---->				| %0 |
+(144, 009)             REGISTRE ---->				| r15 |
+(145, 001)           IDENTIFIER ---->			| zjmp |
+(145, 006)         DIRECT LABEL ---->				| %:torpwrite |
+(147, 000)                LABEL ---->		| avdeftgt: |
+----------------------------------------------------------------
+

@@ -185,7 +185,6 @@ t_token		*ft_parse(t_parser *self, char **scan, void *data)
 {
 	t_token	*lst;
 	char	*start_scan;
-	char	*start_match;
 
 	if (!self)
 		return (NULL);
@@ -194,7 +193,6 @@ t_token		*ft_parse(t_parser *self, char **scan, void *data)
 	start_scan = *scan;
 	if (self->whitespace)
 		skip_whitespace(scan);
-	start_match = *scan;
 	if ((lst = self->match(self, scan, data)))
 	{
 		if (self->callback && self->callback(self, &lst))

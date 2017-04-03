@@ -89,10 +89,10 @@ lfclean :
 lre : 
 	make re -C $(LIBFT_DIR)
 
-clean :
+clean : lclean
 	rm -f $(ABS_OBJ)
 
-fclean : clean
+fclean : clean lfclean
 	rm -f $(NAME)
 
-re : fclean all
+re : fclean lre all
