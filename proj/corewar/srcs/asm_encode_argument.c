@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 10:20:49 by sbenning          #+#    #+#             */
-/*   Updated: 2017/04/03 09:34:27 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:29:32 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		encode_direct_slabel(t_instruction *ins, t_payload *payload, unsigned int i
 		ft_memcpy(ins->arg_payload, tmp, ins->arg_size);
 		free(tmp);
 	}
-	val = (short)(label->offset - ins->offset);
+	val = (short)((short)label->offset - (short)ins->offset);
 	val = SHORT_BIG2LITTLE(val);
 	ft_memcpy(ins->arg_payload + ins->arg_size, &val, sizeof(short));
 	ins->arg_size += sizeof(short);
@@ -47,7 +47,7 @@ int		encode_direct_ilabel(t_instruction *ins, t_payload *payload, unsigned int i
 		ft_memcpy(ins->arg_payload, tmp, ins->arg_size);
 		free(tmp);
 	}
-	val = (int)(label->offset - ins->offset);
+	val = (int)((int)label->offset - (int)ins->offset);
 	val = INT_BIG2LITTLE(val);
 	ft_memcpy(ins->arg_payload + ins->arg_size, &val, sizeof(int));
 	ins->arg_size += sizeof(int);

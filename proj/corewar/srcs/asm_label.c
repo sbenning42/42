@@ -6,13 +6,13 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 15:24:22 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 11:10:28 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:01:33 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_label			*new_label(char *id, unsigned char offset)
+t_label			*new_label(char *id, size_t offset)
 {
 	t_label		*label;
 	size_t		size;

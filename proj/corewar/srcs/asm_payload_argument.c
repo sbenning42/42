@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 09:35:09 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 11:19:35 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:42:58 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ unsigned int	get_arg_size(t_token *lst, size_t label_size)
 	return (0);
 }
 
-int				asm_handle_ocp\
-					(t_instruction *ins, t_token **lst, unsigned int i)
+int				asm_handle_ocp(t_instruction *ins,\
+								t_token **lst, unsigned int i)
 {
 	if ((*((int *)((*lst)->meta)) & ins->op->args_type[i]) == 0)
 	{
@@ -36,7 +36,7 @@ int				asm_handle_ocp\
 		ins->ocp <<= 0x2;
 		ins->ocp |= *((int *)((*lst)->meta));
 		ins->arguments_type[i] = *((int *)((*lst)->meta));
-	}	
+	}
 	ins->arguments_id[i] = (*lst)->id;
 	return (0);
 }

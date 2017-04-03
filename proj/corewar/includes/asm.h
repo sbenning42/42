@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:48:26 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 15:50:15 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:34:14 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 ***#############################################################################
 */
 
-# define MASK_0 (0xff << 0x18)
-# define MASK_1 (0xff << 0x10)
-# define MASK_2 (0xff << 0x8)
+# define MASK_0 (0xff000000)
+# define MASK_1 (0xff0000)
+# define MASK_2 (0xff00)
 # define MASK_3 (0xff)
 
 # define SHORT_FIRST(X) ((X & MASK_2) >> 0x8)
@@ -71,7 +71,7 @@
 # define ASM_TOKEN_CFMT		ASM_TOKEN_P0 ASM_TOKEN_P1 ASM_TOKEN_P2
 # define ASM_TOKEN_FMT		"(%03d, %03d) %20s ---->\t\t%s| %s |\n"
 
-# define ASM_ARGUMENT_CP0	"{gr|red}Bad argument{eoc} %d type '{gr|yellow}%s" 
+# define ASM_ARGUMENT_CP0	"{gr|red}Bad argument{eoc} %d type '{gr|yellow}%s"
 # define ASM_ARGUMENT_CP1	"{eoc}' for instruction `{gr|cyan}%s{eoc}`"
 # define ASM_ARGUMENT_CP2	" ({yellow|gr}%03d{eoc}, {gr|pink}%03d{eoc})\n"
 # define ASM_ARGUMENT_CFMT	ASM_ARGUMENT_CP0 ASM_ARGUMENT_CP1 ASM_ARGUMENT_CP2
@@ -372,16 +372,16 @@ int								resolve_label(t_payload *payload);
 
 int								encode_registre\
 									(t_instruction *ins, t_payload *payload,\
-									 unsigned int i);
+									unsigned int i);
 int								encode_indirect\
 									(t_instruction *ins, t_payload *payload,\
-									 unsigned int i);
+									unsigned int i);
 int								encode_direct_value\
 									(t_instruction *ins, t_payload *payload,\
-									 unsigned int i);
+									unsigned int i);
 int								encode_direct_label\
 									(t_instruction *ins, t_payload *payload,\
-									 unsigned int i);
+									unsigned int i);
 
 /*
 ***#############################################################################
@@ -391,7 +391,7 @@ int								encode_direct_label\
 ***								asm_label.c
 */
 
-t_label							*new_label(char *id, unsigned char offset);
+t_label							*new_label(char *id, size_t offset);
 void							add_label(t_label **label_lst, t_label *label);
 void							del_label(t_label **label);
 t_label							*get_label(t_label *label, char *id);

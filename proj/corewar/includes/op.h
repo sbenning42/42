@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:24:20 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 16:23:02 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:39:23 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@
 
 # define ASM_AND_ID			"and"
 # define ASM_AND_DESC		"et (and  r1, r2, r3   r1&r2 -> r3"
-# define ASM_AND_ARGS		T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, T_NOP
+# define ASM_AND_ARGS		T_REG|T_DIR|T_IND, T_REG|T_DIR|T_IND, T_REG, T_NOP
 
 # define ASM_OR_ID			"or"
 # define ASM_OR_DESC		"ou  (or   r1, r2, r3   r1 | r2 -> r3"
-# define ASM_OR_ARGS		T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, T_NOP
+# define ASM_OR_ARGS		T_REG|T_DIR|T_IND, T_REG|T_DIR|T_IND, T_REG, T_NOP
 
 # define ASM_XOR_ID			"xor"
 # define ASM_XOR_DESC		"ou (xor  r1, r2, r3   r1^r2 -> r3"
-# define ASM_XOR_ARGS		T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, T_NOP
+# define ASM_XOR_ARGS		T_REG|T_DIR|T_IND, T_REG|T_DIR|T_IND, T_REG, T_NOP
 
 # define ASM_ZJMP_ID		"zjmp"
 # define ASM_ZJMP_DESC		"jump if zero"

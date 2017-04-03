@@ -6,23 +6,31 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:53:35 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 14:26:16 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:46:40 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void				asm_dump_instruction(t_instruction *ins)
+static void			dump_i(t_instruction *ins)
 {
 	unsigned int	i;
 
 	i = 0;
-	ft_printf("%s(", ins->op->id);
+	ft_printf("%s ", ins->op->id);
 	while (i < ins->op->nb_arg)
 	{
-		ft_printf("%s%s", ins->str_arguments[i], (i + 1 == ins->op->nb_arg ? ")\n" : ", "));
+		ft_printf("%s%s", ins->str_arguments[i],\
+				(i + 1 == ins->op->nb_arg ? "\n" : ", "));
 		++i;
 	}
+}
+
+void				asm_dump_instruction(t_instruction *ins)
+{
+	unsigned int	i;
+
+	dump_i(ins);
 	if (PI_ISOPT(proginfo()->opt, ASM_VERY_VERBOSE_OPT))
 	{
 		ft_printf("\t[%#04x]", ins->op->opcode);

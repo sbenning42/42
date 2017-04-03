@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 10:46:52 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/30 18:42:01 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 12:19:15 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_op	g_op[] = {\
 	{ASM_LLD_ID, 13, 2, {ASM_LLD_ARGS}, ASM_LLD_DESC, 10, 1, 1, 4},\
 	{ASM_LLDI_ID, 14, 3, {ASM_LLDI_ARGS}, ASM_LLDI_DESC, 50, 1, 1, 2},\
 	{ASM_LFORK_ID, 15, 1, {ASM_LFORK_ARGS}, ASM_LFORK_DESC, 1000, 0, 0, 2},\
-	{ASM_AFF_ID, 16, 1, {ASM_AFF_ARGS}, ASM_AFF_DESC, 2, 0, 1, 0},\
+	{ASM_AFF_ID, 16, 1, {ASM_AFF_ARGS}, ASM_AFF_DESC, 2, 0, 0, 0},\
 	{0, 0, 0, {0, 0, 0, 0}, 0, 0, 0, 0, 0}\
 };

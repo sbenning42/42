@@ -6,7 +6,7 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 10:45:42 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 15:52:23 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:40:13 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void			write_binary(t_payload payload, char *source_file)
 	char			*object_file;
 	int				fd;
 
-	if ((tmp = ft_strrchr(source_file, '/')))
-		source_file = tmp + 1;
 	if (!(object_file = ft_strdup(source_file)))
 		exit(1);
 	extention = ft_strstr(object_file, ASM_SOURCE_EXTENTION);

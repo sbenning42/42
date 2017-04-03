@@ -6,13 +6,14 @@
 /*   By: sbenning <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 09:46:03 by sbenning          #+#    #+#             */
-/*   Updated: 2017/03/31 11:18:41 by sbenning         ###   ########.fr       */
+/*   Updated: 2017/04/03 13:43:30 by sbenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int					dispatch_argument(t_instruction *ins, t_payload *payload, unsigned int i)
+int					dispatch_argument(t_instruction *ins,\
+										t_payload *payload, unsigned int i)
 {
 	if (ins->arguments_id[i] == T_REGISTRE)
 		return (encode_registre(ins, payload, i));

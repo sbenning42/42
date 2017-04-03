@@ -1,301 +1,610 @@
 ----------------------------------------------------------------
 
-	fluttershy: oh, my, what a scary project
+	helltrain: choo-choo, motherf*****s !
 ----------------------------------------------------------------
 
 (007, 000)                LABEL ---->		| entry: |
-(008, 001)           IDENTIFIER ---->			| fork |
-(008, 006)         DIRECT LABEL ---->				| %:coregeni |
-(009, 001)           IDENTIFIER ---->			| st |
-(009, 005)             REGISTRE ---->				| r1 |
-(009, 009)             INDIRECT ---->				| 6 |
-(010, 001)           IDENTIFIER ---->			| live |
-(010, 006)         DIRECT VALUE ---->				| %42 |
-(011, 001)           IDENTIFIER ---->			| fork |
-(011, 006)         DIRECT LABEL ---->				| %:torpgeni |
-(012, 001)           IDENTIFIER ---->			| st |
-(012, 005)             REGISTRE ---->				| r1 |
-(012, 009)             INDIRECT ---->				| 6 |
-(013, 001)           IDENTIFIER ---->			| live |
-(013, 006)         DIRECT VALUE ---->				| %42 |
-(014, 001)           IDENTIFIER ---->			| fork |
-(014, 006)         DIRECT LABEL ---->				| %:avdefgeni |
-(016, 000)                LABEL ---->		| ardeftgt: |
-(018, 000)                LABEL ---->		| ardefgeni: |
-(019, 001)           IDENTIFIER ---->			| st |
+(008, 001)           IDENTIFIER ---->			| sti |
+(008, 006)             REGISTRE ---->				| r1 |
+(008, 010)         DIRECT LABEL ---->				| %:beegees_gen |
+(008, 025)         DIRECT VALUE ---->				| %1 |
+(009, 001)           IDENTIFIER ---->			| sti |
+(009, 006)             REGISTRE ---->				| r1 |
+(009, 010)         DIRECT LABEL ---->				| %:beegees |
+(009, 021)         DIRECT VALUE ---->				| %1 |
+(010, 001)           IDENTIFIER ---->			| sti |
+(010, 006)             REGISTRE ---->				| r1 |
+(010, 010)         DIRECT LABEL ---->				| %:cc_spawn |
+(010, 022)         DIRECT VALUE ---->				| %1 |
+(011, 001)           IDENTIFIER ---->			| sti |
+(011, 006)             REGISTRE ---->				| r1 |
+(011, 010)         DIRECT LABEL ---->				| %:wall |
+(011, 018)         DIRECT VALUE ---->				| %1 |
+(012, 001)           IDENTIFIER ---->			| sti |
+(012, 006)             REGISTRE ---->				| r1 |
+(012, 010)         DIRECT LABEL ---->				| %:cc4 |
+(012, 017)         DIRECT VALUE ---->				| %1 |
+(013, 001)           IDENTIFIER ---->			| sti |
+(013, 006)             REGISTRE ---->				| r1 |
+(013, 010)         DIRECT LABEL ---->				| %:cc4 |
+(013, 017)         DIRECT VALUE ---->				| %9 |
+(014, 001)           IDENTIFIER ---->			| sti |
+(014, 006)             REGISTRE ---->				| r1 |
+(014, 010)         DIRECT LABEL ---->				| %:cc4 |
+(014, 017)         DIRECT VALUE ---->				| %17 |
+(015, 001)           IDENTIFIER ---->			| sti |
+(015, 006)             REGISTRE ---->				| r1 |
+(015, 010)         DIRECT LABEL ---->				| %:cc4l |
+(015, 018)         DIRECT VALUE ---->				| %1 |
+(016, 001)           IDENTIFIER ---->			| sti |
+(016, 006)             REGISTRE ---->				| r1 |
+(016, 010)         DIRECT LABEL ---->				| %:cc4ld |
+(016, 019)         DIRECT VALUE ---->				| %2 |
+(017, 001)           IDENTIFIER ---->			| sti |
+(017, 006)             REGISTRE ---->				| r1 |
+(017, 010)         DIRECT LABEL ---->				| %:cc3 |
+(017, 017)         DIRECT VALUE ---->				| %1 |
+(018, 001)           IDENTIFIER ---->			| sti |
+(018, 006)             REGISTRE ---->				| r1 |
+(018, 010)         DIRECT LABEL ---->				| %:cc3 |
+(018, 017)         DIRECT VALUE ---->				| %9 |
+(019, 001)           IDENTIFIER ---->			| sti |
 (019, 006)             REGISTRE ---->				| r1 |
-(019, 010)             INDIRECT ---->				| 6 |
-(021, 000)                LABEL ---->		| ardefgen: |
-(022, 001)           IDENTIFIER ---->			| live |
-(022, 007)         DIRECT VALUE ---->				| %213904 |
-(023, 001)           IDENTIFIER ---->			| fork |
-(023, 007)         DIRECT LABEL ---->				| %:ardefgen |
-(025, 000)                LABEL ---->		| ardefinit: |
-(026, 001)           IDENTIFIER ---->			| sti |
-(026, 006)             REGISTRE ---->				| r1 |
-(026, 010)         DIRECT LABEL ---->				| %:ardefl1 |
-(026, 021)         DIRECT VALUE ---->				| %1 |
-(027, 001)           IDENTIFIER ---->			| st |
-(027, 005)             REGISTRE ---->				| r1 |
-(027, 009)             INDIRECT ---->				| 6 |
+(019, 010)         DIRECT LABEL ---->				| %:cc2 |
+(019, 017)         DIRECT VALUE ---->				| %1 |
+(020, 001)           IDENTIFIER ---->			| ld |
+(020, 005)         DIRECT VALUE ---->				| %0 |
+(020, 009)             REGISTRE ---->				| r16 |
+(021, 001)           IDENTIFIER ---->			| fork |
+(021, 006)         DIRECT LABEL ---->				| %:cc_spawn |
+(023, 000)                LABEL ---->		| wall_prep: |
+(024, 001)           IDENTIFIER ---->			| ld |
+(024, 005)         DIRECT VALUE ---->				| %0 |
+(024, 009)             REGISTRE ---->				| r2 |
+(025, 001)           IDENTIFIER ---->			| ld |
+(025, 005)         DIRECT VALUE ---->				| %0 |
+(025, 009)             REGISTRE ---->				| r16 |
+(027, 000)                LABEL ---->		| wall: |
 (028, 001)           IDENTIFIER ---->			| live |
-(028, 006)         DIRECT VALUE ---->				| %43123 |
-(029, 001)           IDENTIFIER ---->			| sti |
-(029, 006)             REGISTRE ---->				| r1 |
-(029, 010)         DIRECT LABEL ---->				| %:ardefchk |
-(029, 022)         DIRECT VALUE ---->				| %1 |
-(030, 001)           IDENTIFIER ---->			| ld |
-(030, 005)         DIRECT VALUE ---->				| %-6 |
-(030, 010)             REGISTRE ---->				| r2 |
-(031, 001)           IDENTIFIER ---->			| ld |
-(031, 005)         DIRECT VALUE ---->				| %-6 |
-(031, 010)             REGISTRE ---->				| r3 |
-(032, 001)           IDENTIFIER ---->			| ld |
-(032, 005)         DIRECT VALUE ---->				| %150994953 |
-(032, 017)             REGISTRE ---->				| r4 |
-(033, 001)           IDENTIFIER ---->			| ld |
-(033, 005)         DIRECT VALUE ---->				| %-186 |
-(033, 012)             REGISTRE ---->				| r5 |
-(035, 000)                LABEL ---->		| ardefwrite: |
-(036, 000)                LABEL ---->		| ardefl1: |
-(037, 001)           IDENTIFIER ---->			| live |
-(037, 006)         DIRECT VALUE ---->				| %295423 |
-(038, 001)           IDENTIFIER ---->			| sti |
-(038, 006)             REGISTRE ---->				| r4 |
-(038, 010)         DIRECT LABEL ---->				| %:ardeftgt |
-(038, 022)             REGISTRE ---->				| r2 |
-(039, 001)           IDENTIFIER ---->			| add |
-(039, 006)             REGISTRE ---->				| r2 |
-(039, 010)             REGISTRE ---->				| r3 |
-(039, 014)             REGISTRE ---->				| r2 |
-(040, 001)           IDENTIFIER ---->			| sti |
-(040, 006)             REGISTRE ---->				| r4 |
-(040, 010)         DIRECT LABEL ---->				| %:ardeftgt |
-(040, 022)             REGISTRE ---->				| r2 |
-(041, 001)           IDENTIFIER ---->			| add |
-(041, 006)             REGISTRE ---->				| r2 |
-(041, 010)             REGISTRE ---->				| r3 |
-(041, 014)             REGISTRE ---->				| r2 |
-(042, 000)                LABEL ---->		| ardefchk: |
-(043, 001)           IDENTIFIER ---->			| live |
-(043, 006)         DIRECT VALUE ---->				| %3940641 |
-(044, 001)           IDENTIFIER ---->			| xor |
-(044, 006)             REGISTRE ---->				| r2 |
-(044, 010)             REGISTRE ---->				| r5 |
-(044, 014)             REGISTRE ---->				| r15 |
-(045, 001)           IDENTIFIER ---->			| zjmp |
-(045, 006)         DIRECT LABEL ---->				| %:ardefinit |
-(046, 000)                LABEL ---->		| ardefloop: |
-(047, 001)           IDENTIFIER ---->			| ld |
-(047, 005)         DIRECT VALUE ---->				| %0 |
-(047, 009)             REGISTRE ---->				| r16 |
-(048, 001)           IDENTIFIER ---->			| zjmp |
-(048, 006)         DIRECT LABEL ---->				| %:ardefwrite |
-(051, 000)                LABEL ---->		| coregeni: |
+(028, 006)         DIRECT VALUE ---->				| %4902343 |
+(029, 001)           IDENTIFIER ---->			| st |
+(029, 005)             REGISTRE ---->				| r2 |
+(029, 009)             INDIRECT ---->				| -24 |
+(030, 001)           IDENTIFIER ---->			| st |
+(030, 005)             REGISTRE ---->				| r2 |
+(030, 009)             INDIRECT ---->				| -33 |
+(031, 001)           IDENTIFIER ---->			| st |
+(031, 005)             REGISTRE ---->				| r2 |
+(031, 009)             INDIRECT ---->				| -42 |
+(032, 001)           IDENTIFIER ---->			| st |
+(032, 005)             REGISTRE ---->				| r2 |
+(032, 009)             INDIRECT ---->				| -51 |
+(033, 001)           IDENTIFIER ---->			| st |
+(033, 005)             REGISTRE ---->				| r2 |
+(033, 009)             INDIRECT ---->				| -60 |
+(034, 001)           IDENTIFIER ---->			| st |
+(034, 005)             REGISTRE ---->				| r2 |
+(034, 009)             INDIRECT ---->				| -69 |
+(035, 001)           IDENTIFIER ---->			| st |
+(035, 005)             REGISTRE ---->				| r2 |
+(035, 009)             INDIRECT ---->				| -78 |
+(036, 001)           IDENTIFIER ---->			| st |
+(036, 005)             REGISTRE ---->				| r2 |
+(036, 009)             INDIRECT ---->				| -87 |
+(037, 001)           IDENTIFIER ---->			| st |
+(037, 005)             REGISTRE ---->				| r2 |
+(037, 009)             INDIRECT ---->				| -96 |
+(038, 001)           IDENTIFIER ---->			| st |
+(038, 005)             REGISTRE ---->				| r2 |
+(038, 009)             INDIRECT ---->				| -105 |
+(039, 001)           IDENTIFIER ---->			| st |
+(039, 005)             REGISTRE ---->				| r2 |
+(039, 009)             INDIRECT ---->				| -114 |
+(040, 001)           IDENTIFIER ---->			| st |
+(040, 005)             REGISTRE ---->				| r2 |
+(040, 009)             INDIRECT ---->				| -123 |
+(041, 001)           IDENTIFIER ---->			| st |
+(041, 005)             REGISTRE ---->				| r2 |
+(041, 009)             INDIRECT ---->				| -132 |
+(042, 001)           IDENTIFIER ---->			| st |
+(042, 005)             REGISTRE ---->				| r2 |
+(042, 009)             INDIRECT ---->				| -141 |
+(043, 001)           IDENTIFIER ---->			| st |
+(043, 005)             REGISTRE ---->				| r2 |
+(043, 009)             INDIRECT ---->				| -150 |
+(044, 001)           IDENTIFIER ---->			| st |
+(044, 005)             REGISTRE ---->				| r2 |
+(044, 009)             INDIRECT ---->				| -159 |
+(045, 001)           IDENTIFIER ---->			| st |
+(045, 005)             REGISTRE ---->				| r2 |
+(045, 009)             INDIRECT ---->				| -168 |
+(046, 001)           IDENTIFIER ---->			| st |
+(046, 005)             REGISTRE ---->				| r2 |
+(046, 009)             INDIRECT ---->				| -177 |
+(047, 001)           IDENTIFIER ---->			| st |
+(047, 005)             REGISTRE ---->				| r2 |
+(047, 009)             INDIRECT ---->				| -186 |
+(048, 001)           IDENTIFIER ---->			| st |
+(048, 005)             REGISTRE ---->				| r2 |
+(048, 009)             INDIRECT ---->				| -195 |
+(049, 001)           IDENTIFIER ---->			| st |
+(049, 005)             REGISTRE ---->				| r2 |
+(049, 009)             INDIRECT ---->				| -204 |
+(050, 001)           IDENTIFIER ---->			| st |
+(050, 005)             REGISTRE ---->				| r2 |
+(050, 009)             INDIRECT ---->				| -213 |
+(051, 001)           IDENTIFIER ---->			| st |
+(051, 005)             REGISTRE ---->				| r2 |
+(051, 009)             INDIRECT ---->				| -222 |
 (052, 001)           IDENTIFIER ---->			| st |
-(052, 005)             REGISTRE ---->				| r1 |
-(052, 009)             INDIRECT ---->				| 6 |
-(054, 000)                LABEL ---->		| coregen: |
-(055, 001)           IDENTIFIER ---->			| live |
-(055, 006)         DIRECT VALUE ---->				| %123012 |
-(056, 001)           IDENTIFIER ---->			| fork |
-(056, 006)         DIRECT LABEL ---->				| %:coregen |
-(058, 000)                LABEL ---->		| coreinit: |
+(052, 005)             REGISTRE ---->				| r2 |
+(052, 009)             INDIRECT ---->				| -231 |
+(053, 001)           IDENTIFIER ---->			| st |
+(053, 005)             REGISTRE ---->				| r2 |
+(053, 009)             INDIRECT ---->				| -240 |
+(054, 001)           IDENTIFIER ---->			| st |
+(054, 005)             REGISTRE ---->				| r2 |
+(054, 009)             INDIRECT ---->				| -249 |
+(055, 001)           IDENTIFIER ---->			| st |
+(055, 005)             REGISTRE ---->				| r2 |
+(055, 009)             INDIRECT ---->				| -258 |
+(056, 001)           IDENTIFIER ---->			| st |
+(056, 005)             REGISTRE ---->				| r2 |
+(056, 009)             INDIRECT ---->				| -267 |
+(057, 001)           IDENTIFIER ---->			| st |
+(057, 005)             REGISTRE ---->				| r2 |
+(057, 009)             INDIRECT ---->				| -276 |
+(058, 001)           IDENTIFIER ---->			| st |
+(058, 005)             REGISTRE ---->				| r2 |
+(058, 009)             INDIRECT ---->				| -285 |
 (059, 001)           IDENTIFIER ---->			| st |
-(059, 005)             REGISTRE ---->				| r1 |
-(059, 009)             INDIRECT ---->				| 58 |
+(059, 005)             REGISTRE ---->				| r2 |
+(059, 009)             INDIRECT ---->				| -294 |
 (060, 001)           IDENTIFIER ---->			| st |
-(060, 005)             REGISTRE ---->				| r1 |
-(060, 009)             INDIRECT ---->				| 58 |
+(060, 005)             REGISTRE ---->				| r2 |
+(060, 009)             INDIRECT ---->				| -303 |
 (061, 001)           IDENTIFIER ---->			| st |
-(061, 005)             REGISTRE ---->				| r1 |
-(061, 009)             INDIRECT ---->				| 58 |
+(061, 005)             REGISTRE ---->				| r2 |
+(061, 009)             INDIRECT ---->				| -312 |
 (062, 001)           IDENTIFIER ---->			| st |
-(062, 005)             REGISTRE ---->				| r1 |
-(062, 009)             INDIRECT ---->				| 58 |
+(062, 005)             REGISTRE ---->				| r2 |
+(062, 009)             INDIRECT ---->				| -321 |
 (063, 001)           IDENTIFIER ---->			| st |
-(063, 005)             REGISTRE ---->				| r1 |
-(063, 009)             INDIRECT ---->				| 58 |
+(063, 005)             REGISTRE ---->				| r2 |
+(063, 009)             INDIRECT ---->				| -330 |
 (064, 001)           IDENTIFIER ---->			| st |
-(064, 005)             REGISTRE ---->				| r1 |
-(064, 009)             INDIRECT ---->				| 58 |
+(064, 005)             REGISTRE ---->				| r2 |
+(064, 009)             INDIRECT ---->				| -339 |
 (065, 001)           IDENTIFIER ---->			| st |
-(065, 005)             REGISTRE ---->				| r1 |
-(065, 009)             INDIRECT ---->				| 58 |
+(065, 005)             REGISTRE ---->				| r2 |
+(065, 009)             INDIRECT ---->				| -348 |
 (066, 001)           IDENTIFIER ---->			| st |
-(066, 005)             REGISTRE ---->				| r1 |
-(066, 009)             INDIRECT ---->				| 58 |
+(066, 005)             REGISTRE ---->				| r2 |
+(066, 009)             INDIRECT ---->				| -357 |
 (067, 001)           IDENTIFIER ---->			| st |
-(067, 005)             REGISTRE ---->				| r1 |
-(067, 009)             INDIRECT ---->				| 58 |
+(067, 005)             REGISTRE ---->				| r2 |
+(067, 009)             INDIRECT ---->				| -366 |
 (068, 001)           IDENTIFIER ---->			| st |
-(068, 005)             REGISTRE ---->				| r1 |
-(068, 009)             INDIRECT ---->				| 58 |
-(069, 001)           IDENTIFIER ---->			| ld |
-(069, 005)         DIRECT VALUE ---->				| %0 |
-(069, 009)             REGISTRE ---->				| r16 |
-(071, 000)                LABEL ---->		| corelive: |
-(072, 001)           IDENTIFIER ---->			| live |
-(072, 006)         DIRECT VALUE ---->				| %985341 |
-(073, 001)           IDENTIFIER ---->			| live |
-(073, 006)         DIRECT VALUE ---->				| %985341 |
-(074, 001)           IDENTIFIER ---->			| live |
-(074, 006)         DIRECT VALUE ---->				| %985341 |
-(075, 001)           IDENTIFIER ---->			| live |
-(075, 006)         DIRECT VALUE ---->				| %985341 |
-(076, 001)           IDENTIFIER ---->			| live |
-(076, 006)         DIRECT VALUE ---->				| %985341 |
-(077, 001)           IDENTIFIER ---->			| live |
-(077, 006)         DIRECT VALUE ---->				| %985341 |
-(078, 001)           IDENTIFIER ---->			| live |
-(078, 006)         DIRECT VALUE ---->				| %985341 |
-(079, 001)           IDENTIFIER ---->			| live |
-(079, 006)         DIRECT VALUE ---->				| %985341 |
-(080, 001)           IDENTIFIER ---->			| live |
-(080, 006)         DIRECT VALUE ---->				| %985341 |
-(081, 001)           IDENTIFIER ---->			| live |
-(081, 006)         DIRECT VALUE ---->				| %985341 |
-(082, 001)           IDENTIFIER ---->			| zjmp |
-(082, 006)         DIRECT LABEL ---->				| %:corelive |
-(084, 000)                LABEL ---->		| avdefgeni: |
-(085, 001)           IDENTIFIER ---->			| st |
-(085, 006)             REGISTRE ---->				| r1 |
-(085, 010)             INDIRECT ---->				| 6 |
-(087, 000)                LABEL ---->		| avdefgen: |
-(088, 001)           IDENTIFIER ---->			| live |
-(088, 007)         DIRECT VALUE ---->				| %213904 |
-(089, 001)           IDENTIFIER ---->			| fork |
-(089, 007)         DIRECT LABEL ---->				| %:avdefgen |
-(091, 000)                LABEL ---->		| avdefinit: |
-(092, 001)           IDENTIFIER ---->			| sti |
-(092, 006)             REGISTRE ---->				| r1 |
-(092, 010)         DIRECT LABEL ---->				| %:avdefl1 |
-(092, 021)         DIRECT VALUE ---->				| %1 |
-(093, 001)           IDENTIFIER ---->			| st |
-(093, 005)             REGISTRE ---->				| r1 |
-(093, 009)             INDIRECT ---->				| 6 |
-(094, 001)           IDENTIFIER ---->			| live |
-(094, 006)         DIRECT VALUE ---->				| %43123 |
-(095, 001)           IDENTIFIER ---->			| sti |
-(095, 006)             REGISTRE ---->				| r1 |
-(095, 010)         DIRECT LABEL ---->				| %:avdefchk |
-(095, 022)         DIRECT VALUE ---->				| %1 |
-(096, 001)           IDENTIFIER ---->			| ld |
-(096, 005)         DIRECT VALUE ---->				| %0 |
-(096, 009)             REGISTRE ---->				| r2 |
-(097, 001)           IDENTIFIER ---->			| ld |
-(097, 005)         DIRECT VALUE ---->				| %6 |
-(097, 009)             REGISTRE ---->				| r3 |
-(098, 001)           IDENTIFIER ---->			| ld |
-(098, 005)         DIRECT VALUE ---->				| %150994953 |
-(098, 017)             REGISTRE ---->				| r4 |
-(099, 001)           IDENTIFIER ---->			| ld |
-(099, 005)         DIRECT VALUE ---->				| %180 |
-(099, 011)             REGISTRE ---->				| r5 |
-(101, 000)                LABEL ---->		| avdefwrite: |
-(102, 000)                LABEL ---->		| avdefl1: |
+(068, 005)             REGISTRE ---->				| r2 |
+(068, 009)             INDIRECT ---->				| -375 |
+(069, 001)           IDENTIFIER ---->			| st |
+(069, 005)             REGISTRE ---->				| r2 |
+(069, 009)             INDIRECT ---->				| -384 |
+(070, 001)           IDENTIFIER ---->			| st |
+(070, 005)             REGISTRE ---->				| r2 |
+(070, 009)             INDIRECT ---->				| -393 |
+(071, 001)           IDENTIFIER ---->			| st |
+(071, 005)             REGISTRE ---->				| r2 |
+(071, 009)             INDIRECT ---->				| -402 |
+(072, 001)           IDENTIFIER ---->			| st |
+(072, 005)             REGISTRE ---->				| r2 |
+(072, 009)             INDIRECT ---->				| -411 |
+(073, 001)           IDENTIFIER ---->			| st |
+(073, 005)             REGISTRE ---->				| r2 |
+(073, 009)             INDIRECT ---->				| -420 |
+(074, 001)           IDENTIFIER ---->			| st |
+(074, 005)             REGISTRE ---->				| r2 |
+(074, 009)             INDIRECT ---->				| -429 |
+(075, 001)           IDENTIFIER ---->			| st |
+(075, 005)             REGISTRE ---->				| r2 |
+(075, 009)             INDIRECT ---->				| -438 |
+(076, 001)           IDENTIFIER ---->			| st |
+(076, 005)             REGISTRE ---->				| r2 |
+(076, 009)             INDIRECT ---->				| -447 |
+(077, 001)           IDENTIFIER ---->			| st |
+(077, 005)             REGISTRE ---->				| r2 |
+(077, 009)             INDIRECT ---->				| -456 |
+(078, 001)           IDENTIFIER ---->			| st |
+(078, 005)             REGISTRE ---->				| r2 |
+(078, 009)             INDIRECT ---->				| -465 |
+(079, 001)           IDENTIFIER ---->			| st |
+(079, 005)             REGISTRE ---->				| r2 |
+(079, 009)             INDIRECT ---->				| -474 |
+(080, 001)           IDENTIFIER ---->			| st |
+(080, 005)             REGISTRE ---->				| r2 |
+(080, 009)             INDIRECT ---->				| -483 |
+(081, 001)           IDENTIFIER ---->			| st |
+(081, 005)             REGISTRE ---->				| r2 |
+(081, 009)             INDIRECT ---->				| -492 |
+(082, 001)           IDENTIFIER ---->			| st |
+(082, 005)             REGISTRE ---->				| r2 |
+(082, 009)             INDIRECT ---->				| -501 |
+(083, 001)           IDENTIFIER ---->			| st |
+(083, 005)             REGISTRE ---->				| r2 |
+(083, 009)             INDIRECT ---->				| -510 |
+(084, 001)           IDENTIFIER ---->			| zjmp |
+(084, 006)         DIRECT LABEL ---->				| %:wall |
+(086, 000)                LABEL ---->		| beegees_gen: |
+(087, 001)           IDENTIFIER ---->			| live |
+(087, 006)         DIRECT VALUE ---->				| %4239423 |
+(088, 001)           IDENTIFIER ---->			| fork |
+(088, 006)         DIRECT LABEL ---->				| %:beegees_gen |
+(089, 001)           IDENTIFIER ---->			| ld |
+(089, 005)         DIRECT VALUE ---->				| %0 |
+(089, 009)             REGISTRE ---->				| r16 |
+(091, 000)                LABEL ---->		| beegees: |
+(092, 001)           IDENTIFIER ---->			| live |
+(092, 006)         DIRECT VALUE ---->				| %3442302 |
+(093, 001)           IDENTIFIER ---->			| zjmp |
+(093, 006)         DIRECT LABEL ---->				| %:beegees |
+(095, 000)                LABEL ---->		| cc_spawn: |
+(096, 001)           IDENTIFIER ---->			| live |
+(096, 006)         DIRECT VALUE ---->				| %4320423 |
+(097, 001)           IDENTIFIER ---->			| zjmp |
+(097, 006)         DIRECT VALUE ---->				| %3 |
+(098, 001)           IDENTIFIER ---->			| fork |
+(098, 006)         DIRECT LABEL ---->				| %:cc_spawn |
+(100, 000)                LABEL ---->		| cc4: |
+(101, 001)           IDENTIFIER ---->			| live |
+(101, 006)         DIRECT VALUE ---->				| %4329034 |
+(102, 001)           IDENTIFIER ---->			| fork |
+(102, 006)         DIRECT LABEL ---->				| %:cc3 |
 (103, 001)           IDENTIFIER ---->			| live |
-(103, 006)         DIRECT VALUE ---->				| %295423 |
-(104, 001)           IDENTIFIER ---->			| sti |
-(104, 006)             REGISTRE ---->				| r4 |
-(104, 010)         DIRECT LABEL ---->				| %:avdeftgt |
-(104, 022)             REGISTRE ---->				| r2 |
-(105, 001)           IDENTIFIER ---->			| add |
-(105, 006)             REGISTRE ---->				| r2 |
-(105, 010)             REGISTRE ---->				| r3 |
-(105, 014)             REGISTRE ---->				| r2 |
-(106, 001)           IDENTIFIER ---->			| sti |
-(106, 006)             REGISTRE ---->				| r4 |
-(106, 010)         DIRECT LABEL ---->				| %:avdeftgt |
-(106, 022)             REGISTRE ---->				| r2 |
-(107, 001)           IDENTIFIER ---->			| add |
-(107, 006)             REGISTRE ---->				| r2 |
-(107, 010)             REGISTRE ---->				| r3 |
-(107, 014)             REGISTRE ---->				| r2 |
-(108, 000)                LABEL ---->		| avdefchk: |
-(109, 001)           IDENTIFIER ---->			| live |
-(109, 006)         DIRECT VALUE ---->				| %3940641 |
-(110, 001)           IDENTIFIER ---->			| xor |
-(110, 006)             REGISTRE ---->				| r2 |
-(110, 010)             REGISTRE ---->				| r5 |
-(110, 014)             REGISTRE ---->				| r15 |
-(111, 001)           IDENTIFIER ---->			| zjmp |
-(111, 006)         DIRECT LABEL ---->				| %:avdefinit |
-(112, 000)                LABEL ---->		| avdefloop: |
+(103, 006)         DIRECT VALUE ---->				| %3401123 |
+(104, 001)           IDENTIFIER ---->			| fork |
+(104, 006)         DIRECT LABEL ---->				| %:cc2 |
+(105, 001)           IDENTIFIER ---->			| live |
+(105, 006)         DIRECT VALUE ---->				| %4590543 |
+(106, 001)           IDENTIFIER ---->			| fork |
+(106, 006)         DIRECT LABEL ---->				| %:cc1 |
+(107, 000)                LABEL ---->		| cc4ld: |
+(108, 001)           IDENTIFIER ---->			| ld |
+(108, 005)         DIRECT VALUE ---->				| %0 |
+(108, 009)             REGISTRE ---->				| r2 |
+(109, 001)           IDENTIFIER ---->			| ld |
+(109, 005)         DIRECT VALUE ---->				| %251883523 |
+(109, 017)             REGISTRE ---->				| r3 |
+(110, 001)           IDENTIFIER ---->			| ld |
+(110, 005)         DIRECT VALUE ---->				| %0 |
+(110, 009)             REGISTRE ---->				| r16 |
+(111, 000)                LABEL ---->		| cc4l: |
+(112, 001)           IDENTIFIER ---->			| live |
+(112, 006)         DIRECT VALUE ---->				| %4930423 |
 (113, 001)           IDENTIFIER ---->			| ld |
 (113, 005)         DIRECT VALUE ---->				| %0 |
 (113, 009)             REGISTRE ---->				| r16 |
 (114, 001)           IDENTIFIER ---->			| zjmp |
-(114, 006)         DIRECT LABEL ---->				| %:avdefwrite |
-(116, 000)                LABEL ---->		| torpgeni: |
-(117, 001)           IDENTIFIER ---->			| st |
-(117, 005)             REGISTRE ---->				| r1 |
-(117, 009)             INDIRECT ---->				| 6 |
-(119, 000)                LABEL ---->		| torpgen: |
-(120, 001)           IDENTIFIER ---->			| live |
-(120, 006)         DIRECT VALUE ---->				| %96824 |
-(121, 001)           IDENTIFIER ---->			| fork |
-(121, 006)         DIRECT LABEL ---->				| %:torpgen |
-(123, 000)                LABEL ---->		| torpinit: |
-(124, 001)           IDENTIFIER ---->			| ld |
-(124, 005)         DIRECT VALUE ---->				| %0 |
-(124, 009)             REGISTRE ---->				| r2 |
-(125, 001)           IDENTIFIER ---->			| ld |
-(125, 005)         DIRECT VALUE ---->				| %4 |
-(125, 009)             REGISTRE ---->				| r3 |
-(126, 001)           IDENTIFIER ---->			| ld |
-(126, 005)         DIRECT VALUE ---->				| %96 |
-(126, 010)             REGISTRE ---->				| r5 |
-(127, 001)           IDENTIFIER ---->			| sti |
-(127, 006)             REGISTRE ---->				| r1 |
-(127, 010)         DIRECT LABEL ---->				| %:torpchk |
-(127, 021)         DIRECT VALUE ---->				| %1 |
-(128, 001)           IDENTIFIER ---->			| st |
-(128, 005)             REGISTRE ---->				| r1 |
-(128, 009)             INDIRECT ---->				| 6 |
-(130, 000)                LABEL ---->		| torpwrite: |
-(131, 000)                LABEL ---->		| torpl1: |
-(132, 001)           IDENTIFIER ---->			| live |
-(132, 006)         DIRECT VALUE ---->				| %8008135 |
-(133, 001)           IDENTIFIER ---->			| ldi |
-(133, 006)         DIRECT LABEL ---->				| %:torpinit |
-(133, 018)             REGISTRE ---->				| r2 |
-(133, 022)             REGISTRE ---->				| r4 |
-(134, 001)           IDENTIFIER ---->			| sti |
-(134, 006)             REGISTRE ---->				| r4 |
-(134, 010)         DIRECT VALUE ---->				| %400 |
-(134, 016)             REGISTRE ---->				| r2 |
-(135, 001)           IDENTIFIER ---->			| add |
-(135, 006)             REGISTRE ---->				| r2 |
-(135, 010)             REGISTRE ---->				| r3 |
-(135, 014)             REGISTRE ---->				| r2 |
-(136, 001)           IDENTIFIER ---->			| ldi |
-(136, 006)         DIRECT LABEL ---->				| %:torpinit |
-(136, 018)             REGISTRE ---->				| r2 |
-(136, 022)             REGISTRE ---->				| r4 |
-(137, 001)           IDENTIFIER ---->			| sti |
-(137, 006)             REGISTRE ---->				| r4 |
-(137, 010)         DIRECT VALUE ---->				| %383 |
-(137, 016)             REGISTRE ---->				| r2 |
-(138, 001)           IDENTIFIER ---->			| add |
-(138, 006)             REGISTRE ---->				| r2 |
-(138, 010)             REGISTRE ---->				| r3 |
-(138, 014)             REGISTRE ---->				| r2 |
-(139, 000)                LABEL ---->		| torpchk: |
-(140, 001)           IDENTIFIER ---->			| live |
-(140, 006)         DIRECT VALUE ---->				| %89523 |
-(141, 001)           IDENTIFIER ---->			| xor |
-(141, 006)             REGISTRE ---->				| r2 |
-(141, 010)             REGISTRE ---->				| r5 |
-(141, 014)             REGISTRE ---->				| r15 |
-(142, 001)           IDENTIFIER ---->			| zjmp |
-(142, 006)         DIRECT VALUE ---->				| %362 |
-(143, 000)                LABEL ---->		| torploop: |
-(144, 001)           IDENTIFIER ---->			| ld |
-(144, 005)         DIRECT VALUE ---->				| %0 |
-(144, 009)             REGISTRE ---->				| r15 |
-(145, 001)           IDENTIFIER ---->			| zjmp |
-(145, 006)         DIRECT LABEL ---->				| %:torpwrite |
-(147, 000)                LABEL ---->		| avdeftgt: |
+(114, 006)         DIRECT LABEL ---->				| %:choochoo |
+(116, 000)                LABEL ---->		| cc2: |
+(117, 001)           IDENTIFIER ---->			| live |
+(117, 006)         DIRECT VALUE ---->				| %4342342 |
+(118, 001)           IDENTIFIER ---->			| fork |
+(118, 006)         DIRECT LABEL ---->				| %:wall_prep |
+(119, 001)           IDENTIFIER ---->			| ld |
+(119, 005)         DIRECT VALUE ---->				| %251883523 |
+(119, 017)             REGISTRE ---->				| r2 |
+(120, 001)           IDENTIFIER ---->			| ld |
+(120, 005)         DIRECT VALUE ---->				| %386101251 |
+(120, 017)             REGISTRE ---->				| r3 |
+(121, 001)           IDENTIFIER ---->			| ld |
+(121, 005)         DIRECT VALUE ---->				| %0 |
+(121, 009)             REGISTRE ---->				| r16 |
+(122, 001)           IDENTIFIER ---->			| ld |
+(122, 005)         DIRECT VALUE ---->				| %0 |
+(122, 009)             REGISTRE ---->				| r16 |
+(123, 001)           IDENTIFIER ---->			| zjmp |
+(123, 006)         DIRECT LABEL ---->				| %:choochoo |
+(125, 000)                LABEL ---->		| cc3: |
+(126, 001)           IDENTIFIER ---->			| live |
+(126, 006)         DIRECT VALUE ---->				| %4239013 |
+(127, 001)           IDENTIFIER ---->			| fork |
+(127, 006)         DIRECT LABEL ---->				| %:cc4 |
+(128, 001)           IDENTIFIER ---->			| live |
+(128, 006)         DIRECT VALUE ---->				| %4093282 |
+(129, 001)           IDENTIFIER ---->			| fork |
+(129, 006)         DIRECT LABEL ---->				| %:beegees_gen |
+(130, 001)           IDENTIFIER ---->			| ld |
+(130, 005)         DIRECT VALUE ---->				| %4294902016 |
+(130, 018)             REGISTRE ---->				| r2 |
+(131, 001)           IDENTIFIER ---->			| ld |
+(131, 005)         DIRECT VALUE ---->				| %436432899 |
+(131, 017)             REGISTRE ---->				| r3 |
+(132, 001)           IDENTIFIER ---->			| ld |
+(132, 005)         DIRECT VALUE ---->				| %0 |
+(132, 009)             REGISTRE ---->				| r16 |
+(133, 001)           IDENTIFIER ---->			| ld |
+(133, 005)         DIRECT VALUE ---->				| %0 |
+(133, 009)             REGISTRE ---->				| r16 |
+(134, 001)           IDENTIFIER ---->			| ld |
+(134, 005)         DIRECT VALUE ---->				| %0 |
+(134, 009)             REGISTRE ---->				| r16 |
+(135, 001)           IDENTIFIER ---->			| zjmp |
+(135, 006)         DIRECT LABEL ---->				| %:choochoo |
+(137, 000)                LABEL ---->		| cc1: |
+(138, 001)           IDENTIFIER ---->			| ld |
+(138, 005)         DIRECT VALUE ---->				| %57672192 |
+(138, 016)             REGISTRE ---->				| r2 |
+(139, 001)           IDENTIFIER ---->			| ld |
+(139, 005)         DIRECT VALUE ---->				| %318992387 |
+(139, 017)             REGISTRE ---->				| r3 |
+(140, 001)           IDENTIFIER ---->			| ld |
+(140, 005)         DIRECT VALUE ---->				| %0 |
+(140, 009)             REGISTRE ---->				| r16 |
+(141, 001)           IDENTIFIER ---->			| zjmp |
+(141, 006)         DIRECT LABEL ---->				| %:choochoo |
+(143, 000)                LABEL ---->		| choochoo: |
+(144, 001)           IDENTIFIER ---->			| st |
+(144, 005)             REGISTRE ---->				| r2 |
+(144, 009)             INDIRECT ---->				| 15 |
+(145, 001)           IDENTIFIER ---->			| st |
+(145, 005)             REGISTRE ---->				| r3 |
+(145, 009)             INDIRECT ---->				| -1 |
+(146, 000)                LABEL ---->		| cc_live: |
+(147, 001)           IDENTIFIER ---->			| live |
+(147, 006)         DIRECT VALUE ---->				| %0 |
 ----------------------------------------------------------------
 
+LABEL entry at offset 0000
+LABEL wall_prep at offset 0x5e
+LABEL wall at offset 0x6c
+LABEL beegees_gen at offset 0x87
+LABEL beegees at offset 0x96
+LABEL cc_spawn at offset 0x9e
+LABEL cc4 at offset 0xa9
+LABEL cc4ld at offset 0xc1
+LABEL cc4l at offset 0xd6
+LABEL cc2 at offset 0xe5
+LABEL cc3 at offset 0x0c
+LABEL cc1 at offset 0x42
+LABEL choochoo at offset 0x5a
+LABEL cc_live at offset 0x64
+----------------------------------------------------------------
+
+sti(r1, %:beegees_gen, %1)
+	[0x0b][0x68][0x01][0x00][0x87][0x00][0x01]
+sti(r1, %:beegees, %1)
+	[0x0b][0x68][0x01][0x00][0x8f][0x00][0x01]
+sti(r1, %:cc_spawn, %1)
+	[0x0b][0x68][0x01][0x00][0x90][0x00][0x01]
+sti(r1, %:wall, %1)
+	[0x0b][0x68][0x01][0x00][0x57][0x00][0x01]
+sti(r1, %:cc4, %1)
+	[0x0b][0x68][0x01][0x00][0x8d][0x00][0x01]
+sti(r1, %:cc4, %9)
+	[0x0b][0x68][0x01][0x00][0x86][0x00][0x09]
+sti(r1, %:cc4, %17)
+	[0x0b][0x68][0x01][0x00][0x7f][0x00][0x11]
+sti(r1, %:cc4l, %1)
+	[0x0b][0x68][0x01][0x00][0xa5][0x00][0x01]
+sti(r1, %:cc4ld, %2)
+	[0x0b][0x68][0x01][0x00][0x89][0x00][0x02]
+sti(r1, %:cc3, %1)
+	[0x0b][0x68][0x01][0xff][0xcd][0x00][0x01]
+sti(r1, %:cc3, %9)
+	[0x0b][0x68][0x01][0xff][0xc6][0x00][0x09]
+sti(r1, %:cc2, %1)
+	[0x0b][0x68][0x01][0x00][0x98][0x00][0x01]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+fork(%:cc_spawn)
+	[0x0c][0x00][0x00][0x43]
+ld(%0, r2)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x02]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+live(%4902343)
+	[0x01][0x00][0x00][0x4a][0xcd][0xc7]
+st(r2, -24)
+	[0x03][0x70][0x02][0xff][0xe8]
+st(r2, -33)
+	[0x03][0x70][0x02][0xff][0xdf]
+st(r2, -42)
+	[0x03][0x70][0x02][0xff][0xd6]
+st(r2, -51)
+	[0x03][0x70][0x02][0xff][0xcd]
+st(r2, -60)
+	[0x03][0x70][0x02][0xff][0xc4]
+st(r2, -69)
+	[0x03][0x70][0x02][0xff][0xbb]
+st(r2, -78)
+	[0x03][0x70][0x02][0xff][0xb2]
+st(r2, -87)
+	[0x03][0x70][0x02][0xff][0xa9]
+st(r2, -96)
+	[0x03][0x70][0x02][0xff][0xa0]
+st(r2, -105)
+	[0x03][0x70][0x02][0xff][0x97]
+st(r2, -114)
+	[0x03][0x70][0x02][0xff][0x8e]
+st(r2, -123)
+	[0x03][0x70][0x02][0xff][0x85]
+st(r2, -132)
+	[0x03][0x70][0x02][0xff][0x7c]
+st(r2, -141)
+	[0x03][0x70][0x02][0xff][0x73]
+st(r2, -150)
+	[0x03][0x70][0x02][0xff][0x6a]
+st(r2, -159)
+	[0x03][0x70][0x02][0xff][0x61]
+st(r2, -168)
+	[0x03][0x70][0x02][0xff][0x58]
+st(r2, -177)
+	[0x03][0x70][0x02][0xff][0x4f]
+st(r2, -186)
+	[0x03][0x70][0x02][0xff][0x46]
+st(r2, -195)
+	[0x03][0x70][0x02][0xff][0x3d]
+st(r2, -204)
+	[0x03][0x70][0x02][0xff][0x34]
+st(r2, -213)
+	[0x03][0x70][0x02][0xff][0x2b]
+st(r2, -222)
+	[0x03][0x70][0x02][0xff][0x22]
+st(r2, -231)
+	[0x03][0x70][0x02][0xff][0x19]
+st(r2, -240)
+	[0x03][0x70][0x02][0xff][0x10]
+st(r2, -249)
+	[0x03][0x70][0x02][0xff][0x07]
+st(r2, -258)
+	[0x03][0x70][0x02][0xfe][0xfe]
+st(r2, -267)
+	[0x03][0x70][0x02][0xfe][0xf5]
+st(r2, -276)
+	[0x03][0x70][0x02][0xfe][0xec]
+st(r2, -285)
+	[0x03][0x70][0x02][0xfe][0xe3]
+st(r2, -294)
+	[0x03][0x70][0x02][0xfe][0xda]
+st(r2, -303)
+	[0x03][0x70][0x02][0xfe][0xd1]
+st(r2, -312)
+	[0x03][0x70][0x02][0xfe][0xc8]
+st(r2, -321)
+	[0x03][0x70][0x02][0xfe][0xbf]
+st(r2, -330)
+	[0x03][0x70][0x02][0xfe][0xb6]
+st(r2, -339)
+	[0x03][0x70][0x02][0xfe][0xad]
+st(r2, -348)
+	[0x03][0x70][0x02][0xfe][0xa4]
+st(r2, -357)
+	[0x03][0x70][0x02][0xfe][0x9b]
+st(r2, -366)
+	[0x03][0x70][0x02][0xfe][0x92]
+st(r2, -375)
+	[0x03][0x70][0x02][0xfe][0x89]
+st(r2, -384)
+	[0x03][0x70][0x02][0xfe][0x80]
+st(r2, -393)
+	[0x03][0x70][0x02][0xfe][0x77]
+st(r2, -402)
+	[0x03][0x70][0x02][0xfe][0x6e]
+st(r2, -411)
+	[0x03][0x70][0x02][0xfe][0x65]
+st(r2, -420)
+	[0x03][0x70][0x02][0xfe][0x5c]
+st(r2, -429)
+	[0x03][0x70][0x02][0xfe][0x53]
+st(r2, -438)
+	[0x03][0x70][0x02][0xfe][0x4a]
+st(r2, -447)
+	[0x03][0x70][0x02][0xfe][0x41]
+st(r2, -456)
+	[0x03][0x70][0x02][0xfe][0x38]
+st(r2, -465)
+	[0x03][0x70][0x02][0xfe][0x2f]
+st(r2, -474)
+	[0x03][0x70][0x02][0xfe][0x26]
+st(r2, -483)
+	[0x03][0x70][0x02][0xfe][0x1d]
+st(r2, -492)
+	[0x03][0x70][0x02][0xfe][0x14]
+st(r2, -501)
+	[0x03][0x70][0x02][0xfe][0x0b]
+st(r2, -510)
+	[0x03][0x70][0x02][0xfe][0x02]
+zjmp(%:wall)
+	[0x09][0x00][0xfe][0xe8]
+live(%4239423)
+	[0x01][0x00][0x00][0x40][0xb0][0x3f]
+fork(%:beegees_gen)
+	[0x0c][0x00][0xfe][0xfb]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+live(%3442302)
+	[0x01][0x00][0x00][0x34][0x86][0x7e]
+zjmp(%:beegees)
+	[0x09][0x00][0xfe][0xfb]
+live(%4320423)
+	[0x01][0x00][0x00][0x41][0xec][0xa7]
+zjmp(%3)
+	[0x09][0x00][0x00][0x03]
+fork(%:cc_spawn)
+	[0x0c][0x00][0xfe][0xf8]
+live(%4329034)
+	[0x01][0x00][0x00][0x42][0x0e][0x4a]
+fork(%:cc3)
+	[0x0c][0x00][0xfe][0x5e]
+live(%3401123)
+	[0x01][0x00][0x00][0x33][0xe5][0xa3]
+fork(%:cc2)
+	[0x0c][0x00][0xff][0x2f]
+live(%4590543)
+	[0x01][0x00][0x00][0x46][0x0b][0xcf]
+fork(%:cc1)
+	[0x0c][0x00][0xfe][0x84]
+ld(%0, r2)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x02]
+ld(%251883523, r3)
+	[0x02][0x90][0x0f][0x03][0x70][0x03][0x03]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+live(%4930423)
+	[0x01][0x00][0x00][0x4b][0x3b][0x77]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+zjmp(%:choochoo)
+	[0x09][0x00][0xfe][0x78]
+live(%4342342)
+	[0x01][0x00][0x00][0x42][0x42][0x46]
+fork(%:wall_prep)
+	[0x0c][0x00][0xfe][0x74]
+ld(%251883523, r2)
+	[0x02][0x90][0x0f][0x03][0x70][0x03][0x02]
+ld(%386101251, r3)
+	[0x02][0x90][0x17][0x03][0x70][0x03][0x03]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+zjmp(%:choochoo)
+	[0x09][0x00][0xfe][0x51]
+live(%4239013)
+	[0x01][0x00][0x00][0x40][0xae][0xa5]
+fork(%:cc4)
+	[0x0c][0x00][0xfe][0x98]
+live(%4093282)
+	[0x01][0x00][0x00][0x3e][0x75][0x62]
+fork(%:beegees_gen)
+	[0x0c][0x00][0xfe][0x6e]
+ld(%4294902016, r2)
+	[0x02][0x90][0xff][0xfe][0x01][0x00][0x02]
+ld(%436432899, r3)
+	[0x02][0x90][0x1a][0x03][0x70][0x03][0x03]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+zjmp(%:choochoo)
+	[0x09][0x00][0xfe][0x1b]
+ld(%57672192, r2)
+	[0x02][0x90][0x03][0x70][0x02][0x00][0x02]
+ld(%318992387, r3)
+	[0x02][0x90][0x13][0x03][0x70][0x03][0x03]
+ld(%0, r16)
+	[0x02][0x90][0x00][0x00][0x00][0x00][0x10]
+zjmp(%:choochoo)
+	[0x09][0x00][0xfe][0x03]
+st(r2, 15)
+	[0x03][0x70][0x02][0x00][0x0f]
+st(r3, -1)
+	[0x03][0x70][0x03][0xff][0xff]
+live(%0)
+	[0x01][0x00][0x00][0x00][0x00][0x00]
+
+----------------------------------------------------------------
+
+Writing output to helltrain.cor
